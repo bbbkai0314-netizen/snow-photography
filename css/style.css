@@ -337,7 +337,8 @@ button{ font-family:inherit; }
   padding:44px;
   border-radius:var(--radius-lg);
 }
-.about .section-head{ padding:0 0 20px; }
+.about .section-head{ padding:0 0 20px; justify-content:center; }
+.about__inner{ text-align:center; }
 .about__brand{
   font-family:'Noto Sans TC', sans-serif;
   font-weight:800;
@@ -347,6 +348,8 @@ button{ font-family:inherit; }
 }
 .about__inner > p{
   max-width:700px;
+  margin-left:auto;
+  margin-right:auto;
   font-size:clamp(15px, 1.7vw, 17px);
   line-height:1.9;
   color:#cfe3ec;
@@ -375,6 +378,7 @@ button{ font-family:inherit; }
   list-style:none;
   display:flex;
   flex-direction:column;
+  align-items:center;
   gap:10px;
   margin:14px 0;
 }
@@ -384,14 +388,10 @@ button{ font-family:inherit; }
   color:#e4eff4;
 }
 .about__list--plain li{
-  padding-left:18px;
-  position:relative;
   color:#cfe3ec;
 }
 .about__list--plain li::before{
-  content:'—';
-  position:absolute;
-  left:0;
+  content:'— ';
   color:var(--ice-dim);
 }
 
@@ -399,7 +399,7 @@ button{ font-family:inherit; }
   display:flex;
   gap:40px;
 }
-.about__col{ flex:1; min-width:0; }
+.about__col{ flex:1; min-width:0; text-align:center; }
 .about__col h4{
   font-family:'Noto Sans TC', sans-serif;
   font-weight:800;
