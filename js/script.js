@@ -6,13 +6,15 @@
   const sideDotsWrap = document.getElementById('sideDots');
   const sideLabel = document.getElementById('sideLabel');
 
-  // Build side-nav dots
-  chapters.forEach((ch, i) => {
-    const dot = document.createElement('span');
-    dot.dataset.index = i;
-    sideDotsWrap.appendChild(dot);
-  });
-  const dots = Array.from(sideDotsWrap.children);
+  // Build side-nav dots (only present on pages with scrolly chapters)
+  if (sideDotsWrap) {
+    chapters.forEach((ch, i) => {
+      const dot = document.createElement('span');
+      dot.dataset.index = i;
+      sideDotsWrap.appendChild(dot);
+    });
+  }
+  const dots = sideDotsWrap ? Array.from(sideDotsWrap.children) : [];
 
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
@@ -79,8 +81,10 @@
 
     // Side dots + label
     dots.forEach((dot, i) => dot.classList.toggle('is-active', i === activeIndex));
-    const tag = chapters[activeIndex]?.dataset.tag || '';
-    sideLabel.textContent = tag;
+    if (sideLabel) {
+      const tag = chapters[activeIndex]?.dataset.tag || '';
+      sideLabel.textContent = tag;
+    }
   }
 
   let ticking = false;
@@ -143,15 +147,17 @@
   function next() { index = (index + 1) % items.length; render(); }
   function prev() { index = (index - 1 + items.length) % items.length; render(); }
 
-  items.forEach((item, i) => item.addEventListener('click', () => open(i)));
-  btnClose.addEventListener('click', close);
-  btnNext.addEventListener('click', next);
-  btnPrev.addEventListener('click', prev);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('is-open')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowRight') next();
-    if (e.key === 'ArrowLeft') prev();
-  });
+  if (lightbox) {
+    items.forEach((item, i) => item.addEventListener('click', () => open(i)));
+    btnClose.addEventListener('click', close);
+    btnNext.addEventListener('click', next);
+    btnPrev.addEventListener('click', prev);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+  }
 })();

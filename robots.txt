@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bbbkai0314-netizen.github.io/snow-photography/sitemap.xml
