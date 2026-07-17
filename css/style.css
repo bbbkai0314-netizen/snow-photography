@@ -350,7 +350,7 @@ button{ font-family:inherit; }
   max-width:700px;
   margin-left:auto;
   margin-right:auto;
-  font-size:clamp(15px, 1.7vw, 17px);
+  font-size:15px;
   line-height:1.9;
   color:#cfe3ec;
   margin-bottom:14px;
@@ -409,14 +409,14 @@ button{ font-family:inherit; }
   letter-spacing:0.02em;
 }
 .about__col p{
-  font-size:14px;
+  font-size:15px;
   line-height:1.8;
   color:#cfe3ec;
   margin-bottom:8px;
 }
 .about__col .about__list{ margin:10px 0; }
-.about__col .about__list li{ font-size:14px; }
-.about__col .about__list--plain li{ font-size:14px; }
+.about__col .about__list li{ font-size:15px; }
+.about__col .about__list--plain li{ font-size:15px; }
 
 .partners{
   display:grid;
