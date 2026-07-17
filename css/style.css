@@ -908,6 +908,3 @@ button{ font-family:inherit; }
   .article-cta{ padding:28px 22px; }
   .contact__links{ flex-direction:column; align-items:stretch; }
 }
-
-/* ---------- Uniform text size across the whole site ---------- */
-*{ font-size:16px !important; }
