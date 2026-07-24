@@ -537,21 +537,34 @@ button{ font-family:inherit; }
   color:#cfe3ec;
   margin-bottom:24px;
 }
-.booking-flow{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  margin:0 0 22px;
+.booking-flow__title{
+  font-family:'Noto Sans TC', sans-serif;
+  font-size:18px;
+  font-weight:800;
+  color:var(--white);
+  margin:0 0 14px;
 }
-.booking-flow span{
-  color:var(--ice);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.05em;
-  padding:7px 12px;
-  border:1px solid rgba(155,212,238,.28);
-  border-radius:999px;
+.booking-flow{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:10px;
+  padding:0;
+  margin:0 0 28px;
+  list-style:none;
+}
+.booking-flow li{
+  display:flex;
+  align-items:center;
+  min-height:54px;
+  padding:12px 14px;
+  border:1px solid rgba(155,212,238,.22);
+  border-radius:var(--radius-sm);
+  background:rgba(155,212,238,.045);
+  color:#d8e9f1;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.6;
+  text-align:left;
 }
 .month-tabs{
   display:flex;
@@ -587,8 +600,10 @@ button{ font-family:inherit; }
 .appointment__btn{
   display:inline-flex;
   align-items:center;
+  justify-content:center;
   gap:8px;
   padding:16px 34px;
+  min-height:54px;
   border-radius:999px;
   font-size:14px;
   font-weight:700;
@@ -607,6 +622,12 @@ button{ font-family:inherit; }
 .appointment__btn:not(.appointment__btn--line):hover{
   background:var(--glass-bg-strong);
   transform:translateY(-2px);
+}
+.appointment__actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
 }
 .appointment__note{
   margin-top:16px;
@@ -937,5 +958,9 @@ button{ font-family:inherit; }
   .article-block--reverse{ flex-direction:column; }
   .article-block__media{ flex:0 0 auto; width:100%; aspect-ratio:16/10; }
   .article-cta{ padding:28px 22px; }
+  .booking-flow{ grid-template-columns:1fr; }
+  .booking-flow li{ min-height:0; padding:12px 14px; }
+  .appointment__actions{ flex-direction:column; }
+  .appointment__btn{ width:100%; padding:15px 18px; }
   .contact__links{ flex-direction:column; align-items:stretch; }
 }
