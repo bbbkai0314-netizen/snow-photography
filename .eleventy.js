@@ -10,6 +10,9 @@ module.exports = function (eleventyConfig) {
     [...arr].sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
   );
 
+  // Cache-busting query string for CSS/JS so browsers pick up changes on every deploy.
+  eleventyConfig.addGlobalData("assetVersion", () => Date.now());
+
   return {
     dir: {
       input: "src",
