@@ -1,0 +1,41 @@
+---
+permalink: "faq.html"
+---
+{%- set htmlTitle = "常見問題｜SnowSurfStudio" -%}
+{%- set socialTitle = htmlTitle -%}
+{%- set canonicalUrl = "https://bbbkai0314-netizen.github.io/snow-photography/faq.html" -%}
+{%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + site.seo.ogImage -%}
+{%- set ogType = "website" -%}
+{%- set assetPrefix = "" -%}
+{%- set seo = { description: "SnowSurfStudio 滑雪攝影預約常見問題：表單流程、合作學校優惠、人數限制與天候應變說明。", keywords: "滑雪攝影常見問題,預約流程說明" } -%}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include "partials/head-meta.njk" %}
+</head>
+<body>
+
+{% include "partials/glow.njk" %}
+
+{% include "partials/nav.njk" %}
+
+<main>
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <a class="article-breadcrumb" href="index.html#booking">← 返回預約</a>
+    <div class="section-head"><h1 id="faq-title">常見問題</h1><p>FAQ</p></div>
+    <div class="faq-list">
+      <details class="glass"><summary>📝 填完表單就算預約成功嗎？</summary><p>還不算。表單用於確認拍攝日期、雪場、人數與需求；我們確認檔期並收到訂金後，才會正式保留。</p></details>
+      <details class="glass"><summary>🎓 合作學校優惠如何使用？</summary><p>與我們合作的滑雪學校學員享有專屬優惠價格。請在預約時填寫學校名稱，我們確認資格後會提供優惠報價。</p></details>
+      <details class="glass"><summary>👥 1 人或 5 人以上可以拍嗎？</summary><p>可以，這類需求會依人數、雪場與拍攝內容提供專屬報價，歡迎先填表單或直接透過 LINE 詢問。</p></details>
+      <details class="glass"><summary>☁️ 天氣不好怎麼辦？</summary><p>一般下雪、陰天與低溫仍可能是很棒的拍攝條件；若雪場停業、重大交通中斷或安全條件不允許，我們會協議改期或退款方式。</p></details>
+    </div>
+  </section>
+
+  {% include "partials/footer.njk" %}
+</main>
+
+<a class="line-float" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer" aria-label="透過 LINE 聯絡 SnowSurfStudio">LINE 詢價 <span>↗</span></a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

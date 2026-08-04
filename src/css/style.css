@@ -136,6 +136,39 @@ button{ font-family:inherit; }
   background:var(--glass-bg-strong);
   box-shadow:0 8px 30px rgba(0,0,0,.3);
 }
+.nav__toggle{
+  display:none;
+  flex-direction:column; justify-content:center; gap:5px;
+  background:none; border:none; padding:6px; margin:0; cursor:pointer;
+}
+.nav__toggle span{ display:block; width:20px; height:2px; background:var(--white); border-radius:2px; transition:transform .2s ease, opacity .2s ease; }
+.nav.is-mobile-open .nav__toggle span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.nav.is-mobile-open .nav__toggle span:nth-child(2){ opacity:0; }
+.nav.is-mobile-open .nav__toggle span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+@media (max-width:720px){
+  .nav{ flex-wrap:wrap; }
+  .nav__toggle{ display:flex; }
+  .nav__links{
+    display:none;
+    flex-basis:100%;
+    flex-direction:column; align-items:stretch; gap:2px;
+    margin-top:14px; padding-top:14px;
+    border-top:1px solid var(--glass-border);
+  }
+  .nav.is-mobile-open .nav__links{ display:flex; }
+  .nav__links a{ padding:10px 4px; }
+  .nav__item--dropdown{ flex-direction:column; align-items:stretch; }
+  .nav__dropdown-trigger{ justify-content:space-between; width:100%; padding:10px 4px; }
+  .nav__dropdown-menu{
+    position:static; transform:none; opacity:1; visibility:visible; pointer-events:auto;
+    max-height:0; overflow:hidden;
+    background:none; border:none; backdrop-filter:none; -webkit-backdrop-filter:none; box-shadow:none;
+    padding:0; margin:0 0 0 10px;
+    transition:max-height .25s ease;
+  }
+  .nav__item--dropdown.is-open .nav__dropdown-menu{ max-height:260px; padding:2px 0 8px; transform:none; }
+}
 
 /* ---------- Side card ---------- */
 .side-card{
@@ -1240,11 +1273,12 @@ button{ font-family:inherit; }
 }
 
 /* ---------- Booking-first service information ---------- */
-.service-plans,.policies,.faq{position:relative;z-index:10;background:var(--navy-deep);padding:0 5vw 88px}
-.service-plans .section-head,.policies .section-head,.faq .section-head{padding-left:0;padding-right:0}
+.service-plans{position:relative;z-index:10;background:var(--navy-deep);padding:0 5vw 88px}
+.service-plans .section-head{padding-left:0;padding-right:0}
 
-/* Policies + FAQ nested inside the booking section (merged under "我要預約") */
-.appointment .policies,.appointment .faq{position:static;z-index:auto;background:none;padding:0;margin-top:56px;padding-top:56px;border-top:1px solid rgba(255,255,255,.1)}
+/* Standalone policy/FAQ pages (linked from the 我要預約 nav dropdown) */
+.policies,.faq{position:relative;z-index:10;max-width:900px;margin:130px auto 0;padding:0 5vw 100px}
+.policies .section-head,.faq .section-head{padding-left:0;padding-right:0}
 
 .plans-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .plan-preview{display:block;border-radius:var(--radius-lg);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s ease}
@@ -1267,4 +1301,4 @@ button{ font-family:inherit; }
 
 .plan-disclaimer,.policy-note{max-width:900px;margin:20px auto 0;color:#9cb3c0;line-height:1.75;font-size:14px}
 .faq-list,.policy-list{max-width:900px;margin:0 auto;display:grid;gap:12px}.faq-list details,.policy-list details{border-radius:var(--radius-sm);padding:0 22px}.faq-list summary,.policy-list summary{cursor:pointer;padding:20px 28px 20px 0;font-size:16px;font-weight:700;list-style:none;position:relative}.faq-list summary::-webkit-details-marker,.policy-list summary::-webkit-details-marker{display:none}.faq-list summary::after,.policy-list summary::after{content:'+';position:absolute;right:0;color:var(--ice);font-size:22px;font-weight:400;top:15px}.faq-list details[open] summary::after,.policy-list details[open] summary::after{content:'–'}.faq-list p,.policy-list p,.policy-list ul{padding:0 0 20px;color:#cfe3ec;line-height:1.75;font-size:14px}.policy-list ul{padding-left:20px}.policy-list li+li{margin-top:6px}.line-float{position:fixed;right:18px;bottom:18px;z-index:220;background:#06c755;color:#07130b!important;border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 30px rgba(0,0,0,.35);border-radius:999px;padding:14px 18px;font-size:14px;font-weight:800;letter-spacing:.03em}.line-float span{margin-left:6px}
-@media(max-width:720px){.plan-premium__groups{grid-template-columns:1fr}.service-plans,.policies,.faq{padding-bottom:62px}.line-float{right:14px;bottom:14px;padding:13px 16px}.nav__links a:nth-child(1){display:none}}
+@media(max-width:720px){.plan-premium__groups{grid-template-columns:1fr}.service-plans,.policies,.faq{padding-bottom:62px}.policies,.faq{margin-top:110px}.line-float{right:14px;bottom:14px;padding:13px 16px}}

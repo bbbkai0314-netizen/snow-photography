@@ -1,0 +1,44 @@
+---
+permalink: "policies.html"
+---
+{%- set htmlTitle = "安心預約規則｜SnowSurfStudio" -%}
+{%- set socialTitle = htmlTitle -%}
+{%- set canonicalUrl = "https://bbbkai0314-netizen.github.io/snow-photography/policies.html" -%}
+{%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + site.seo.ogImage -%}
+{%- set ogType = "website" -%}
+{%- set assetPrefix = "" -%}
+{%- set seo = { description: "SnowSurfStudio 滑雪攝影預約的訂金、尾款、取消退款與改期規則說明。", keywords: "滑雪攝影預約規則,取消退款政策" } -%}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include "partials/head-meta.njk" %}
+</head>
+<body>
+
+{% include "partials/glow.njk" %}
+
+{% include "partials/nav.njk" %}
+
+<main>
+  <section class="policies" id="policies" aria-labelledby="policies-title">
+    <a class="article-breadcrumb" href="index.html#booking">← 返回預約</a>
+    <div class="section-head"><h1 id="policies-title">安心預約規則</h1><p>Booking Policy</p></div>
+    <div class="policy-list">
+      <details class="glass"><summary>💰 訂金</summary><p>預約時需支付訂金（依方案收取）。</p></details>
+      <details class="glass"><summary>💳 尾款</summary><p>拍攝日前 60 天需付清尾款。若預約時距離拍攝日不足 60 天，確認預約後須一次付清全額。</p></details>
+      <details class="glass"><summary>↩️ 取消與退款</summary><ul><li>拍攝日前 90 天（含）以前：全額退款，僅酌收 NT$100 匯款／行政手續費</li><li>拍攝日前 89–61 天：訂金不予退還；已支付的尾款全額退還</li><li>拍攝日前 60 天內：恕不退款</li></ul></details>
+      <details class="glass"><summary>⚠️ 逾期未付尾款</summary><p>拍攝日前 60 天仍未收到尾款，視同放棄預約，訂單將自動取消，已支付之訂金不予退還。</p></details>
+      <details class="glass"><summary>🌨️ 改期與不可抗力</summary><p>拍攝日前 7 天以上可免費改期一次。若因天災、雪場停業或其他不可抗力因素，雙方可協議改期或依實際情況另行處理。</p></details>
+      <details class="glass"><summary>⏰ 當日提醒</summary><p>遲到不延長原定結束時間；超過 60 分鐘且未聯繫，視同當日取消。安全優先，請依雪場規則與自身能力滑行。</p></details>
+    </div>
+    <p class="policy-note">完整取消、改期與安全條款會在正式報價／確認時一併提供。</p>
+  </section>
+
+  {% include "partials/footer.njk" %}
+</main>
+
+<a class="line-float" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer" aria-label="透過 LINE 聯絡 SnowSurfStudio">LINE 詢價 <span>↗</span></a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

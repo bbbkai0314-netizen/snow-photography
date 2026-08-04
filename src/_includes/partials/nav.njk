@@ -1,0 +1,41 @@
+<header class="nav glass" id="nav">
+  <a class="nav__logo" href="index.html#top">SnowSurfStudio</a>
+  <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="開啟選單">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links" id="navLinks">
+    <a href="index.html#about">關於</a>
+    <a href="index.html#news">最新消息</a>
+    <a href="index.html#gallery">作品</a>
+    <div class="nav__item nav__item--dropdown" data-nav-dropdown>
+      <button type="button" class="nav__dropdown-trigger" aria-expanded="false" aria-controls="navPlansMenu">
+        方案<span class="nav__caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="nav__dropdown-menu" id="navPlansMenu">
+        {% for plan in collections.plans | sortByOrder %}
+        <a href="plans/{{ plan.fileSlug }}.html">{{ plan.data.title }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="nav__item nav__item--dropdown" data-nav-dropdown>
+      <button type="button" class="nav__dropdown-trigger" aria-expanded="false" aria-controls="navBookingMenu">
+        我要預約<span class="nav__caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="nav__dropdown-menu" id="navBookingMenu">
+        <a href="index.html#booking">📋 預約流程</a>
+        <a href="policies.html">🛡️ 安心預約規則</a>
+        <a href="faq.html">💬 常見問題</a>
+      </div>
+    </div>
+    <div class="nav__item nav__item--dropdown" data-nav-dropdown>
+      <button type="button" class="nav__dropdown-trigger" aria-expanded="false" aria-controls="navContactMenu">
+        聯絡<span class="nav__caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="nav__dropdown-menu" id="navContactMenu">
+        <a href="https://www.instagram.com/snowsurfstudio?igsh=MWRmYjBhdmloY3N4Nw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
+        <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">💬 LINE 詢價</a>
+        <a href="mailto:bbbkai0314@gmail.com">✉️ Email</a>
+      </div>
+    </div>
+  </nav>
+</header>
