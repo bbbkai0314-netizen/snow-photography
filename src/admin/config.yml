@@ -2,7 +2,7 @@ backend:
   name: github
   repo: bbbkai0314-netizen/snow-photography
   branch: main
-  base_url: "https://REPLACE-WITH-YOUR-WORKER-URL.workers.dev"
+  base_url: "https://snowsurf-cms-auth.bbbkai0314.workers.dev"
   auth_endpoint: auth
 
 media_folder: "src/images"
