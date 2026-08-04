@@ -127,19 +127,6 @@
     });
   }
 
-  // ---------- Appointment month tabs ----------
-  const monthTabs = document.querySelectorAll('.month-tab');
-  const appointmentCaption = document.getElementById('appointmentCaption');
-  monthTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      monthTabs.forEach((t) => t.classList.remove('is-active'));
-      tab.classList.add('is-active');
-      if (appointmentCaption) {
-        appointmentCaption.textContent = `想拍攝 ${tab.dataset.month} 月？先填需求表單，我們會回覆可拍攝檔期與正式報價。`;
-      }
-    });
-  });
-
   // ---------- Lightbox ----------
   const items = Array.from(document.querySelectorAll('.gcard'));
   const lightbox = document.getElementById('lightbox');

@@ -76,7 +76,7 @@ collections:
           - { name: "items", label: "項目清單", widget: "list", field: { name: "item", widget: "string" } }
       - { name: "groupsHeading", label: "分組區塊標題（選填，例如：方案內容）", widget: "string", required: false }
       - name: "groups"
-        label: "分組項目（選填，例如一條龍方案的多個服務分類）"
+        label: "分組項目（選填，例如尊榮服務方案的多個服務分類）"
         widget: "list"
         required: false
         fields:

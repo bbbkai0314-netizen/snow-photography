@@ -308,37 +308,136 @@
       <h2>我要預約</h2>
       <p>Booking</p>
     </div>
-    <div class="appointment__inner">
-      <p class="booking-kicker">先填需求，再確認正式報價</p>
-      <h3 class="booking-flow__title">四步完成詢價</h3>
-      <ol class="booking-flow" aria-label="預約流程">
-        <li><span class="booking-flow__icon" aria-hidden="true">📋</span><span>① 填寫拍攝需求表單</span></li>
-        <li><span class="booking-flow__icon" aria-hidden="true">💬</span><span>② 收到初步方案與回覆</span></li>
-        <li><span class="booking-flow__icon" aria-hidden="true">📅</span><span>③ 確認日期、雪場與檔期</span></li>
-        <li><span class="booking-flow__icon" aria-hidden="true">💳</span><span>④ 付訂金後正式保留</span></li>
-      </ol>
+    <div class="appointment__inner appointment__inner--wide">
+      <div class="booking-wizard" id="bookingWizard">
+        <div class="booking-wizard__stepper">
+          <div class="booking-wizard__step is-active" data-step="1">
+            <span class="booking-wizard__step-num">1</span>
+            <span class="booking-wizard__step-label">選擇方案</span>
+          </div>
+          <div class="booking-wizard__step-line"></div>
+          <div class="booking-wizard__step" data-step="2">
+            <span class="booking-wizard__step-num">2</span>
+            <span class="booking-wizard__step-label">拍攝細節</span>
+          </div>
+          <div class="booking-wizard__step-line"></div>
+          <div class="booking-wizard__step" data-step="3">
+            <span class="booking-wizard__step-num">3</span>
+            <span class="booking-wizard__step-label">聯絡方式</span>
+          </div>
+        </div>
 
-      <div class="month-tabs" id="monthTabs">
-        <button type="button" class="month-tab is-active" data-month="11">11月</button>
-        <button type="button" class="month-tab" data-month="12">12月</button>
-        <button type="button" class="month-tab" data-month="1">1月</button>
-        <button type="button" class="month-tab" data-month="2">2月</button>
-        <button type="button" class="month-tab" data-month="3">3月</button>
-        <button type="button" class="month-tab" data-month="4">4月</button>
+        <div class="booking-wizard__body">
+          <div class="booking-wizard__main">
+            <form id="bookingForm" novalidate>
+              <div class="booking-wizard__panel is-active" data-panel="1">
+                <h3 class="booking-wizard__panel-title">選擇方案</h3>
+                <div class="booking-plan-options">
+                  <button type="button" class="booking-plan-option" data-service-value="A 滑雪攝影" data-price="13000">
+                    <span class="booking-plan-option__icon">📸</span>
+                    <span class="booking-plan-option__title">攝影方案</span>
+                    <span class="booking-plan-option__desc">適合想留下滑雪回憶的旅客</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="B 教練課程＋滑雪攝影" data-price="">
+                    <span class="booking-plan-option__icon">🏂</span>
+                    <span class="booking-plan-option__title">教練＋攝影方案</span>
+                    <span class="booking-plan-option__desc">一次完成學習與紀錄</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="C 尊榮方案（滑雪教練＋滑雪攝影＋住宿＋滑雪裝備＋接駁）" data-price="">
+                    <span class="booking-plan-option__icon">🤝</span>
+                    <span class="booking-plan-option__title">尊榮服務方案</span>
+                    <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
+                  </button>
+                </div>
+                <p class="booking-wizard__error" data-error-for="1"></p>
+                <div class="booking-wizard__actions">
+                  <span></span>
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
+                </div>
+              </div>
+
+              <div class="booking-wizard__panel" data-panel="2">
+                <h3 class="booking-wizard__panel-title">拍攝細節</h3>
+                <div class="booking-field">
+                  <label for="bookingDate">日期 *</label>
+                  <input type="date" id="bookingDate" required>
+                </div>
+                <div class="booking-field">
+                  <label>地點 *</label>
+                  <div class="booking-pill-group">
+                    <button type="button" class="booking-pill" data-value="白馬">白馬</button>
+                    <button type="button" class="booking-pill" data-value="湯澤">湯澤</button>
+                  </div>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingPeople">人數 *</label>
+                  <input type="number" id="bookingPeople" min="1" value="1" required>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingNotes">拍攝風格或特殊需求（選填）</label>
+                  <textarea id="bookingNotes" rows="3" placeholder="例如：自然抓拍為主、希望多拍滑行動態…"></textarea>
+                </div>
+                <p class="booking-wizard__error" data-error-for="2"></p>
+                <div class="booking-wizard__actions">
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--prev" data-prev>← 上一步</button>
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
+                </div>
+              </div>
+
+              <div class="booking-wizard__panel" data-panel="3">
+                <h3 class="booking-wizard__panel-title">聯絡方式</h3>
+                <div class="booking-field">
+                  <label for="bookingName">姓名 *</label>
+                  <input type="text" id="bookingName" required placeholder="王小明">
+                </div>
+                <div class="booking-field">
+                  <label for="bookingEmail">Email *</label>
+                  <input type="email" id="bookingEmail" required placeholder="you@example.com">
+                </div>
+                <div class="booking-field">
+                  <label for="bookingLine">LINE ID *</label>
+                  <input type="text" id="bookingLine" required placeholder="方便我們用 LINE 聯繫你">
+                </div>
+                <p class="booking-wizard__error" data-error-for="3"></p>
+                <div class="booking-wizard__actions">
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--prev" data-prev>← 上一步</button>
+                  <button type="submit" class="booking-wizard__btn booking-wizard__btn--submit">送出預約</button>
+                </div>
+              </div>
+            </form>
+
+            <div class="booking-wizard__confirm" data-panel="confirm" hidden>
+              <div class="booking-wizard__confirm-icon">✅</div>
+              <h3>已收到你的預約需求！</h3>
+              <p>請點下方按鈕前往 LINE，傳送「已填寫」給我們——LINE 會自動幫你打好文字，只要按一下傳送即可，我們會盡快回覆可拍攝檔期與訂金付款資訊。</p>
+              <a class="booking-wizard__btn booking-wizard__btn--line" id="bookingLineLink" target="_blank" rel="noopener noreferrer">💬 前往 LINE 傳送「已填寫」</a>
+              <p class="booking-wizard__fallback">
+                沒有跳轉成功？改用<a href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">原始需求表單</a>或直接<a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">加 LINE 詢問</a>。
+              </p>
+            </div>
+
+            <div class="booking-wizard__error-banner" data-panel="submit-error" hidden>
+              <p>送出時發生網路問題，請改用下方連結：</p>
+              <a href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">填寫原始需求表單 →</a>
+            </div>
+
+            <p class="appointment__share">拍攝完成後，歡迎在 Instagram 標記 <a href="https://www.instagram.com/snowsurfstudio" target="_blank" rel="noopener noreferrer">@snowsurfstudio</a>，讓更多雪友看到你的滑行瞬間。</p>
+          </div>
+
+          <aside class="booking-summary">
+            <h4>預約摘要</h4>
+            <div class="booking-summary__row"><span>方案</span><strong data-summary="plan">尚未選擇</strong></div>
+            <div class="booking-summary__row"><span>日期</span><strong data-summary="date">尚未選擇</strong></div>
+            <div class="booking-summary__row"><span>地點</span><strong data-summary="location">尚未選擇</strong></div>
+            <div class="booking-summary__row"><span>人數</span><strong data-summary="people">—</strong></div>
+            <div class="booking-summary__row"><span>代表人</span><strong data-summary="name">—</strong></div>
+            <div class="booking-summary__price" data-summary-price hidden>
+              <span>預估金額</span>
+              <strong data-summary="price">NT$13,000</strong>
+            </div>
+          </aside>
+        </div>
       </div>
-
-      <p class="appointment__caption" id="appointmentCaption">我們會在確認可拍攝檔期後，再提供正式報價與訂金資訊。</p>
-
-      <div class="appointment__actions">
-        <a class="appointment__btn glass" href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">
-          📋 填寫拍攝需求表單
-        </a>
-        <a class="appointment__btn appointment__btn--line" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">
-          💬 回到 LINE 通知我們
-        </a>
-      </div>
-      <p class="appointment__note">完成表單後，請回到 LINE 傳送「已填寫」，方便我們快速核對你的需求。</p>
-      <p class="appointment__share">拍攝完成後，歡迎在 Instagram 標記 <a href="https://www.instagram.com/snowsurfstudio" target="_blank" rel="noopener noreferrer">@snowsurfstudio</a>，讓更多雪友看到你的滑行瞬間。</p>
 
       <div class="policies" id="policies" aria-labelledby="policies-title">
         <div class="section-head"><h2 id="policies-title">安心預約規則</h2><p>Booking Policy</p></div>
@@ -355,7 +454,7 @@
         <div class="section-head"><h2 id="faq-title">常見問題</h2><p>FAQ</p></div>
         <div class="faq-list">
           <details class="glass"><summary>📝 填完表單就算預約成功嗎？</summary><p>還不算。表單用於確認拍攝日期、雪場、人數與需求；我們確認檔期並收到訂金後，才會正式保留。</p></details>
-          <details class="glass"><summary>🎓 合作學校優惠如何使用？</summary><p>2–4 人、2 小時方案的合作學校優惠為 NT$8,500。請在表單填寫學校名稱，必要時我們會協助確認資格。</p></details>
+          <details class="glass"><summary>🎓 合作學校優惠如何使用？</summary><p>與我們合作的滑雪學校學員享有專屬優惠價格。請在預約時填寫學校名稱，我們確認資格後會提供優惠報價。</p></details>
           <details class="glass"><summary>👥 1 人或 5 人以上可以拍嗎？</summary><p>可以，這類需求會依人數、雪場與拍攝內容提供專屬報價，歡迎先填表單或直接透過 LINE 詢問。</p></details>
           <details class="glass"><summary>☁️ 天氣不好怎麼辦？</summary><p>一般下雪、陰天與低溫仍可能是很棒的拍攝條件；若雪場停業、重大交通中斷或安全條件不允許，我們會協議改期或退款方式。</p></details>
         </div>
@@ -381,5 +480,6 @@
 </div>
 
 <script src="js/script.js"></script>
+<script src="js/booking-form.js"></script>
 </body>
 </html>
