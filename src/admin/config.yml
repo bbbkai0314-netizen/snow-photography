@@ -102,6 +102,8 @@ collections:
         fields:
           - { name: "heroLocationLine", label: "首頁大標下方地點副標", widget: "string" }
           - { name: "aboutLead", label: "關於區塊一句話定位", widget: "text" }
+          - { name: "aboutImage", label: "關於我們大圖", widget: "image", media_library: { config: { multiple: false } } }
+          - { name: "aboutImageAlt", label: "關於我們大圖替代文字（無障礙用）", widget: "string" }
           - name: "newsBanner"
             label: "最新消息 Banner"
             widget: "object"
