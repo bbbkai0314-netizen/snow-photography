@@ -102,6 +102,31 @@
   window.addEventListener('resize', onScroll);
   update();
 
+  // ---------- Nav dropdown ----------
+  const dropdown = document.getElementById('navBookingDropdown');
+  if (dropdown) {
+    const trigger = dropdown.querySelector('.nav__dropdown-trigger');
+    const closeDropdown = () => {
+      dropdown.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = !dropdown.classList.contains('is-open');
+      dropdown.classList.toggle('is-open', willOpen);
+      trigger.setAttribute('aria-expanded', String(willOpen));
+    });
+    dropdown.querySelectorAll('.nav__dropdown-menu a').forEach((link) => {
+      link.addEventListener('click', closeDropdown);
+    });
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) closeDropdown();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDropdown();
+    });
+  }
+
   // ---------- Appointment month tabs ----------
   const monthTabs = document.querySelectorAll('.month-tab');
   const appointmentCaption = document.getElementById('appointmentCaption');

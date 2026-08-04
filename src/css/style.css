@@ -94,6 +94,44 @@ button{ font-family:inherit; }
   transition:color .25s ease, text-shadow .25s ease;
 }
 .nav__links a:hover{ color:var(--ice); text-shadow:0 0 16px rgba(155,212,238,.45); }
+.nav__item--dropdown{ position:relative; display:flex; align-items:center; }
+.nav__dropdown-trigger{
+  display:inline-flex; align-items:center; gap:5px;
+  background:none; border:none; padding:0; margin:0;
+  font-family:inherit; cursor:pointer;
+  font-size:13px; letter-spacing:0.1em; font-weight:700;
+  color:#d7e6ee; text-shadow:0 1px 12px rgba(0,0,0,.45);
+  transition:color .25s ease, text-shadow .25s ease;
+}
+.nav__dropdown-trigger:hover{ color:var(--ice); text-shadow:0 0 16px rgba(155,212,238,.45); }
+.nav__caret{ font-size:10px; transition:transform .2s ease; }
+.nav__item--dropdown.is-open .nav__caret{ transform:rotate(180deg); }
+.nav__dropdown-menu{
+  position:absolute; top:calc(100% + 18px); left:50%;
+  transform:translateX(-50%) translateY(-8px);
+  min-width:190px;
+  background:var(--glass-bg-strong);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(24px) saturate(150%);
+  -webkit-backdrop-filter:blur(24px) saturate(150%);
+  border-radius:var(--radius-sm);
+  padding:8px;
+  display:flex; flex-direction:column; gap:2px;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease, visibility .2s;
+  box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+.nav__item--dropdown.is-open .nav__dropdown-menu{
+  opacity:1; visibility:visible; pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+.nav__dropdown-menu a{
+  padding:10px 12px; border-radius:8px;
+  font-size:13px; font-weight:600; letter-spacing:0.02em;
+  white-space:nowrap; color:#d7e6ee;
+  transition:background .18s ease, color .18s ease;
+}
+.nav__dropdown-menu a:hover{ background:rgba(155,212,238,.14); color:var(--ice); }
 .nav--scrolled{
   background:var(--glass-bg-strong);
   box-shadow:0 8px 30px rgba(0,0,0,.3);
@@ -607,6 +645,7 @@ button{ font-family:inherit; }
 .booking-flow li{
   display:flex;
   align-items:center;
+  gap:10px;
   min-height:54px;
   padding:12px 14px;
   border:1px solid rgba(155,212,238,.22);
@@ -617,6 +656,11 @@ button{ font-family:inherit; }
   font-weight:600;
   line-height:1.6;
   text-align:left;
+}
+.booking-flow__icon{
+  flex:0 0 auto;
+  font-size:18px;
+  line-height:1;
 }
 .month-tabs{
   display:flex;
@@ -1005,6 +1049,7 @@ button{ font-family:inherit; }
   .nav{ gap:16px; padding:12px 20px; }
   .nav__links{ gap:14px; }
   .nav__links a{ font-size:11px; }
+  .nav__dropdown-trigger{ font-size:11px; }
 }
 
 @media (max-width:560px){

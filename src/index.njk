@@ -43,7 +43,16 @@
     <a href="#news">最新消息</a>
     <a href="#gallery">作品</a>
     <a href="#plans">方案</a>
-    <a href="#booking">我要預約</a>
+    <div class="nav__item nav__item--dropdown" id="navBookingDropdown">
+      <button type="button" class="nav__dropdown-trigger" aria-expanded="false" aria-controls="navBookingMenu">
+        我要預約<span class="nav__caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="nav__dropdown-menu" id="navBookingMenu">
+        <a href="#booking">📋 預約流程</a>
+        <a href="#policies">🛡️ 安心預約規則</a>
+        <a href="#faq">💬 常見問題</a>
+      </div>
+    </div>
     <a href="#contact">聯絡</a>
   </nav>
 </header>
@@ -303,10 +312,10 @@
       <p class="booking-kicker">先填需求，再確認正式報價</p>
       <h3 class="booking-flow__title">四步完成詢價</h3>
       <ol class="booking-flow" aria-label="預約流程">
-        <li>① 填寫拍攝需求表單</li>
-        <li>② 收到初步方案與回覆</li>
-        <li>③ 確認日期、雪場與檔期</li>
-        <li>④ 付訂金後正式保留</li>
+        <li><span class="booking-flow__icon" aria-hidden="true">📋</span><span>① 填寫拍攝需求表單</span></li>
+        <li><span class="booking-flow__icon" aria-hidden="true">💬</span><span>② 收到初步方案與回覆</span></li>
+        <li><span class="booking-flow__icon" aria-hidden="true">📅</span><span>③ 確認日期、雪場與檔期</span></li>
+        <li><span class="booking-flow__icon" aria-hidden="true">💳</span><span>④ 付訂金後正式保留</span></li>
       </ol>
 
       <div class="month-tabs" id="monthTabs">
@@ -322,10 +331,10 @@
 
       <div class="appointment__actions">
         <a class="appointment__btn glass" href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">
-          填寫拍攝需求表單
+          📋 填寫拍攝需求表單
         </a>
         <a class="appointment__btn appointment__btn--line" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">
-          回到 LINE 通知我們
+          💬 回到 LINE 通知我們
         </a>
       </div>
       <p class="appointment__note">完成表單後，請回到 LINE 傳送「已填寫」，方便我們快速核對你的需求。</p>
@@ -334,10 +343,10 @@
       <div class="policies" id="policies" aria-labelledby="policies-title">
         <div class="section-head"><h2 id="policies-title">安心預約規則</h2><p>Booking Policy</p></div>
         <div class="policy-grid">
-          <article class="policy-card glass"><h3>預約成立</h3><p>日期經確認並收到訂金後，才會正式保留檔期。未於指定期限完成付款，檔期將不另行保留。</p></article>
-          <article class="policy-card glass"><h3>取消與退款</h3><ul><li>拍攝日前 14 天以上：退還訂金 100%</li><li>拍攝日前 7–13 天：退還訂金 50%</li><li>拍攝日前 6 天內：訂金不予退還</li></ul></article>
-          <article class="policy-card glass"><h3>改期與天候</h3><p>拍攝日前 7 天以上可免費改期一次。若遇雪場停業、重大交通中斷或不適合安全拍攝的天候，可協議免費改期或依實際不可退支出後退款。</p></article>
-          <article class="policy-card glass"><h3>當日提醒</h3><p>遲到不延長原定結束時間；超過 60 分鐘且未聯繫，視同當日取消。安全優先，請依雪場規則與自身能力滑行。</p></article>
+          <article class="policy-card glass"><h3>🔒 預約成立</h3><p>日期經確認並收到訂金後，才會正式保留檔期。未於指定期限完成付款，檔期將不另行保留。</p></article>
+          <article class="policy-card glass"><h3>↩️ 取消與退款</h3><ul><li>拍攝日前 14 天以上：退還訂金 100%</li><li>拍攝日前 7–13 天：退還訂金 50%</li><li>拍攝日前 6 天內：訂金不予退還</li></ul></article>
+          <article class="policy-card glass"><h3>🌨️ 改期與天候</h3><p>拍攝日前 7 天以上可免費改期一次。若遇雪場停業、重大交通中斷或不適合安全拍攝的天候，可協議免費改期或依實際不可退支出後退款。</p></article>
+          <article class="policy-card glass"><h3>⏰ 當日提醒</h3><p>遲到不延長原定結束時間；超過 60 分鐘且未聯繫，視同當日取消。安全優先，請依雪場規則與自身能力滑行。</p></article>
         </div>
         <p class="policy-note">完整取消、改期與安全條款會在正式報價／確認時一併提供。</p>
       </div>
@@ -345,10 +354,10 @@
       <div class="faq" id="faq" aria-labelledby="faq-title">
         <div class="section-head"><h2 id="faq-title">常見問題</h2><p>FAQ</p></div>
         <div class="faq-list">
-          <details class="glass"><summary>填完表單就算預約成功嗎？</summary><p>還不算。表單用於確認拍攝日期、雪場、人數與需求；我們確認檔期並收到訂金後，才會正式保留。</p></details>
-          <details class="glass"><summary>合作學校優惠如何使用？</summary><p>2–4 人、2 小時方案的合作學校優惠為 NT$8,500。請在表單填寫學校名稱，必要時我們會協助確認資格。</p></details>
-          <details class="glass"><summary>1 人或 5 人以上可以拍嗎？</summary><p>可以，這類需求會依人數、雪場與拍攝內容提供專屬報價，歡迎先填表單或直接透過 LINE 詢問。</p></details>
-          <details class="glass"><summary>天氣不好怎麼辦？</summary><p>一般下雪、陰天與低溫仍可能是很棒的拍攝條件；若雪場停業、重大交通中斷或安全條件不允許，我們會協議改期或退款方式。</p></details>
+          <details class="glass"><summary>📝 填完表單就算預約成功嗎？</summary><p>還不算。表單用於確認拍攝日期、雪場、人數與需求；我們確認檔期並收到訂金後，才會正式保留。</p></details>
+          <details class="glass"><summary>🎓 合作學校優惠如何使用？</summary><p>2–4 人、2 小時方案的合作學校優惠為 NT$8,500。請在表單填寫學校名稱，必要時我們會協助確認資格。</p></details>
+          <details class="glass"><summary>👥 1 人或 5 人以上可以拍嗎？</summary><p>可以，這類需求會依人數、雪場與拍攝內容提供專屬報價，歡迎先填表單或直接透過 LINE 詢問。</p></details>
+          <details class="glass"><summary>☁️ 天氣不好怎麼辦？</summary><p>一般下雪、陰天與低溫仍可能是很棒的拍攝條件；若雪場停業、重大交通中斷或安全條件不允許，我們會協議改期或退款方式。</p></details>
         </div>
       </div>
     </div>
