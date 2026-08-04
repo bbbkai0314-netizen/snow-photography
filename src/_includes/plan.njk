@@ -1,0 +1,92 @@
+{%- set htmlTitle = seo.title or (title + "｜" + subtitleEn + "｜SnowSurfStudio") -%}
+{%- set socialTitle = htmlTitle -%}
+{%- set canonicalUrl = "https://bbbkai0314-netizen.github.io/snow-photography/plans/" + page.fileSlug + ".html" -%}
+{%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + (seo.ogImage or heroImage) -%}
+{%- set ogType = "website" -%}
+{%- set assetPrefix = "../" -%}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include "partials/head-meta.njk" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{{ title }}",
+  "alternateName": "{{ subtitleEn }}",
+  "serviceType": "{{ serviceType }}",
+  "description": "{{ seo.description }}",
+  "provider": { "@type": "ProfessionalService", "name": "SnowSurfStudio", "url": "https://bbbkai0314-netizen.github.io/snow-photography/" },
+  "areaServed": ["日本新潟・越後湯澤", "長野・白馬", "北海道"],
+  "inLanguage": "zh-Hant"
+}
+</script>
+</head>
+<body>
+
+{% include "partials/glow.njk" %}
+
+<header class="nav glass" id="nav">
+  <a class="nav__logo" href="../index.html#top">SnowSurfStudio</a>
+  <nav class="nav__links">
+    <a href="../index.html#about">ABOUT</a>
+    <a href="../index.html#gallery">WORK</a>
+    <a href="../index.html#plans">PLANS</a>
+    <a href="../index.html#booking">BOOKING</a>
+    <a href="../index.html#contact">CONTACT</a>
+  </nav>
+</header>
+
+<main>
+  <article>
+    <div class="article-hero">
+      <a class="article-breadcrumb" href="../index.html#plans">← 返回方案介紹</a>
+      <span class="article-hero__tag">{{ eyebrowNumber }} · {{ eyebrowLabel or title }}</span>
+      <h1>{{ title }}</h1>
+      <p class="article-hero__meta">{{ subtitleEn }}</p>
+      <div class="article-hero__image">
+        <img src="{{ assetPrefix }}{{ heroImage }}" alt="{{ heroImageAlt }}" loading="lazy">
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p class="article-body__lead">{{ leadParagraph }}</p>
+
+      {% for section in sections %}
+      <div class="article-section">
+        <h2>{{ section.heading }}</h2>
+        <ul>
+          {% for item in section.items %}<li>{{ item }}</li>{% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+
+      {% if groups and groups.length %}
+      <div class="article-section">
+        <h2>{{ groupsHeading or "方案內容" }}</h2>
+        <div class="plan-premium__groups">
+          {% for group in groups %}
+          <div class="plan-premium__group">
+            <h4><span>{{ group.icon }}</span> {{ group.title }}</h4>
+            <ul>
+              {% for item in group.items %}<li>{{ item }}</li>{% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="article-cta glass-panel">
+        <p>{{ ctaText }}</p>
+        <a class="article-cta__btn glass" href="../index.html#booking">查看預約方式 →</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+{% include "partials/footer.njk" %}
+
+<script src="../js/script.js"></script>
+</body>
+</html>

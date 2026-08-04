@@ -1,0 +1,4 @@
+{
+  "tags": "plans",
+  "permalink": "plans/{{ page.fileSlug }}.html"
+}

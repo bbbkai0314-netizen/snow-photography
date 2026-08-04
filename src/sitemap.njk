@@ -1,0 +1,31 @@
+---
+permalink: sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://bbbkai0314-netizen.github.io/snow-photography/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://bbbkai0314-netizen.github.io/snow-photography/blog/index.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+{%- for post in collections.posts %}
+  <url>
+    <loc>https://bbbkai0314-netizen.github.io/snow-photography/blog/{{ post.fileSlug }}.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+{%- endfor %}
+{%- for plan in collections.plans | sortByOrder %}
+  <url>
+    <loc>https://bbbkai0314-netizen.github.io/snow-photography/plans/{{ plan.fileSlug }}.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+{%- endfor %}
+</urlset>

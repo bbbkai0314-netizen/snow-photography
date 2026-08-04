@@ -1,29 +1,15 @@
+{%- set htmlTitle = site.seo.title -%}
+{%- set socialTitle = site.seo.title -%}
+{%- set canonicalUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" -%}
+{%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + site.seo.ogImage -%}
+{%- set ogType = "website" -%}
+{%- set assetPrefix = "" -%}
+{%- set seo = site.seo -%}
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SnowSurfStudio｜日本湯澤滑雪攝影・滑雪跟拍預約</title>
-<meta name="description" content="SnowSurfStudio 提供日本新潟越後湯澤、長野白馬等地的滑雪攝影與滑雪跟拍服務。查看作品集、拍攝風格、價格方案與可預約檔期，為你的滑雪旅行留下專業影像紀錄。">
-<meta name="keywords" content="滑雪攝影,湯澤滑雪攝影,日本滑雪攝影,滑雪跟拍,滑雪寫真,苗場滑雪攝影,GALA湯澤攝影,滑雪攝影推薦,滑雪攝影預約">
-<meta name="robots" content="index, follow">
+{% include "partials/head-meta.njk" %}
 <meta name="author" content="SnowSurfStudio">
-<link rel="canonical" href="https://bbbkai0314-netizen.github.io/snow-photography/">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="SnowSurfStudio">
-<meta property="og:locale" content="zh_TW">
-<meta property="og:title" content="SnowSurfStudio｜日本湯澤滑雪攝影・滑雪跟拍預約">
-<meta property="og:description" content="日本新潟越後湯澤、長野白馬滑雪攝影與滑雪跟拍服務。作品集、價格方案、拍攝流程與可預約檔期一次看。">
-<meta property="og:url" content="https://bbbkai0314-netizen.github.io/snow-photography/">
-<meta property="og:image" content="https://bbbkai0314-netizen.github.io/snow-photography/images/action-01.jpg">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SnowSurfStudio｜日本湯澤滑雪攝影・滑雪跟拍預約">
-<meta name="twitter:description" content="日本新潟越後湯澤、長野白馬滑雪攝影與滑雪跟拍服務。作品集、價格方案、拍攝流程與可預約檔期一次看。">
-<meta name="twitter:image" content="https://bbbkai0314-netizen.github.io/snow-photography/images/action-01.jpg">
-
-<link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,7 +18,7 @@
   "alternateName": "滑雪攝影 SnowSurfStudio",
   "description": "SnowSurfStudio 提供日本新潟越後湯澤、長野白馬等地的滑雪攝影與滑雪跟拍服務，捕捉滑雪旅行中的動作、人像與生活紀錄。",
   "url": "https://bbbkai0314-netizen.github.io/snow-photography/",
-  "image": "https://bbbkai0314-netizen.github.io/snow-photography/images/action-01.jpg",
+  "image": "{{ ogImageUrl }}",
   "email": "bbbkai0314@gmail.com",
   "areaServed": [
     { "@type": "Place", "name": "日本新潟・越後湯澤" },
@@ -48,9 +34,7 @@
 </head>
 <body>
 
-<div class="glow glow--a" id="glowA"></div>
-<div class="glow glow--b" id="glowB"></div>
-<div class="grain"></div>
+{% include "partials/glow.njk" %}
 
 <header class="nav glass" id="nav">
   <a class="nav__logo" href="#top">SnowSurfStudio</a>
@@ -80,21 +64,23 @@
       <div class="chapter__content chapter__content--hero">
         <p class="eyebrow">SNOW PHOTOGRAPHY SERVICES</p>
         <h1>SnowSurfStudio</h1>
-        <p class="chapter__location">日本新潟越後湯澤・長野白馬 滑雪跟拍與寫真</p>
+        <p class="chapter__location">{{ site.heroLocationLine }}</p>
         <p class="chapter__sub">2026 / 27 Season &middot; @snowsurfstudio</p>
       </div>
       <div class="scroll-cue">SCROLL</div>
     </div>
   </section>
 
+  {% if site.newsBanner.active %}
   <section class="news-banner" id="news" aria-labelledby="news-title">
     <div class="news-banner__card glass">
       <span class="news-banner__eyebrow">最新消息 · NEWS</span>
-      <h2 id="news-title">早鳥優惠：即日起至 11/30 完成預約享 85 折</h2>
-      <p>即日起至 2026 年 11 月 30 日完成預約，即享早鳥優惠 85 折（省 15%）。名額有限，愈早預約，愈能鎖定你想要的雪場與拍攝時段。</p>
-      <a class="news-banner__btn appointment__btn glass" href="#booking">查看預約方式 →</a>
+      <h2 id="news-title">{{ site.newsBanner.title }}</h2>
+      <p>{{ site.newsBanner.copy }}</p>
+      <a class="news-banner__btn appointment__btn glass" href="#booking">{{ site.newsBanner.buttonLabel }}</a>
     </div>
   </section>
+  {% endif %}
 
   <section class="about glass-panel" id="about">
     <div class="section-head">
@@ -103,7 +89,7 @@
     </div>
     <div class="about__inner">
       <h3 class="about__brand">SnowSurfStudio</h3>
-      <p class="about__lead">熟悉湯澤、白馬雪場地形與雪況，並與在地滑雪學校深度合作——拍的不是制式觀光照，而是真實的滑行瞬間。</p>
+      <p class="about__lead">{{ site.aboutLead }}</p>
       <p>SnowSurfStudio 專注於滑雪文化影像創作，透過鏡頭捕捉每一次滑行的速度、線條與情感。</p>
       <p>我們相信，滑雪不只是完成一個動作，而是與雪山、地形及自然共舞的過程。每一次轉彎、每一道雪花揚起，都是獨一無二的故事。</p>
       <p>無論是粉雪、樹林、Carving、Park，或是日出與夕陽下的滑行，我們希望用影像保留每位滑雪者最真實、最自由的瞬間。</p>
@@ -247,38 +233,18 @@
     </div>
 
     <div class="plans-grid">
-      <a class="plan-preview glass" href="plans/photography.html">
-        <img src="images/portrait-7202.jpg" alt="人像攝影" loading="lazy">
+      {% for plan in collections.plans | sortByOrder %}
+      <a class="plan-preview glass" href="plans/{{ plan.fileSlug }}.html">
+        <img src="{{ plan.data.heroImage }}" alt="{{ plan.data.heroImageAlt }}" loading="lazy">
         <div class="plan-preview__body">
-          <span class="plan-preview__eyebrow">01</span>
-          <h3>攝影方案</h3>
-          <p class="plan-preview__en">Snow Photography</p>
-          <p class="plan-preview__desc">適合想留下滑雪回憶的旅客。</p>
+          <span class="plan-preview__eyebrow">{{ plan.data.eyebrowNumber }}</span>
+          <h3>{{ plan.data.title }}</h3>
+          <p class="plan-preview__en">{{ plan.data.subtitleEn }}</p>
+          <p class="plan-preview__desc">{{ plan.data.previewDescription }}</p>
           <span class="plan-preview__link">查看方案內容 →</span>
         </div>
       </a>
-
-      <a class="plan-preview glass" href="plans/lesson-photography.html">
-        <img src="images/lesson-hero.jpg" alt="手持滑雪板剪影，逆光望向雪山" loading="lazy">
-        <div class="plan-preview__body">
-          <span class="plan-preview__eyebrow">02</span>
-          <h3>教練＋攝影方案</h3>
-          <p class="plan-preview__en">Lesson + Photography</p>
-          <p class="plan-preview__desc">一次完成學習與紀錄，留下每一次進步的瞬間。</p>
-          <span class="plan-preview__link">查看方案內容 →</span>
-        </div>
-      </a>
-
-      <a class="plan-preview glass" href="plans/premium.html">
-        <img src="images/action-01.jpg" alt="滑雪板騰空動作" loading="lazy">
-        <div class="plan-preview__body">
-          <span class="plan-preview__eyebrow">03</span>
-          <h3>一條龍尊榮方案</h3>
-          <p class="plan-preview__en">Snow Experience Package</p>
-          <p class="plan-preview__desc">從攝影、教練到住宿與雪具，一次滿足完整滑雪體驗。</p>
-          <span class="plan-preview__link">查看方案內容 →</span>
-        </div>
-      </a>
+      {% endfor %}
     </div>
 
     <p class="plan-disclaimer">以上三個方案為內容說明，實際人數、時長與報價將依你的需求另行確認。請先填寫需求表單並選擇偏好方案，我們會盡快與你確認細節與正式報價；送出表單不代表預約成立。</p>
@@ -292,30 +258,16 @@
     <div class="journal__inner">
       <p class="journal__intro">滑雪攝影的準備、比較與雪場攻略，寫給正在規劃日本滑雪行程的你。</p>
       <div class="journal__grid">
-        <a class="journal-card glass" href="blog/ski-photo-poses.html">
-          <img src="images/action-05.jpg" alt="雙人擊掌跳躍動作" loading="lazy">
+        {% for post in collections.posts | reverse %}
+        <a class="journal-card glass" href="blog/{{ post.fileSlug }}.html">
+          <img src="{{ post.data.previewImage or post.data.heroImage }}" alt="{{ post.data.previewImageAlt or post.data.heroImageAlt }}" loading="lazy">
           <div class="journal-card__body">
-            <span class="journal-card__tag">教學</span>
-            <h3>滑雪拍照姿勢教學：10 個讓照片更有故事感的動作</h3>
-            <p>從基本站姿到動作瞬間，第一次滑雪拍照也能拍得自然好看。</p>
+            <span class="journal-card__tag">{{ post.data.tag }}</span>
+            <h3>{{ post.data.title }}</h3>
+            <p>{{ post.data.previewDescription }}</p>
           </div>
         </a>
-        <a class="journal-card glass" href="blog/selfie-vs-professional-photographer.html">
-          <img src="images/town-02.jpg" alt="眺望雪山稜線，滑雪板置於雪地" loading="lazy">
-          <div class="journal-card__body">
-            <span class="journal-card__tag">比較</span>
-            <h3>自拍 vs 專業滑雪攝影，差別在哪裡？</h3>
-            <p>從畫質、角度到後製，拆解兩種紀錄方式各自適合的情境。</p>
-          </div>
-        </a>
-        <a class="journal-card glass" href="blog/yuzawa-resort-guide.html">
-          <img src="images/town-01.jpg" alt="雪鎮街道與遠方雪山" loading="lazy">
-          <div class="journal-card__body">
-            <span class="journal-card__tag">雪場攻略</span>
-            <h3>湯澤雪場拍攝攻略：GALA、苗場、神立怎麼選景點</h3>
-            <p>各雪場的地形特色與適合拍照的時段、位置整理。</p>
-          </div>
-        </a>
+        {% endfor %}
       </div>
       <a class="journal__more" href="blog/index.html">查看所有文章 →</a>
     </div>
@@ -402,21 +354,7 @@
     </div>
   </section>
 
-  <footer class="contact" id="contact">
-    <h2>SnowSurfStudio</h2>
-    <p class="contact__sub">2026/27 Season</p>
-    <div class="contact__links">
-      <a class="contact__btn glass" href="https://www.instagram.com/snowsurfstudio?igsh=MWRmYjBhdmloY3N4Nw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
-        <span>Instagram</span> ↗
-      </a>
-      <a class="contact__btn glass" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">
-        <span>LINE 詢價</span> ↗
-      </a>
-      <a class="contact__btn glass" href="mailto:bbbkai0314@gmail.com">
-        <span>bbbkai0314@gmail.com</span>
-      </a>
-    </div>
-  </footer>
+  {% include "partials/footer.njk" %}
 
 </main>
 
