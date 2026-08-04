@@ -110,7 +110,7 @@
       monthTabs.forEach((t) => t.classList.remove('is-active'));
       tab.classList.add('is-active');
       if (appointmentCaption) {
-        appointmentCaption.textContent = `查看 ${tab.dataset.month} 月滑雪拍攝可預約時段`;
+        appointmentCaption.textContent = `想拍攝 ${tab.dataset.month} 月？先填需求表單，我們會回覆可拍攝檔期與正式報價。`;
       }
     });
   });

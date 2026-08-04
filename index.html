@@ -55,11 +55,12 @@
 <header class="nav glass" id="nav">
   <a class="nav__logo" href="#top">SnowSurfStudio</a>
   <nav class="nav__links">
-    <a href="#gallery">WORK</a>
-    <a href="#about">ABOUT</a>
-    <a href="#journal">JOURNAL</a>
-    <a href="#booking">BOOKING</a>
-    <a href="#contact">CONTACT</a>
+    <a href="#about">關於</a>
+    <a href="#news">最新消息</a>
+    <a href="#gallery">作品</a>
+    <a href="#plans">方案</a>
+    <a href="#booking">詢價</a>
+    <a href="#contact">聯絡</a>
   </nav>
 </header>
 
@@ -79,9 +80,19 @@
       <div class="chapter__content chapter__content--hero">
         <p class="eyebrow">SNOW PHOTOGRAPHY SERVICES</p>
         <h1>SnowSurfStudio</h1>
+        <p class="chapter__location">日本新潟越後湯澤・長野白馬 滑雪跟拍與寫真</p>
         <p class="chapter__sub">2026 / 27 Season &middot; @snowsurfstudio</p>
       </div>
       <div class="scroll-cue">SCROLL</div>
+    </div>
+  </section>
+
+  <section class="news-banner" id="news" aria-labelledby="news-title">
+    <div class="news-banner__card glass">
+      <span class="news-banner__eyebrow">最新消息 · NEWS</span>
+      <h2 id="news-title">早鳥優惠：即日起至 11/30 完成預約享 85 折</h2>
+      <p>即日起至 2026 年 11 月 30 日完成預約，即享早鳥優惠 85 折（省 15%）。名額有限，愈早預約，愈能鎖定你想要的雪場與拍攝時段。</p>
+      <a class="news-banner__btn appointment__btn glass" href="#booking">查看預約方式 →</a>
     </div>
   </section>
 
@@ -92,6 +103,7 @@
     </div>
     <div class="about__inner">
       <h3 class="about__brand">SnowSurfStudio</h3>
+      <p class="about__lead">熟悉湯澤、白馬雪場地形與雪況，並與在地滑雪學校深度合作——拍的不是制式觀光照，而是真實的滑行瞬間。</p>
       <p>SnowSurfStudio 專注於滑雪文化影像創作，透過鏡頭捕捉每一次滑行的速度、線條與情感。</p>
       <p>我們相信，滑雪不只是完成一個動作，而是與雪山、地形及自然共舞的過程。每一次轉彎、每一道雪花揚起，都是獨一無二的故事。</p>
       <p>無論是粉雪、樹林、Carving、Park，或是日出與夕陽下的滑行，我們希望用影像保留每位滑雪者最真實、最自由的瞬間。</p>
@@ -228,6 +240,50 @@
     </div>
   </section>
 
+  <section class="service-plans" id="plans" aria-labelledby="plans-title">
+    <div class="section-head">
+      <h2 id="plans-title">拍攝方案</h2>
+      <p>Photo Session</p>
+    </div>
+
+    <div class="plans-grid">
+      <a class="plan-preview glass" href="plans/photography.html">
+        <img src="images/portrait-7202.jpg" alt="人像攝影" loading="lazy">
+        <div class="plan-preview__body">
+          <span class="plan-preview__eyebrow">01</span>
+          <h3>攝影方案</h3>
+          <p class="plan-preview__en">Snow Photography</p>
+          <p class="plan-preview__desc">適合想留下滑雪回憶的旅客。</p>
+          <span class="plan-preview__link">查看方案內容 →</span>
+        </div>
+      </a>
+
+      <a class="plan-preview glass" href="plans/lesson-photography.html">
+        <img src="images/lesson-hero.jpg" alt="手持滑雪板剪影，逆光望向雪山" loading="lazy">
+        <div class="plan-preview__body">
+          <span class="plan-preview__eyebrow">02</span>
+          <h3>教練＋攝影方案</h3>
+          <p class="plan-preview__en">Lesson + Photography</p>
+          <p class="plan-preview__desc">一次完成學習與紀錄，留下每一次進步的瞬間。</p>
+          <span class="plan-preview__link">查看方案內容 →</span>
+        </div>
+      </a>
+
+      <a class="plan-preview glass" href="plans/premium.html">
+        <img src="images/action-01.jpg" alt="滑雪板騰空動作" loading="lazy">
+        <div class="plan-preview__body">
+          <span class="plan-preview__eyebrow">03</span>
+          <h3>一條龍尊榮方案</h3>
+          <p class="plan-preview__en">Snow Experience Package</p>
+          <p class="plan-preview__desc">從攝影、教練到住宿與雪具，一次滿足完整滑雪體驗。</p>
+          <span class="plan-preview__link">查看方案內容 →</span>
+        </div>
+      </a>
+    </div>
+
+    <p class="plan-disclaimer">以上三個方案為內容說明，實際人數、時長與報價將依你的需求另行確認。請先填寫需求表單並選擇偏好方案，我們會盡快與你確認細節與正式報價；送出表單不代表預約成立。</p>
+  </section>
+
   <section class="journal glass-panel" id="journal">
     <div class="section-head">
       <h2>文章</h2>
@@ -292,12 +348,13 @@
       <p>Booking</p>
     </div>
     <div class="appointment__inner">
-      <h3 class="booking-flow__title">預約流程</h3>
+      <p class="booking-kicker">先填需求，再確認正式報價</p>
+      <h3 class="booking-flow__title">四步完成詢價</h3>
       <ol class="booking-flow" aria-label="預約流程">
-        <li>① 填寫滑雪攝影預約表單</li>
-        <li>② 完成後回到 LINE 輸入「已填寫」</li>
-        <li>③ 我們確認拍攝日期、雪場與檔期</li>
-        <li>④ 確認方案後完成預約</li>
+        <li>① 填寫拍攝需求表單</li>
+        <li>② 收到初步方案與回覆</li>
+        <li>③ 確認日期、雪場與檔期</li>
+        <li>④ 付訂金後正式保留</li>
       </ol>
 
       <div class="month-tabs" id="monthTabs">
@@ -309,17 +366,39 @@
         <button type="button" class="month-tab" data-month="4">4月</button>
       </div>
 
-      <p class="appointment__caption" id="appointmentCaption">查看 11 月滑雪拍攝可預約時段</p>
+      <p class="appointment__caption" id="appointmentCaption">我們會在確認可拍攝檔期後，再提供正式報價與訂金資訊。</p>
 
       <div class="appointment__actions">
         <a class="appointment__btn glass" href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">
-          填寫預約表單
+          填寫拍攝需求表單
         </a>
         <a class="appointment__btn appointment__btn--line" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">
           回到 LINE 通知我們
         </a>
       </div>
-      <p class="appointment__note">完成表單後，請回到 LINE 傳送「已填寫」，方便我們快速核對你的預約資料。</p>
+      <p class="appointment__note">完成表單後，請回到 LINE 傳送「已填寫」，方便我們快速核對你的需求。</p>
+      <p class="appointment__share">拍攝完成後，歡迎在 Instagram 標記 <a href="https://www.instagram.com/snowsurfstudio" target="_blank" rel="noopener noreferrer">@snowsurfstudio</a>，讓更多雪友看到你的滑行瞬間。</p>
+    </div>
+  </section>
+
+  <section class="policies" id="policies" aria-labelledby="policies-title">
+    <div class="section-head"><h2 id="policies-title">安心預約規則</h2><p>Booking Policy</p></div>
+    <div class="policy-grid">
+      <article class="policy-card glass"><h3>預約成立</h3><p>日期經確認並收到訂金後，才會正式保留檔期。未於指定期限完成付款，檔期將不另行保留。</p></article>
+      <article class="policy-card glass"><h3>取消與退款</h3><ul><li>拍攝日前 14 天以上：退還訂金 100%</li><li>拍攝日前 7–13 天：退還訂金 50%</li><li>拍攝日前 6 天內：訂金不予退還</li></ul></article>
+      <article class="policy-card glass"><h3>改期與天候</h3><p>拍攝日前 7 天以上可免費改期一次。若遇雪場停業、重大交通中斷或不適合安全拍攝的天候，可協議免費改期或依實際不可退支出後退款。</p></article>
+      <article class="policy-card glass"><h3>當日提醒</h3><p>遲到不延長原定結束時間；超過 60 分鐘且未聯繫，視同當日取消。安全優先，請依雪場規則與自身能力滑行。</p></article>
+    </div>
+    <p class="policy-note">完整取消、改期與安全條款會在正式報價／確認時一併提供。</p>
+  </section>
+
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="section-head"><h2 id="faq-title">常見問題</h2><p>FAQ</p></div>
+    <div class="faq-list">
+      <details class="glass"><summary>填完表單就算預約成功嗎？</summary><p>還不算。表單用於確認拍攝日期、雪場、人數與需求；我們確認檔期並收到訂金後，才會正式保留。</p></details>
+      <details class="glass"><summary>合作學校優惠如何使用？</summary><p>2–4 人、2 小時方案的合作學校優惠為 NT$8,500。請在表單填寫學校名稱，必要時我們會協助確認資格。</p></details>
+      <details class="glass"><summary>1 人或 5 人以上可以拍嗎？</summary><p>可以，這類需求會依人數、雪場與拍攝內容提供專屬報價，歡迎先填表單或直接透過 LINE 詢問。</p></details>
+      <details class="glass"><summary>天氣不好怎麼辦？</summary><p>一般下雪、陰天與低溫仍可能是很棒的拍攝條件；若雪場停業、重大交通中斷或安全條件不允許，我們會協議改期或退款方式。</p></details>
     </div>
   </section>
 
@@ -340,6 +419,8 @@
   </footer>
 
 </main>
+
+<a class="line-float" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer" aria-label="透過 LINE 聯絡 SnowSurfStudio">LINE 詢價 <span>↗</span></a>
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox__close" id="lightboxClose" aria-label="Close">&times;</button>

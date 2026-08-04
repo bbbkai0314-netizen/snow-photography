@@ -217,8 +217,15 @@ button{ font-family:inherit; }
   color:var(--white);
   text-shadow:0 4px 40px rgba(0,0,0,.4);
 }
+.chapter__location{
+  margin-top:16px;
+  font-size:clamp(14px, 1.6vw, 18px);
+  font-weight:500;
+  letter-spacing:0.04em;
+  color:var(--ice);
+}
 .chapter__sub{
-  margin-top:18px;
+  margin-top:10px;
   font-size:13px;
   letter-spacing:0.08em;
   color:var(--ice-dim);
@@ -330,6 +337,42 @@ button{ font-family:inherit; }
 .gcard:hover::after{ opacity:1; }
 .gcard:hover figcaption{ opacity:1; transform:translateY(0); }
 
+/* ---------- News banner ---------- */
+.news-banner{
+  position:relative;
+  z-index:10;
+  margin:60px 5vw 0;
+}
+.news-banner__card{
+  border-radius:var(--radius-lg);
+  padding:clamp(28px,4vw,44px);
+  text-align:center;
+}
+.news-banner__eyebrow{
+  display:inline-block;
+  font-size:11px;
+  letter-spacing:0.18em;
+  font-weight:800;
+  color:var(--ice);
+  margin-bottom:14px;
+}
+.news-banner__card h2{
+  font-family:'Noto Sans TC', sans-serif;
+  font-weight:800;
+  font-size:clamp(22px, 3vw, 32px);
+  margin-bottom:14px;
+}
+.news-banner__card p{
+  max-width:560px;
+  margin:0 auto 24px;
+  font-size:15px;
+  line-height:1.8;
+  color:#cfe3ec;
+}
+.news-banner__btn{
+  display:inline-flex;
+}
+
 /* ---------- About ---------- */
 .about{
   position:relative;
@@ -346,6 +389,15 @@ button{ font-family:inherit; }
   font-size:clamp(22px, 2.6vw, 30px);
   color:var(--ice);
   margin-bottom:18px;
+}
+.about__lead{
+  max-width:640px;
+  margin:0 auto 22px;
+  font-family:'Noto Sans TC', sans-serif;
+  font-weight:700;
+  font-size:clamp(16px, 2vw, 19px);
+  line-height:1.7;
+  color:var(--white);
 }
 .about__inner > p{
   max-width:700px;
@@ -634,6 +686,16 @@ button{ font-family:inherit; }
   color:var(--ice-dim);
   font-size:12px;
   line-height:1.7;
+}
+.appointment__share{
+  margin-top:8px;
+  color:var(--ice-dim);
+  font-size:12px;
+  line-height:1.7;
+}
+.appointment__share a{
+  color:var(--ice);
+  border-bottom:1px solid rgba(155,212,238,.4);
 }
 
 /* ---------- Footer ---------- */
@@ -935,6 +997,8 @@ button{ font-family:inherit; }
   .partners{ grid-template-columns:1fr; }
   .about__row{ flex-direction:column; gap:32px; }
   .journal__grid{ grid-template-columns:1fr; }
+  .plans-grid{ grid-template-columns:1fr; }
+  .plan-premium__groups{ grid-template-columns:repeat(2, 1fr); }
 }
 
 @media (max-width:720px){
@@ -964,3 +1028,31 @@ button{ font-family:inherit; }
   .appointment__btn{ width:100%; padding:15px 18px; }
   .contact__links{ flex-direction:column; align-items:stretch; }
 }
+
+/* ---------- Booking-first service information ---------- */
+.service-plans,.policies,.faq{position:relative;z-index:10;background:var(--navy-deep);padding:0 5vw 88px}
+.service-plans .section-head,.policies .section-head,.faq .section-head{padding-left:0;padding-right:0}
+.booking-kicker{display:inline-block;color:var(--ice);font-size:11px;letter-spacing:.18em;font-weight:800;margin-bottom:0}
+
+.plans-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plan-preview{display:block;border-radius:var(--radius-lg);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s ease}
+.plan-preview:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.3)}
+.plan-preview img{width:100%;height:200px;object-fit:cover;object-position:50% 25%}
+.plan-preview__body{padding:24px}
+.plan-preview__eyebrow{display:inline-block;color:var(--ice);font-size:11px;letter-spacing:.18em;font-weight:800;margin-bottom:10px}
+.plan-preview h3{font-family:'Noto Sans TC',sans-serif;font-weight:800;font-size:clamp(19px,2.2vw,22px);color:var(--white);margin-bottom:4px}
+.plan-preview__en{font-size:12px;letter-spacing:.06em;color:var(--ice-dim);margin-bottom:14px}
+.plan-preview__desc{font-size:14px;line-height:1.7;color:#cfe3ec;margin-bottom:16px}
+.plan-preview__link{display:inline-block;font-size:13px;letter-spacing:.04em;color:var(--ice);border-bottom:1px solid rgba(155,212,238,.4);padding-bottom:2px}
+
+/* ---------- Plan detail pages (used in plans/*.html) ---------- */
+.plan-premium__groups{margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px 28px}
+.plan-premium__group h4{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;color:var(--white);margin-bottom:10px}
+.plan-premium__group h4 span{font-size:17px}
+.plan-premium__group ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.plan-premium__group li{font-size:13.5px;line-height:1.65;color:#c3d6df}
+.plan-premium__group li::before{content:'— ';color:var(--ice-dim)}
+
+.plan-disclaimer,.policy-note{max-width:900px;margin:20px auto 0;color:#9cb3c0;line-height:1.75;font-size:14px}.policy-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.policy-card{padding:28px;border-radius:var(--radius-md)}.policy-card h3{font-size:19px;margin-bottom:12px}.policy-card p,.policy-card li{line-height:1.75;color:#cfe3ec;font-size:14px}.policy-card ul{padding-left:20px}.policy-card li+li{margin-top:6px}
+.faq-list{max-width:900px;margin:0 auto;display:grid;gap:12px}.faq-list details{border-radius:var(--radius-sm);padding:0 22px}.faq-list summary{cursor:pointer;padding:20px 28px 20px 0;font-size:16px;font-weight:700;list-style:none;position:relative}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary::after{content:'+';position:absolute;right:0;color:var(--ice);font-size:22px;font-weight:400;top:15px}.faq-list details[open] summary::after{content:'–'}.faq-list p{padding:0 0 20px;color:#cfe3ec;line-height:1.75;font-size:14px}.line-float{position:fixed;right:18px;bottom:18px;z-index:220;background:#06c755;color:#07130b!important;border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 30px rgba(0,0,0,.35);border-radius:999px;padding:14px 18px;font-size:14px;font-weight:800;letter-spacing:.03em}.line-float span{margin-left:6px}
+@media(max-width:720px){.plan-premium__groups{grid-template-columns:1fr}.policy-grid{grid-template-columns:1fr}.service-plans,.policies,.faq{padding-bottom:62px}.line-float{right:14px;bottom:14px;padding:13px 16px}.nav__links a:nth-child(1){display:none}}
