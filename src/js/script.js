@@ -102,28 +102,33 @@
   window.addEventListener('resize', onScroll);
   update();
 
-  // ---------- Nav dropdown ----------
-  const dropdown = document.getElementById('navBookingDropdown');
-  if (dropdown) {
-    const trigger = dropdown.querySelector('.nav__dropdown-trigger');
-    const closeDropdown = () => {
-      dropdown.classList.remove('is-open');
-      trigger.setAttribute('aria-expanded', 'false');
+  // ---------- Nav dropdowns ----------
+  const dropdowns = Array.from(document.querySelectorAll('[data-nav-dropdown]'));
+  if (dropdowns.length) {
+    const closeAll = () => {
+      dropdowns.forEach((d) => {
+        d.classList.remove('is-open');
+        d.querySelector('.nav__dropdown-trigger').setAttribute('aria-expanded', 'false');
+      });
     };
-    trigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const willOpen = !dropdown.classList.contains('is-open');
-      dropdown.classList.toggle('is-open', willOpen);
-      trigger.setAttribute('aria-expanded', String(willOpen));
-    });
-    dropdown.querySelectorAll('.nav__dropdown-menu a').forEach((link) => {
-      link.addEventListener('click', closeDropdown);
+    dropdowns.forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav__dropdown-trigger');
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willOpen = !dropdown.classList.contains('is-open');
+        closeAll();
+        dropdown.classList.toggle('is-open', willOpen);
+        trigger.setAttribute('aria-expanded', String(willOpen));
+      });
+      dropdown.querySelectorAll('.nav__dropdown-menu a').forEach((link) => {
+        link.addEventListener('click', closeAll);
+      });
     });
     document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) closeDropdown();
+      if (!dropdowns.some((d) => d.contains(e.target))) closeAll();
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeDropdown();
+      if (e.key === 'Escape') closeAll();
     });
   }
 
