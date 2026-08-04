@@ -308,7 +308,7 @@
       <h2>我要預約</h2>
       <p>Booking</p>
     </div>
-    <div class="appointment__inner appointment__inner--wide">
+    <div class="appointment__inner">
       <div class="booking-wizard" id="bookingWizard">
         <div class="booking-wizard__stepper">
           <div class="booking-wizard__step is-active" data-step="1">
@@ -409,10 +409,10 @@
             <div class="booking-wizard__confirm" data-panel="confirm" hidden>
               <div class="booking-wizard__confirm-icon">✅</div>
               <h3>已收到你的預約需求！</h3>
-              <p>請點下方按鈕前往 LINE，傳送「已填寫」給我們——LINE 會自動幫你打好文字，只要按一下傳送即可，我們會盡快回覆可拍攝檔期與訂金付款資訊。</p>
-              <a class="booking-wizard__btn booking-wizard__btn--line" id="bookingLineLink" target="_blank" rel="noopener noreferrer">💬 前往 LINE 傳送「已填寫」</a>
+              <p>請點下方按鈕前往 LINE，傳送「已填寫」給我們，我們會盡快回覆可拍攝檔期與訂金付款資訊。</p>
+              <a class="booking-wizard__btn booking-wizard__btn--line" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">💬 前往 LINE 傳送「已填寫」</a>
               <p class="booking-wizard__fallback">
-                沒有跳轉成功？改用<a href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">原始需求表單</a>或直接<a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">加 LINE 詢問</a>。
+                沒有跳轉成功？改用<a href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">原始需求表單</a>。
               </p>
             </div>
 
@@ -423,24 +423,17 @@
 
             <p class="appointment__share">拍攝完成後，歡迎在 Instagram 標記 <a href="https://www.instagram.com/snowsurfstudio" target="_blank" rel="noopener noreferrer">@snowsurfstudio</a>，讓更多雪友看到你的滑行瞬間。</p>
           </div>
-
-          <aside class="booking-summary">
-            <h4>預約摘要</h4>
-            <div class="booking-summary__row"><span>方案</span><strong data-summary="plan">尚未選擇</strong></div>
-            <div class="booking-summary__row"><span>日期</span><strong data-summary="date">尚未選擇</strong></div>
-            <div class="booking-summary__row"><span>地點</span><strong data-summary="location">尚未選擇</strong></div>
-            <div class="booking-summary__row"><span>人數</span><strong data-summary="people">—</strong></div>
-            <div class="booking-summary__row"><span>代表人</span><strong data-summary="name">—</strong></div>
-          </aside>
         </div>
       </div>
 
       <div class="policies" id="policies" aria-labelledby="policies-title">
         <div class="section-head"><h2 id="policies-title">安心預約規則</h2><p>Booking Policy</p></div>
         <div class="policy-grid">
-          <article class="policy-card glass"><h3>🔒 預約成立</h3><p>日期經確認並收到訂金後，才會正式保留檔期。未於指定期限完成付款，檔期將不另行保留。</p></article>
-          <article class="policy-card glass"><h3>↩️ 取消與退款</h3><ul><li>拍攝日前 14 天以上：退還訂金 100%</li><li>拍攝日前 7–13 天：退還訂金 50%</li><li>拍攝日前 6 天內：訂金不予退還</li></ul></article>
-          <article class="policy-card glass"><h3>🌨️ 改期與天候</h3><p>拍攝日前 7 天以上可免費改期一次。若遇雪場停業、重大交通中斷或不適合安全拍攝的天候，可協議免費改期或依實際不可退支出後退款。</p></article>
+          <article class="policy-card glass"><h3>💰 訂金</h3><p>預約時需支付訂金（依方案收取）。</p></article>
+          <article class="policy-card glass"><h3>💳 尾款</h3><p>拍攝日前 60 天需付清尾款。若預約時距離拍攝日不足 60 天，確認預約後須一次付清全額。</p></article>
+          <article class="policy-card glass"><h3>↩️ 取消與退款</h3><ul><li>拍攝日前 90 天（含）以前：全額退款，僅酌收 NT$100 匯款／行政手續費</li><li>拍攝日前 89–61 天：訂金不予退還；已支付的尾款全額退還</li><li>拍攝日前 60 天內：恕不退款</li></ul></article>
+          <article class="policy-card glass"><h3>⚠️ 逾期未付尾款</h3><p>拍攝日前 60 天仍未收到尾款，視同放棄預約，訂單將自動取消，已支付之訂金不予退還。</p></article>
+          <article class="policy-card glass"><h3>🌨️ 改期與不可抗力</h3><p>拍攝日前 7 天以上可免費改期一次。若因天災、雪場停業或其他不可抗力因素，雙方可協議改期或依實際情況另行處理。</p></article>
           <article class="policy-card glass"><h3>⏰ 當日提醒</h3><p>遲到不延長原定結束時間；超過 60 分鐘且未聯繫，視同當日取消。安全優先，請依雪場規則與自身能力滑行。</p></article>
         </div>
         <p class="policy-note">完整取消、改期與安全條款會在正式報價／確認時一併提供。</p>

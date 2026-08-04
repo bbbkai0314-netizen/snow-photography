@@ -3,7 +3,6 @@
   if (!wizard) return;
 
   const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSd1bNngQi1ztOpuoW9Mk3zKWkXT8FHnejBEoTYy5PoH8Av6nQ/formResponse';
-  const LINE_OA_ID = '@762uixsj';
 
   const ENTRY = {
     name: 'entry.1799987061',
@@ -52,18 +51,6 @@
     if (el) el.textContent = message || '';
   }
 
-  function updateSummary() {
-    const set = (key, val) => {
-      const el = wizard.querySelector(`[data-summary="${key}"]`);
-      if (el) el.textContent = val;
-    };
-    set('plan', state.planLabel || '尚未選擇');
-    set('date', state.date || '尚未選擇');
-    set('location', state.location || '尚未選擇');
-    set('people', state.people ? `${state.people} 人` : '—');
-    set('name', state.name || '—');
-  }
-
   // ---------- Step 1: plan selection ----------
   const planOptions = Array.from(wizard.querySelectorAll('.booking-plan-option'));
   planOptions.forEach((btn) => {
@@ -73,7 +60,6 @@
       state.planLabel = btn.querySelector('.booking-plan-option__title').textContent.trim();
       state.serviceValue = btn.dataset.serviceValue;
       showError(1, '');
-      updateSummary();
     });
   });
 
@@ -85,11 +71,9 @@
 
   dateInput?.addEventListener('change', () => {
     state.date = dateInput.value;
-    updateSummary();
   });
   peopleInput?.addEventListener('input', () => {
     state.people = peopleInput.value;
-    updateSummary();
   });
   notesInput?.addEventListener('input', () => {
     state.notes = notesInput.value;
@@ -100,7 +84,6 @@
       pill.classList.add('is-selected');
       state.location = pill.dataset.value;
       showError(2, '');
-      updateSummary();
     });
   });
 
@@ -111,7 +94,6 @@
 
   nameInput?.addEventListener('input', () => {
     state.name = nameInput.value;
-    updateSummary();
   });
   emailInput?.addEventListener('input', () => { state.email = emailInput.value; });
   lineInput?.addEventListener('input', () => { state.line = lineInput.value; });
@@ -178,11 +160,6 @@
       form.hidden = true;
       wizard.querySelector('.booking-wizard__stepper').hidden = true;
       confirmPanel.hidden = false;
-
-      const lineLink = document.getElementById('bookingLineLink');
-      if (lineLink) {
-        lineLink.href = `https://line.me/R/oaMessage/${LINE_OA_ID}/${encodeURIComponent('已填寫')}`;
-      }
     } catch (err) {
       errorBanner.hidden = false;
       if (submitBtn) {
@@ -193,5 +170,4 @@
   });
 
   setStep(1);
-  updateSummary();
 })();

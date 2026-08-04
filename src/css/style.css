@@ -665,7 +665,7 @@ button{ font-family:inherit; }
 }
 
 /* ---------- Booking wizard ---------- */
-.appointment__inner--wide{ max-width:980px; text-align:left; }
+.booking-wizard{ text-align:left; }
 .booking-wizard__stepper{
   display:flex;
   align-items:flex-start;
@@ -701,12 +701,6 @@ button{ font-family:inherit; }
 .booking-wizard__step.is-active .booking-wizard__step-label{ color:var(--ice); font-weight:700; }
 .booking-wizard__step-line{ flex:1; height:1px; background:var(--glass-border); margin-top:16px; }
 
-.booking-wizard__body{
-  display:grid;
-  grid-template-columns:1fr 280px;
-  gap:32px;
-  align-items:start;
-}
 .booking-wizard__main{ min-width:0; }
 .booking-wizard__panel{ display:none; }
 .booking-wizard__panel.is-active{ display:block; }
@@ -910,7 +904,6 @@ button{ font-family:inherit; }
 .booking-wizard [hidden]{ display:none !important; }
 
 @media (max-width:820px){
-  .booking-wizard__body{ grid-template-columns:1fr; }
 }
 @media (max-width:640px){
   .booking-plan-options{ grid-template-columns:1fr; }
