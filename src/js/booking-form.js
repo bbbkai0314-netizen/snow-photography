@@ -28,7 +28,6 @@
     step: 1,
     planLabel: '',
     serviceValue: '',
-    price: '',
     date: '',
     location: '',
     people: '1',
@@ -63,17 +62,6 @@
     set('location', state.location || '尚未選擇');
     set('people', state.people ? `${state.people} 人` : '—');
     set('name', state.name || '—');
-
-    const priceRow = wizard.querySelector('[data-summary-price]');
-    if (priceRow) {
-      if (state.price) {
-        priceRow.hidden = false;
-        const priceEl = wizard.querySelector('[data-summary="price"]');
-        if (priceEl) priceEl.textContent = `NT$${Number(state.price).toLocaleString('en-US')}`;
-      } else {
-        priceRow.hidden = true;
-      }
-    }
   }
 
   // ---------- Step 1: plan selection ----------
@@ -84,7 +72,6 @@
       btn.classList.add('is-selected');
       state.planLabel = btn.querySelector('.booking-plan-option__title').textContent.trim();
       state.serviceValue = btn.dataset.serviceValue;
-      state.price = btn.dataset.price || '';
       showError(1, '');
       updateSummary();
     });

@@ -903,16 +903,11 @@ button{ font-family:inherit; }
 }
 .booking-summary__row span{ color:var(--ice-dim); }
 .booking-summary__row strong{ font-weight:600; text-align:right; color:var(--white); }
-.booking-summary__price{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:16px;
-  padding-top:16px;
-  border-top:1px solid rgba(255,255,255,.1);
-}
-.booking-summary__price span{ font-size:12px; color:var(--ice-dim); }
-.booking-summary__price strong{ font-size:20px; color:var(--ice); }
+
+/* Defensive: several elements in this wizard set an explicit `display` at the
+   same specificity as the browser's default [hidden] rule, which would
+   otherwise silently cancel it out. */
+.booking-wizard [hidden]{ display:none !important; }
 
 @media (max-width:820px){
   .booking-wizard__body{ grid-template-columns:1fr; }
