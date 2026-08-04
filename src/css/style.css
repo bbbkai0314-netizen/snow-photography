@@ -1032,6 +1032,9 @@ button{ font-family:inherit; }
 /* ---------- Booking-first service information ---------- */
 .service-plans,.policies,.faq{position:relative;z-index:10;background:var(--navy-deep);padding:0 5vw 88px}
 .service-plans .section-head,.policies .section-head,.faq .section-head{padding-left:0;padding-right:0}
+
+/* Policies + FAQ nested inside the booking section (merged under "我要預約") */
+.appointment .policies,.appointment .faq{position:static;z-index:auto;background:none;padding:0;margin-top:56px;padding-top:56px;border-top:1px solid rgba(255,255,255,.1)}
 .booking-kicker{display:inline-block;color:var(--ice);font-size:11px;letter-spacing:.18em;font-weight:800;margin-bottom:0}
 
 .plans-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
