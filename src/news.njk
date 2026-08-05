@@ -27,7 +27,11 @@ permalink: "news.html"
       {% for item in site.newsItems %}
       <li class="news-list__item glass">
         <h3>{{ item.title }}</h3>
-        <p>{{ item.copy }}</p>
+        <ul class="news-list__points">
+          {% for point in item.copy %}
+          <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
       </li>
       {% endfor %}
     </ul>

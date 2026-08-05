@@ -112,7 +112,7 @@ collections:
             fields:
               - { name: "active", label: "顯示這則消息", widget: "boolean", default: false }
               - { name: "title", label: "標題", widget: "string" }
-              - { name: "copy", label: "說明文字", widget: "text" }
+              - { name: "copy", label: "說明重點（條列式，每行一點）", widget: "list", field: { name: "point", widget: "string" } }
               - { name: "buttonLabel", label: "按鈕文字", widget: "string", default: "查看預約方式 →" }
           - name: "seo"
             label: "首頁 SEO 設定"

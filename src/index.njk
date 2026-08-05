@@ -154,12 +154,9 @@
       <p class="journal__intro">滑雪攝影的準備、比較與雪場攻略，寫給正在規劃日本滑雪行程的你。</p>
       <div class="journal__grid">
         {% for post in collections.posts | reverse %}
-        <a class="journal-card glass" href="blog/{{ post.fileSlug }}.html">
-          <img src="{{ post.data.previewImage or post.data.heroImage }}" alt="{{ post.data.previewImageAlt or post.data.heroImageAlt }}" loading="lazy">
+        <a class="journal-card journal-card--title-only glass" href="blog/{{ post.fileSlug }}.html">
           <div class="journal-card__body">
-            <span class="journal-card__tag">{{ post.data.tag }}</span>
             <h3>{{ post.data.title }}</h3>
-            <p>{{ post.data.previewDescription }}</p>
           </div>
         </a>
         {% endfor %}
@@ -195,7 +192,11 @@
     <div class="news-banner__card glass">
       <span class="news-banner__eyebrow">最新消息 · NEWS</span>
       <h2 id="news-title">{{ activeNews.title }}</h2>
-      <p>{{ activeNews.copy }}</p>
+      <ul class="news-banner__list">
+        {% for point in activeNews.copy %}
+        <li>{{ point }}</li>
+        {% endfor %}
+      </ul>
       <a class="news-banner__btn appointment__btn glass" href="#booking">{{ activeNews.buttonLabel }}</a>
     </div>
   </section>
@@ -319,7 +320,6 @@
               <a href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">填寫原始需求表單 →</a>
             </div>
 
-            <p class="appointment__share">拍攝完成後，歡迎在 Instagram 標記 <a href="https://www.instagram.com/snowsurfstudio" target="_blank" rel="noopener noreferrer">@snowsurfstudio</a>，讓更多雪友看到你的滑行瞬間。</p>
           </div>
         </div>
       </div>
