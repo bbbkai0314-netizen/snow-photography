@@ -101,6 +101,9 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
+  // Re-sync after the browser settles any #hash anchor scroll on load,
+  // since that can happen after our initial update() runs at scrollY 0.
+  window.addEventListener('load', update);
 
   // ---------- Mobile nav toggle ----------
   const navToggle = document.getElementById('navToggle');
