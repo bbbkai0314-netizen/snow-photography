@@ -976,21 +976,21 @@ button{ font-family:inherit; }
   flex-wrap:wrap;
   gap:14px;
 }
-.contact__btn{
+.contact__icon-btn{
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  padding:14px 26px;
-  border-radius:999px;
-  font-size:13px;
-  letter-spacing:0.04em;
-  font-weight:600;
+  justify-content:center;
+  width:56px;
+  height:56px;
+  border-radius:50%;
   color:var(--white);
-  transition:background .25s ease, transform .25s ease;
+  transition:background .25s ease, transform .25s ease, color .25s ease;
 }
-.contact__btn:hover{
+.contact__icon-btn svg{ width:24px; height:24px; }
+.contact__icon-btn:hover{
   background:var(--glass-bg-strong);
-  transform:translateY(-2px);
+  color:var(--ice);
+  transform:translateY(-3px);
 }
 
 /* ---------- Lightbox ---------- */
@@ -1282,7 +1282,6 @@ button{ font-family:inherit; }
   .article-block__media{ flex:0 0 auto; width:100%; aspect-ratio:16/10; }
   .article-cta{ padding:28px 22px; }
   .appointment__btn{ width:100%; padding:15px 18px; }
-  .contact__links{ flex-direction:column; align-items:stretch; }
 }
 
 /* ---------- Booking-first service information ---------- */
