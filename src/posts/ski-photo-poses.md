@@ -16,7 +16,7 @@ seo:
 ---
 <div class="article-block">
   <div class="article-block__media">
-    <img src="../images/action-03-bw.jpg" alt="黑白剪影動作" loading="lazy">
+    <img src="../images/IMG_7203.jpg" alt="滑雪板抓板動作" loading="lazy">
   </div>
   <div class="article-block__text">
     <h2>1. 低角度拍攝，由下往上拍出滑雪氣勢</h2>
@@ -32,7 +32,7 @@ seo:
 
 <div class="article-block article-block--reverse">
   <div class="article-block__media">
-    <img src="../images/portrait-7203.jpg" alt="滑雪板抓板動作" loading="lazy">
+    <img src="../images/action-02.jpg" alt="雙人跳躍動作" loading="lazy">
   </div>
   <div class="article-block__text">
     <h2>2. 先錄影，再截圖捕捉最佳滑雪瞬間</h2>
@@ -47,7 +47,7 @@ seo:
 
 <div class="article-block">
   <div class="article-block__media">
-    <img src="../images/IMG_0600.jpg" alt="霧中雪道滑行" loading="lazy">
+    <img src="../images/action-03-bw.jpg" alt="黑白剪影動作" loading="lazy">
   </div>
   <div class="article-block__text">
     <h2>3. 舉起雪板拍攝，打造電影感滑雪背影照</h2>
