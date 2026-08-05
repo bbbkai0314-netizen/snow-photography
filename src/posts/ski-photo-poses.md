@@ -5,7 +5,7 @@ tag: 教學
 metaLine: SnowSurfStudio Journal・滑雪攝影準備
 heroImage: images/action-01.jpg
 heroImageAlt: 照片立刻有氣勢
-previewImage: images/portrait-0086.jpg
+previewImage: ""
 leadParagraph: 📸 三招教你拍出滑雪雜誌封面照
 date: 2026-08-05
 dateModified: 2026-08-05
