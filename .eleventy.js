@@ -13,6 +13,11 @@ module.exports = function (eleventyConfig) {
   // Cache-busting query string for CSS/JS so browsers pick up changes on every deploy.
   eleventyConfig.addGlobalData("assetVersion", () => Date.now());
 
+  // Pick the first "active" item out of a list (used for the homepage news banner).
+  eleventyConfig.addFilter("activeItem", (arr) =>
+    (arr || []).find((item) => item.active)
+  );
+
   return {
     dir: {
       input: "src",

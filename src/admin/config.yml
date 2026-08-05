@@ -104,14 +104,16 @@ collections:
           - { name: "aboutLead", label: "關於區塊一句話定位", widget: "text" }
           - { name: "aboutImage", label: "關於我們大圖", widget: "image", media_library: { config: { multiple: false } } }
           - { name: "aboutImageAlt", label: "關於我們大圖替代文字（無障礙用）", widget: "string" }
-          - name: "newsBanner"
-            label: "最新消息 Banner"
-            widget: "object"
+          - name: "newsItems"
+            label: "最新消息"
+            widget: "list"
+            summary: "{{fields.title}}"
+            hint: "可以先建好多則消息備用，要換上哪一則時，把它的「顯示這則消息」打開、其他則關閉即可（如果同時有多則打開，只會顯示清單中最上面那一則）。"
             fields:
-              - { name: "active", label: "顯示這則消息", widget: "boolean", default: true }
+              - { name: "active", label: "顯示這則消息", widget: "boolean", default: false }
               - { name: "title", label: "標題", widget: "string" }
               - { name: "copy", label: "說明文字", widget: "text" }
-              - { name: "buttonLabel", label: "按鈕文字", widget: "string" }
+              - { name: "buttonLabel", label: "按鈕文字", widget: "string", default: "查看預約方式 →" }
           - name: "seo"
             label: "首頁 SEO 設定"
             widget: "object"
