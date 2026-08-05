@@ -1,0 +1,51 @@
+---
+permalink: "about.html"
+---
+{%- set htmlTitle = "關於我們｜SnowSurfStudio" -%}
+{%- set socialTitle = htmlTitle -%}
+{%- set canonicalUrl = "https://bbbkai0314-netizen.github.io/snow-photography/about.html" -%}
+{%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + (site.aboutImage or site.seo.ogImage) -%}
+{%- set ogType = "website" -%}
+{%- set assetPrefix = "" -%}
+{%- set seo = { description: "SnowSurfStudio 是誰、拍什麼、在哪裡拍——認識我們的滑雪攝影理念與團隊背景。", keywords: "SnowSurfStudio,滑雪攝影團隊,關於我們" } -%}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include "partials/head-meta.njk" %}
+</head>
+<body>
+
+{% include "partials/glow.njk" %}
+
+{% include "partials/nav.njk" %}
+
+<main>
+  <section class="about glass-panel about--standalone" id="about">
+    <a class="article-breadcrumb" href="index.html#top">← 返回首頁</a>
+    <div class="section-head">
+      <h1>關於</h1>
+      <p>About</p>
+    </div>
+    <div class="about__row about__row--split">
+      <div class="about__inner">
+        <h3 class="about__brand">SnowSurfStudio</h3>
+        <p class="about__lead">{{ site.aboutLead }}</p>
+        <p>SnowSurfStudio 專注於滑雪文化影像創作，透過鏡頭捕捉每一次滑行的速度、線條與情感。</p>
+        <p>我們相信，滑雪不只是完成一個動作，而是與雪山、地形及自然共舞的過程。每一次轉彎、每一道雪花揚起，都是獨一無二的故事。</p>
+        <p>無論是粉雪、樹林、Carving、Park，或是日出與夕陽下的滑行，我們希望用影像保留每位滑雪者最真實、最自由的瞬間。</p>
+        <p>不只是滑雪風格，更是一種生活態度。我們希望透過影像，讓每位滑雪者在多年後回頭看見照片時，依然能想起那一天的雪況、速度，以及當下最純粹的快樂。</p>
+      </div>
+      <div class="about__media">
+        <img src="{{ site.aboutImage }}" alt="{{ site.aboutImageAlt }}" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  {% include "partials/footer.njk" %}
+</main>
+
+<a class="line-float" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer" aria-label="透過 LINE 聯絡 SnowSurfStudio">LINE 詢價 <span>↗</span></a>
+
+<script src="js/script.js?v={{ assetVersion }}"></script>
+</body>
+</html>
