@@ -1,32 +1,33 @@
 <header class="nav glass" id="nav">
-  <a class="nav__logo" href="index.html#top">SnowSurfStudio</a>
+  <a class="nav__logo" href="{{ assetPrefix }}index.html#top">SnowSurfStudio</a>
   <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="開啟選單">
     <span></span><span></span><span></span>
   </button>
   <nav class="nav__links" id="navLinks">
-    <a href="news.html">最新消息</a>
-    <a href="index.html#gallery">作品</a>
+    <a href="{{ assetPrefix }}index.html#gallery">完整作品</a>
     <div class="nav__item nav__item--dropdown" data-nav-dropdown>
       <button type="button" class="nav__dropdown-trigger" aria-expanded="false" aria-controls="navPlansMenu">
-        方案<span class="nav__caret" aria-hidden="true">▾</span>
+        拍攝方案<span class="nav__caret" aria-hidden="true">▾</span>
       </button>
       <div class="nav__dropdown-menu" id="navPlansMenu">
         {% for plan in collections.plans | sortByOrder %}
-        <a href="plans/{{ plan.fileSlug }}.html">{{ plan.data.title }}</a>
+        <a href="{{ assetPrefix }}plans/{{ plan.fileSlug }}.html">{{ plan.data.title }}</a>
         {% endfor %}
       </div>
     </div>
+    <a href="{{ assetPrefix }}index.html#journal">滑雪日誌</a>
+    <a href="{{ assetPrefix }}news.html">最新消息</a>
     <div class="nav__item nav__item--dropdown" data-nav-dropdown>
       <button type="button" class="nav__dropdown-trigger" aria-expanded="false" aria-controls="navBookingMenu">
         我要預約<span class="nav__caret" aria-hidden="true">▾</span>
       </button>
       <div class="nav__dropdown-menu" id="navBookingMenu">
-        <a href="index.html#booking">📋 預約流程</a>
-        <a href="policies.html">🛡️ 安心預約規則</a>
-        <a href="faq.html">💬 常見問題</a>
+        <a href="{{ assetPrefix }}index.html#booking">📋 預約流程</a>
+        <a href="{{ assetPrefix }}policies.html">🛡️ 安心預約規則</a>
+        <a href="{{ assetPrefix }}faq.html">💬 常見問題</a>
       </div>
     </div>
-    <a href="about.html">關於我們</a>
+    <a href="{{ assetPrefix }}about.html">關於我們</a>
     <div class="nav__icons">
       {% set iconBtnClass = "nav__icon-btn" %}
       {% include "partials/contact-icons.njk" %}
