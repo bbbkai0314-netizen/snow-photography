@@ -127,6 +127,8 @@
       <p>Photo Session</p>
     </div>
 
+    <p class="plan-disclaimer">以上三個方案為內容說明，實際人數、時長與報價將依你的需求另行確認。請先填寫需求表單並選擇偏好方案，我們會盡快與你確認細節與正式報價；送出表單不代表預約成立。</p>
+
     <div class="plans-grid">
       {% for plan in collections.plans | sortByOrder %}
       <a class="plan-preview glass" href="plans/{{ plan.fileSlug }}.html">
@@ -141,8 +143,6 @@
       </a>
       {% endfor %}
     </div>
-
-    <p class="plan-disclaimer">以上三個方案為內容說明，實際人數、時長與報價將依你的需求另行確認。請先填寫需求表單並選擇偏好方案，我們會盡快與你確認細節與正式報價；送出表單不代表預約成立。</p>
   </section>
 
   <section class="journal glass-panel" id="journal">
@@ -155,6 +155,7 @@
       <div class="journal__grid">
         {% for post in collections.posts | reverse %}
         <a class="journal-card journal-card--title-only glass" href="blog/{{ post.fileSlug }}.html">
+          <img src="{{ post.data.previewImage or post.data.heroImage }}" alt="{{ post.data.previewImageAlt or post.data.heroImageAlt }}" loading="lazy">
           <div class="journal-card__body">
             <h3>{{ post.data.title }}</h3>
           </div>
