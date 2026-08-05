@@ -27,7 +27,15 @@
         <a href="{{ assetPrefix }}faq.html">💬 常見問題</a>
       </div>
     </div>
-    <a href="{{ assetPrefix }}about.html">關於我們</a>
+    <div class="nav__item nav__item--dropdown" data-nav-dropdown>
+      <button type="button" class="nav__dropdown-trigger" aria-expanded="false" aria-controls="navAboutMenu">
+        關於我們<span class="nav__caret" aria-hidden="true">▾</span>
+      </button>
+      <div class="nav__dropdown-menu" id="navAboutMenu">
+        <a href="{{ assetPrefix }}about.html">📖 關於我們</a>
+        <a href="{{ assetPrefix }}index.html#partners">🤝 合作夥伴</a>
+      </div>
+    </div>
     <div class="nav__icons">
       {% set iconBtnClass = "nav__icon-btn" %}
       {% include "partials/contact-icons.njk" %}
