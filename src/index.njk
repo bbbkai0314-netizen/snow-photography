@@ -127,17 +127,12 @@
       <p>Photo Session</p>
     </div>
 
-    <p class="plan-disclaimer">以上三個方案為內容說明，實際人數、時長與報價將依你的需求另行確認。請先填寫需求表單並選擇偏好方案，我們會盡快與你確認細節與正式報價；送出表單不代表預約成立。</p>
-
     <div class="plans-grid">
       {% for plan in collections.plans | sortByOrder %}
       <a class="plan-preview glass" href="plans/{{ plan.fileSlug }}.html">
         <img src="{{ plan.data.heroImage }}" alt="{{ plan.data.heroImageAlt }}" loading="lazy">
         <div class="plan-preview__body">
-          <span class="plan-preview__eyebrow">{{ plan.data.eyebrowNumber }}</span>
           <h3>{{ plan.data.title }}</h3>
-          <p class="plan-preview__en">{{ plan.data.subtitleEn }}</p>
-          <p class="plan-preview__desc">{{ plan.data.previewDescription }}</p>
           <span class="plan-preview__link">查看方案內容 →</span>
         </div>
       </a>
@@ -240,7 +235,7 @@
                   </button>
                   <button type="button" class="booking-plan-option" data-service-value="B 教練課程＋滑雪攝影">
                     <span class="booking-plan-option__icon">🏂</span>
-                    <span class="booking-plan-option__title">教練＋攝影方案</span>
+                    <span class="booking-plan-option__title">合作教練＋攝影方案</span>
                     <span class="booking-plan-option__desc">一次完成學習與紀錄</span>
                   </button>
                   <button type="button" class="booking-plan-option" data-service-value="C 尊榮方案（滑雪教練＋滑雪攝影＋住宿＋滑雪裝備＋接駁）">
