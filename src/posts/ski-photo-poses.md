@@ -5,9 +5,10 @@ tag: 教學
 metaLine: SnowSurfStudio Journal・滑雪攝影準備
 heroImage: images/action-01.jpg
 heroImageAlt: 照片立刻有氣勢
+previewImage: images/portrait-0086.jpg
 leadParagraph: 📸 三招教你拍出滑雪雜誌封面照
-date: 2026-07-20
-dateModified: 2026-07-18
+date: 2026-08-05
+dateModified: 2026-08-05
 previewDescription: 📸 三招教你拍出滑雪雜誌封面照
 seo:
   description: 第一次滑雪拍照不知道怎麼擺姿勢？整理 10 個實用滑雪拍照姿勢與技巧，從站姿、視線、跳躍到表情互動，讓你的滑雪照片更自然、更有故事感。
