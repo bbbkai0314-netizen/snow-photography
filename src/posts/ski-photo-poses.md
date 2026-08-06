@@ -19,7 +19,7 @@ seo:
     <img src="../images/IMG_7203.jpg" alt="滑雪板抓板動作" loading="lazy">
   </div>
   <div class="article-block__text">
-    <h2>1. 低角度拍攝，由下往上拍出滑雪氣勢</h2>
+    <h2>1. 低角度拍攝，拍出滑雪氣勢</h2>
     <p>想拍出像滑雪品牌形象照一樣的照片，可以將手機貼近雪地，利用低角度由下往上拍攝。</p>
     <ul>
       <li>人物比例更修長</li>
