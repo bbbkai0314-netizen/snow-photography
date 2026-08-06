@@ -13,55 +13,40 @@ previewDescription: 低角度、先錄影再截圖、舉板拍背影——三個
 seo:
   description: 手機也能拍出滑雪雜誌封面感的照片？整理三個實用滑雪拍照技巧：低角度拍攝、錄影截圖抓瞬間、舉板拍背影，讓你的滑雪照片更有氣勢與故事感。
   keywords: 滑雪拍照技巧,滑雪拍照姿勢,滑雪拍照教學,手機滑雪拍照,滑雪穿搭拍照,滑雪攝影
+contentBlocks:
+  - heading: "1. 低角度拍攝，拍出滑雪氣勢"
+    image: "images/IMG_7203.jpg"
+    imageAlt: "滑雪板抓板動作"
+    imagePosition: "left"
+    paragraphs:
+      - "想拍出像滑雪品牌形象照一樣的照片，可以將手機貼近雪地，利用低角度由下往上拍攝。"
+      - "低角度拍攝能放大滑雪者的動作張力，讓照片更像滑雪雜誌封面。"
+    items:
+      - "人物比例更修長"
+      - "雪板更有存在感"
+      - "畫面更有速度感與力量感"
+  - heading: "2. 先錄影，再截圖捕捉最佳滑雪瞬間"
+    image: "images/action-02.jpg"
+    imageAlt: "雙人跳躍動作"
+    imagePosition: "right"
+    paragraphs:
+      - "滑雪動作速度快，直接拍照容易錯過精彩畫面。建議先使用手機錄影，完成轉彎、噴雪或跳躍後，再挑選最好看的畫面截圖。"
+    items:
+      - "不怕錯過精彩瞬間"
+      - "更容易捕捉跳躍與轉彎動作"
+      - "提高拍到好照片的成功率"
+  - heading: "3. 舉起雪板拍攝，打造電影感滑雪背影照"
+    image: "images/action-03-bw.jpg"
+    imageAlt: "黑白剪影動作"
+    imagePosition: "left"
+    paragraphs:
+      - "除了滑行中的照片，也可以嘗試經典的雪板背影照。將雪板放在肩上，或雙手高高舉起，從後方拍攝，能讓人物與雪景同時融入畫面。"
+    items:
+      - "雪山與藍天一次入鏡"
+      - "人物背影更有故事感"
+      - "輕鬆拍出電影感旅行照片"
+  - heading: "手機也能拍滑雪照，但專業攝影能留下更多細節"
+    paragraphs:
+      - "手機拍攝適合快速記錄旅程，但專業滑雪攝影能掌握拍攝角度、滑行節奏與最佳時機，捕捉你最精彩的滑雪瞬間。"
+      - "滑雪旅程只有短短幾天，但一張好的滑雪照片，可以讓這段回憶保存多年。"
 ---
-<div class="article-block">
-  <div class="article-block__media">
-    <img src="../images/IMG_7203.jpg" alt="滑雪板抓板動作" loading="lazy">
-  </div>
-  <div class="article-block__text">
-    <h2>1. 低角度拍攝，拍出滑雪氣勢</h2>
-    <p>想拍出像滑雪品牌形象照一樣的照片，可以將手機貼近雪地，利用低角度由下往上拍攝。</p>
-    <ul>
-      <li>人物比例更修長</li>
-      <li>雪板更有存在感</li>
-      <li>畫面更有速度感與力量感</li>
-    </ul>
-    <p>低角度拍攝能放大滑雪者的動作張力，讓照片更像滑雪雜誌封面。</p>
-  </div>
-</div>
-
-<div class="article-block article-block--reverse">
-  <div class="article-block__media">
-    <img src="../images/action-02.jpg" alt="雙人跳躍動作" loading="lazy">
-  </div>
-  <div class="article-block__text">
-    <h2>2. 先錄影，再截圖捕捉最佳滑雪瞬間</h2>
-    <p>滑雪動作速度快，直接拍照容易錯過精彩畫面。建議先使用手機錄影，完成轉彎、噴雪或跳躍後，再挑選最好看的畫面截圖。</p>
-    <ul>
-      <li>不怕錯過精彩瞬間</li>
-      <li>更容易捕捉跳躍與轉彎動作</li>
-      <li>提高拍到好照片的成功率</li>
-    </ul>
-  </div>
-</div>
-
-<div class="article-block">
-  <div class="article-block__media">
-    <img src="../images/action-03-bw.jpg" alt="黑白剪影動作" loading="lazy">
-  </div>
-  <div class="article-block__text">
-    <h2>3. 舉起雪板拍攝，打造電影感滑雪背影照</h2>
-    <p>除了滑行中的照片，也可以嘗試經典的雪板背影照。將雪板放在肩上，或雙手高高舉起，從後方拍攝，能讓人物與雪景同時融入畫面。</p>
-    <ul>
-      <li>雪山與藍天一次入鏡</li>
-      <li>人物背影更有故事感</li>
-      <li>輕鬆拍出電影感旅行照片</li>
-    </ul>
-  </div>
-</div>
-
-<div class="article-section">
-  <h2>手機也能拍滑雪照，但專業攝影能留下更多細節</h2>
-  <p>手機拍攝適合快速記錄旅程，但專業滑雪攝影能掌握拍攝角度、滑行節奏與最佳時機，捕捉你最精彩的滑雪瞬間。</p>
-  <p>滑雪旅程只有短短幾天，但一張好的滑雪照片，可以讓這段回憶保存多年。</p>
-</div>

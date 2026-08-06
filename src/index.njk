@@ -67,57 +67,21 @@
       <p>All Work</p>
     </div>
     <div class="gallery-grid gallery-grid--landscape">
-      <figure class="gcard glass" data-full="images/action-01.jpg" data-tag="ACTION">
-        <img src="images/action-01.jpg" alt="滑雪板騰空動作" loading="lazy">
-        <figcaption>Air Grab</figcaption>
+      {% for item in gallery | byOrientation("landscape") %}
+      <figure class="gcard glass" data-full="{{ item.image }}" data-tag="{{ item.tag }}">
+        <img src="{{ item.image }}" alt="{{ item.alt }}" loading="lazy">
+        <figcaption>{{ item.caption }}</figcaption>
       </figure>
-      <figure class="gcard glass" data-full="images/action-02.jpg" data-tag="ACTION">
-        <img src="images/action-02.jpg" alt="雙人跳躍動作" loading="lazy">
-        <figcaption>Powder Jump</figcaption>
-      </figure>
-      <figure class="gcard glass" data-full="images/action-03-bw.jpg" data-tag="ACTION">
-        <img src="images/action-03-bw.jpg" alt="黑白剪影動作" loading="lazy">
-        <figcaption>Silhouette</figcaption>
-      </figure>
-      <figure class="gcard glass" data-full="images/town-01.jpg" data-tag="TOWN">
-        <img src="images/town-01.jpg" alt="雪鎮街景" loading="lazy">
-        <figcaption>Snow Town</figcaption>
-      </figure>
-      <figure class="gcard glass" data-full="images/action-05.jpg" data-tag="ACTION">
-        <img src="images/action-05.jpg" alt="雙人擊掌跳躍動作" loading="lazy">
-        <figcaption>High Five</figcaption>
-      </figure>
-      <figure class="gcard glass" data-full="images/IMG_1282.jpg" data-tag="LIFESTYLE">
-        <img src="images/IMG_1282.jpg" alt="雪地開心跳躍" loading="lazy">
-        <figcaption>Pure Joy</figcaption>
-      </figure>
-      <figure class="gcard glass" data-full="images/portrait-7202.jpg" data-tag="PORTRAIT">
-        <img src="images/portrait-7202.jpg" alt="人像攝影" loading="lazy">
-        <figcaption>Portrait</figcaption>
-      </figure>
-      <figure class="gcard glass" data-full="images/lifestyle-01.jpg" data-tag="LIFESTYLE">
-        <img src="images/lifestyle-01.jpg" alt="越後湯澤車站人像" loading="lazy">
-        <figcaption>Echigo-Yuzawa Station</figcaption>
-      </figure>
-      <figure class="gcard glass" data-full="images/lifestyle-02.jpg" data-tag="LIFESTYLE">
-        <img src="images/lifestyle-02.jpg" alt="街景人像" loading="lazy">
-        <figcaption>Backstreet</figcaption>
-      </figure>
+      {% endfor %}
     </div>
 
     <div class="gallery-grid gallery-grid--portrait">
-      <figure class="gcard gcard--portrait glass" data-full="images/portrait-7203.jpg" data-tag="ACTION">
-        <img src="images/portrait-7203.jpg" alt="滑雪板抓板動作" loading="lazy">
-        <figcaption>Board Grab</figcaption>
+      {% for item in gallery | byOrientation("portrait") %}
+      <figure class="gcard gcard--portrait glass" data-full="{{ item.image }}" data-tag="{{ item.tag }}">
+        <img src="{{ item.image }}" alt="{{ item.alt }}" loading="lazy">
+        <figcaption>{{ item.caption }}</figcaption>
       </figure>
-      <figure class="gcard gcard--portrait glass" data-full="images/portrait-0086.jpg" data-tag="ACTION">
-        <img src="images/portrait-0086.jpg" alt="滑雪騰空動作" loading="lazy">
-        <figcaption>Full Send</figcaption>
-      </figure>
-      <figure class="gcard gcard--portrait glass" data-full="images/portrait-4187.jpg" data-tag="LIFESTYLE">
-        <img src="images/portrait-4187.jpg" alt="恐龍裝合照" loading="lazy">
-        <figcaption>Squad</figcaption>
-      </figure>
+      {% endfor %}
     </div>
   </section>
 

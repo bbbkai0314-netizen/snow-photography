@@ -63,8 +63,8 @@ https://bbbkai0314-netizen.github.io/snow-photography/admin/
 ## 步驟 5：測試登入
 
 1. 打開 `https://bbbkai0314-netizen.github.io/snow-photography/admin/`
-2. 點「使用你的 GitHub 帳號來進行登入」
-3. 跳出 GitHub 授權畫面，同意後應該會自動關閉彈窗、回到後台，看到「部落格文章」「拍攝方案」「首頁文字內容」三個項目
+2. 點「使用 GitHub 帳號登入」
+3. 跳出 GitHub 授權畫面，同意後應該會自動關閉彈窗、回到後台，看到「封面」「作品集」「拍攝方案」「部落格文章」四張卡片
 
 如果卡在某一步，把看到的畫面或錯誤訊息貼給我，我幫你排查。
 
@@ -72,4 +72,10 @@ https://bbbkai0314-netizen.github.io/snow-photography/admin/
 
 ## 之後要換最新消息時
 
-不用改程式碼，直接在後台「首頁文字內容」→「最新消息」裡新增一則、把它的「顯示這則消息」打開，並把舊的那則關掉，按發布即可。
+不用改程式碼，直接在後台「封面」→「最新消息」裡新增一則、把它的「顯示這則消息」打開，並把舊的那則關掉，按儲存即可。
+
+---
+
+## 後台介面說明
+
+後台外觀是自己刻的網頁（不是 Decap CMS），排版跟前台一致，直接呼叫 GitHub API 存檔，登入方式沿用上面設定的同一套 GitHub OAuth App／Cloudflare Worker，不用重新設定。

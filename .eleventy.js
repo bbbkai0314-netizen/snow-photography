@@ -3,8 +3,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
-  eleventyConfig.addPassthroughCopy("src/admin/config.yml");
-  eleventyConfig.addPassthroughCopy("src/admin/preview-templates.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin.css");
+  eleventyConfig.addPassthroughCopy("src/admin/admin-api.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin-views.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin.js");
 
   // Sort a collection by its frontmatter "order" field (ascending).
   eleventyConfig.addFilter("sortByOrder", (arr) =>
@@ -17,6 +19,11 @@ module.exports = function (eleventyConfig) {
   // Pick the first "active" item out of a list (used for the homepage news banner).
   eleventyConfig.addFilter("activeItem", (arr) =>
     (arr || []).find((item) => item.active)
+  );
+
+  // Split the gallery list into landscape/portrait groups for the two homepage grids.
+  eleventyConfig.addFilter("byOrientation", (arr, orientation) =>
+    (arr || []).filter((item) => item.orientation === orientation)
   );
 
   return {
