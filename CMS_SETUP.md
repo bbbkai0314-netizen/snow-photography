@@ -12,14 +12,13 @@ https://bbbkai0314-netizen.github.io/snow-photography/admin/
 
 ## 步驟 1：產生一組 GitHub 權杖
 
-1. 登入 GitHub，前往 <https://github.com/settings/personal-access-tokens/new>（這是「Fine-grained tokens」頁面，比舊版的權杖更安全，可以只授權單一個 repo）
-2. 填寫：
-   - **Token name**：SnowSurfStudio 後台（隨意）
-   - **Expiration**：建議選 90 天或自訂一年，到期後回來重新產生一組即可
-   - **Repository access**：選「**Only select repositories**」，選擇 `bbbkai0314-netizen/snow-photography`
-3. 展開「**Repository permissions**」，把「**Contents**」這一項改成「**Read and write**」（其他保持預設不動即可）
-4. 點最下面「Generate token」
-5. 產生後畫面上會顯示一長串以 `github_pat_` 開頭的字串——**這是唯一一次會顯示完整內容，先複製起來存好**（例如存到密碼管理工具）
+後台登入畫面上有一個「前往 GitHub 產生登入權杖 →」按鈕，點下去會直接開 GitHub 官方頁面，而且已經幫你把「這台後台專用」「只給 snow-photography 這個 repo」「內容讀寫權限」都填好了，你只需要：
+
+1. 確認頁面上「Repository access」是「Only select repositories」，選 `bbbkai0314-netizen/snow-photography`
+2. 往下捲到最下面，點「Generate token」
+3. 畫面上會顯示一長串以 `github_pat_` 開頭的字串——**這是唯一一次會顯示完整內容**，複製起來
+
+（如果沒有先打開後台、想直接手動產生，也可以自己開 <https://github.com/settings/personal-access-tokens/new>，把 Repository access 選成上面 repo、Repository permissions 裡的 Contents 改成 Read and write。）
 
 ---
 

@@ -279,6 +279,12 @@ var AdminViews = (function () {
   }
 
   // ---------- login ----------
+  var TOKEN_CREATE_URL =
+    "https://github.com/settings/personal-access-tokens/new?" +
+    "target_name=bbbkai0314-netizen&name=SnowSurfStudio-Admin&" +
+    "description=" + encodeURIComponent("後台存檔用") +
+    "&contents=write&expires_in=none";
+
   function renderLogin(root) {
     root.innerHTML =
       '<div class="glow glow--a"></div><div class="glow glow--b"></div>' +
@@ -286,14 +292,17 @@ var AdminViews = (function () {
       '<div class="admin-login__card glass-panel">' +
       '<p class="admin-login__eyebrow">SNOWSURFSTUDIO</p>' +
       '<h1>後台管理</h1>' +
+      '<a class="admin-btn admin-btn--primary" href="' +
+      TOKEN_CREATE_URL +
+      '" target="_blank" rel="noopener">前往 GitHub 產生登入權杖 →</a>' +
+      '<p class="admin-login__hint">只有第一次要做這步，選好「只允許存取 snow-photography 這個 repo」後按 Generate token，把產生的字串複製回來貼在下面。之後這台電腦、這個瀏覽器都不用再貼一次。</p>' +
       '<form id="admin-login-form">' +
       '<div class="admin-field admin-field--left">' +
-      '<div class="admin-field__label">GitHub 個人存取權杖（Personal Access Token）</div>' +
+      '<div class="admin-field__label">貼上權杖</div>' +
       '<input type="password" id="admin-login-token" placeholder="ghp_ 或 github_pat_ 開頭" autocomplete="off">' +
       '</div>' +
       '<button type="submit" class="admin-btn admin-btn--primary">登入</button>' +
       '</form>' +
-      '<p class="admin-login__hint">還沒有權杖？打開專案裡的 CMS_SETUP.md，跟著步驟產生一組貼上來即可。</p>' +
       '</div></div>';
 
     var form = qs(root, "#admin-login-form");
