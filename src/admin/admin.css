@@ -236,6 +236,26 @@ body { padding-bottom: 60px; }
 .admin-preview__frame .article-body { margin: 0 auto; padding-left: 24px; padding-right: 24px; }
 .admin-preview__frame .article-hero { margin-top: 28px; }
 
+/* homepage hero + about preview: reuses the real .chapter__* / .about__* classes
+   (loaded via style.css) so crop, gradient and copy match the live site exactly;
+   only the fixed height + container-query font sizing are preview-only. */
+.admin-hero-frame {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 0 0 24px 24px;
+  background: var(--navy-deep);
+  container-type: inline-size;
+}
+.admin-hero-frame .chapter__media,
+.admin-hero-frame .chapter__scrim { position: absolute; inset: 0; }
+.admin-hero-frame .chapter__content--hero { max-width: 80%; }
+.admin-hero-frame .chapter__content--hero h1 { font-size: clamp(22px, 7cqw, 54px); }
+.admin-hero-frame .eyebrow { font-size: clamp(8px, 1.6cqw, 12px); }
+.admin-hero-frame .chapter__location,
+.admin-hero-frame .chapter__sub { font-size: clamp(9px, 1.8cqw, 14px); }
+.admin-preview__frame .admin-about-frame { margin: 0; border-radius: 0; }
+
 /* ---------- buttons ---------- */
 .admin-btn {
   display: inline-flex;

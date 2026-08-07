@@ -1207,6 +1207,34 @@ var AdminViews = (function () {
   // ---------- homepage settings ----------
   var SITE_PATH = "src/_data/site.json";
 
+  // Mirrors the real homepage hero (.chapter__media / .chapter__content--hero)
+  // and the about page (.about__inner) markup/classes so the preview is styled
+  // exactly like the live site, not just a same-color-scheme approximation.
+  function buildHomePreviewHtml(state) {
+    var heroImg = state.heroImage
+      ? '<img src="' + esc(AdminAPI.rawUrl(state.heroImage)) + '" alt="">'
+      : "";
+    return (
+      '<div class="admin-hero-frame">' +
+      '<div class="chapter__media">' +
+      heroImg +
+      "</div>" +
+      '<div class="chapter__scrim chapter__scrim--hero"></div>' +
+      '<div class="chapter__content chapter__content--hero">' +
+      '<p class="eyebrow">SNOW PHOTOGRAPHY SERVICES</p>' +
+      "<h1>SnowSurfStudio</h1>" +
+      '<p class="chapter__location">' +
+      esc(state.heroLocationLine) +
+      "</p>" +
+      '<p class="chapter__sub">2026 / 27 Season &middot; @snowsurfstudio</p>' +
+      "</div></div>" +
+      '<div class="about glass-panel admin-about-frame"><div class="about__inner">' +
+      '<h3 class="about__brand">SnowSurfStudio</h3><p>' +
+      esc(state.aboutBody) +
+      "</p></div></div>"
+    );
+  }
+
   function renderHomepageForm(root) {
     root.innerHTML = shell("homepage", '<div class="admin-loading">載入中…</div>');
     wireShellChrome(root);
@@ -1216,9 +1244,9 @@ var AdminViews = (function () {
       var state = Object.assign(
         {
           heroLocationLine: "",
-          aboutLead: "",
-          aboutImage: "",
-          aboutImageAlt: "",
+          heroImage: "",
+          heroImageAlt: "",
+          aboutBody: "",
           seo: { title: "", description: "", keywords: "", ogImage: "" },
           newsItems: [],
         },
@@ -1227,10 +1255,11 @@ var AdminViews = (function () {
 
       var bodyHtml =
         '<div class="admin-page-head"><h1>封面與首頁設定</h1></div>' +
+        '<div class="admin-editor">' +
         '<form class="admin-form glass-panel" id="admin-home-form">' +
+        '<div id="admin-home-heroimage"></div>' +
         '<div class="admin-field"><div class="admin-field__label">首頁大標下方地點副標</div><input type="text" id="f-heroLocationLine"></div>' +
-        '<div class="admin-field"><div class="admin-field__label">關於區塊一句話定位</div><textarea id="f-aboutLead" rows="3"></textarea></div>' +
-        '<div id="admin-home-aboutimage"></div>' +
+        '<div class="admin-field"><div class="admin-field__label">關於我們段落文字</div><textarea id="f-aboutBody" rows="6"></textarea></div>' +
         '<div id="admin-home-news"></div>' +
         '<div class="admin-field__label">首頁 SEO 設定</div>' +
         '<div class="admin-field"><div class="admin-field__label">SEO 標題</div><input type="text" id="f-seo-title"></div>' +
@@ -1238,15 +1267,17 @@ var AdminViews = (function () {
         '<div class="admin-field"><div class="admin-field__label">SEO 關鍵字（逗號分隔）</div><input type="text" id="f-seo-keywords"></div>' +
         '<div id="admin-home-ogimage"></div>' +
         '<button type="submit" class="admin-btn admin-btn--primary">儲存</button>' +
-        "</form>";
+        "</form>" +
+        '<div class="admin-preview"><div class="admin-preview__label">即時預覽</div><div class="admin-preview__frame" id="admin-home-preview"></div></div>' +
+        "</div>";
 
       root.innerHTML = shell("homepage", bodyHtml);
       wireShellChrome(root);
       var form = qs(root, "#admin-home-form");
 
+      qs(form, "#admin-home-heroimage").appendChild(renderImageField(state, "heroImage", "heroImageAlt", "首頁主視覺（Hero 大圖）"));
       bindText(form, "#f-heroLocationLine", state, "heroLocationLine");
-      bindText(form, "#f-aboutLead", state, "aboutLead");
-      qs(form, "#admin-home-aboutimage").appendChild(renderImageField(state, "aboutImage", "aboutImageAlt", "關於我們大圖"));
+      bindText(form, "#f-aboutBody", state, "aboutBody");
 
       qs(form, "#admin-home-news").appendChild(
         renderObjectList(
@@ -1279,6 +1310,11 @@ var AdminViews = (function () {
       bindText(form, "#f-seo-description", state.seo, "description");
       bindText(form, "#f-seo-keywords", state.seo, "keywords");
       qs(form, "#admin-home-ogimage").appendChild(renderImageField(state.seo, "ogImage", null, "社群分享圖"));
+
+      var previewEl = qs(root, "#admin-home-preview");
+      wireLivePreview(form, previewEl, function () {
+        return buildHomePreviewHtml(state);
+      });
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();

@@ -4,7 +4,7 @@ permalink: "about.html"
 {%- set htmlTitle = "關於我們｜SnowSurfStudio" -%}
 {%- set socialTitle = htmlTitle -%}
 {%- set canonicalUrl = "https://bbbkai0314-netizen.github.io/snow-photography/about.html" -%}
-{%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + (site.aboutImage or site.seo.ogImage) -%}
+{%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + site.seo.ogImage -%}
 {%- set ogType = "website" -%}
 {%- set assetPrefix = "" -%}
 {%- set seo = { description: "SnowSurfStudio 是誰、拍什麼、在哪裡拍——認識我們的滑雪攝影理念與團隊背景。", keywords: "SnowSurfStudio,滑雪攝影團隊,關於我們" } -%}
@@ -28,7 +28,7 @@ permalink: "about.html"
     </div>
     <div class="about__inner">
       <h3 class="about__brand">SnowSurfStudio</h3>
-      <p>SnowSurfStudio 專注於日本滑雪旅遊攝影，以日本白馬（Hakuba）為主要服務地區，提供滑雪動態攝影、雪地寫真，以及滑雪教學搭配攝影等一站式服務。拍攝前會先了解顧客需求與拍攝風格，拍攝時依雪場環境、滑雪動線與光線安排拍攝位置，並提供自然的動作引導。拍攝完成後，經專業後製調色，於三天內提供高解析照片雲端交件，讓每一趟滑雪旅行都能留下值得珍藏的雪地回憶。</p>
+      <p>{{ site.aboutBody }}</p>
     </div>
 
     {% set ctaMessage = "想把這份理念留在你自己的滑雪回憶裡嗎？填寫需求表單，告訴我們你的方案與拍攝日期。" %}
