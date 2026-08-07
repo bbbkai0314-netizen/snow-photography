@@ -299,19 +299,28 @@ var AdminViews = (function () {
       '<form id="admin-login-form">' +
       '<div class="admin-field admin-field--left">' +
       '<div class="admin-field__label">貼上權杖</div>' +
-      '<input type="password" id="admin-login-token" placeholder="ghp_ 或 github_pat_ 開頭" autocomplete="off">' +
-      '</div>' +
+      '<div class="admin-tokenfield">' +
+      '<input type="password" id="admin-login-token" placeholder="ghp_ 或 github_pat_ 開頭" autocomplete="new-password" spellcheck="false">' +
+      '<button type="button" class="admin-btn admin-btn--icon" id="admin-token-toggle">顯示</button>' +
+      '</div></div>' +
       '<button type="submit" class="admin-btn admin-btn--primary">登入</button>' +
       '</form>' +
       '</div></div>';
 
     var form = qs(root, "#admin-login-form");
+    var tokenInput = qs(root, "#admin-login-token");
+
+    qs(root, "#admin-token-toggle").addEventListener("click", function (e) {
+      var showing = tokenInput.type === "text";
+      tokenInput.type = showing ? "password" : "text";
+      e.target.textContent = showing ? "顯示" : "隱藏";
+    });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var input = qs(root, "#admin-login-token");
       var btn = qs(form, 'button[type="submit"]');
       withBusy(btn, function () {
-        return AdminAPI.login(input.value).then(function () {
+        return AdminAPI.login(tokenInput.value).then(function () {
           location.hash = "#/";
           location.reload();
         });

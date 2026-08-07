@@ -135,7 +135,7 @@ body { padding-bottom: 60px; }
 .admin-form input[type="number"],
 .admin-form textarea,
 .admin-form select,
-#admin-login-form input[type="password"] {
+#admin-login-form input {
   width: 100%;
   padding: 10px 13px;
   border-radius: var(--radius-sm);
@@ -146,6 +146,9 @@ body { padding-bottom: 60px; }
   font-family: inherit;
   color-scheme: dark;
 }
+.admin-tokenfield { display: flex; gap: 8px; }
+.admin-tokenfield input { flex: 1; min-width: 0; }
+.admin-tokenfield .admin-btn { flex-shrink: 0; }
 .admin-form input:focus,
 .admin-form textarea:focus,
 .admin-form select:focus {

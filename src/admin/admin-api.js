@@ -26,6 +26,11 @@ var AdminAPI = (function () {
   function login(token) {
     token = (token || "").trim();
     if (!token) return Promise.reject(new Error("請貼上 GitHub 權杖"));
+    if (/[^\x20-\x7E]/.test(token)) {
+      return Promise.reject(
+        new Error("欄位裡的內容看起來不是權杖（可能被瀏覽器自動填入了別的密碼），請把欄位清空後重新手動貼上")
+      );
+    }
     return fetch(REPO_ROOT, {
       headers: { Accept: "application/vnd.github+json", Authorization: "token " + token },
     }).then(function (res) {
