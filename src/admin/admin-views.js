@@ -1046,8 +1046,9 @@ var AdminViews = (function () {
             "</span></div>" +
             '<div class="admin-list-row__actions">' +
             '<a class="admin-btn admin-btn--small" href="#/posts/edit/' +
-            p.slug +
+            encodeURIComponent(p.slug) +
             '">編輯</a>' +
+            '<button type="button" class="admin-btn admin-btn--small admin-btn--danger" data-delete>刪除</button>' +
             "</div></div>"
           );
         })
@@ -1060,6 +1061,25 @@ var AdminViews = (function () {
           "</div>"
       );
       wireShellChrome(root);
+
+      qsa(root, "[data-delete]").forEach(function (btn, i) {
+        btn.addEventListener("click", function () {
+          var post = posts[i];
+          if (!confirm("確定要刪除「" + post.title + "」嗎？此操作無法復原。")) return;
+          withBusy(btn, function () {
+            return AdminAPI.getFile(POSTS_DIR + "/" + post.slug + ".md").then(function (latest) {
+              return AdminAPI.deleteFile(
+                POSTS_DIR + "/" + post.slug + ".md",
+                "後台刪除文章：" + post.title,
+                latest.sha
+              );
+            }).then(function () {
+              toast("已刪除", "success");
+              renderPostsList(root);
+            });
+          });
+        });
+      });
     });
   }
 
