@@ -284,14 +284,25 @@ var AdminViews = (function () {
       '<div class="glow glow--a"></div><div class="glow glow--b"></div>' +
       '<div class="admin-login">' +
       '<div class="admin-login__card glass-panel">' +
-      "<p class=\"admin-login__eyebrow\">SNOWSURFSTUDIO</p>" +
-      "<h1>後台管理</h1>" +
-      '<button class="admin-btn admin-btn--primary" id="admin-login-btn">使用 GitHub 帳號登入</button>' +
-      "</div></div>";
+      '<p class="admin-login__eyebrow">SNOWSURFSTUDIO</p>' +
+      '<h1>後台管理</h1>' +
+      '<form id="admin-login-form">' +
+      '<div class="admin-field admin-field--left">' +
+      '<div class="admin-field__label">GitHub 個人存取權杖（Personal Access Token）</div>' +
+      '<input type="password" id="admin-login-token" placeholder="ghp_ 或 github_pat_ 開頭" autocomplete="off">' +
+      '</div>' +
+      '<button type="submit" class="admin-btn admin-btn--primary">登入</button>' +
+      '</form>' +
+      '<p class="admin-login__hint">還沒有權杖？打開專案裡的 CMS_SETUP.md，跟著步驟產生一組貼上來即可。</p>' +
+      '</div></div>';
 
-    qs(root, "#admin-login-btn").addEventListener("click", function (e) {
-      withBusy(e.target, function () {
-        return AdminAPI.login().then(function () {
+    var form = qs(root, "#admin-login-form");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var input = qs(root, "#admin-login-token");
+      var btn = qs(form, 'button[type="submit"]');
+      withBusy(btn, function () {
+        return AdminAPI.login(input.value).then(function () {
           location.hash = "#/";
           location.reload();
         });

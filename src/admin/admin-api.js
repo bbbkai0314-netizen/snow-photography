@@ -1,14 +1,15 @@
 /* GitHub 存取層：登入、讀寫檔案、圖片上傳、frontmatter 解析/序列化。
-   跟 Decap CMS 共用同一個 Cloudflare Worker OAuth 中介（cloudflare-worker/worker.js），
-   協定是 popup + postMessage，格式維持跟 worker.js 原本回傳的一致。 */
+   登入用的是使用者自己在 GitHub 產生的 Personal Access Token（貼上即可），
+   不透過任何第三方中介服務——沒有 popup、沒有 OAuth 導向，單純拿 token 直接呼叫
+   GitHub API，同時驗證一次確保 token 有效、有這個 repo 的存取權。 */
 
 var AdminAPI = (function () {
   var REPO_OWNER = "bbbkai0314-netizen";
   var REPO_NAME = "snow-photography";
   var BRANCH = "main";
-  var AUTH_BASE_URL = "https://snowsurf-cms-auth.bbbkai0314.workers.dev";
   var TOKEN_KEY = "admin_gh_token";
   var API_ROOT = "https://api.github.com/repos/" + REPO_OWNER + "/" + REPO_NAME + "/contents/";
+  var REPO_ROOT = "https://api.github.com/repos/" + REPO_OWNER + "/" + REPO_NAME;
 
   function getToken() {
     return localStorage.getItem(TOKEN_KEY);
@@ -22,34 +23,23 @@ var AdminAPI = (function () {
     localStorage.removeItem(TOKEN_KEY);
   }
 
-  function login() {
-    return new Promise(function (resolve, reject) {
-      var popup = window.open(
-        AUTH_BASE_URL + "/auth",
-        "gh-oauth",
-        "width=600,height=700"
-      );
-      if (!popup) {
-        reject(new Error("瀏覽器擋住了彈出視窗，請允許彈出視窗後再試一次。"));
-        return;
+  function login(token) {
+    token = (token || "").trim();
+    if (!token) return Promise.reject(new Error("請貼上 GitHub 權杖"));
+    return fetch(REPO_ROOT, {
+      headers: { Accept: "application/vnd.github+json", Authorization: "token " + token },
+    }).then(function (res) {
+      if (res.status === 401 || res.status === 403) {
+        throw new Error("權杖無效或已過期，請重新產生一組");
       }
-
-      function receiveMessage(e) {
-        var raw = e.data;
-        if (typeof raw !== "string" || raw.indexOf("authorization:github:success:") !== 0) {
-          return;
-        }
-        window.removeEventListener("message", receiveMessage);
-        try {
-          var payload = JSON.parse(raw.slice("authorization:github:success:".length));
-          setToken(payload.token);
-          resolve(payload.token);
-        } catch (err) {
-          reject(err);
-        }
+      if (res.status === 404) {
+        throw new Error("這組權杖沒有這個 repo 的存取權限");
       }
-
-      window.addEventListener("message", receiveMessage);
+      if (!res.ok) {
+        throw new Error("驗證失敗（" + res.status + "）");
+      }
+      setToken(token);
+      return token;
     });
   }
 

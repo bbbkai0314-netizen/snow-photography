@@ -1,13 +1,5 @@
 /* Hash router，串起登入狀態與各頁面。 */
 (function () {
-  function ensureLoggedIn() {
-    if (!AdminAPI.getToken()) {
-      AdminViews.renderLogin(document.getElementById("app"));
-      return false;
-    }
-    return true;
-  }
-
   function route() {
     var root = document.getElementById("app");
     var hash = location.hash || "#/";

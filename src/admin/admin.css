@@ -130,10 +130,12 @@ body { padding-bottom: 60px; }
   margin-bottom: 6px;
 }
 .admin-form input[type="text"],
+.admin-form input[type="password"],
 .admin-form input[type="date"],
 .admin-form input[type="number"],
 .admin-form textarea,
-.admin-form select {
+.admin-form select,
+#admin-login-form input[type="password"] {
   width: 100%;
   padding: 10px 13px;
   border-radius: var(--radius-sm);
@@ -285,6 +287,13 @@ body { padding-bottom: 60px; }
   font-weight: 800;
   font-size: 24px;
   margin-bottom: 28px;
+}
+.admin-field--left { text-align: left; }
+.admin-login__hint {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--ice-dim);
+  line-height: 1.6;
 }
 
 /* ---------- toast ---------- */
