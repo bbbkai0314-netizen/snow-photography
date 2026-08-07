@@ -724,6 +724,28 @@ button{ font-family:inherit; }
   background:var(--glass-bg-strong);
   transform:translateY(-2px);
 }
+.booking-notice{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 20px;
+  margin-bottom:28px;
+  border-radius:var(--radius-md);
+  text-align:left;
+  color:var(--white);
+  transition:background .25s ease, transform .25s ease;
+}
+.booking-notice:hover{
+  background:var(--glass-bg-strong);
+  transform:translateY(-2px);
+}
+.booking-notice__icon{ font-size:19px; flex-shrink:0; }
+.booking-notice__text{ flex:1; font-size:14px; font-weight:700; line-height:1.5; }
+.booking-notice__arrow{ color:var(--ice); flex-shrink:0; font-weight:700; }
+@media (max-width:520px){
+  .booking-notice__text{ font-size:13px; }
+}
+
 /* ---------- Booking wizard ---------- */
 .booking-wizard{ text-align:left; }
 .booking-wizard__stepper{
