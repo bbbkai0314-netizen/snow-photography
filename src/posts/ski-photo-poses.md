@@ -34,7 +34,7 @@ contentBlocks:
       - 更容易捕捉跳躍與轉彎動作
       - 提高拍到好照片的成功率
     image: images/action-02.jpg
-    imageAlt: 雙人跳躍動作
+    imageAlt: 雙人跳躍動作/滑雪攝影
     imagePosition: right
   - heading: 3. 舉起雪板拍攝，打造電影感滑雪背影照
     paragraphs:
