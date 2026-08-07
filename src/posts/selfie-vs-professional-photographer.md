@@ -4,9 +4,9 @@ title: 手機拍攝vs 專業滑雪攝影有什麼差別？
 tag: 比較
 metaLine: SnowSurfStudio Journal・滑雪攝影方案比較
 heroImage: images/action-01.jpg
-heroImageAlt: 滑雪板.滑雪.snowsurfstudio......
+heroImageAlt: 滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
 previewImage: images/town-02.jpg
-previewImageAlt: 眺望雪山稜線，滑雪板置於雪地
+previewImageAlt: 滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
 leadParagraph: 「自己拍就好，還需要請攝影師嗎？」這是很多人規劃滑雪旅行時會猶豫的問題。兩種方式其實服務的是不同需求，以下從畫質、視角、後製與成本幾個面向拆解差異，幫你判斷這趟旅行適合哪一種。
 date: '2026-07-19'
 dateModified: '2026-07-18'
