@@ -893,7 +893,8 @@ var AdminViews = (function () {
             uid +
             '" value="right"> 靠右</label></div>';
         }
-        fieldsHtml += '<div class="admin-block-paragraphs-slot"></div><div class="admin-block-items-slot"></div>';
+        fieldsHtml +=
+          '<div class="admin-block-paragraphs-slot"></div><div class="admin-block-items-slot"></div><div class="admin-block-trailing-slot"></div>';
       }
 
       bodyEl.innerHTML = typeSel + fieldsHtml;
@@ -925,6 +926,10 @@ var AdminViews = (function () {
         qs(bodyEl, ".admin-block-paragraphs-slot").appendChild(renderStringList(item.paragraphs, "段落文字", ""));
         item.items = item.items || [];
         qs(bodyEl, ".admin-block-items-slot").appendChild(renderStringList(item.items, "條列項目（選填）", ""));
+        item.trailingParagraphs = item.trailingParagraphs || [];
+        qs(bodyEl, ".admin-block-trailing-slot").appendChild(
+          renderStringList(item.trailingParagraphs, "條列項目後的補充段落（選填）", "")
+        );
       }
     }
     draw();
@@ -937,6 +942,7 @@ var AdminViews = (function () {
       }
       var out = { heading: b.heading || "", paragraphs: b.paragraphs || [] };
       if (b.items && b.items.length) out.items = b.items;
+      if (b.trailingParagraphs && b.trailingParagraphs.length) out.trailingParagraphs = b.trailingParagraphs;
       if (b.type === "image-text" && b.image) {
         out.image = b.image;
         out.imageAlt = b.imageAlt || "";
@@ -973,6 +979,11 @@ var AdminViews = (function () {
               .join("") +
             "</ul>"
           : "";
+        var trailing = (b.trailingParagraphs || [])
+          .map(function (p) {
+            return "<p>" + esc(p) + "</p>";
+          })
+          .join("");
         if (b.image) {
           return (
             '<div class="article-block' +
@@ -986,10 +997,11 @@ var AdminViews = (function () {
             "</h2>" +
             paras +
             items +
+            trailing +
             "</div></div>"
           );
         }
-        return '<div class="article-section"><h2>' + esc(b.heading) + "</h2>" + paras + items + "</div>";
+        return '<div class="article-section"><h2>' + esc(b.heading) + "</h2>" + paras + items + trailing + "</div>";
       })
       .join("");
 
