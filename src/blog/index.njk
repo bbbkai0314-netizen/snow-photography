@@ -29,7 +29,7 @@ permalink: blog/index.html
     <div class="journal__grid">
       {% for post in collections.posts | reverse %}
       <a class="journal-card glass" href="{{ post.fileSlug }}.html">
-        <img src="../{{ post.data.previewImage or post.data.heroImage }}" alt="{{ post.data.previewImageAlt or post.data.heroImageAlt }}" loading="lazy">
+        <img src="../{{ post.data.previewImage or post.data.heroImage }}" alt="{{ post.data.previewImageAlt or post.data.heroImageAlt }}" loading="lazy"{% if post.data.previewImagePosition %} style="object-position:{{ post.data.previewImagePosition }};"{% endif %}>
         <div class="journal-card__body">
           <span class="journal-card__tag">{{ post.data.tag }}</span>
           <h3>{{ post.data.title }}</h3>
