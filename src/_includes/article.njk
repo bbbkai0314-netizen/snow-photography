@@ -70,6 +70,7 @@
           {% if block.items and block.items.length %}
           <ul>{% for item in block.items %}<li>{{ item }}</li>{% endfor %}</ul>
           {% endif %}
+          {% for p in block.trailingParagraphs %}<p>{{ p }}</p>{% endfor %}
         </div>
         {% endif %}
       {% endfor %}
