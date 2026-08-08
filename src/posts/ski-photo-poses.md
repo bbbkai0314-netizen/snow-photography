@@ -1,6 +1,6 @@
 ---
 layout: article
-title: 三招教你拍出滑雪雜誌封面照｜手機也能拍出高質感滑雪照片
+title: 三招教你拍出滑雪雜誌封面照｜
 tag: 教學
 metaLine: SnowSurfStudio Journal・滑雪攝影準備
 heroImage: images/action-01.jpg
@@ -21,12 +21,12 @@ contentBlocks:
   - heading: 1. 低角度拍攝，由下往上拍出滑雪氣勢
     paragraphs:
       - 想拍出像滑雪品牌形象照一樣的照片，可以將手機貼近雪地，利用低角度由下往上拍攝。
-    trailingParagraphs:
-      - 低角度拍攝能放大滑雪者的動作張力，讓照片更像滑雪雜誌封面。
     items:
       - 人物比例更修長
       - 雪板更有存在感
       - 畫面更有速度感與力量感
+    trailingParagraphs:
+      - 低角度拍攝能放大滑雪者的動作張力，讓照片更像滑雪雜誌封面。
     image: images/IMG_7203.jpg
     imageAlt: 滑雪板抓板動作.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
     imagePosition: left
