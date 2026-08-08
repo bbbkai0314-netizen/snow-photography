@@ -4,8 +4,8 @@
     {
       "name": "eleventy-dev",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["eleventy", "--serve", "--port=8181"],
-      "port": 8181
+      "runtimeArgs": ["eleventy", "--serve", "--port=8182"],
+      "port": 8182
     }
   ]
 }
