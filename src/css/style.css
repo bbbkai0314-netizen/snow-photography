@@ -911,16 +911,23 @@ button{ font-family:inherit; }
 .booking-wizard__btn--next:hover,
 .booking-wizard__btn--submit:hover{ background:#fff; }
 .booking-wizard__btn--prev{ background:transparent; }
-.booking-wizard__btn--line{
-  background:#06c755;
-  color:#07130b;
-  border-color:transparent;
-  margin:0 auto;
-}
-.booking-wizard__btn--line:hover{ background:#08b94f; }
 .booking-wizard__btn:disabled{ opacity:.6; cursor:default; }
 
 .booking-wizard__confirm{ text-align:center; padding:12px 0; }
+.booking-wizard__line-qr{
+  display:block;
+  margin:0 auto 16px;
+  border-radius:12px;
+  background:#fff;
+  padding:10px;
+}
+.booking-wizard__line-link{
+  display:inline-block;
+  color:#06c755;
+  font-weight:700;
+  border-bottom:1px solid rgba(6,199,85,.4);
+}
+.booking-wizard__line-link:hover{ color:#08b94f; }
 .booking-wizard__confirm-icon{ font-size:40px; margin-bottom:12px; }
 .booking-wizard__confirm h3{
   font-family:'Noto Sans TC', sans-serif;

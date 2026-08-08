@@ -130,9 +130,6 @@
   });
 
   // ---------- Submit ----------
-  const lineBtn = confirmPanel.querySelector('.booking-wizard__btn--line');
-  const LINE_URL = lineBtn ? lineBtn.href : '';
-
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validateStep(3)) return;
@@ -142,10 +139,6 @@
       submitBtn.disabled = true;
       submitBtn.textContent = '送出中…';
     }
-
-    // Open the tab synchronously (still counts as a user gesture) so the
-    // browser doesn't block it once we set its destination after the fetch.
-    const linePopup = LINE_URL ? window.open('', '_blank') : null;
 
     const [year, month, day] = state.date.split('-');
     const data = new FormData();
@@ -167,12 +160,7 @@
       form.hidden = true;
       wizard.querySelector('.booking-wizard__stepper').hidden = true;
       confirmPanel.hidden = false;
-
-      if (linePopup) {
-        linePopup.location.href = LINE_URL;
-      }
     } catch (err) {
-      if (linePopup) linePopup.close();
       errorBanner.hidden = false;
       if (submitBtn) {
         submitBtn.disabled = false;
