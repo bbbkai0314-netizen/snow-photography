@@ -5,7 +5,7 @@ subtitleEn: "Snow Photography"
 eyebrowNumber: "01"
 serviceType: "滑雪攝影"
 heroImage: "images/portrait-7202.jpg"
-heroImageAlt: "人像攝影"
+heroImageAlt: "人像攝影.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪"
 leadParagraph: "適合想留下滑雪回憶的旅客。無論是自己一個人、情侶、家庭或一群朋友，這個方案專注在把你們這趟雪季最自然的樣子拍下來。"
 previewDescription: "適合想留下滑雪回憶的旅客。"
 order: 1

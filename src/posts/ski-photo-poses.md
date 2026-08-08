@@ -4,7 +4,7 @@ title: 三招教你拍出滑雪雜誌封面照｜手機也能拍出高質感滑�
 tag: 教學
 metaLine: SnowSurfStudio Journal・滑雪攝影準備
 heroImage: images/action-01.jpg
-heroImageAlt: 照片立刻有氣勢
+heroImageAlt: 照片立刻有氣勢.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
 previewImage: ''
 previewImageAlt: ''
 leadParagraph: 第一次滑雪，除了享受滑雪的樂趣，很多人也希望留下好看的滑雪照片。但雪場環境特殊，常常會遇到人物太小、動作不明顯、雪景沒有氣勢等問題。掌握以下三個滑雪拍照技巧，就能讓你的照片更有質感。
@@ -28,7 +28,7 @@ contentBlocks:
       - 雪板更有存在感
       - 畫面更有速度感與力量感
     image: images/IMG_7203.jpg
-    imageAlt: 滑雪板抓板動作
+    imageAlt: 滑雪板抓板動作.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
     imagePosition: left
   - heading: 2. 先錄影，再截圖捕捉最佳滑雪瞬間
     paragraphs:
@@ -38,7 +38,7 @@ contentBlocks:
       - 更容易捕捉跳躍與轉彎動作
       - 提高拍到好照片的成功率
     image: images/action-02.jpg
-    imageAlt: 雙人跳躍動作/滑雪攝影
+    imageAlt: 雙人跳躍動作/滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
     imagePosition: right
   - heading: 3. 舉起雪板拍攝，打造電影感滑雪背影照
     paragraphs:
@@ -48,7 +48,7 @@ contentBlocks:
       - 人物背影更有故事感
       - 輕鬆拍出電影感旅行照片
     image: images/action-03-bw.jpg
-    imageAlt: 黑白剪影動作
+    imageAlt: 黑白剪影動作.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
     imagePosition: left
   - heading: 手機也能拍滑雪照，但專業攝影能留下更多細節
     paragraphs:

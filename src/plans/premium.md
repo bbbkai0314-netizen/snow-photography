@@ -6,7 +6,7 @@ eyebrowNumber: "03"
 eyebrowLabel: "最完整方案"
 serviceType: "滑雪攝影與行程整合服務"
 heroImage: "images/action-02.jpg"
-heroImageAlt: "雙人跳躍動作"
+heroImageAlt: "雙人跳躍動作.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪"
 leadParagraph: "從攝影、教練到住宿與雪具，一次滿足完整滑雪體驗。單一窗口協助安排所有滑雪相關需求，不需自行聯絡多個店家，讓旅程更省時、更安心。"
 previewDescription: "從攝影、教練到住宿與雪具，一次滿足完整滑雪體驗。"
 order: 3

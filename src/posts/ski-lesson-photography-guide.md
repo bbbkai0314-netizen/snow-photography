@@ -4,9 +4,10 @@ title: SnowSurfStudio｜滑雪教學＋攝影跟拍服務說明與注意事項
 tag: 服務須知
 metaLine: SnowSurfStudio Journal・預約前必讀
 heroImage: images/portrait-4187.jpg
-heroImageAlt: 滑雪教學跟拍團體照
+heroImageAlt: 滑雪教學跟拍團體照.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
 previewImage: ''
 previewImageAlt: ''
+previewImagePosition: "50% 58%"
 leadParagraph: 由專業滑雪教練負責教學，SnowSurfStudio 攝影師在不影響課程與雪道安全的前提下同步跟拍，記錄真實的學習與滑行過程。這篇文章整理完整的服務方式、時間安排、拍攝前準備與預約注意事項，讓你在預約前就能掌握所有細節。
 date: '2026-08-07'
 dateModified: '2026-08-07'
@@ -158,5 +159,4 @@ contentBlocks:
       - 拍攝日前 60 天內取消：依 SnowSurfStudio 官方取消政策辦理
     trailingParagraphs:
       - 若因雪場停駛、官方安全公告、極端天候或其他不可抗力因素導致無法進行拍攝，將優先協助討論改期或調整拍攝安排。
-previewImagePosition: 50% 58%
 ---
