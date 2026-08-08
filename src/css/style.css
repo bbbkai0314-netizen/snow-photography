@@ -914,13 +914,6 @@ button{ font-family:inherit; }
 .booking-wizard__btn:disabled{ opacity:.6; cursor:default; }
 
 .booking-wizard__confirm{ text-align:center; padding:12px 0; }
-.booking-wizard__line-qr{
-  display:block;
-  margin:0 auto 16px;
-  border-radius:12px;
-  background:#fff;
-  padding:10px;
-}
 .booking-wizard__line-link{
   display:inline-block;
   color:#06c755;

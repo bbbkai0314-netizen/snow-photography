@@ -130,6 +130,9 @@
   });
 
   // ---------- Submit ----------
+  const lineLink = confirmPanel.querySelector('.booking-wizard__line-link');
+  const LINE_URL = lineLink ? lineLink.href : '';
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validateStep(3)) return;
@@ -160,6 +163,10 @@
       form.hidden = true;
       wizard.querySelector('.booking-wizard__stepper').hidden = true;
       confirmPanel.hidden = false;
+
+      if (LINE_URL) {
+        window.location.href = LINE_URL;
+      }
     } catch (err) {
       errorBanner.hidden = false;
       if (submitBtn) {
