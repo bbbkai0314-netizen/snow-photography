@@ -7,7 +7,7 @@ heroImage: images/IMG_1226.jpg
 heroImageAlt: 濃霧雪道上多位滑雪者各自節奏滑行.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
 previewImage: ''
 previewImageAlt: ''
-leadParagraph: 其實，一趟美好的滑雪旅行，不是每個人都滑得一樣快，而是每個人都能照著自己的節奏享受滑雪。這樣就好。
+leadParagraph: 其實，一趟美好的滑雪旅行，不是每個人都滑得一樣快，而是每個人都能照著自己的節奏享受滑雪。
 date: 2026-08-08T00:00:00.000Z
 dateModified: 2026-08-08T00:00:00.000Z
 previewDescription: 程度不同的一群人一起滑雪，怎麼樣才能每個人都玩得盡興？分享 SnowSurfStudio 陪伴滑雪旅程的方式。
