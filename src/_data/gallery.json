@@ -1,14 +1,86 @@
 [
-  { "image": "images/action-01.jpg", "alt": "滑雪板騰空動作", "caption": "Air Grab", "tag": "ACTION", "orientation": "landscape" },
-  { "image": "images/action-02.jpg", "alt": "雙人跳躍動作", "caption": "Powder Jump", "tag": "ACTION", "orientation": "landscape" },
-  { "image": "images/action-03-bw.jpg", "alt": "黑白剪影動作", "caption": "Silhouette", "tag": "ACTION", "orientation": "landscape" },
-  { "image": "images/town-01.jpg", "alt": "雪鎮街景", "caption": "Snow Town", "tag": "TOWN", "orientation": "landscape" },
-  { "image": "images/action-05.jpg", "alt": "雙人擊掌跳躍動作", "caption": "High Five", "tag": "ACTION", "orientation": "landscape" },
-  { "image": "images/IMG_1282.jpg", "alt": "雪地開心跳躍", "caption": "Pure Joy", "tag": "LIFESTYLE", "orientation": "landscape" },
-  { "image": "images/portrait-7202.jpg", "alt": "人像攝影", "caption": "Portrait", "tag": "PORTRAIT", "orientation": "landscape" },
-  { "image": "images/lifestyle-01.jpg", "alt": "越後湯澤車站人像", "caption": "Echigo-Yuzawa Station", "tag": "LIFESTYLE", "orientation": "landscape" },
-  { "image": "images/lifestyle-02.jpg", "alt": "街景人像", "caption": "Backstreet", "tag": "LIFESTYLE", "orientation": "landscape" },
-  { "image": "images/portrait-7203.jpg", "alt": "滑雪板抓板動作", "caption": "Board Grab", "tag": "ACTION", "orientation": "portrait" },
-  { "image": "images/portrait-0086.jpg", "alt": "滑雪騰空動作", "caption": "Full Send", "tag": "ACTION", "orientation": "portrait" },
-  { "image": "images/portrait-4187.jpg", "alt": "恐龍裝合照", "caption": "Squad", "tag": "LIFESTYLE", "orientation": "portrait" }
+  {
+    "image": "images/action-01.jpg",
+    "alt": "滑雪板騰空動作.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪",
+    "caption": "Air Grab",
+    "tag": "ACTION",
+    "orientation": "landscape"
+  },
+  {
+    "image": "images/action-02.jpg",
+    "alt": "雙人跳躍動作",
+    "caption": "Powder Jump",
+    "tag": "ACTION",
+    "orientation": "landscape"
+  },
+  {
+    "image": "images/action-03-bw.jpg",
+    "alt": "黑白剪影動作",
+    "caption": "Silhouette",
+    "tag": "ACTION",
+    "orientation": "landscape"
+  },
+  {
+    "image": "images/town-01.jpg",
+    "alt": "雪鎮街景",
+    "caption": "Snow Town",
+    "tag": "TOWN",
+    "orientation": "landscape"
+  },
+  {
+    "image": "images/action-05.jpg",
+    "alt": "雙人擊掌跳躍動作",
+    "caption": "High Five",
+    "tag": "ACTION",
+    "orientation": "landscape"
+  },
+  {
+    "image": "images/IMG_1282.jpg",
+    "alt": "雪地開心跳躍",
+    "caption": "Pure Joy",
+    "tag": "LIFESTYLE",
+    "orientation": "landscape"
+  },
+  {
+    "image": "images/portrait-7202.jpg",
+    "alt": "人像攝影",
+    "caption": "Portrait",
+    "tag": "PORTRAIT",
+    "orientation": "landscape"
+  },
+  {
+    "image": "images/lifestyle-01.jpg",
+    "alt": "越後湯澤車站人像",
+    "caption": "Echigo-Yuzawa Station",
+    "tag": "LIFESTYLE",
+    "orientation": "landscape"
+  },
+  {
+    "image": "images/lifestyle-02.jpg",
+    "alt": "街景人像",
+    "caption": "Backstreet",
+    "tag": "LIFESTYLE",
+    "orientation": "landscape"
+  },
+  {
+    "image": "images/portrait-7203.jpg",
+    "alt": "滑雪板抓板動作",
+    "caption": "Board Grab",
+    "tag": "ACTION",
+    "orientation": "portrait"
+  },
+  {
+    "image": "images/portrait-0086.jpg",
+    "alt": "滑雪騰空動作",
+    "caption": "Full Send",
+    "tag": "ACTION",
+    "orientation": "portrait"
+  },
+  {
+    "image": "images/portrait-4187.jpg",
+    "alt": "恐龍裝合照",
+    "caption": "Squad",
+    "tag": "LIFESTYLE",
+    "orientation": "portrait"
+  }
 ]
