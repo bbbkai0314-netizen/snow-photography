@@ -3,10 +3,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
-  eleventyConfig.addPassthroughCopy("src/admin/admin.css");
-  eleventyConfig.addPassthroughCopy("src/admin/admin-api.js");
-  eleventyConfig.addPassthroughCopy("src/admin/admin-views.js");
-  eleventyConfig.addPassthroughCopy("src/admin/admin.js");
 
   // Sort a collection by its frontmatter "order" field (ascending).
   eleventyConfig.addFilter("sortByOrder", (arr) =>
