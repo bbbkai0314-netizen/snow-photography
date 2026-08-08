@@ -1,17 +1,39 @@
 ---
 permalink: "about.html"
 ---
-{%- set htmlTitle = "關於我們｜SnowSurfStudio" -%}
+{%- set htmlTitle = "關於我們｜日本滑雪攝影 SnowSurfStudio" -%}
 {%- set socialTitle = htmlTitle -%}
 {%- set canonicalUrl = "https://bbbkai0314-netizen.github.io/snow-photography/about.html" -%}
 {%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + site.seo.ogImage -%}
 {%- set ogType = "website" -%}
 {%- set assetPrefix = "" -%}
-{%- set seo = { description: "SnowSurfStudio 是日本白馬（Hakuba）的陪伴式滑雪攝影團隊，攝影師本身也會滑雪，熟悉雪場節奏，適合一個人旅行者、程度不同的情侶家庭，以及第一次滑雪的新手。認識我們的滑雪攝影理念、服務地區與拍攝方式。", keywords: "SnowSurfStudio,滑雪攝影團隊,關於我們,日本白馬滑雪攝影,陪伴式滑雪攝影,滑雪跟拍" } -%}
+{%- set seo = { description: "SnowSurfStudio 是專注於日本滑雪攝影的陪伴式團隊，主要服務地區為日本白馬（Hakuba）。攝影師本身也會滑雪，熟悉雪場節奏，適合一個人滑雪的旅客、程度不同的情侶家庭，以及第一次滑雪的新手。認識我們的初衷、滑雪攝影理念與拍攝方式。", keywords: "日本滑雪攝影,一個人滑雪,SnowSurfStudio,滑雪攝影團隊,關於我們,白馬滑雪攝影,陪伴式滑雪攝影,滑雪跟拍" } -%}
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 {% include "partials/head-meta.njk" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "關於 SnowSurfStudio",
+  "url": "{{ canonicalUrl }}",
+  "description": "{{ seo.description }}",
+  "mainEntity": {
+    "@type": "ProfessionalService",
+    "name": "SnowSurfStudio",
+    "alternateName": "日本滑雪攝影 SnowSurfStudio",
+    "description": "{{ seo.description }}",
+    "areaServed": [
+      { "@type": "Place", "name": "長野・白馬" },
+      { "@type": "Place", "name": "日本新潟・越後湯澤" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/snowsurfstudio"
+    ]
+  }
+}
+</script>
 </head>
 <body>
 
@@ -28,6 +50,14 @@ permalink: "about.html"
     </div>
     <div class="about__inner">
       <h3 class="about__brand">SnowSurfStudio</h3>
+
+      <div class="about__block">
+        <h4>我們的初衷</h4>
+        <p>每一年的雪季都找不到夥伴嗎？SnowSurfStudio 想做的不只是雪地攝影這件事，我們更想成為你每年滑雪的好夥伴，幫你記錄你成長的過程，讓你記住你最有自信的樣子。</p>
+        <p>我們知道，很多人常常在旅途中少了一個能一起上雪、一起分享、一起留下回憶的人。因此，我們由滑雪攝影師陪你一起滑雪，在不打斷你的節奏下，記錄那些你自己看不見的瞬間。</p>
+        <p>從第一個穩定的轉彎，到越來越自在的滑行，希望多年後回頭看，你記得的不只是去過哪些雪場，而是清楚看見自己如何一步一步，成為更好的自己。</p>
+      </div>
+
       <p>{{ site.aboutBody }}</p>
     </div>
 

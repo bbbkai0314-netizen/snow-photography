@@ -506,9 +506,11 @@ button{ font-family:inherit; }
   line-height:1.9;
   color:#cfe3ec;
   margin-bottom:14px;
+  text-align:left;
 }
 .about__block{
-  margin-top:46px;
+  max-width:700px;
+  margin:46px auto 0;
   padding-top:32px;
   border-top:1px solid rgba(255,255,255,.1);
 }
@@ -519,12 +521,14 @@ button{ font-family:inherit; }
   color:var(--white);
   margin-bottom:16px;
   letter-spacing:0.02em;
+  text-align:center;
 }
 .about__block p{
   font-size:15px;
   line-height:1.9;
   color:#cfe3ec;
   margin-bottom:10px;
+  text-align:left;
 }
 .about__list{
   list-style:none;
