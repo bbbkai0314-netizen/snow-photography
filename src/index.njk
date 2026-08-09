@@ -118,10 +118,11 @@
       <p class="journal__intro">滑雪攝影的準備、比較與雪場攻略，寫給正在規劃日本滑雪行程的你。</p>
       <div class="journal__grid">
         {% for post in collections.posts | reverse %}
-        <a class="journal-card journal-card--title-only glass" href="blog/{{ post.fileSlug }}.html">
-          <img src="{{ post.data.previewImage or post.data.heroImage }}" alt="{{ post.data.previewImageAlt or post.data.heroImageAlt }}" loading="lazy"{% if post.data.previewImagePosition %} style="object-position:{{ post.data.previewImagePosition }};"{% endif %}>
+        <a class="journal-card journal-card--text glass" href="blog/{{ post.fileSlug }}.html">
           <div class="journal-card__body">
+            <span class="journal-card__tag">{{ post.data.tag }}</span>
             <h3>{{ post.data.title }}</h3>
+            <p>{{ post.data.previewDescription }}</p>
           </div>
         </a>
         {% endfor %}

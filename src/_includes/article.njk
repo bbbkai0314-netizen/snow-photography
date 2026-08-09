@@ -37,9 +37,6 @@
       <span class="article-hero__tag">{{ tag }}</span>
       <h1>{{ title }}</h1>
       <p class="article-hero__meta">{{ metaLine }}</p>
-      <div class="article-hero__image">
-        <img src="{{ assetPrefix }}{{ heroImage }}" alt="{{ heroImageAlt }}" loading="lazy">
-      </div>
     </div>
 
     <div class="article-body">
@@ -49,20 +46,6 @@
         {% if block.type == "html" %}
         <div class="article-section">
           {{ block.html | safe }}
-        </div>
-        {% elif block.image %}
-        <div class="article-block{% if block.imagePosition == 'right' %} article-block--reverse{% endif %}">
-          <div class="article-block__media">
-            <img src="{{ assetPrefix }}{{ block.image }}" alt="{{ block.imageAlt }}" loading="lazy">
-          </div>
-          <div class="article-block__text">
-            <h2>{{ block.heading }}</h2>
-            {% for p in block.paragraphs %}<p>{{ p }}</p>{% endfor %}
-            {% if block.items and block.items.length %}
-            <ul>{% for item in block.items %}<li>{{ item }}</li>{% endfor %}</ul>
-            {% endif %}
-            {% for p in block.trailingParagraphs %}<p>{{ p }}</p>{% endfor %}
-          </div>
         </div>
         {% else %}
         <div class="article-section">
