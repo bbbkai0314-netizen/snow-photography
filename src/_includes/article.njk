@@ -40,7 +40,7 @@
     </div>
 
     <div class="article-body">
-      <p class="article-body__lead">{{ leadParagraph }}</p>
+      {% if leadParagraph %}<p class="article-body__lead">{{ leadParagraph }}</p>{% endif %}
 
       {% for block in contentBlocks %}
         {% if block.type == "html" %}
