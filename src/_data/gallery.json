@@ -1,14 +1,14 @@
 [
   {
     "image": "images/air-grab-japan-ski-photography-snowboard-ski.jpg",
-    "alt": "日本滑雪攝影捕捉單板滑雪者騰空抓板的動態瞬間",
+    "alt": "日本白馬滑雪平面攝影捕捉單板滑雪者騰空抓板的瞬間",
     "caption": "Air Grab",
     "tag": "ACTION",
     "orientation": "landscape"
   },
   {
     "image": "images/powder-jump-japan-ski-photography-snowboard-ski.jpg",
-    "alt": "日本雪場雙人單板滑雪跳躍，Snowboard Photography 動態攝影",
+    "alt": "日本白馬雪場雙人單板滑雪跳躍，Snowboard Photography 平面攝影",
     "caption": "Powder Jump",
     "tag": "ACTION",
     "orientation": "landscape"
@@ -49,13 +49,6 @@
     "orientation": "landscape"
   },
   {
-    "image": "images/echigo-yuzawa-japan-ski-photography-snowboard-ski.jpg",
-    "alt": "日本湯澤滑雪旅行的人像攝影與車站紀錄",
-    "caption": "Echigo-Yuzawa Station",
-    "tag": "LIFESTYLE",
-    "orientation": "landscape"
-  },
-  {
     "image": "images/snow-lifestyle-japan-ski-photography-snowboard-ski.jpg",
     "alt": "日本雪場街景人像，滑雪旅程生活攝影",
     "caption": "Backstreet",
@@ -64,7 +57,7 @@
   },
   {
     "image": "images/board-grab-japan-ski-photography-snowboard-ski.jpg",
-    "alt": "單板滑雪抓板動作，Snowboard Photography 直式動態拍攝",
+    "alt": "單板滑雪抓板動作，Snowboard Photography 直式平面攝影",
     "caption": "Board Grab",
     "tag": "ACTION",
     "orientation": "portrait"

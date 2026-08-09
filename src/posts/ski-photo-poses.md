@@ -4,16 +4,16 @@ title: 三招教你拍出滑雪雜誌封面照｜
 tag: 教學
 metaLine: SnowSurfStudio Journal・滑雪攝影準備
 heroImage: images/air-grab-japan-ski-photography-snowboard-ski.jpg
-heroImageAlt: 照片立刻有氣勢.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
+heroImageAlt: 日本白馬滑雪攝影的單板滑雪者騰空畫面
 previewImage: ''
 previewImageAlt: ''
 leadParagraph: 第一次滑雪，除了享受滑雪的樂趣，很多人也希望留下好看的滑雪照片。但雪場環境特殊，常常會遇到人物太小、動作不明顯、雪景沒有氣勢等問題。掌握以下三個滑雪拍照技巧，就能讓你的照片更有質感。
 date: 2026-08-05T00:00:00.000Z
 dateModified: 2026-08-07T00:00:00.000Z
-previewDescription: 低角度、先錄影再截圖、舉板拍背影——三個手機也能用的滑雪拍照技巧。
+previewDescription: 低角度、善用連拍、舉板拍背影——三個手機也能用的滑雪平面攝影技巧。
 seo:
   title: 三招教你拍出滑雪雜誌封面照｜手機也能拍出高質感滑雪照片
-  description: 手機也能拍出高質感滑雪照片？整理三個實用滑雪拍照技巧：低角度拍攝、錄影截圖抓瞬間、舉板拍背影，讓你的滑雪照片更有氣勢與故事感。
+  description: 手機也能拍出高質感滑雪照片？整理三個實用滑雪平面攝影技巧：低角度拍攝、善用連拍、舉板拍背影，讓你的滑雪照片更有氣勢與故事感。
   keywords: 滑雪拍照技巧,滑雪拍照姿勢,滑雪拍照教學,手機滑雪拍照,高質感滑雪照片,滑雪穿搭拍照,滑雪攝影
 contentBlocks:
   - heading: 滑雪照片怎麼拍才好看？掌握3個簡單技巧
@@ -28,17 +28,17 @@ contentBlocks:
     trailingParagraphs:
       - 低角度拍攝能放大滑雪者的動作張力，讓照片更像滑雪雜誌封面。
     image: images/IMG_7203.jpg
-    imageAlt: 滑雪板抓板動作.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
+    imageAlt: 日本白馬滑雪攝影記錄的單板滑雪抓板瞬間
     imagePosition: left
-  - heading: 2. 先錄影，再截圖捕捉最佳滑雪瞬間
+  - heading: 2. 善用連拍，挑選最佳滑雪瞬間
     paragraphs:
-      - 滑雪動作速度快，直接拍照容易錯過精彩畫面。建議先使用手機錄影，完成轉彎、噴雪或跳躍後，再挑選最好看的畫面截圖。
+      - 滑雪動作速度快，單張拍攝容易錯過精彩畫面。建議使用手機連拍，在完成轉彎、噴雪或跳躍後，挑選最好看的照片。
     items:
       - 不怕錯過精彩瞬間
       - 更容易捕捉跳躍與轉彎動作
       - 提高拍到好照片的成功率
     image: images/powder-jump-japan-ski-photography-snowboard-ski.jpg
-    imageAlt: 雙人跳躍動作/滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
+    imageAlt: 日本白馬滑雪攝影記錄的雙人跳躍瞬間
     imagePosition: right
   - heading: 3. 舉起雪板拍攝，打造電影感滑雪背影照
     paragraphs:
@@ -48,7 +48,7 @@ contentBlocks:
       - 人物背影更有故事感
       - 輕鬆拍出電影感旅行照片
     image: images/black-white-japan-ski-photography-snowboard-ski.jpg
-    imageAlt: 黑白剪影動作.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
+    imageAlt: 日本白馬雪場的黑白滑雪剪影平面攝影
     imagePosition: left
   - heading: 手機也能拍滑雪照，但專業攝影能留下更多細節
     paragraphs:

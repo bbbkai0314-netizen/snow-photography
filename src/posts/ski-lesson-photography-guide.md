@@ -1,32 +1,32 @@
 ---
 layout: article
-title: SnowSurfStudio｜滑雪教學＋攝影跟拍服務說明與注意事項
+title: SnowSurfStudio｜滑雪教學＋平面攝影服務說明與注意事項
 tag: 服務須知
 metaLine: SnowSurfStudio Journal・預約前必讀
 heroImage: images/friends-group-japan-ski-photography-snowboard-ski.jpg
-heroImageAlt: 滑雪教學跟拍團體照.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
+heroImageAlt: 日本白馬滑雪課程的團體平面攝影紀錄
 previewImage: ''
 previewImageAlt: ''
 previewImagePosition: "50% 58%"
-leadParagraph: 由專業滑雪教練負責教學，SnowSurfStudio 攝影師在不影響課程與雪道安全的前提下同步跟拍，記錄真實的學習與滑行過程。這篇文章整理完整的服務方式、時間安排、拍攝前準備與預約注意事項，讓你在預約前就能掌握所有細節。
+leadParagraph: 由專業滑雪教練負責教學，SnowSurfStudio 攝影師在不影響課程與雪道安全的前提下進行平面拍攝，記錄真實的學習與滑行過程。這篇文章整理完整的服務方式、時間安排、拍攝前準備與預約注意事項，讓你在預約前就能掌握所有細節。
 date: '2026-08-07'
 dateModified: '2026-08-07'
 previewDescription: 教練專心教學、攝影師負責記錄——服務方式、時間、交件天數與完整預約注意事項一次說明。
 seo:
-  title: 滑雪教學＋攝影跟拍服務說明與注意事項｜SnowSurfStudio
-  description: SnowSurfStudio 滑雪教學＋攝影跟拍服務說明：拍攝方式、服務時間、交件天數、拍攝前準備、服裝建議與完整預約注意事項，讓你在日本白馬、湯澤滑雪課程中安心留下真實的學習與滑行畫面。
-  keywords: 滑雪教學攝影,滑雪跟拍,滑雪攝影注意事項,白馬滑雪攝影,湯澤滑雪攝影,滑雪教練跟拍,日本滑雪攝影預約,滑雪課程紀錄,滑雪動態攝影,滑雪攝影取消政策
+  title: 滑雪教學＋平面攝影服務說明與注意事項｜SnowSurfStudio
+  description: SnowSurfStudio 滑雪教學＋平面攝影服務說明：拍攝方式、服務時間、交件天數、拍攝前準備、服裝建議與完整預約注意事項，讓你在日本白馬滑雪課程中安心留下真實的學習與滑行照片。
+  keywords: 滑雪教學攝影,滑雪平面攝影,滑雪攝影注意事項,白馬滑雪攝影,日本滑雪攝影預約,滑雪課程紀錄,滑雪攝影取消政策
 contentBlocks:
   - heading: 服務方式
     paragraphs:
-      - 由專業滑雪教練進行正常教學，SnowSurfStudio 攝影師會在不影響教學進度與雪道安全的情況下，於教練與學員周邊進行動態跟拍。
+      - 由專業滑雪教練進行正常教學，SnowSurfStudio 攝影師會在不影響教學進度與雪道安全的情況下，於適合的位置進行平面拍攝。
       - 拍攝內容以真實的滑雪學習過程為主，紀錄教練指導、練習、滑行、轉彎、親子／好友互動，以及雪地自然人像等畫面。
       - 攝影師不介入教學內容，所有滑雪技術、安全判斷、雪道路線與課程安排皆以教練指示為優先。
   - heading: 服務時間
     paragraphs:
       - 2 小時攝影服務。
       - 實際拍攝時間依預約方案為準。
-      - 若搭配滑雪教練課程，攝影師將依教練當日課程內容與滑行路線進行跟拍。
+      - 若搭配滑雪教練課程，攝影師將依教練當日課程內容與滑行路線安排拍攝。
       - 如需延長攝影時間，請於預約前提出，相關費用另行確認。
   - heading: 交件時間
     paragraphs:
@@ -36,8 +36,8 @@ contentBlocks:
     paragraphs:
       - 服務包含：
     items:
-      - 教練教學過程跟拍
-      - 滑雪動態攝影
+      - 教練教學過程平面紀錄
+      - 滑行瞬間平面攝影
       - 學習過程紀錄
       - 滑行與轉彎瞬間
       - 雪地自然人像
@@ -53,7 +53,7 @@ contentBlocks:
     paragraphs:
       - 基本方案預計提供約 30 張精選照片，包含：
     items:
-      - 滑雪動態照片
+      - 滑行瞬間照片
       - 雪地人像
       - 教學紀錄
       - 自然互動畫面
