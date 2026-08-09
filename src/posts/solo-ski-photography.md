@@ -1,6 +1,6 @@
 ---
 layout: article
-title: 一個人滑雪找不到人？日本滑雪攝影也能留下完整雪季回憶
+title: 一個人滑雪找不到人？
 tag: 一個人滑雪
 metaLine: SnowSurfStudio Journal・日本滑雪攝影｜Snowboard & Ski
 heroImage: images/snow-portrait-japan-ski-photography-snowboard-ski.jpg
