@@ -658,6 +658,21 @@ button{ font-family:inherit; }
   margin:0;
   max-width:none;
 }
+.hakuba-page .section-head{
+  display:block;
+  text-align:left;
+}
+.hakuba-page .section-head p{
+  margin-top:8px;
+}
+.hakuba-page .about__columns{
+  grid-template-columns:1fr;
+  gap:0;
+  max-width:760px;
+}
+.hakuba-page .about__columns .about__block + .about__block{
+  margin-top:34px;
+}
 .about__closing{
   max-width:760px;
   margin:46px auto 0;
