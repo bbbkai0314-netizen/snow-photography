@@ -336,7 +336,7 @@ button{ font-family:inherit; }
 .chapter__content--hero h1{
   font-family:'Noto Sans TC', sans-serif;
   font-weight:900;
-  font-size:clamp(42px, 9vw, 110px);
+  font-size:clamp(36px, 6.8vw, 82px);
   line-height:0.95;
   color:var(--white);
   text-shadow:0 4px 40px rgba(0,0,0,.4);
