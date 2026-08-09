@@ -592,6 +592,34 @@ button{ font-family:inherit; }
   content:'— ';
   color:var(--ice-dim);
 }
+.about__list--audience{
+  gap:18px;
+  text-align:left;
+}
+.about__list--audience li{
+  padding-left:18px;
+  border-left:2px solid rgba(155,212,238,.42);
+}
+.about__list--audience strong{
+  display:block;
+  margin-bottom:3px;
+  color:var(--white);
+  font-weight:800;
+}
+.about__list--audience span{
+  display:block;
+  color:#cfe3ec;
+}
+.about__closing{
+  max-width:700px;
+  margin:46px auto 0;
+  padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.1);
+  color:var(--ice) !important;
+  font-size:16px;
+  line-height:1.9;
+  text-align:left;
+}
 
 .about__row{
   display:flex;
