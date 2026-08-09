@@ -3,7 +3,7 @@ layout: article
 title: 一個人滑雪找不到人？也能留下完整雪季回憶
 tag: 一個人滑雪
 metaLine: SnowSurfStudio Journal・日本滑雪攝影
-heroImage: images/IMG_1282.jpg
+heroImage: images/snow-portrait-japan-ski-photography-snowboard-ski.jpg
 heroImageAlt: 日本雪場雪地上自在跳躍的滑雪旅客，雪季人像攝影紀錄
 leadParagraph: 一個人滑雪不等於只能自拍。把自己的節奏留給滑行，把精彩瞬間交給滑雪攝影師記錄，也是一種自在的旅行方式。
 date: 2026-08-09T00:00:00.000Z

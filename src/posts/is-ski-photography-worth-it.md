@@ -3,7 +3,7 @@ layout: article
 title: 滑雪攝影值得嗎？把雪季回憶留下來的 3 個理由
 tag: 滑雪攝影指南
 metaLine: SnowSurfStudio Journal・Snowboard & Ski Photography
-heroImage: images/action-05.jpg
+heroImage: images/high-five-japan-ski-photography-snowboard-ski.jpg
 heroImageAlt: 朋友在日本雪場擊掌跳躍的畫面，滑雪攝影記錄
 leadParagraph: 滑雪攝影的價值不只是一張好看的照片，而是讓你能專心享受滑行，同時把每一季的成長與陪伴好好留下。
 date: 2026-08-09T00:00:00.000Z

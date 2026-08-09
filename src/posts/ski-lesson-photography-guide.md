@@ -3,7 +3,7 @@ layout: article
 title: SnowSurfStudio｜滑雪教學＋攝影跟拍服務說明與注意事項
 tag: 服務須知
 metaLine: SnowSurfStudio Journal・預約前必讀
-heroImage: images/portrait-4187.jpg
+heroImage: images/friends-group-japan-ski-photography-snowboard-ski.jpg
 heroImageAlt: 滑雪教學跟拍團體照.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪
 previewImage: ''
 previewImageAlt: ''
