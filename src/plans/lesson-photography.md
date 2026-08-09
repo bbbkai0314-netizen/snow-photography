@@ -5,7 +5,7 @@ subtitleEn: "Lesson + Photography"
 eyebrowNumber: "02"
 serviceType: "滑雪教練課程與滑雪攝影"
 heroImage: "images/lesson-hero.jpg"
-heroImageAlt: "手持滑雪板剪影，逆光望向雪山.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪"
+heroImageAlt: "日本雪場逆光下手持滑雪板的滑雪者，滑雪攝影與 Snowboard、Ski 課程紀錄"
 leadParagraph: "一次完成學習與紀錄，留下每一次進步的瞬間。適合第一次滑雪、想再進步一點的滑雪者，或是想帶著孩子一起學的家庭。"
 previewDescription: "一次完成學習與紀錄，留下每一次進步的瞬間。"
 order: 2
@@ -25,5 +25,5 @@ sections:
       - "課程成果留念"
 seo:
   description: "SnowSurfStudio 合作教練＋攝影方案，適合第一次滑雪、想進步的滑雪者與親子家庭。合作滑雪教練課程搭配專業滑雪攝影，記錄學習過程與每一次進步的瞬間。"
-  keywords: "滑雪教練課程,滑雪攝影方案,新手滑雪,親子滑雪課程,湯澤滑雪教學"
+  keywords: "滑雪教練課程,滑雪攝影方案,Snowboard,Ski,新手滑雪,親子滑雪課程,白馬滑雪教學"
 ---

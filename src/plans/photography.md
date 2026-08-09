@@ -5,7 +5,7 @@ subtitleEn: "Snow Photography"
 eyebrowNumber: "01"
 serviceType: "滑雪攝影"
 heroImage: "images/portrait-7202.jpg"
-heroImageAlt: "人像攝影.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪"
+heroImageAlt: "日本滑雪攝影的雪地人像作品，適合 Snowboard 與 Ski 旅客的自然平面拍攝"
 leadParagraph: "適合想留下滑雪回憶的旅客。無論是自己一個人、情侶、家庭或一群朋友，這個方案專注在把你們這趟雪季最自然的樣子拍下來。"
 previewDescription: "適合想留下滑雪回憶的旅客。"
 order: 1
@@ -25,6 +25,6 @@ sections:
       - "雪地自然互動紀錄"
       - "精選照片交付"
 seo:
-  description: "SnowSurfStudio 攝影方案，適合個人、情侶、家庭與朋友。提供專業滑雪攝影、滑行動態拍攝、人像與團體合照、雪地自然互動紀錄，並交付精選照片，留下滑雪旅程的真實回憶。"
-  keywords: "滑雪攝影方案,滑雪跟拍,滑雪寫真,湯澤滑雪攝影,滑雪人像攝影"
+  description: "SnowSurfStudio 滑雪攝影方案，適合個人、情侶、家庭與朋友。以 Snowboard 與 Ski 雪地平面拍攝為主，記錄人像、團體合照與自然互動，留下滑雪旅程的真實回憶。"
+  keywords: "滑雪攝影方案,日本滑雪攝影,Snowboard Photography,Ski Photography,滑雪寫真,白馬滑雪攝影,滑雪人像攝影"
 ---
