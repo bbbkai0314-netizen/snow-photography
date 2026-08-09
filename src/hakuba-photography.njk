@@ -1,0 +1,60 @@
+---
+permalink: "hakuba-photography/index.html"
+---
+{%- set htmlTitle = "白馬滑雪攝影｜Hakuba Snowboard & Ski Photography - SnowSurfStudio" -%}
+{%- set socialTitle = htmlTitle -%}
+{%- set canonicalUrl = "https://snowsurfstudio.net/hakuba-photography/" -%}
+{%- set ogImageUrl = "https://snowsurfstudio.net/images/action-01.jpg" -%}
+{%- set ogType = "website" -%}
+{%- set assetPrefix = "../" -%}
+{%- set seo = { description: "SnowSurfStudio 提供日本白馬 Hakuba 滑雪攝影與滑雪跟拍服務。適合一個人滑雪、情侶、家庭與朋友團體，依照你的滑行節奏留下自然、有速度感的 Snowboard 與 Ski Photography 回憶。", keywords: "白馬滑雪攝影,Hakuba Photography,日本滑雪攝影,Snowboard Photography,Ski Photography,白馬滑雪跟拍" } -%}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include "partials/head-meta.njk" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "白馬滑雪攝影｜SnowSurfStudio",
+  "description": "日本白馬的陪伴式滑雪攝影與滑雪跟拍服務。",
+  "provider": { "@type": "Organization", "name": "SnowSurfStudio", "url": "https://snowsurfstudio.net/" },
+  "areaServed": { "@type": "Place", "name": "長野・白馬（Hakuba）" },
+  "serviceType": ["Hakuba Snowboard Photography", "Hakuba Ski Photography", "日本滑雪攝影"],
+  "url": "{{ canonicalUrl }}",
+  "image": "{{ ogImageUrl }}",
+  "inLanguage": "zh-Hant"
+}
+</script>
+</head>
+<body>
+{% include "partials/glow.njk" %}
+{% include "partials/nav.njk" %}
+<main>
+  <section class="about glass-panel about--standalone" aria-labelledby="hakuba-title">
+    <a class="article-breadcrumb" href="{{ assetPrefix }}index.html#plans">← 返回拍攝方案</a>
+    <div class="section-head"><h1 id="hakuba-title">白馬滑雪攝影</h1><p>Hakuba Photography</p></div>
+    <div class="about__inner">
+      <p class="about__lead">日本白馬 Hakuba 的 Snowboard &amp; Ski Photography，依你的節奏，記錄最像你的雪季。</p>
+      <div class="about__block">
+        <h4>在白馬留下你的滑雪故事</h4>
+        <p>SnowSurfStudio 提供白馬滑雪攝影與滑雪跟拍服務，為一個人旅行、情侶、家庭與朋友團體留下自然的雪地紀錄。從第一次穩定轉彎，到盡情滑行的動態瞬間，我們依照實際雪況、光線與你的滑雪程度安排拍攝。</p>
+      </div>
+      <div class="about__columns">
+        <div class="about__block"><h4>Snowboard Photography</h4><p>捕捉單板滑雪的動態、轉彎、抓板與朋友互動。你專心享受白馬雪場，我們在安全與不打斷節奏的前提下記錄畫面。</p></div>
+        <div class="about__block"><h4>Ski Photography</h4><p>無論是初學者練習、親子同遊或熟練者滑行，都能以適合你的方式留下有故事感的日本滑雪攝影作品。</p></div>
+      </div>
+      <div class="about__block">
+        <h4>預約白馬滑雪攝影前</h4>
+        <p>請先準備日期、預計前往的白馬雪場、同行人數、每位成員的滑雪程度，以及最想留下的 3 至 5 個畫面。想了解拍攝流程、交件與天候安排，可先閱讀 <a href="{{ assetPrefix }}faq.html">常見問題</a>；也可以直接查看 <a href="{{ assetPrefix }}index.html#booking">日本滑雪攝影預約方案</a>。</p>
+      </div>
+    </div>
+    {% set ctaMessage = "正在規劃白馬滑雪旅行嗎？告訴我們日期、雪場與想留下的畫面，我們會協助確認拍攝方向。" %}
+    {% include "partials/cta-booking.njk" %}
+  </section>
+  {% include "partials/footer.njk" %}
+</main>
+{% include "partials/line-float.njk" %}
+<script src="{{ assetPrefix }}js/script.js?v={{ assetVersion }}"></script>
+</body>
+</html>

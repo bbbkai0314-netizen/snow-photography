@@ -1,7 +1,7 @@
 {%- set htmlTitle = seo.title or (title + "｜" + subtitleEn + "｜SnowSurfStudio") -%}
 {%- set socialTitle = htmlTitle -%}
-{%- set canonicalUrl = "https://bbbkai0314-netizen.github.io/snow-photography/plans/" + page.fileSlug + ".html" -%}
-{%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + (seo.ogImage or heroImage) -%}
+{%- set canonicalUrl = "https://snowsurfstudio.net/plans/" + page.fileSlug + ".html" -%}
+{%- set ogImageUrl = "https://snowsurfstudio.net/" + (seo.ogImage or heroImage) -%}
 {%- set ogType = "website" -%}
 {%- set assetPrefix = "../" -%}
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
   "alternateName": "{{ subtitleEn }}",
   "serviceType": "{{ serviceType }}",
   "description": "{{ seo.description }}",
-  "provider": { "@type": "ProfessionalService", "name": "SnowSurfStudio", "url": "https://bbbkai0314-netizen.github.io/snow-photography/" },
+  "provider": { "@type": "ProfessionalService", "name": "SnowSurfStudio", "url": "https://snowsurfstudio.net/" },
   "areaServed": ["日本新潟・越後湯澤", "長野・白馬", "北海道"],
   "inLanguage": "zh-Hant"
 }

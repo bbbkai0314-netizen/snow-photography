@@ -1,7 +1,7 @@
 {%- set htmlTitle = seo.title or (title + "｜SnowSurfStudio") -%}
 {%- set socialTitle = seo.title or title -%}
-{%- set canonicalUrl = "https://bbbkai0314-netizen.github.io/snow-photography/blog/" + page.fileSlug + ".html" -%}
-{%- set ogImageUrl = "https://bbbkai0314-netizen.github.io/snow-photography/" + (seo.ogImage or heroImage) -%}
+{%- set canonicalUrl = "https://snowsurfstudio.net/blog/" + page.fileSlug + ".html" -%}
+{%- set ogImageUrl = "https://snowsurfstudio.net/" + (seo.ogImage or heroImage) -%}
 {%- set ogType = "article" -%}
 {%- set assetPrefix = "../" -%}
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
   "dateModified": "{{ dateModified or date }}",
   "inLanguage": "zh-Hant",
   "author": { "@type": "Organization", "name": "SnowSurfStudio" },
-  "publisher": { "@type": "Organization", "name": "SnowSurfStudio", "url": "https://bbbkai0314-netizen.github.io/snow-photography/" },
+  "publisher": { "@type": "Organization", "name": "SnowSurfStudio", "url": "https://snowsurfstudio.net/" },
   "mainEntityOfPage": "{{ canonicalUrl }}"
 }
 </script>
@@ -78,7 +78,11 @@
 
       <div class="article-cta glass-panel">
         <p>如果你也想在日本滑雪旅行中留下自然又有質感的回憶，歡迎查看日本滑雪攝影方案與可預約檔期。</p>
-        <a class="article-cta__btn glass" href="../index.html#booking">查看預約方案 →</a>
+        <div class="article-cta__links">
+          <a class="article-cta__btn glass" href="../index.html#booking">查看預約方案 →</a>
+          <a href="../hakuba-photography/">白馬滑雪攝影</a>
+          <a href="../faq.html">常見問題</a>
+        </div>
       </div>
     </div>
   </article>

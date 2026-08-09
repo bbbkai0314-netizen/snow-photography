@@ -5,45 +5,50 @@ eleventyExcludeFromCollections: true
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/</loc>
+    <loc>https://snowsurfstudio.net/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/blog/index.html</loc>
+    <loc>https://snowsurfstudio.net/blog/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/news.html</loc>
+    <loc>https://snowsurfstudio.net/news.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/about.html</loc>
+    <loc>https://snowsurfstudio.net/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/policies.html</loc>
+    <loc>https://snowsurfstudio.net/policies.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/faq.html</loc>
+    <loc>https://snowsurfstudio.net/faq.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 {%- for post in collections.posts %}
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/blog/{{ post.fileSlug }}.html</loc>
+    <loc>https://snowsurfstudio.net/blog/{{ post.fileSlug }}.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 {%- endfor %}
+  <url>
+    <loc>https://snowsurfstudio.net/hakuba-photography/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 {%- for plan in collections.plans | sortByOrder %}
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/plans/{{ plan.fileSlug }}.html</loc>
+    <loc>https://snowsurfstudio.net/plans/{{ plan.fileSlug }}.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
