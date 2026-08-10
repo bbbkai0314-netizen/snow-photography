@@ -2,13 +2,13 @@
 layout: plan
 title: "攝影方案"
 subtitleEn: "Snow Photography"
-eyebrowNumber: "01"
+eyebrowNumber: "02"
 serviceType: "滑雪攝影"
 heroImage: "images/natural-portrait-japan-ski-photography-snowboard-ski.jpg"
 heroImageAlt: "日本滑雪攝影的雪地人像作品，適合 Snowboard 與 Ski 旅客的自然平面拍攝"
 leadParagraph: "適合想留下滑雪回憶的旅客。無論是自己一個人、情侶、家庭或一群朋友，這個方案專注在把你們這趟雪季最自然的樣子拍下來。"
 previewDescription: "適合想留下滑雪回憶的旅客。"
-order: 1
+order: 2
 ctaText: "準備好留下這趟雪季的回憶了嗎？填寫需求表單，告訴我們你的人數、雪場與拍攝日期。"
 sections:
   - heading: "適合對象"

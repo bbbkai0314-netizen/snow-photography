@@ -43,6 +43,12 @@
     <div class="article-body">
       <p class="article-body__lead">{{ leadParagraph }}</p>
 
+      {% for block in contentBlocks %}
+      <div class="article-section">
+        {{ block.html | safe }}
+      </div>
+      {% endfor %}
+
       {% for section in sections %}
       <div class="article-section">
         <h2>{{ section.heading }}</h2>

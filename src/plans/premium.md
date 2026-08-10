@@ -2,14 +2,14 @@
 layout: plan
 title: "尊榮服務方案"
 subtitleEn: "Snow Experience Package"
-eyebrowNumber: "03"
+eyebrowNumber: "04"
 eyebrowLabel: "最完整方案"
 serviceType: "滑雪攝影與行程整合服務"
 heroImage: "images/powder-jump-japan-ski-photography-snowboard-ski.jpg"
 heroImageAlt: "日本雪場雙人滑雪畫面，滑雪攝影記錄 Snowboard 與 Ski 旅程"
 leadParagraph: "從攝影、教練到住宿與雪具，一次滿足完整滑雪體驗。單一窗口協助安排所有滑雪相關需求，不需自行聯絡多個店家，讓旅程更省時、更安心。"
 previewDescription: "從攝影、教練到住宿與雪具，一次滿足完整滑雪體驗。"
-order: 3
+order: 4
 ctaText: "想把整趟滑雪旅程都交給我們安排嗎？填寫需求表單，告訴我們你的人數、天數與想去的雪場。"
 sections:
   - heading: "適合對象"
