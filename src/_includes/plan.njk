@@ -35,7 +35,7 @@
       <span class="article-hero__tag">{{ eyebrowNumber }} · {{ eyebrowLabel or title }}</span>
       <h1>{{ title }}</h1>
       <p class="article-hero__meta">{{ subtitleEn }}</p>
-      <div class="article-hero__image">
+      <div class="article-hero__image"{% if heroImageAspect %} style="aspect-ratio:{{ heroImageAspect }};"{% endif %}>
         <img src="{{ assetPrefix }}{{ heroImage }}" alt="{{ heroImageAlt }}" loading="lazy">
       </div>
     </div>
