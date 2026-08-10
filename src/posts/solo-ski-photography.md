@@ -1,6 +1,6 @@
 ---
 layout: article
-title: 一個人滑雪找不到人？滑雪程度不同也能玩得盡興｜陪伴式滑雪攝影，把每一季的回憶留下來
+title: 一個人滑雪找不到人？｜陪伴式滑雪攝影，把每一季的回憶留下來
 tag: 陪伴式滑雪攝影
 metaLine: SnowSurfStudio Journal｜日本滑雪攝影・Snowboard・Ski Photography
 heroImage: images/snow-portrait-japan-ski-photography-snowboard-ski.jpg
