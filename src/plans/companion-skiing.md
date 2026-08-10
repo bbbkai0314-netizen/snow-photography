@@ -7,6 +7,7 @@ serviceType: "陪伴滑雪攝影服務"
 heroImage: "images/DSCF0108.jpg"
 heroImageAlt: "日本雪場單板滑雪者騰空抓板動作，滑雪攝影記錄一個人滑雪旅程的瞬間"
 heroImageAspect: "3/4"
+previewImagePosition: "50% 57%"
 leadParagraph: "一個人去日本滑雪，其實很自由。想幾點上山就幾點上山，喜歡哪一條雪道就多滑幾趟；不用等待別人，也不用一直配合同行者的滑雪程度。"
 previewDescription: "一個人滑雪找不到人？SnowSurfStudio 幫你把回憶留下來。"
 order: 1

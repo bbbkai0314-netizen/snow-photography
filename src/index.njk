@@ -97,7 +97,7 @@
     <div class="plans-grid">
       {% for plan in collections.plans | sortByOrder %}
       <a class="plan-preview glass" href="plans/{{ plan.fileSlug }}.html">
-        <img src="{{ plan.data.heroImage }}" alt="{{ plan.data.heroImageAlt }}" loading="lazy">
+        <img src="{{ plan.data.heroImage }}" alt="{{ plan.data.heroImageAlt }}" loading="lazy"{% if plan.data.previewImagePosition %} style="object-position:{{ plan.data.previewImagePosition }};"{% endif %}>
         <div class="plan-preview__body">
           <h3>{{ plan.data.title }}</h3>
           <p class="plan-preview__desc">{{ plan.data.previewDescription }}</p>
