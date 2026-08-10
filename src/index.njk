@@ -179,36 +179,124 @@
         <span class="booking-notice__text">預約前必讀：滑雪教學＋平面攝影服務說明與注意事項</span>
         <span class="booking-notice__arrow" aria-hidden="true">→</span>
       </a>
-      <h3 class="booking-wizard__panel-title">選擇方案，直接加 LINE 聊聊</h3>
-      <div class="booking-plan-options">
-        <a class="booking-plan-option" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">
-          <span class="booking-plan-option__icon">❄️</span>
-          <span class="booking-plan-option__title">陪伴滑雪方案</span>
-          <span class="booking-plan-option__desc">一個人滑雪找不到人？我們陪你把回憶留下來</span>
-        </a>
-        <a class="booking-plan-option" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">
-          <span class="booking-plan-option__icon">📸</span>
-          <span class="booking-plan-option__title">攝影方案</span>
-          <span class="booking-plan-option__desc">適合想留下滑雪回憶的旅客</span>
-        </a>
-        <a class="booking-plan-option" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">
-          <span class="booking-plan-option__icon">🏂</span>
-          <span class="booking-plan-option__title">合作教練＋攝影方案</span>
-          <span class="booking-plan-option__desc">一次完成學習與紀錄</span>
-        </a>
-        <a class="booking-plan-option" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">
-          <span class="booking-plan-option__icon">🤝</span>
-          <span class="booking-plan-option__title">尊榮服務方案</span>
-          <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
-        </a>
-      </div>
-      <div class="booking-google-form glass">
-        <span class="booking-google-form__eyebrow">HAKUBA BOOKING FORM</span>
-        <h3>白馬滑雪攝影預約表單</h3>
-        <p>請填寫預約日期、雪場、人數與希望留下的畫面。我們收到資料後，會確認可拍攝檔期並與你聯繫。</p>
-        <p>付款相關選項也請於表單內完成勾選；原本的 Email 自動回覆會依表單設定寄出。</p>
-        <a class="booking-google-form__button" href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">填寫白馬預約表單 <span aria-hidden="true">→</span></a>
-        <p class="booking-google-form__help">如需先討論拍攝安排，也可以<a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">加入 LINE</a>與我們聯繫。</p>
+      <div class="booking-wizard" id="bookingWizard">
+        <div class="booking-wizard__stepper">
+          <div class="booking-wizard__step is-active" data-step="1">
+            <span class="booking-wizard__step-num">1</span>
+            <span class="booking-wizard__step-label">選擇方案</span>
+          </div>
+          <div class="booking-wizard__step-line"></div>
+          <div class="booking-wizard__step" data-step="2">
+            <span class="booking-wizard__step-num">2</span>
+            <span class="booking-wizard__step-label">拍攝細節</span>
+          </div>
+          <div class="booking-wizard__step-line"></div>
+          <div class="booking-wizard__step" data-step="3">
+            <span class="booking-wizard__step-num">3</span>
+            <span class="booking-wizard__step-label">聯絡方式</span>
+          </div>
+        </div>
+
+        <div class="booking-wizard__body">
+          <div class="booking-wizard__main">
+            <form id="bookingForm" novalidate>
+              <div class="booking-wizard__panel is-active" data-panel="1">
+                <h3 class="booking-wizard__panel-title">選擇方案</h3>
+                <div class="booking-plan-options">
+                  <button type="button" class="booking-plan-option" data-service-value="A 陪伴滑雪方案">
+                    <span class="booking-plan-option__icon">❄️</span>
+                    <span class="booking-plan-option__title">陪伴滑雪方案</span>
+                    <span class="booking-plan-option__desc">一個人滑雪找不到人？我們陪你把回憶留下來</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="B 滑雪攝影">
+                    <span class="booking-plan-option__icon">📸</span>
+                    <span class="booking-plan-option__title">攝影方案</span>
+                    <span class="booking-plan-option__desc">適合想留下滑雪回憶的旅客</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="C 教練課程＋滑雪攝影">
+                    <span class="booking-plan-option__icon">🏂</span>
+                    <span class="booking-plan-option__title">合作教練＋攝影方案</span>
+                    <span class="booking-plan-option__desc">一次完成學習與紀錄</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="D 尊榮方案（滑雪教練＋滑雪攝影＋住宿＋滑雪裝備＋接駁）">
+                    <span class="booking-plan-option__icon">🤝</span>
+                    <span class="booking-plan-option__title">尊榮服務方案</span>
+                    <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
+                  </button>
+                </div>
+                <p class="booking-wizard__error" data-error-for="1"></p>
+                <div class="booking-wizard__actions">
+                  <span></span>
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
+                </div>
+              </div>
+
+              <div class="booking-wizard__panel" data-panel="2">
+                <h3 class="booking-wizard__panel-title">拍攝細節</h3>
+                <div class="booking-field">
+                  <label for="bookingDate">日期 *</label>
+                  <input type="date" id="bookingDate" required>
+                </div>
+                <div class="booking-field">
+                  <label>地點 *</label>
+                  <div class="booking-pill-group">
+                    <button type="button" class="booking-pill" data-value="白馬">白馬</button>
+                  </div>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingPeople">人數 *</label>
+                  <input type="number" id="bookingPeople" min="1" value="1" required>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingNotes">拍攝風格或特殊需求（選填）</label>
+                  <textarea id="bookingNotes" rows="3" placeholder="例如：自然抓拍為主、希望多拍滑行瞬間…"></textarea>
+                </div>
+                <p class="booking-wizard__error" data-error-for="2"></p>
+                <div class="booking-wizard__actions">
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--prev" data-prev>← 上一步</button>
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
+                </div>
+              </div>
+
+              <div class="booking-wizard__panel" data-panel="3">
+                <h3 class="booking-wizard__panel-title">聯絡方式</h3>
+                <div class="booking-field">
+                  <label for="bookingName">姓名 *</label>
+                  <input type="text" id="bookingName" required placeholder="王小明">
+                </div>
+                <div class="booking-field">
+                  <label for="bookingEmail">Email *</label>
+                  <input type="email" id="bookingEmail" required placeholder="you@example.com">
+                </div>
+                <div class="booking-field">
+                  <label for="bookingLine">LINE ID *</label>
+                  <input type="text" id="bookingLine" required placeholder="方便我們用 LINE 聯繫你">
+                </div>
+                <p class="booking-wizard__error" data-error-for="3"></p>
+                <div class="booking-wizard__actions">
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--prev" data-prev>← 上一步</button>
+                  <button type="submit" class="booking-wizard__btn booking-wizard__btn--submit">送出預約</button>
+                </div>
+              </div>
+            </form>
+
+            <div class="booking-wizard__confirm" data-panel="confirm" hidden>
+              <div class="booking-wizard__confirm-icon">✅</div>
+              <h3>已收到你的預約需求！</h3>
+              <p>正在為你開啟 LINE，請點「加入」加我們為好友，我們會盡快回覆可拍攝檔期與訂金付款資訊。</p>
+              <a class="booking-wizard__line-link" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">沒有自動跳轉？點此前往 LINE</a>
+              <p class="booking-wizard__fallback">
+                無法使用 LINE？改用<a href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">原始需求表單</a>。
+              </p>
+            </div>
+
+            <div class="booking-wizard__error-banner" data-panel="submit-error" hidden>
+              <p>送出時發生網路問題，請改用下方連結：</p>
+              <a href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">填寫原始需求表單 →</a>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </section>
