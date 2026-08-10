@@ -894,6 +894,49 @@ button{ font-family:inherit; }
 }
 
 /* ---------- Booking wizard ---------- */
+.booking-google-form{
+  max-width:680px;
+  margin:0 auto;
+  padding:clamp(28px,5vw,52px);
+  text-align:center;
+}
+.booking-google-form__eyebrow{
+  display:block;
+  margin-bottom:12px;
+  color:var(--ice);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.15em;
+}
+.booking-google-form h3{
+  margin:0 0 18px;
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:clamp(22px,3vw,30px);
+}
+.booking-google-form p{
+  max-width:520px;
+  margin:0 auto 12px;
+  color:var(--ice-dim);
+  line-height:1.9;
+}
+.booking-google-form__button{
+  display:inline-flex;
+  gap:12px;
+  align-items:center;
+  justify-content:center;
+  margin:22px 0 18px;
+  padding:14px 22px;
+  border:1px solid var(--ice);
+  border-radius:999px;
+  background:var(--ice);
+  color:#07130b;
+  font-weight:800;
+  text-decoration:none;
+  transition:transform .2s ease,background .2s ease;
+}
+.booking-google-form__button:hover{ background:#fff; transform:translateY(-2px); }
+.booking-google-form__help{ font-size:14px; }
+.booking-google-form__help a{ color:var(--ice); font-weight:700; }
 .booking-wizard{ text-align:left; }
 .booking-wizard__stepper{
   display:flex;
