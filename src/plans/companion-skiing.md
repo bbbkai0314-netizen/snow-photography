@@ -1,7 +1,7 @@
 ---
 layout: plan
 title: "陪伴滑雪方案"
-subtitleEn: "Solo Ski Companion"
+subtitleEn: "一個人滑雪找不到人？SnowSurfStudio 幫你把回憶留下來"
 eyebrowNumber: "01"
 serviceType: "陪伴滑雪攝影服務"
 heroImage: "images/DSCF0108.jpg"
