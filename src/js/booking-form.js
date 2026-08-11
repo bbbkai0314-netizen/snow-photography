@@ -165,6 +165,7 @@
       confirmPanel.hidden = false;
 
       if (LINE_URL) {
+        window.ssTrack && window.ssTrack.lineContact('booking_submit');
         window.location.href = LINE_URL;
       }
     } catch (err) {
