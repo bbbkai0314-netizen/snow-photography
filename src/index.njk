@@ -25,10 +25,7 @@
     { "@type": "Place", "name": "長野・白馬" },
     { "@type": "Place", "name": "北海道" }
   ],
-  "sameAs": [
-    "https://www.instagram.com/snowsurfstudio",
-    "https://www.facebook.com/profile.php?id=61589879631526"
-  ],
+  "sameAs": {{ site.socialLinks | socialSameAs | safe }},
   "inLanguage": "zh-Hant"
 }
 </script>
@@ -135,11 +132,11 @@
     <div class="partners">
       <div class="partner-card glass">
         <h5>住宿・接駁安排</h5>
-        <p>提供雪季住宿規劃、交通接駁與行程安排，讓旅客享有便利、安心的滑雪體驗。</p>
+        <p>協助提供雪季住宿規劃、交通接駁與行程安排，讓旅客享有便利、安心的滑雪體驗。</p>
       </div>
       <div class="partner-card glass">
         <h5>滑雪學校</h5>
-        <p>與滑雪學校合作，提供課程紀錄、教學攝影、活動拍攝及影像內容創作，捕捉每位滑雪者最精彩的雪季時刻。</p>
+        <p>與滑雪學校合作，協助提供課程紀錄、教學攝影、活動拍攝及影像內容創作，捕捉每位滑雪者最精彩的雪季時刻。</p>
       </div>
       <div class="partner-card glass">
         <h5>WHITESPACE Taiwan</h5>
@@ -211,8 +208,8 @@
                   </button>
                   <button type="button" class="booking-plan-option" data-service-value="C 尊榮方案（滑雪教練＋滑雪攝影＋住宿＋滑雪裝備＋接駁）">
                     <span class="booking-plan-option__icon">🤝</span>
-                    <span class="booking-plan-option__title">尊榮服務方案</span>
-                    <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
+                    <span class="booking-plan-option__title">尊榮攝影方案</span>
+                    <span class="booking-plan-option__desc">完整記錄你的滑雪旅程</span>
                   </button>
                 </div>
                 <p class="booking-wizard__error" data-error-for="1"></p>
