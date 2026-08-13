@@ -34,6 +34,8 @@
     name: '',
     email: '',
     line: '',
+    isSubmitting: false,
+    submissionCompleted: false,
   };
 
   function setStep(n) {
@@ -135,7 +137,8 @@
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!validateStep(3)) return;
+    if (state.isSubmitting || state.submissionCompleted || !validateStep(3)) return;
+    state.isSubmitting = true;
 
     const submitBtn = form.querySelector('.booking-wizard__btn--submit');
     if (submitBtn) {
@@ -159,16 +162,21 @@
     try {
       await fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: data });
 
+      // Only record a conversion after the Google Form submission request resolves.
+      // Failed requests take the catch path below and are never counted.
+      state.submissionCompleted = true;
+      window.ssTrack && window.ssTrack.bookingComplete();
+
       panels.forEach((p) => p.classList.remove('is-active'));
       form.hidden = true;
       wizard.querySelector('.booking-wizard__stepper').hidden = true;
       confirmPanel.hidden = false;
 
       if (LINE_URL) {
-        window.ssTrack && window.ssTrack.lineContact('booking_submit');
         window.location.href = LINE_URL;
       }
     } catch (err) {
+      state.isSubmitting = false;
       errorBanner.hidden = false;
       if (submitBtn) {
         submitBtn.disabled = false;

@@ -1,42 +1,86 @@
-// Lead-source tracking: fires on every LINE contact point and every plan selection.
-// GA4 (gtag) is already installed site-wide so those events fire today. Meta Pixel and
-// Google Ads conversion calls are guarded so they safely no-op until those are installed —
-// see head-meta.njk for where to add the Meta Pixel base snippet and set
-// window.SS_GOOGLE_ADS_CONVERSION once those IDs are available.
+// GA4 is installed site-wide in head-meta.njk. Keep all conversion-event rules here so
+// every desktop and mobile CTA uses the same classification and cannot double-count.
 (() => {
-  function fireLineContact(source) {
-    if (typeof gtag === 'function') {
-      gtag('event', 'generate_lead', { method: 'line', source });
+  function fireGaEvent(name, parameters) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, parameters);
     }
+  }
+
+  function fireLineContact(source) {
+    fireGaEvent('line_click', { source });
+    fireGaEvent('generate_lead', { method: 'line', source });
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { content_name: source });
     }
-    if (typeof gtag === 'function' && window.SS_GOOGLE_ADS_CONVERSION) {
-      gtag('event', 'conversion', { send_to: window.SS_GOOGLE_ADS_CONVERSION });
+    if (typeof window.gtag === 'function' && window.SS_GOOGLE_ADS_CONVERSION) {
+      window.gtag('event', 'conversion', { send_to: window.SS_GOOGLE_ADS_CONVERSION });
     }
   }
 
   function fireSelectPlan(planName, serviceValue) {
-    if (typeof gtag === 'function') {
-      gtag('event', 'select_plan', { plan_name: planName, service_value: serviceValue });
-    }
+    fireGaEvent('select_plan', { plan_name: planName, service_value: serviceValue });
     if (typeof fbq === 'function') {
       fbq('track', 'ViewContent', { content_name: planName });
     }
   }
 
-  window.ssTrack = { lineContact: fireLineContact, selectPlan: fireSelectPlan };
+  function fireBookingClick(source) {
+    fireGaEvent('booking_click', { source });
+  }
+
+  function fireBookingComplete() {
+    fireGaEvent('booking_complete');
+  }
+
+  function isLineLink(link) {
+    return /(^|\.)lin\.ee$/i.test(link.hostname);
+  }
+
+  function isBookingLink(link) {
+    return link.hash === '#booking';
+  }
+
+  function getLineSource(link) {
+    if (link.classList.contains('line-float')) return 'floating_button';
+    if (link.classList.contains('booking-wizard__line-link')) return 'booking_confirmation';
+    if (link.getAttribute('aria-label') === 'LINE 詢價') return 'contact_icon';
+    return 'line_link';
+  }
+
+  function getBookingSource(link) {
+    if (link.classList.contains('article-cta__btn')) return 'article_cta';
+    if (link.classList.contains('news-banner__btn')) return 'news_banner';
+    if (link.closest('.nav__dropdown-menu')) return 'navigation';
+    return 'booking_link';
+  }
+
+  window.ssTrack = {
+    lineContact: fireLineContact,
+    selectPlan: fireSelectPlan,
+    bookingComplete: fireBookingComplete,
+  };
 
   document.addEventListener('click', (e) => {
-    const lineLink = e.target.closest('a[href*="lin.ee"]');
-    if (lineLink) {
-      fireLineContact(lineLink.classList.contains('line-float') ? 'floating_button' : 'icon_link');
-      return;
-    }
     const planBtn = e.target.closest('.booking-plan-option');
     if (planBtn) {
       const title = planBtn.querySelector('.booking-plan-option__title');
       fireSelectPlan(title ? title.textContent.trim() : '', planBtn.dataset.serviceValue || '');
+      return;
+    }
+
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+
+    // LINE takes precedence over booking. A LINE destination is never counted as a
+    // booking CTA, even if its surrounding UI is part of the booking section.
+    if (isLineLink(link)) {
+      fireLineContact(getLineSource(link));
+      return;
+    }
+
+    if (isBookingLink(link)) {
+      fireBookingClick(getBookingSource(link));
     }
   });
 })();
