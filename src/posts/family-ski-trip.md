@@ -1,6 +1,6 @@
 ---
 layout: article
-title: 帶孩子滑雪總是手忙腳亂嗎？讓爸媽也能一起享受滑雪假期
+title: 帶孩子滑雪總是手忙腳亂嗎？SnowSurfStudio 讓爸媽也能一起享受滑雪假期
 tag: 親子滑雪
 metaLine: SnowSurfStudio Journal・親子滑雪服務
 heroImage: images/high-five-japan-ski-photography-snowboard-ski.jpg
@@ -12,7 +12,7 @@ date: '2026-08-14'
 dateModified: '2026-08-14'
 previewDescription: 住宿、教練媒合、接駁到全程跟拍——SnowSurfStudio 幫爸媽把行前安排都準備好。
 seo:
-  title: 帶孩子滑雪總是手忙腳亂嗎？讓爸媽也能一起享受滑雪假期｜SnowSurfStudio
+  title: 帶孩子滑雪總是手忙腳亂嗎？SnowSurfStudio 讓爸媽也能一起享受滑雪假期
   description: 全家滑雪旅行的住宿、教練媒合、接駁與親子跟拍，SnowSurfStudio 一次幫你準備好，讓爸媽也能好好享受滑雪假期，同時記錄孩子每一次成長。
   keywords: 親子滑雪,親子滑雪攝影,白馬親子滑雪,全家滑雪旅行,滑雪教練媒合,滑雪接駁,親子滑雪跟拍
 contentBlocks:
