@@ -3,7 +3,7 @@ layout: article
 title: "雪場拍攝攻略：GALA、苗場、神立怎麼選景點"
 tag: "雪場攻略"
 metaLine: "SnowSurfStudio Journal・日本雪場拍攝"
-heroImage: "images/town-01.jpg"
+heroImage: "images/snow-town-street-滑雪攝影.jpg"
 heroImageAlt: "雪鎮街道與遠方雪山.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪"
 leadParagraph: "新潟越後湯澤是台灣旅客最熟悉的日本滑雪地區之一，交通方便、雪場選擇多。不過每個雪場的地形與氛圍差異不小，適合拍照的景點與時段也不太一樣。這篇整理 GALA湯澤、苗場、神立三個常見雪場的拍攝特色，行前規劃可以先參考。"
 date: "2026-07-18"
@@ -18,7 +18,7 @@ contentBlocks:
       - "GALA湯澤最大的特色是雪場與新幹線車站直接相連，交通非常單純，很適合安排半日或一日拍攝行程。纜車上站後視野開闊，是拍攝雪山全景與團體合照的好地點。"
       - "山下的滑雪學校區域坡度平緩，光線也比較均勻，很適合安排新手或親子滑雪的動作拍攝。"
   - heading: "苗場：開闊雪道，適合拍動態滑行"
-    image: "images/action-03-bw.jpg"
+    image: "images/action-silhouette-bw-滑雪攝影.jpg"
     imageAlt: "黑白剪影動作.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪"
     imagePosition: "right"
     paragraphs:

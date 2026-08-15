@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__49011c5b-be87-4777-b857-f9bdb95a5e9f__job_display",
+      "Bash(open *)",
+      "mcp__c1b5befb-bf29-40c2-83d1-2f11d0a4d101__notion-search",
+      "mcp__Claude_Browser__read_network_requests",
+      "mcp__Claude_Browser__navigate",
+      "mcp__Claude_Browser__get_page_text",
+      "mcp__Claude_Browser__tabs_context",
+      "mcp__49011c5b-be87-4777-b857-f9bdb95a5e9f__models_explore",
+      "mcp__c1b5befb-bf29-40c2-83d1-2f11d0a4d101__notion-fetch",
+      "mcp__49011c5b-be87-4777-b857-f9bdb95a5e9f__list_voices",
+      "mcp__Claude_Browser__read_page"
+    ]
+  }
+}

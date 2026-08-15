@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["eleventy", "--serve", "--port=8182"],
       "port": 8182
+    },
+    {
+      "name": "morning-work-club",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "/Users/ellie/Desktop/morning-work-club/_site"],
+      "autoPort": true
     }
   ]
 }

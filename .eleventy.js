@@ -3,10 +3,23 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
+  eleventyConfig.addPassthroughCopy("src/admin/admin.css");
+  eleventyConfig.addPassthroughCopy("src/admin/admin.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin-api.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin-forms.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin-editor.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin-share.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin-automation.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin-views.js");
 
   // Sort a collection by its frontmatter "order" field (ascending).
   eleventyConfig.addFilter("sortByOrder", (arr) =>
     [...arr].sort((a, b) => (a.data.order || 0) - (b.data.order || 0))
+  );
+
+  // Turn a socialLinks object into a JSON array string of non-empty URLs (for JSON-LD "sameAs").
+  eleventyConfig.addFilter("socialSameAs", (socialLinks) =>
+    JSON.stringify(Object.values(socialLinks || {}).filter(Boolean))
   );
 
   // Cache-busting query string for CSS/JS so browsers pick up changes on every deploy.

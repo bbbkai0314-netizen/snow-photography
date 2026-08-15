@@ -35,10 +35,7 @@ permalink: "about.html"
       { "@type": "Audience", "audienceType": "滑雪新手" },
       { "@type": "Audience", "audienceType": "熟練滑手" }
     ],
-    "sameAs": [
-      "https://www.instagram.com/snowsurfstudio",
-      "https://www.facebook.com/profile.php?id=61589879631526"
-    ]
+    "sameAs": {{ site.socialLinks | socialSameAs | safe }}
   }
 }
 </script>
