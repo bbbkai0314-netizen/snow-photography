@@ -9,6 +9,7 @@ const AdminViews = (() => {
     { key: "gallery", label: "作品集", hash: "#/gallery" },
     { key: "plans", label: "拍攝方案", hash: "#/plans" },
     { key: "posts", label: "部落格文章", hash: "#/posts" },
+    { key: "bookings", label: "預約管理", hash: "#/bookings" },
     { key: "automation", label: "自動化", hash: "#/automation" },
   ];
 
@@ -151,6 +152,12 @@ const AdminViews = (() => {
         btn,
       ]),
     ]);
+  }
+
+  // ---------------- 預約管理 (Google Sheet, 透過 Apps Script Web App) ----------------
+
+  async function renderBookings() {
+    return shell("bookings", el("div", {}, [section("預約管理", [await AdminBookings.renderPanel()])]));
   }
 
   // ---------------- 自動化 ----------------
@@ -587,6 +594,7 @@ const AdminViews = (() => {
     renderPlanEdit,
     renderPostsList,
     renderPostEdit,
+    renderBookings,
     renderAutomation,
   };
 })();
