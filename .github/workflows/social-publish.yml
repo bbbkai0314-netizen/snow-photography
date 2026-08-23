@@ -1,0 +1,58 @@
+name: Publish to Facebook / Instagram
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_url:
+        description: "公開圖片網址（例如已 push 到 repo 的圖片 raw URL）"
+        required: true
+        type: string
+      caption:
+        description: "文案（FB + IG 共用）"
+        required: true
+        type: string
+      skip_fb:
+        description: "跳過 Facebook"
+        required: false
+        type: boolean
+        default: false
+      skip_ig:
+        description: "跳過 Instagram"
+        required: false
+        type: boolean
+        default: false
+      skip_notion:
+        description: "跳過 Notion"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r automation/requirements.txt
+
+      - name: Publish
+        working-directory: automation
+        env:
+          IMAGE_URL: ${{ inputs.image_url }}
+          CAPTION: ${{ inputs.caption }}
+          SKIP_FB: ${{ inputs.skip_fb }}
+          SKIP_IG: ${{ inputs.skip_ig }}
+          SKIP_NOTION: ${{ inputs.skip_notion }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          IG_BUSINESS_ACCOUNT_ID: ${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: python3 publish_social.py
