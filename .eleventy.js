@@ -10,6 +10,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/admin/admin-editor.js");
   eleventyConfig.addPassthroughCopy("src/admin/admin-share.js");
   eleventyConfig.addPassthroughCopy("src/admin/admin-automation.js");
+  eleventyConfig.addPassthroughCopy("src/admin/admin-bookings.js");
   eleventyConfig.addPassthroughCopy("src/admin/admin-views.js");
 
   // Sort a collection by its frontmatter "order" field (ascending).
