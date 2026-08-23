@@ -87,3 +87,5 @@ contentBlocks:
       <p>如果你主要滑五竜與 Hakuba47，可以優先考慮附近住宿。如果你第一次去白馬、希望生活機能方便，可以看看八方與 Echoland。如果你是家庭旅行，也可以比較栂池等區域。</p>
       <p>先決定旅行方式，再選住宿，整趟白馬滑雪之旅通常會順很多。而當住宿、雪場與行程都安排好之後，別忘了替自己留下一些真正屬於這趟旅程的畫面。</p>
       <p><strong>SnowSurfStudio｜日本白馬滑雪攝影</strong><br><a href="/index.html#plans">查看滑雪攝影服務</a>　<a href="/index.html#booking">預約你的白馬滑雪旅拍</a></p>
+
+---
