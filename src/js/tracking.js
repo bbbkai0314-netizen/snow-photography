@@ -13,9 +13,6 @@
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { content_name: source });
     }
-    if (typeof window.gtag === 'function' && window.SS_GOOGLE_ADS_CONVERSION) {
-      window.gtag('event', 'conversion', { send_to: window.SS_GOOGLE_ADS_CONVERSION });
-    }
   }
 
   function fireSelectPlan(planName, serviceValue) {
