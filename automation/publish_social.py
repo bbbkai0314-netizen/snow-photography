@@ -7,7 +7,10 @@
 就不會被當成 shell 指令解析，避免 GitHub Actions 常見的 script injection 問題。
 
 環境變數:
-  IMAGE_URL     圖片公開網址（必填）
+  IMAGE_URL     圖片公開網址（必填）——Facebook 用這張原圖
+  IG_IMAGE_URL  Instagram 要用的圖文網址（選填，沒填就跟 IMAGE_URL 一樣）。
+                IG 通常要排版過的圖文（照片＋文字），不是原圖，用
+                snowsurfstudio-post-visual skill 產生後把公開網址填進來。
   CAPTION       文案（必填）
   SKIP_FB       "true" 就跳過 Facebook
   SKIP_IG       "true" 就跳過 Instagram
@@ -31,6 +34,7 @@ def is_true(value: str | None) -> bool:
 
 def main():
     image_url = os.environ.get("IMAGE_URL", "").strip()
+    ig_image_url = os.environ.get("IG_IMAGE_URL", "").strip() or image_url
     caption = os.environ.get("CAPTION", "").strip()
     if not image_url or not caption:
         sys.exit("缺少 IMAGE_URL 或 CAPTION 環境變數")
@@ -48,7 +52,7 @@ def main():
 
     if not is_true(os.environ.get("SKIP_IG")):
         print("發布到 Instagram …")
-        ig_media_id = post_to_instagram(image_url, caption)
+        ig_media_id = post_to_instagram(ig_image_url, caption)
     else:
         print("已跳過 Instagram")
 

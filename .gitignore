@@ -1,5 +1,6 @@
 .DS_Store
 .claude/settings.local.json
 automation/.env
+automation/ga4-service-account.json
 node_modules/
 _site/

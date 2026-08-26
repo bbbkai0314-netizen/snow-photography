@@ -60,6 +60,13 @@ curl -s "https://graph.facebook.com/v20.0/{FB_PAGE_ID}?fields=instagram_business
 
 回傳的 `instagram_business_account.id` 就是 `IG_BUSINESS_ACCOUNT_ID`。
 
+## IG 圖文 vs 原圖
+
+`social-publish.yml` 這個 workflow 有兩個圖片欄位：`image_url`（Facebook 用的原圖）跟
+`ig_image_url`（選填，Instagram 專用，通常是用 `snowsurfstudio-post-visual` skill 把照片＋
+文字排版過的圖文）。沒填 `ig_image_url` 的話 IG 也會貼 `image_url` 那張原圖。
+`publish-article` skill 走這條路徑時會自動處理，不用手動想。
+
 ## 步驟 6a：要用 admin 後台「自動化」頁面 → 存成 GitHub Actions Secrets
 
 到 repo 的 **Settings → Secrets and variables → Actions → New repository secret**，新增以下 5 組

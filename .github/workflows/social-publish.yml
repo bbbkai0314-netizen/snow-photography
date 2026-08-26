@@ -4,8 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       image_url:
-        description: "公開圖片網址（例如已 push 到 repo 的圖片 raw URL）"
+        description: "公開圖片網址（Facebook 用這張原圖；沒填 ig_image_url 的話 IG 也用這張）"
         required: true
+        type: string
+      ig_image_url:
+        description: "Instagram 專用圖文網址（選填，通常是 snowsurfstudio-post-visual 排版過的圖）"
+        required: false
         type: string
       caption:
         description: "文案（FB + IG 共用）"
@@ -46,6 +50,7 @@ jobs:
         working-directory: automation
         env:
           IMAGE_URL: ${{ inputs.image_url }}
+          IG_IMAGE_URL: ${{ inputs.ig_image_url }}
           CAPTION: ${{ inputs.caption }}
           SKIP_FB: ${{ inputs.skip_fb }}
           SKIP_IG: ${{ inputs.skip_ig }}
