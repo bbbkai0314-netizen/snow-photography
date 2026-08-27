@@ -206,3 +206,28 @@
     });
   }
 })();
+
+// ---------- UTM capture (conversion sprint P0/P1) ----------
+// Reads utm_* params from the landing URL, remembers them for the session, and exposes
+// window.ssfUTM() so tracking.js / booking-form.js can attach the same source data to
+// every conversion event without each having to re-implement the storage logic.
+(() => {
+  const UTM_KEY = 'ssf_utm';
+  const UTM_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+
+  function readStoredUTM() {
+    try { return JSON.parse(sessionStorage.getItem(UTM_KEY) || '{}'); } catch (e) { return {}; }
+  }
+
+  const fromUrl = {};
+  const params = new URLSearchParams(window.location.search);
+  UTM_FIELDS.forEach((key) => {
+    const value = params.get(key);
+    if (value) fromUrl[key] = value;
+  });
+  if (Object.keys(fromUrl).length) {
+    try { sessionStorage.setItem(UTM_KEY, JSON.stringify(fromUrl)); } catch (e) {}
+  }
+
+  window.ssfUTM = () => (Object.keys(fromUrl).length ? fromUrl : readStoredUTM());
+})();

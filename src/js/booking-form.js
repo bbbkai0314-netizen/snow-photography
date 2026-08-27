@@ -38,6 +38,13 @@
     submissionCompleted: false,
   };
 
+  let hasFiredBookingStart = false;
+  function trackEvent(name, params) {
+    if (typeof gtag !== 'function') return;
+    const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
+    gtag('event', name, { ...params, ...utm });
+  }
+
   function setStep(n) {
     state.step = n;
     panels.forEach((p) => p.classList.toggle('is-active', Number(p.dataset.panel) === n));
@@ -62,6 +69,11 @@
       state.planLabel = btn.querySelector('.booking-plan-option__title').textContent.trim();
       state.serviceValue = btn.dataset.serviceValue;
       showError(1, '');
+
+      if (!hasFiredBookingStart) {
+        hasFiredBookingStart = true;
+        trackEvent('booking_start', { plan: state.planLabel });
+      }
     });
   });
 
@@ -166,6 +178,11 @@
       // Failed requests take the catch path below and are never counted.
       state.submissionCompleted = true;
       window.ssTrack && window.ssTrack.bookingComplete();
+      trackEvent('booking_submit', {
+        plan: state.planLabel,
+        location: state.location,
+        people: Number(state.people) || undefined,
+      });
 
       panels.forEach((p) => p.classList.remove('is-active'));
       form.hidden = true;
