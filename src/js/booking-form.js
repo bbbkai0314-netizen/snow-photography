@@ -36,6 +36,13 @@
     line: '',
   };
 
+  let hasFiredBookingStart = false;
+  function trackEvent(name, params) {
+    if (typeof gtag !== 'function') return;
+    const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
+    gtag('event', name, { ...params, ...utm });
+  }
+
   function setStep(n) {
     state.step = n;
     panels.forEach((p) => p.classList.toggle('is-active', Number(p.dataset.panel) === n));
@@ -60,6 +67,11 @@
       state.planLabel = btn.querySelector('.booking-plan-option__title').textContent.trim();
       state.serviceValue = btn.dataset.serviceValue;
       showError(1, '');
+
+      if (!hasFiredBookingStart) {
+        hasFiredBookingStart = true;
+        trackEvent('booking_start', { plan: state.planLabel });
+      }
     });
   });
 
@@ -154,10 +166,22 @@
     data.append(ENTRY.email, state.email.trim());
     data.append(ENTRY.line, state.line.trim());
     data.append(ENTRY.service, state.serviceValue);
-    if (state.notes.trim()) data.append(ENTRY.otherService, state.notes.trim());
+
+    const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
+    const utmNote = Object.keys(utm).length
+      ? `[來源] ${utm.utm_source || '-'}/${utm.utm_medium || '-'} campaign=${utm.utm_campaign || '-'} content=${utm.utm_content || '-'}`
+      : '';
+    const combinedNotes = [state.notes.trim(), utmNote].filter(Boolean).join('\n');
+    if (combinedNotes) data.append(ENTRY.otherService, combinedNotes);
 
     try {
       await fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: data });
+
+      trackEvent('booking_submit', {
+        plan: state.planLabel,
+        location: state.location,
+        people: Number(state.people) || undefined,
+      });
 
       panels.forEach((p) => p.classList.remove('is-active'));
       form.hidden = true;

@@ -206,3 +206,35 @@
     });
   }
 })();
+
+// ---------- UTM capture + LINE click tracking (conversion sprint P0/P1) ----------
+(() => {
+  const UTM_KEY = 'ssf_utm';
+  const UTM_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+
+  function readStoredUTM() {
+    try { return JSON.parse(sessionStorage.getItem(UTM_KEY) || '{}'); } catch (e) { return {}; }
+  }
+
+  const fromUrl = {};
+  const params = new URLSearchParams(window.location.search);
+  UTM_FIELDS.forEach((key) => {
+    const value = params.get(key);
+    if (value) fromUrl[key] = value;
+  });
+  if (Object.keys(fromUrl).length) {
+    try { sessionStorage.setItem(UTM_KEY, JSON.stringify(fromUrl)); } catch (e) {}
+  }
+
+  // Exposed so booking-form.js can attach the same UTM values to its own events.
+  window.ssfUTM = () => (Object.keys(fromUrl).length ? fromUrl : readStoredUTM());
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    if (/lin\.ee|line\.me/i.test(href) && typeof gtag === 'function') {
+      gtag('event', 'line_click', { link_url: href, ...window.ssfUTM() });
+    }
+  });
+})();
