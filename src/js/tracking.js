@@ -10,7 +10,6 @@
 
   function fireLineContact(source) {
     fireGaEvent('line_click', { source });
-    fireGaEvent('generate_lead', { method: 'line', source });
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { content_name: source });
     }
