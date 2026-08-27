@@ -17,6 +17,8 @@
     otherService: 'entry.759497433',
   };
 
+  const GA_CLIENT_ID_ENTRY = 'entry.255043109'; // Form 裡「GA Client ID」那一題
+
   const form = document.getElementById('bookingForm');
   const steps = Array.from(wizard.querySelectorAll('.booking-wizard__step'));
   const panels = Array.from(wizard.querySelectorAll('.booking-wizard__panel'));
@@ -43,6 +45,23 @@
     if (typeof gtag !== 'function') return;
     const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
     gtag('event', name, { ...params, ...utm });
+  }
+
+  // Reads GA4's client_id so it can ride along in the Form submission. Apps Script later
+  // uses the same client_id to send booking_confirmed/purchase via Measurement Protocol,
+  // which is the only way those two events can still be attributed to the original
+  // marketing source even though they fire from the admin panel, not a browser.
+  const GA4_MEASUREMENT_ID = 'G-H578W2CXH6';
+  function getGaClientId() {
+    return new Promise((resolve) => {
+      if (typeof gtag !== 'function') { resolve(''); return; }
+      let settled = false;
+      const done = (id) => { if (!settled) { settled = true; resolve(id || ''); } };
+      try {
+        gtag('get', GA4_MEASUREMENT_ID, 'client_id', done);
+      } catch (e) { done(''); }
+      setTimeout(() => done(''), 1000);
+    });
   }
 
   function setStep(n) {
@@ -170,6 +189,11 @@
     data.append(ENTRY.line, state.line.trim());
     data.append(ENTRY.service, state.serviceValue);
     if (state.notes.trim()) data.append(ENTRY.otherService, state.notes.trim());
+
+    if (GA_CLIENT_ID_ENTRY) {
+      const gaClientId = await getGaClientId();
+      if (gaClientId) data.append(GA_CLIENT_ID_ENTRY, gaClientId);
+    }
 
     try {
       await fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: data });
