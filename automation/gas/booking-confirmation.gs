@@ -26,10 +26,23 @@
  * 3. 打勾當下會自動寄出訂金收訖信給客人（內含姓名、匯款金額、匯款帳號後五碼），
  *    並在「訂金信已寄送」欄位（程式會自動新增）標記寄送時間，避免重複寄送
  * 4. 尾款流程相同，勾 FinalPaymentReceived 即可
+ *
+ * GA4 轉換事件設定（booking_confirmed / purchase）:
+ * 1. 表單裡要多一個問題存訪客的 GA Client ID（網站送出表單時自動填，不用客人填），
+ *    問題標題要跟下方 FIELD.GA_CLIENT_ID 完全一致（預設是英文 "GA Client ID"）
+ * 2. 去 GA4 後台 -> 系統管理 -> 資料串流 -> 選網站串流 -> 最下面「Measurement Protocol API 密鑰」
+ *    建一組新密鑰
+ * 3. 回到 Apps Script 編輯器 -> 專案設定（齒輪圖示）-> 指令碼屬性 -> 新增屬性：
+ *    - 屬性：GA4_MP_API_SECRET
+ *    - 值：剛剛在 GA4 後台建的那組密鑰
+ * 4. 打勾「訂金已收款」時會送出 booking_confirmed；打勾「尾款已收款」時會送出 purchase
+ *    （金額帶入當下 PaymentAmount 欄位），沒有 GA Client ID 或沒設密鑰的話會跳過並在
+ *    執行紀錄留下訊息，不會影響收訖信照常寄送
  */
 
 const CONFIG = {
   RESPONSE_SHEET_ID: '1SwPaYObdIvF0D-C4wGY1WSqXyiOcTlEKbLTDbJd57y4', // 表單回覆試算表 ID
+  GA4_MEASUREMENT_ID: 'G-H578W2CXH6', // 跟 head-meta.njk 裡 gtag 用的是同一組
   CALENDAR_ID: 'primary', // 用預設 Google 日曆；要改成共用日曆就把 ID 貼在這
   STUDIO_NAME: 'SnowSurfStudio 白馬滑雪攝影',
   REPLY_TO: 'bbbkai0314@gmail.com',
@@ -69,6 +82,7 @@ const FIELD = {
   LINE: 'line',
   SERVICE: '想預約的服務',
   OTHER_SERVICE: '其他服務',
+  GA_CLIENT_ID: 'GA Client ID',
 };
 
 const STATUS_COLUMNS = {
@@ -97,6 +111,12 @@ const PAYMENT_FIELDS = {
   AMOUNT: 'PaymentAmount',
 };
 
+// GA4 事件送出狀態各自獨立記錄（跟收訖信的寄送狀態分開），避免兩件事互相卡住彼此的重試。
+const GA_EVENTS = {
+  BOOKING_CONFIRMED: { eventName: 'booking_confirmed', statusLabel: 'GA4事件已送_訂金' },
+  PURCHASE: { eventName: 'purchase', statusLabel: 'GA4事件已送_尾款' },
+};
+
 function onSheetEdit(e) {
   const row = e.range.getRow();
   const col = e.range.getColumn();
@@ -107,9 +127,9 @@ function onSheetEdit(e) {
   const editedHeader = headerRow[col - 1];
 
   if (editedHeader === MARKER_COLUMNS.DEPOSIT_RECEIVED) {
-    handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.DEPOSIT_RECEIVED, NOTIFY_STATUS_COLUMNS.DEPOSIT_EMAIL, sendDepositReceivedEmail_);
+    handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.DEPOSIT_RECEIVED, NOTIFY_STATUS_COLUMNS.DEPOSIT_EMAIL, sendDepositReceivedEmail_, GA_EVENTS.BOOKING_CONFIRMED);
   } else if (editedHeader === MARKER_COLUMNS.FINAL_PAYMENT_RECEIVED) {
-    handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.FINAL_PAYMENT_RECEIVED, NOTIFY_STATUS_COLUMNS.FINAL_EMAIL, sendFinalPaymentReceivedEmail_);
+    handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.FINAL_PAYMENT_RECEIVED, NOTIFY_STATUS_COLUMNS.FINAL_EMAIL, sendFinalPaymentReceivedEmail_, GA_EVENTS.PURCHASE);
   }
 }
 
@@ -125,28 +145,33 @@ function sendPendingPaymentEmails() {
 
   for (let i = 1; i < values.length; i++) {
     const row = i + 1;
-    handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.DEPOSIT_RECEIVED, NOTIFY_STATUS_COLUMNS.DEPOSIT_EMAIL, sendDepositReceivedEmail_);
-    handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.FINAL_PAYMENT_RECEIVED, NOTIFY_STATUS_COLUMNS.FINAL_EMAIL, sendFinalPaymentReceivedEmail_);
+    handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.DEPOSIT_RECEIVED, NOTIFY_STATUS_COLUMNS.DEPOSIT_EMAIL, sendDepositReceivedEmail_, GA_EVENTS.BOOKING_CONFIRMED);
+    handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.FINAL_PAYMENT_RECEIVED, NOTIFY_STATUS_COLUMNS.FINAL_EMAIL, sendFinalPaymentReceivedEmail_, GA_EVENTS.PURCHASE);
   }
 }
 
-function handleMarkerEdit_(sheet, row, headerRow, markerLabel, statusLabel, sendFn) {
+function handleMarkerEdit_(sheet, row, headerRow, markerLabel, statusLabel, sendFn, gaEvent) {
   const markerCol = headerRow.indexOf(markerLabel) + 1;
   const markerValue = sheet.getRange(row, markerCol).getValue();
   const isMarked = markerValue === true || markerValue === 'V' || markerValue === 'v' || markerValue === '是';
   if (!isMarked) return;
-
-  const statusCol = headerRow.indexOf(statusLabel) + 1;
-  if (statusCol > 0) {
-    const alreadySent = sheet.getRange(row, statusCol).getValue();
-    if (alreadySent) return; // 已經寄過了，避免重複寄送
-  }
 
   const rowValues = sheet.getRange(row, 1, 1, sheet.getLastColumn()).getValues()[0];
   const namedValues = {};
   headerRow.forEach((header, i) => {
     namedValues[header] = rowValues[i];
   });
+
+  // GA4 事件跟收訖信各自獨立判斷是否已送過，其中一個失敗不會擋到另一個。
+  if (gaEvent) {
+    maybeSendGaEvent_(sheet, row, headerRow, namedValues, gaEvent);
+  }
+
+  const statusCol = headerRow.indexOf(statusLabel) + 1;
+  if (statusCol > 0) {
+    const alreadySent = sheet.getRange(row, statusCol).getValue();
+    if (alreadySent) return; // 已經寄過了，避免重複寄送
+  }
 
   const name = (namedValues[FIELD.NAME] || '').toString().trim();
   const email = (namedValues[FIELD.EMAIL] || '').toString().trim();
@@ -161,6 +186,63 @@ function handleMarkerEdit_(sheet, row, headerRow, markerLabel, statusLabel, send
   } catch (err) {
     Logger.log('寄送失敗(' + statusLabel + '): ' + err.message);
     setStatusCell_(sheet, row, statusLabel, '寄送失敗: ' + err.message);
+  }
+}
+
+// 只有在還沒送過（GA_EVENTS.*.statusLabel 那一欄還是空的）、且這筆資料有 GA Client ID
+// 時才會真的送出，避免每次存檔都重複計一次轉換。
+function maybeSendGaEvent_(sheet, row, headerRow, namedValues, gaEvent) {
+  const statusCol = headerRow.indexOf(gaEvent.statusLabel) + 1;
+  if (statusCol > 0) {
+    const alreadySent = sheet.getRange(row, statusCol).getValue();
+    if (alreadySent) return;
+  }
+
+  const clientId = (namedValues[FIELD.GA_CLIENT_ID] || '').toString().trim();
+  const amount = Number((namedValues[PAYMENT_FIELDS.AMOUNT] || '').toString().replace(/[^\d.]/g, '')) || undefined;
+
+  const sent = sendGA4Event_(clientId, gaEvent.eventName, {
+    value: amount,
+    currency: 'TWD',
+    plan: (namedValues[FIELD.SERVICE] || '').toString() || undefined,
+  });
+
+  if (sent) {
+    setStatusCell_(sheet, row, gaEvent.statusLabel, '已送 ' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy/MM/dd HH:mm'));
+  }
+}
+
+// 用 GA4 Measurement Protocol 直接從 Apps Script 送事件（沒有瀏覽器可以送，只能用這個）。
+// 回傳 true 代表已經送出去了（可以標記完成）；false 代表缺密鑰或缺 Client ID，之後補齊
+// 資料後下次執行（例如 10 分鐘一次的 sendPendingPaymentEmails）會自動重試。
+function sendGA4Event_(clientId, eventName, params) {
+  const apiSecret = PropertiesService.getScriptProperties().getProperty('GA4_MP_API_SECRET');
+  if (!apiSecret) {
+    Logger.log('尚未設定指令碼屬性 GA4_MP_API_SECRET，略過 GA4 事件：' + eventName);
+    return false;
+  }
+  if (!clientId) {
+    Logger.log('這筆沒有 GA Client ID，略過 GA4 事件（無法歸因到原始來源）：' + eventName);
+    return false;
+  }
+
+  const cleanParams = {};
+  Object.keys(params || {}).forEach((key) => {
+    if (params[key] !== undefined && params[key] !== '') cleanParams[key] = params[key];
+  });
+
+  const url = 'https://www.google-analytics.com/mp/collect?measurement_id=' + CONFIG.GA4_MEASUREMENT_ID + '&api_secret=' + apiSecret;
+  try {
+    UrlFetchApp.fetch(url, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({ client_id: clientId, events: [{ name: eventName, params: cleanParams }] }),
+      muteHttpExceptions: true,
+    });
+    return true;
+  } catch (err) {
+    Logger.log('GA4 事件送出失敗(' + eventName + '): ' + err.message);
+    return false;
   }
 }
 
