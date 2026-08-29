@@ -415,25 +415,26 @@ button{ font-family:inherit; }
   position:relative;
   z-index:10;
   background:linear-gradient(180deg, var(--navy-deep) 0%, #081019 100%);
-  padding:0 5vw 78px;
+  padding:0 5vw 88px;
 }
 .pain-points__head{
-  padding:88px 0 34px;
+  padding:96px 0 42px;
 }
 .pain-points__grid{
   display:grid;
   grid-template-columns:repeat(4, minmax(0, 1fr));
-  gap:14px;
+  gap:16px;
 }
 .pain-point{
   position:relative;
   display:flex;
-  min-height:318px;
+  min-height:470px;
   flex-direction:column;
   overflow:hidden;
-  padding:24px 22px;
+  padding:30px;
   border-radius:var(--radius-md);
   isolation:isolate;
+  text-align:left;
   background:linear-gradient(135deg, rgba(20,35,46,.96), rgba(7,13,20,.98));
   transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s ease, background .35s ease;
 }
@@ -463,10 +464,10 @@ button{ font-family:inherit; }
 .pain-point__swipe{
   position:absolute;
   z-index:3;
-  right:20px;
-  bottom:20px;
-  width:32px;
-  height:32px;
+  right:26px;
+  bottom:24px;
+  width:40px;
+  height:40px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -474,7 +475,7 @@ button{ font-family:inherit; }
   border:1px solid var(--glass-border);
   background:rgba(255,255,255,.06);
   color:var(--ice);
-  font-size:16px;
+  font-size:22px;
   line-height:1;
   text-decoration:none;
   transition:background .2s ease, border-color .2s ease, transform .2s ease;
@@ -489,26 +490,27 @@ button{ font-family:inherit; }
 .pain-point__type{
   display:block;
   color:#dff5ff;
-  font-size:12px;
+  font-size:clamp(34px, 1.84vw, 38px);
   font-weight:800;
-  letter-spacing:.14em;
+  line-height:1.25;
+  letter-spacing:-.025em;
 }
 .pain-point h3{
   max-width:100%;
-  margin:16px 38px 0 0;
+  margin:28px 48px 0 0;
   font-family:'Noto Sans TC', sans-serif;
-  font-size:clamp(17px, 1.35vw, 20px);
+  font-size:clamp(40px, 2.2vw, 46px);
   font-weight:900;
-  line-height:1.38;
-  letter-spacing:-.035em;
+  line-height:1.35;
+  letter-spacing:-.045em;
   text-shadow:none;
 }
 .pain-point p{
   max-width:100%;
-  margin:38px 0 0;
-  padding-right:38px;
+  margin:clamp(76px, 4.6vw, 94px) 0 0;
+  padding-right:48px;
   color:#d2e5ed;
-  font-size:12.5px;
+  font-size:clamp(28px, 1.55vw, 32px);
   line-height:1.75;
 }
 /* ---------- Gallery grid ---------- */
@@ -582,20 +584,20 @@ button{ font-family:inherit; }
 .gcard:hover::after{ opacity:1; }
 .gcard:hover figcaption{ opacity:1; transform:translateY(0); }
 
-@media (max-width:1000px){
+@media (max-width:1600px){
   .pain-points__grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; }
-  .pain-point{ min-height:318px; padding:28px 30px; }
-  .pain-point h3{ max-width:460px; margin:18px 42px 0 0; font-size:clamp(20px, 2vw, 25px); line-height:1.38; letter-spacing:-.035em; }
-  .pain-point p{ max-width:440px; margin-top:42px; font-size:14px; line-height:1.8; }
+  .pain-point{ min-height:500px; padding:34px; }
+  .pain-point h3{ max-width:460px; margin:28px 56px 0 0; font-size:clamp(38px, 3vw, 44px); line-height:1.38; letter-spacing:-.035em; }
+  .pain-point p{ max-width:620px; margin-top:88px; font-size:28px; line-height:1.75; }
 }
 
 @media (max-width:720px){
   .pain-points{ padding:0 5vw 50px; }
   .pain-points__head{ padding:72px 0 26px; }
   .pain-points__grid{ grid-template-columns:1fr; gap:12px; }
-  .pain-point{ min-height:314px; padding:24px; }
-  .pain-point h3{ max-width:100%; margin:18px 46px 0 0; font-size:23px; }
-  .pain-point p{ max-width:100%; margin-top:38px; }
+  .pain-point{ min-height:450px; padding:26px; }
+  .pain-point h3{ max-width:100%; margin:24px 44px 0 0; font-size:38px; }
+  .pain-point p{ max-width:100%; margin-top:68px; padding-right:38px; font-size:26px; line-height:1.7; }
 }
 
 /* ---------- News banner ---------- */
