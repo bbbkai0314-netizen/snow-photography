@@ -422,16 +422,16 @@ button{ font-family:inherit; }
 }
 .pain-points__grid{
   display:grid;
-  grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:18px;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:14px;
 }
 .pain-point{
   position:relative;
   display:flex;
-  min-height:348px;
+  min-height:268px;
   flex-direction:column;
   overflow:hidden;
-  padding:34px;
+  padding:24px 22px;
   border-radius:var(--radius-md);
   isolation:isolate;
   background:linear-gradient(135deg, rgba(20,35,46,.96), rgba(7,13,20,.98));
@@ -470,10 +470,10 @@ button{ font-family:inherit; }
 .pain-point__swipe{
   position:absolute;
   z-index:3;
-  right:30px;
-  bottom:28px;
-  width:42px;
-  height:42px;
+  right:20px;
+  bottom:20px;
+  width:32px;
+  height:32px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -481,7 +481,7 @@ button{ font-family:inherit; }
   border:1px solid var(--glass-border);
   background:rgba(255,255,255,.06);
   color:var(--ice);
-  font-size:20px;
+  font-size:16px;
   line-height:1;
   text-decoration:none;
   transition:background .2s ease, border-color .2s ease, transform .2s ease;
@@ -495,27 +495,27 @@ button{ font-family:inherit; }
 }
 .pain-point__type{
   color:#dff5ff;
-  font-size:13px;
+  font-size:12px;
   font-weight:800;
   letter-spacing:.14em;
 }
 .pain-point h3{
-  max-width:620px;
-  margin:24px 64px 17px 0;
+  max-width:100%;
+  margin:12px 38px 12px 0;
   font-family:'Noto Sans TC', sans-serif;
-  font-size:clamp(23px, 2vw, 30px);
+  font-size:clamp(16px, 1.25vw, 19px);
   font-weight:900;
   line-height:1.38;
   letter-spacing:-.035em;
   text-shadow:none;
 }
 .pain-point p{
-  max-width:560px;
+  max-width:100%;
   margin:0;
-  padding-right:70px;
+  padding-right:36px;
   color:#e1f0f6;
-  font-size:15px;
-  line-height:1.8;
+  font-size:12.5px;
+  line-height:1.72;
 }
 /* ---------- Gallery grid ---------- */
 .gallery-section{
