@@ -4,7 +4,12 @@
   function fireGaEvent(name, parameters) {
     if (typeof window.gtag === 'function') {
       const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
-      window.gtag('event', name, { ...parameters, ...utm });
+      const sessionId = window.ssfSessionId;
+      window.gtag('event', name, {
+        ...parameters,
+        ...utm,
+        ...(sessionId ? { session_id: sessionId } : {}),
+      });
     }
   }
 

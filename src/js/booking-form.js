@@ -44,7 +44,8 @@
   function trackEvent(name, params) {
     if (typeof gtag !== 'function') return;
     const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
-    gtag('event', name, { ...params, ...utm });
+    const sessionId = window.ssfSessionId;
+    gtag('event', name, { ...params, ...utm, ...(sessionId ? { session_id: sessionId } : {}) });
   }
 
   // Reads GA4's client_id so it can ride along in the Form submission. Apps Script later
