@@ -183,12 +183,12 @@
         <div class="booking-wizard__stepper">
           <div class="booking-wizard__step is-active" data-step="1">
             <span class="booking-wizard__step-num">1</span>
-            <span class="booking-wizard__step-label">選擇方案</span>
+            <span class="booking-wizard__step-label">拍攝細節</span>
           </div>
           <div class="booking-wizard__step-line"></div>
           <div class="booking-wizard__step" data-step="2">
             <span class="booking-wizard__step-num">2</span>
-            <span class="booking-wizard__step-label">拍攝細節</span>
+            <span class="booking-wizard__step-label">選擇方案</span>
           </div>
           <div class="booking-wizard__step-line"></div>
           <div class="booking-wizard__step" data-step="3">
@@ -201,37 +201,6 @@
           <div class="booking-wizard__main">
             <form id="bookingForm" novalidate>
               <div class="booking-wizard__panel is-active" data-panel="1">
-                <h3 class="booking-wizard__panel-title">選擇方案</h3>
-                <div class="booking-plan-options">
-                  <button type="button" class="booking-plan-option" data-service-value="A 陪伴滑雪方案">
-                    <span class="booking-plan-option__icon">❄️</span>
-                    <span class="booking-plan-option__title">陪伴滑雪方案</span>
-                    <span class="booking-plan-option__desc">一個人滑雪找不到人？我們陪你把回憶留下來</span>
-                  </button>
-                  <button type="button" class="booking-plan-option" data-service-value="B 滑雪攝影">
-                    <span class="booking-plan-option__icon">📸</span>
-                    <span class="booking-plan-option__title">攝影方案</span>
-                    <span class="booking-plan-option__desc">適合想留下滑雪回憶的旅客</span>
-                  </button>
-                  <button type="button" class="booking-plan-option" data-service-value="C 教練課程＋滑雪攝影">
-                    <span class="booking-plan-option__icon">🏂</span>
-                    <span class="booking-plan-option__title">合作教練＋攝影方案</span>
-                    <span class="booking-plan-option__desc">一次完成學習與紀錄</span>
-                  </button>
-                  <button type="button" class="booking-plan-option" data-service-value="D 尊榮方案（滑雪教練＋滑雪攝影＋住宿＋滑雪裝備＋接駁）">
-                    <span class="booking-plan-option__icon">🤝</span>
-                    <span class="booking-plan-option__title">尊榮服務方案</span>
-                    <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
-                  </button>
-                </div>
-                <p class="booking-wizard__error" data-error-for="1"></p>
-                <div class="booking-wizard__actions">
-                  <span></span>
-                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
-                </div>
-              </div>
-
-              <div class="booking-wizard__panel" data-panel="2">
                 <h3 class="booking-wizard__panel-title">拍攝細節</h3>
                 <div class="booking-field">
                   <label>日期 *</label>
@@ -268,6 +237,37 @@
                 <div class="booking-field">
                   <label for="bookingNotes">拍攝風格或特殊需求（選填）</label>
                   <textarea id="bookingNotes" rows="3" placeholder="例如：自然抓拍為主、希望多拍滑行瞬間…"></textarea>
+                </div>
+                <p class="booking-wizard__error" data-error-for="1"></p>
+                <div class="booking-wizard__actions">
+                  <span></span>
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
+                </div>
+              </div>
+
+              <div class="booking-wizard__panel" data-panel="2">
+                <h3 class="booking-wizard__panel-title">選擇方案</h3>
+                <div class="booking-plan-options">
+                  <button type="button" class="booking-plan-option" data-service-value="A 陪伴滑雪方案">
+                    <span class="booking-plan-option__icon">❄️</span>
+                    <span class="booking-plan-option__title">陪伴滑雪方案</span>
+                    <span class="booking-plan-option__desc">一個人滑雪找不到人？我們陪你把回憶留下來</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="B 滑雪攝影">
+                    <span class="booking-plan-option__icon">📸</span>
+                    <span class="booking-plan-option__title">攝影方案</span>
+                    <span class="booking-plan-option__desc">適合想留下滑雪回憶的旅客</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="C 教練課程＋滑雪攝影">
+                    <span class="booking-plan-option__icon">🏂</span>
+                    <span class="booking-plan-option__title">合作教練＋攝影方案</span>
+                    <span class="booking-plan-option__desc">一次完成學習與紀錄</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="D 尊榮方案（滑雪教練＋滑雪攝影＋住宿＋滑雪裝備＋接駁）">
+                    <span class="booking-plan-option__icon">🤝</span>
+                    <span class="booking-plan-option__title">尊榮服務方案</span>
+                    <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
+                  </button>
                 </div>
                 <p class="booking-wizard__error" data-error-for="2"></p>
                 <div class="booking-wizard__actions">

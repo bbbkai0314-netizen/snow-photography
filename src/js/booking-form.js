@@ -79,7 +79,7 @@
     if (el) el.textContent = message || '';
   }
 
-  // ---------- Step 1: plan selection ----------
+  // ---------- Step 2: plan selection ----------
   const planOptions = Array.from(wizard.querySelectorAll('.booking-plan-option'));
   planOptions.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -87,7 +87,7 @@
       btn.classList.add('is-selected');
       state.planLabel = btn.querySelector('.booking-plan-option__title').textContent.trim();
       state.serviceValue = btn.dataset.serviceValue;
-      showError(1, '');
+      showError(2, '');
 
       if (!hasFiredBookingStart) {
         hasFiredBookingStart = true;
@@ -96,7 +96,7 @@
     });
   });
 
-  // ---------- Step 2: date / location / people / notes ----------
+  // ---------- Step 1: date / location / people / notes ----------
   // The date picker is a hand-rolled month-grid calendar (Google Calendar style) rather than
   // a plain <input type="date">, so dates in `window.SSF_BLOCKED_DATES` (set by Ellie from the
   // admin panel — see src/admin/admin-calendar.js) can render as "已被預約" and be unselectable.
@@ -133,7 +133,7 @@
     calGrid.querySelectorAll('.booking-calendar__cell.is-selected').forEach((c) => c.classList.remove('is-selected'));
     cellEl.classList.add('is-selected');
     calSelected.textContent = calSelectedLabel(dateStr);
-    showError(2, '');
+    showError(1, '');
   }
 
   function renderCalendar() {
@@ -222,7 +222,7 @@
       locationPills.forEach((p) => p.classList.remove('is-selected'));
       pill.classList.add('is-selected');
       state.location = pill.dataset.value;
-      showError(2, '');
+      showError(1, '');
     });
   });
 
@@ -240,15 +240,15 @@
   // ---------- Navigation ----------
   function validateStep(n) {
     if (n === 1) {
-      if (!state.serviceValue) {
-        showError(1, '請先選擇一個方案');
-        return false;
-      }
+      if (!state.date) { showError(1, '請選擇拍攝日期'); return false; }
+      if (!state.location) { showError(1, '請選擇雪場地點'); return false; }
+      if (!state.people || Number(state.people) < 1) { showError(1, '請填寫正確人數'); return false; }
     }
     if (n === 2) {
-      if (!state.date) { showError(2, '請選擇拍攝日期'); return false; }
-      if (!state.location) { showError(2, '請選擇雪場地點'); return false; }
-      if (!state.people || Number(state.people) < 1) { showError(2, '請填寫正確人數'); return false; }
+      if (!state.serviceValue) {
+        showError(2, '請先選擇一個方案');
+        return false;
+      }
     }
     if (n === 3) {
       if (!state.name.trim()) { showError(3, '請填寫姓名'); return false; }
