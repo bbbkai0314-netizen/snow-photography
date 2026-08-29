@@ -466,15 +466,6 @@ button{ font-family:inherit; }
 .pain-point:hover::before,
 .pain-point:focus-visible::before{ opacity:.82; }
 .pain-point:focus-visible{ outline:2px solid var(--ice); outline-offset:3px; }
-.pain-point__number{
-  position:absolute;
-  top:24px;
-  right:28px;
-  color:rgba(218,241,250,.76);
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.14em;
-}
 .pain-point__type{
   color:#dff5ff;
   font-size:12px;
@@ -502,7 +493,8 @@ button{ font-family:inherit; }
   align-items:center;
   gap:9px;
   width:max-content;
-  margin-top:19px;
+  align-self:flex-end;
+  margin-top:auto;
   padding-top:0;
   color:var(--white);
   font-size:13px;
@@ -593,7 +585,6 @@ button{ font-family:inherit; }
   .pain-points__head{ padding:72px 0 26px; }
   .pain-points__grid{ grid-template-columns:1fr; gap:12px; }
   .pain-point{ min-height:276px; padding:24px; }
-  .pain-point__number{ top:21px; right:24px; }
   .pain-point h3{ max-width:100%; margin-top:auto; font-size:23px; }
   .pain-point p{ max-width:100%; }
 }
