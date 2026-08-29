@@ -9,6 +9,7 @@ const AdminViews = (() => {
     { key: "gallery", label: "作品集", hash: "#/gallery" },
     { key: "plans", label: "拍攝方案", hash: "#/plans" },
     { key: "posts", label: "部落格文章", hash: "#/posts" },
+    { key: "calendar", label: "預約行事曆", hash: "#/calendar" },
     { key: "bookings", label: "預約管理", hash: "#/bookings" },
     { key: "automation", label: "自動化", hash: "#/automation" },
   ];
@@ -152,6 +153,22 @@ const AdminViews = (() => {
         btn,
       ]),
     ]);
+  }
+
+  // ---------------- 預約行事曆 (blockedDates.json，飢餓行銷用) ----------------
+
+  async function renderCalendar() {
+    const file = await AdminApi.getFile("src/_data/blockedDates.json");
+    let dates = JSON.parse(file.content || "[]");
+
+    const wrap = el("div", {}, [section("預約行事曆", [AdminCalendar.renderPanel(dates, (next) => (dates = next))])]);
+    wrap.appendChild(
+      saveBar({
+        onSave: () =>
+          AdminApi.putFile("src/_data/blockedDates.json", JSON.stringify(dates, null, 2) + "\n", "更新預約行事曆", file.sha),
+      })
+    );
+    return shell("calendar", wrap);
   }
 
   // ---------------- 預約管理 (Google Sheet, 透過 Apps Script Web App) ----------------
@@ -594,6 +611,7 @@ const AdminViews = (() => {
     renderPlanEdit,
     renderPostsList,
     renderPostEdit,
+    renderCalendar,
     renderBookings,
     renderAutomation,
   };

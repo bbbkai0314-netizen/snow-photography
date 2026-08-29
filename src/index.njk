@@ -234,8 +234,26 @@
               <div class="booking-wizard__panel" data-panel="2">
                 <h3 class="booking-wizard__panel-title">拍攝細節</h3>
                 <div class="booking-field">
-                  <label for="bookingDate">日期 *</label>
-                  <input type="date" id="bookingDate" required>
+                  <label>日期 *</label>
+                  <div class="booking-calendar" id="bookingCalendar">
+                    <p class="booking-calendar__banner">🔥 熱門日期陸續被搶訂中，越晚預約可選日期越少</p>
+                    <div class="booking-calendar__head">
+                      <button type="button" class="booking-calendar__nav" data-cal-prev aria-label="上個月">‹</button>
+                      <span class="booking-calendar__title" data-cal-title></span>
+                      <button type="button" class="booking-calendar__nav" data-cal-next aria-label="下個月">›</button>
+                    </div>
+                    <div class="booking-calendar__weekdays">
+                      <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+                    </div>
+                    <div class="booking-calendar__grid" data-cal-grid></div>
+                    <p class="booking-calendar__hint" data-cal-hint hidden></p>
+                    <div class="booking-calendar__legend">
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--open"></i>可預約</span>
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--selected"></i>已選擇</span>
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--full"></i>已被預約</span>
+                    </div>
+                    <p class="booking-calendar__selected" data-cal-selected>尚未選擇日期</p>
+                  </div>
                 </div>
                 <div class="booking-field">
                   <label>地點 *</label>
@@ -320,6 +338,7 @@
 
 <script src="js/script.js?v={{ assetVersion }}"></script>
 <script src="js/tracking.js?v={{ assetVersion }}"></script>
+<script>window.SSF_BLOCKED_DATES = {{ blockedDates | dump | safe }};</script>
 <script src="js/booking-form.js?v={{ assetVersion }}"></script>
 </body>
 </html>

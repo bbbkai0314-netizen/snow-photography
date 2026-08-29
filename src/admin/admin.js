@@ -30,6 +30,8 @@ async function render() {
       view = action === "new" ? await AdminViews.renderPlanEdit(null) : action === "edit" ? await AdminViews.renderPlanEdit(id) : await AdminViews.renderPlansList();
     } else if (section === "posts") {
       view = action === "new" ? await AdminViews.renderPostEdit(null) : action === "edit" ? await AdminViews.renderPostEdit(id) : await AdminViews.renderPostsList();
+    } else if (section === "calendar") {
+      view = await AdminViews.renderCalendar();
     } else if (section === "bookings") {
       view = await AdminViews.renderBookings();
     } else if (section === "automation") {
