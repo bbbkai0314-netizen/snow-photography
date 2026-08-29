@@ -469,7 +469,7 @@ button{ font-family:inherit; }
 .pain-point__swipe{
   position:absolute;
   z-index:3;
-  top:20px; right:20px;
+  bottom:20px; right:20px;
   width:30px; height:30px;
   display:inline-flex;
   align-items:center;
@@ -507,31 +507,11 @@ button{ font-family:inherit; }
 }
 .pain-point p{
   max-width:100%;
+  padding-right:34px;
   color:#e1f0f6;
   font-size:12.5px;
   line-height:1.7;
 }
-.pain-point__cta{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  width:max-content;
-  align-self:flex-end;
-  margin-top:auto;
-  padding-top:0;
-  color:var(--white);
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.05em;
-}
-.pain-point__cta b{
-  color:var(--ice);
-  font-size:18px;
-  line-height:1;
-  transition:transform .25s ease;
-}
-.pain-point:hover .pain-point__cta b{ transform:translateX(4px); }
-
 /* ---------- Gallery grid ---------- */
 .gallery-section{
   position:relative;
