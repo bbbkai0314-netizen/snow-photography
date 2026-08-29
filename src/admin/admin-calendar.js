@@ -12,14 +12,38 @@ const AdminCalendar = (() => {
     return `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
   }
 
+  // SnowSurfStudio only shoots during ski season (November–April) — the calendar should
+  // never default to, or let Ellie browse into, the snowless months.
+  const SEASON_START_MONTH = 10; // November (0-indexed)
+  const SEASON_END_MONTH = 3; // April (0-indexed)
+
+  function seasonWindow(date) {
+    const y = date.getFullYear();
+    const m = date.getMonth();
+    let startYear;
+    if (m >= SEASON_START_MONTH) startYear = y; // Nov/Dec: this season already started
+    else if (m <= SEASON_END_MONTH) startYear = y - 1; // Jan-Apr: season started last year
+    else startYear = y; // May-Oct (off-season): next season starts this coming November
+    return { startYear, startMonth: SEASON_START_MONTH, endYear: startYear + 1, endMonth: SEASON_END_MONTH };
+  }
+
   // `dates` is mutated in place (add/remove); `onChange` is called with the sorted array
   // after every toggle so the caller can stash it for the save button.
   function renderPanel(dates, onChange) {
     const blocked = new Set(dates);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    let year = today.getFullYear();
-    let month = today.getMonth();
+
+    const season = seasonWindow(today);
+    const seasonStart = new Date(season.startYear, season.startMonth, 1);
+    const inSeason = today >= seasonStart;
+    const minYear = inSeason ? today.getFullYear() : season.startYear;
+    const minMonth = inSeason ? today.getMonth() : season.startMonth;
+    const maxYear = season.endYear;
+    const maxMonth = season.endMonth;
+
+    let year = minYear;
+    let month = minMonth;
 
     const title = el("span", { className: "admin-calendar__title" }, "");
     const grid = el("div", { className: "admin-calendar__grid" });
@@ -91,6 +115,9 @@ const AdminCalendar = (() => {
       countLabel.textContent = blockedInMonth
         ? `本月已封鎖 ${blockedInMonth} 天（網站上會顯示為已被預約）`
         : "本月尚未封鎖任何日期";
+
+      prevBtn.disabled = year === minYear && month === minMonth;
+      nextBtn.disabled = year === maxYear && month === maxMonth;
     }
 
     draw();
@@ -99,7 +126,7 @@ const AdminCalendar = (() => {
       el(
         "p",
         { className: "admin-field__hint" },
-        "點一下日期就會標記成「已被預約走」（紅色），網站上的預約行事曆會顯示那天已額滿、不能選——用來營造搶手熱度，不需要真的有人預約。想重新開放就再點一次那個日期取消封鎖。改動要按下面的「儲存」才會真的發布到網站。"
+        "點一下日期就會標記成「已被預約走」（紅色），網站上的預約行事曆會顯示那天已額滿、不能選——用來營造搶手熱度，不需要真的有人預約。想重新開放就再點一次那個日期取消封鎖。改動要按下面的「儲存」才會真的發布到網站。月曆只會顯示雪季（11 月到隔年 4 月），非雪季月份不開放拍攝所以不會列出來。"
       ),
       el("div", { className: "admin-calendar__head" }, [prevBtn, title, nextBtn]),
       grid,

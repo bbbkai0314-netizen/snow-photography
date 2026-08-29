@@ -112,11 +112,33 @@
   const calNextBtn = calendarEl?.querySelector('[data-cal-next]');
 
   const CAL_WEEKDAY_LABELS = ['日', '一', '二', '三', '四', '五', '六'];
-  const CAL_MAX_MONTHS_AHEAD = 6;
+  // SnowSurfStudio only shoots during ski season (November–April) — the calendar should
+  // never default to, or let visitors browse into, the snowless months.
+  const SEASON_START_MONTH = 10; // November (0-indexed)
+  const SEASON_END_MONTH = 3; // April (0-indexed)
   const calToday = new Date();
   calToday.setHours(0, 0, 0, 0);
-  let calYear = calToday.getFullYear();
-  let calMonth = calToday.getMonth();
+
+  function seasonWindow(date) {
+    const y = date.getFullYear();
+    const m = date.getMonth();
+    let startYear;
+    if (m >= SEASON_START_MONTH) startYear = y; // Nov/Dec: this season already started
+    else if (m <= SEASON_END_MONTH) startYear = y - 1; // Jan-Apr: season started last year
+    else startYear = y; // May-Oct (off-season): next season starts this coming November
+    return { startYear, startMonth: SEASON_START_MONTH, endYear: startYear + 1, endMonth: SEASON_END_MONTH };
+  }
+
+  const calSeason = seasonWindow(calToday);
+  const calSeasonStart = new Date(calSeason.startYear, calSeason.startMonth, 1);
+  const calInSeason = calToday >= calSeasonStart;
+  const CAL_MIN_YEAR = calInSeason ? calToday.getFullYear() : calSeason.startYear;
+  const CAL_MIN_MONTH = calInSeason ? calToday.getMonth() : calSeason.startMonth;
+  const CAL_MAX_YEAR = calSeason.endYear;
+  const CAL_MAX_MONTH = calSeason.endMonth;
+
+  let calYear = CAL_MIN_YEAR;
+  let calMonth = CAL_MIN_MONTH;
 
   function calDateStr(y, m, d) {
     return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
@@ -187,11 +209,8 @@
       }
     }
 
-    if (calPrevBtn) calPrevBtn.disabled = calYear === calToday.getFullYear() && calMonth === calToday.getMonth();
-    if (calNextBtn) {
-      const maxDate = new Date(calToday.getFullYear(), calToday.getMonth() + CAL_MAX_MONTHS_AHEAD, 1);
-      calNextBtn.disabled = calYear > maxDate.getFullYear() || (calYear === maxDate.getFullYear() && calMonth >= maxDate.getMonth());
-    }
+    if (calPrevBtn) calPrevBtn.disabled = calYear === CAL_MIN_YEAR && calMonth === CAL_MIN_MONTH;
+    if (calNextBtn) calNextBtn.disabled = calYear === CAL_MAX_YEAR && calMonth === CAL_MAX_MONTH;
   }
 
   calPrevBtn?.addEventListener('click', () => {
