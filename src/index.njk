@@ -224,12 +224,12 @@
         <div class="booking-wizard__stepper">
           <div class="booking-wizard__step is-active" data-step="1">
             <span class="booking-wizard__step-num">1</span>
-            <span class="booking-wizard__step-label">選擇方案</span>
+            <span class="booking-wizard__step-label">拍攝細節</span>
           </div>
           <div class="booking-wizard__step-line"></div>
           <div class="booking-wizard__step" data-step="2">
             <span class="booking-wizard__step-num">2</span>
-            <span class="booking-wizard__step-label">拍攝細節</span>
+            <span class="booking-wizard__step-label">選擇方案</span>
           </div>
           <div class="booking-wizard__step-line"></div>
           <div class="booking-wizard__step" data-step="3">
@@ -242,6 +242,51 @@
           <div class="booking-wizard__main">
             <form id="bookingForm" novalidate>
               <div class="booking-wizard__panel is-active" data-panel="1">
+                <h3 class="booking-wizard__panel-title">拍攝細節</h3>
+                <div class="booking-field">
+                  <label>日期 *</label>
+                  <div class="booking-calendar" id="bookingCalendar">
+                    <p class="booking-calendar__banner">🔥 熱門日期陸續被搶訂中，越晚預約可選日期越少</p>
+                    <div class="booking-calendar__head">
+                      <button type="button" class="booking-calendar__nav" data-cal-prev aria-label="上個月">‹</button>
+                      <span class="booking-calendar__title" data-cal-title></span>
+                      <button type="button" class="booking-calendar__nav" data-cal-next aria-label="下個月">›</button>
+                    </div>
+                    <div class="booking-calendar__weekdays">
+                      <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+                    </div>
+                    <div class="booking-calendar__grid" data-cal-grid></div>
+                    <p class="booking-calendar__hint" data-cal-hint hidden></p>
+                    <div class="booking-calendar__legend">
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--open"></i>可預約</span>
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--selected"></i>已選擇</span>
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--full"></i>已被預約</span>
+                    </div>
+                    <p class="booking-calendar__selected" data-cal-selected>尚未選擇日期</p>
+                  </div>
+                </div>
+                <div class="booking-field">
+                  <label>地點 *</label>
+                  <div class="booking-pill-group">
+                    <button type="button" class="booking-pill" data-value="白馬">白馬</button>
+                  </div>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingPeople">人數 *</label>
+                  <input type="number" id="bookingPeople" min="1" value="1" required>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingNotes">拍攝風格或特殊需求（選填）</label>
+                  <textarea id="bookingNotes" rows="3" placeholder="例如：自然抓拍為主、希望多拍滑行瞬間…"></textarea>
+                </div>
+                <p class="booking-wizard__error" data-error-for="1"></p>
+                <div class="booking-wizard__actions">
+                  <span></span>
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
+                </div>
+              </div>
+
+              <div class="booking-wizard__panel" data-panel="2">
                 <h3 class="booking-wizard__panel-title">選擇方案</h3>
                 <div class="booking-plan-options">
                   <button type="button" class="booking-plan-option" data-service-value="A 陪伴滑雪方案">
@@ -264,33 +309,6 @@
                     <span class="booking-plan-option__title">尊榮服務方案</span>
                     <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
                   </button>
-                </div>
-                <p class="booking-wizard__error" data-error-for="1"></p>
-                <div class="booking-wizard__actions">
-                  <span></span>
-                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
-                </div>
-              </div>
-
-              <div class="booking-wizard__panel" data-panel="2">
-                <h3 class="booking-wizard__panel-title">拍攝細節</h3>
-                <div class="booking-field">
-                  <label for="bookingDate">日期 *</label>
-                  <input type="date" id="bookingDate" required>
-                </div>
-                <div class="booking-field">
-                  <label>地點 *</label>
-                  <div class="booking-pill-group">
-                    <button type="button" class="booking-pill" data-value="白馬">白馬</button>
-                  </div>
-                </div>
-                <div class="booking-field">
-                  <label for="bookingPeople">人數 *</label>
-                  <input type="number" id="bookingPeople" min="1" value="1" required>
-                </div>
-                <div class="booking-field">
-                  <label for="bookingNotes">拍攝風格或特殊需求（選填）</label>
-                  <textarea id="bookingNotes" rows="3" placeholder="例如：自然抓拍為主、希望多拍滑行瞬間…"></textarea>
                 </div>
                 <p class="booking-wizard__error" data-error-for="2"></p>
                 <div class="booking-wizard__actions">
@@ -361,6 +379,7 @@
 
 <script src="js/script.js?v={{ assetVersion }}"></script>
 <script src="js/tracking.js?v={{ assetVersion }}"></script>
+<script>window.SSF_BLOCKED_DATES = {{ blockedDates | dump | safe }};</script>
 <script src="js/booking-form.js?v={{ assetVersion }}"></script>
 </body>
 </html>
