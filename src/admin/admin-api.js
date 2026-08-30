@@ -90,9 +90,11 @@ const AdminApi = (() => {
       body: JSON.stringify(body),
     });
     if (res.status === 409) {
-      throw new Error(
+      const err = new Error(
         "這個檔案在你編輯的期間被其他變更覆蓋了（可能是開了兩個分頁，或剛好有其他人也在改）。請重新整理頁面，確認內容後再儲存一次。"
       );
+      err.conflict = true;
+      throw err;
     }
     if (!res.ok) {
       const detail = await res.json().catch(() => ({}));

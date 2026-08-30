@@ -159,14 +159,30 @@ const AdminViews = (() => {
   // ---------------- 預約行事曆 (blockedDates.json，飢餓行銷用) ----------------
 
   async function renderCalendar() {
-    const file = await AdminApi.getFile("src/_data/blockedDates.json");
+    const path = "src/_data/blockedDates.json";
+    const file = await AdminApi.getFile(path);
     let dates = JSON.parse(file.content || "[]");
+    let sha = file.sha;
 
     const wrap = el("div", {}, [section("預約行事曆", [AdminCalendar.renderPanel(dates, (next) => (dates = next))])]);
     wrap.appendChild(
       saveBar({
-        onSave: () =>
-          AdminApi.putFile("src/_data/blockedDates.json", JSON.stringify(dates, null, 2) + "\n", "更新預約行事曆", file.sha),
+        onSave: async () => {
+          const body = () => JSON.stringify(dates, null, 2) + "\n";
+          try {
+            const result = await AdminApi.putFile(path, body(), "更新預約行事曆", sha);
+            sha = result.content.sha;
+          } catch (err) {
+            // The file changed on GitHub since we loaded it (e.g. a second tab already
+            // saved). Re-fetch the current sha and retry once with the same pending
+            // clicks instead of forcing a full page reload and losing them.
+            if (!err.conflict) throw err;
+            const fresh = await AdminApi.getFile(path);
+            sha = fresh.sha;
+            const result = await AdminApi.putFile(path, body(), "更新預約行事曆", sha);
+            sha = result.content.sha;
+          }
+        },
       })
     );
     return shell("calendar", wrap);
