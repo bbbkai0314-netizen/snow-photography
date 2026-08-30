@@ -36,6 +36,8 @@ async function render() {
       view = await AdminViews.renderBookings();
     } else if (section === "automation") {
       view = await AdminViews.renderAutomation();
+    } else if (section === "insights") {
+      view = await AdminViews.renderInsights();
     } else {
       view = await AdminViews.renderDashboard();
     }

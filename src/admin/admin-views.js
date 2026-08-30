@@ -12,6 +12,7 @@ const AdminViews = (() => {
     { key: "calendar", label: "預約行事曆", hash: "#/calendar" },
     { key: "bookings", label: "預約管理", hash: "#/bookings" },
     { key: "automation", label: "自動化", hash: "#/automation" },
+    { key: "insights", label: "行銷數據", hash: "#/insights" },
   ];
 
   function parseFrontmatter(raw) {
@@ -181,6 +182,12 @@ const AdminViews = (() => {
 
   async function renderAutomation() {
     return shell("automation", el("div", {}, [section("自動化發布", [AdminAutomation.renderPanel()])]));
+  }
+
+  // ---------------- 行銷數據 ----------------
+
+  async function renderInsights() {
+    return shell("insights", el("div", {}, [section("行銷數據", [AdminMetaInsights.renderPanel()])]));
   }
 
   // ---------------- Dashboard ----------------
@@ -614,5 +621,6 @@ const AdminViews = (() => {
     renderCalendar,
     renderBookings,
     renderAutomation,
+    renderInsights,
   };
 })();
