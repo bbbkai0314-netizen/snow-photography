@@ -187,7 +187,13 @@ const AdminViews = (() => {
   // ---------------- 行銷數據 ----------------
 
   async function renderInsights() {
-    return shell("insights", el("div", {}, [section("行銷數據", [AdminMetaInsights.renderPanel()])]));
+    return shell(
+      "insights",
+      el("div", {}, [
+        section("Meta 廣告數據", [AdminMetaInsights.renderPanel()]),
+        section("LINE 廣告數據 (LAP)", [AdminLineInsights.renderPanel()]),
+      ])
+    );
   }
 
   // ---------------- Dashboard ----------------
