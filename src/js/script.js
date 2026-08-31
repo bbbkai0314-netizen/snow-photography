@@ -205,6 +205,50 @@
       if (e.key === 'ArrowLeft') prev();
     });
   }
+
+  // ---------- MY OWN WAY carousel ----------
+  // Visitors advance the story deliberately; the final action opens LINE for an inquiry.
+  const carouselCard = document.querySelector('.chapter-card--carousel');
+  const carouselSlides = carouselCard
+    ? Array.from(carouselCard.querySelectorAll('.chapter-card__media--carousel .chapter-card__slide'))
+    : [];
+  const carouselNext = carouselCard?.querySelector('.chapter-card__carousel-next');
+  if (carouselSlides.length > 1 && carouselNext) {
+    document.documentElement.classList.add('js');
+    let activeSlide = 0;
+    const actionLabel = carouselNext.querySelector('.chapter-card__carousel-action');
+    const renderCarousel = () => {
+      carouselSlides.forEach((slide, index) => {
+        slide.classList.toggle('is-current', index === activeSlide);
+        slide.style.zIndex = index === activeSlide ? '2' : '0';
+      });
+      const isLastSlide = activeSlide === carouselSlides.length - 1;
+      carouselNext.setAttribute('aria-label', isLastSlide ? '前往 LINE 詢問陪伴滑雪服務' : `查看第 ${activeSlide + 2} 張 MY OWN WAY 圖文`);
+      actionLabel.textContent = '→';
+    };
+    renderCarousel();
+
+    carouselNext.addEventListener('click', () => {
+      if (activeSlide === carouselSlides.length - 1) {
+        window.location.assign(carouselCard.dataset.lineUrl);
+        return;
+      }
+      const outgoingSlide = carouselSlides[activeSlide];
+      const nextSlideIndex = (activeSlide + 1) % carouselSlides.length;
+      const incomingSlide = carouselSlides[nextSlideIndex];
+
+      incomingSlide.style.zIndex = '2';
+      incomingSlide.classList.add('is-current');
+      outgoingSlide.style.zIndex = '1';
+      outgoingSlide.classList.remove('is-current');
+
+      window.setTimeout(() => {
+        outgoingSlide.style.zIndex = '0';
+        activeSlide = nextSlideIndex;
+        renderCarousel();
+      }, 650);
+    });
+  }
 })();
 
 // ---------- UTM capture (conversion sprint P0/P1) ----------

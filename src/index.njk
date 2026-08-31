@@ -64,47 +64,6 @@
     </div>
   </section>
 
-  <section class="pain-points" aria-labelledby="pain-points-title">
-    <div class="section-head pain-points__head">
-      <h2 id="pain-points-title">出發滑雪前，你最大的擔憂是什麼？</h2>
-      <p>Your story</p>
-    </div>
-    <div class="pain-points__grid">
-      <article class="pain-point glass">
-        <a class="pain-point__article-link" href="blog/solo-ski-photography.html">
-          <span class="pain-point__type">一個人出發</span>
-          <h3>想去滑雪，<br>卻一直找不到人陪？</h3>
-          <p>到了陌生的雪場，<br>沒人一起滑，也沒人幫你記錄。</p>
-        </a>
-        <a class="pain-point__swipe" href="blog/solo-ski-photography.html" aria-label="閱讀陪伴式滑雪攝影文章">→</a>
-      </article>
-      <article class="pain-point glass">
-        <div class="pain-point__article-link">
-          <span class="pain-point__type">情侶旅行</span>
-          <h3>每次想留張照片，<br>最後卻為了拍照吵架？</h3>
-          <p>旅行是為了留下回憶。<br>不是為了誰拍得不好看而生氣。</p>
-        </div>
-        <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問情侶旅行拍攝">→</a>
-      </article>
-      <article class="pain-point glass">
-        <a class="pain-point__article-link" href="blog/family-ski-trip.html">
-          <span class="pain-point__type">親子滑雪</span>
-          <h3>又要顧孩子、又要上課，<br>誰來記錄全家人的這一天？</h3>
-          <p>別讓媽媽永遠站在鏡頭後面。<br>這一次，全家人一起留在回憶裡。</p>
-        </a>
-        <a class="pain-point__swipe" href="blog/family-ski-trip.html" aria-label="閱讀親子滑雪文章">→</a>
-      </article>
-      <article class="pain-point glass">
-        <div class="pain-point__article-link">
-          <span class="pain-point__type">這麼多年過去了</span>
-          <h3>去過這麼多地方，<br>真正留下來的是哪一個畫面？</h3>
-          <p>去過的地方會忘，<br>留下的回憶不會。</p>
-        </div>
-        <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問滑雪攝影">→</a>
-      </article>
-    </div>
-  </section>
-
   <section class="life-chapters" id="life-chapters" aria-labelledby="life-chapters-title">
     <div class="life-chapters__head">
       <div class="life-chapters__heading">
@@ -113,17 +72,24 @@
       </div>
     </div>
     <div class="chapters-grid">
-      <a class="chapter-card" href="blog/solo-ski-photography.html">
-        <div class="chapter-card__media">
-          <img src="images/chapter-my-own-way.jpg" alt="一個人帶著雪板走向雪山日出，象徵不等別人也能開始的旅程" loading="lazy">
+      <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
+        <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
+          <img class="chapter-card__slide" src="images/my-own-way-01.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-02.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-03.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-04.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-05.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-06.png" alt="" loading="lazy">
         </div>
         <div class="chapter-card__scrim"></div>
         <div class="chapter-card__body">
           <p class="chapter-card__title">MY OWN WAY</p>
           <p class="chapter-card__subtitle">A trip with myself</p>
-          <span class="chapter-card__cta">留下此刻的我 →</span>
         </div>
-      </a>
+        <button class="chapter-card__carousel-next" type="button" aria-label="查看下一張 MY OWN WAY 圖文">
+          <span class="chapter-card__carousel-action" aria-hidden="true">→</span>
+        </button>
+      </article>
       <a class="chapter-card" href="#booking">
         <div class="chapter-card__media">
           <img src="images/chapter-us-here.png" alt="一對情侶背著雪板一起走向雪山日落，象徵兩人一起留下的旅程" loading="lazy">
