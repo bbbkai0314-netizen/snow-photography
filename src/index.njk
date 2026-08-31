@@ -69,46 +69,126 @@
       <h2 id="pain-points-title">出發滑雪前，你最大的擔憂是什麼？</h2>
       <p>Your story</p>
     </div>
-    <div class="pain-points__carousel">
-      <button type="button" class="pain-points__arrow pain-points__arrow--prev" data-dir="-1" aria-label="上一個困擾" aria-controls="painPointsTrack">‹</button>
-      <div class="pain-points__track" id="painPointsTrack" tabindex="0" aria-label="顧客常見困擾，左右滑動查看更多">
-        <article class="pain-point glass">
-          <a class="pain-point__article-link" href="blog/solo-ski-photography.html">
-            <span class="pain-point__type">一個人出發</span>
-            <h3>想去滑雪，<br>卻一直找不到人陪？</h3>
-            <p>到了陌生的雪場，<br>沒人一起滑，也沒人幫你記錄。</p>
-          </a>
-          <a class="pain-point__swipe" href="blog/solo-ski-photography.html" aria-label="閱讀陪伴式滑雪攝影文章">→</a>
-        </article>
-        <article class="pain-point glass">
-          <div class="pain-point__article-link">
-            <span class="pain-point__type">情侶旅行</span>
-            <h3>每次想留張照片，<br>最後卻為了拍照吵架？</h3>
-            <p>旅行是為了留下回憶。<br>不是為了誰拍得不好看而生氣。</p>
+    <div class="pain-points__grid" id="painPointsGrid">
+      <article class="pain-point glass" data-story-card>
+        <a class="pain-point__link" href="blog/solo-ski-photography.html">
+          <span class="pain-point__type">一個人出發</span>
+          <h3>想去滑雪，<br>卻一直找不到人陪？</h3>
+          <p>到了陌生的雪場，<br>沒人一起滑，也沒人幫你記錄。</p>
+        </a>
+        <span class="pain-point__foot" aria-hidden="true"><span class="pain-point__foot-icon">→</span>點開查看故事</span>
+        <template data-role="article">
+          <span class="story__step-tag">陪伴式滑雪攝影</span>
+          <h3 class="story__headline">一個人出發，也能被好好記錄</h3>
+          <p class="story__body">從找雪伴、排課程到留下真正屬於你的畫面——一個人出發前，你該知道的事。</p>
+          <a class="story__cta" href="blog/solo-ski-photography.html" target="_blank" rel="noopener">閱讀全文 →</a>
+        </template>
+        <template data-role="line">
+          <span class="story__step-tag">加入 LINE</span>
+          <h3 class="story__headline">加 LINE，領一個人出發滑雪懶人包</h3>
+          <p class="story__body">雪場怎麼選、行程怎麼排、拍攝怎麼約，我們整理好直接傳給你。</p>
+          <div class="story__copy-row">
+            <span class="story__copy-text">「我想了解：一個人出發滑雪攝影」</span>
+            <button type="button" class="story__copy-btn" data-copy="我想了解：一個人出發滑雪攝影">複製</button>
           </div>
-          <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問情侶旅行拍攝">→</a>
-        </article>
-        <article class="pain-point glass">
-          <a class="pain-point__article-link" href="blog/family-ski-trip.html">
-            <span class="pain-point__type">親子滑雪</span>
-            <h3>又要顧孩子、又要上課，<br>誰來記錄全家人的這一天？</h3>
-            <p>別讓媽媽永遠站在鏡頭後面。<br>這一次，全家人一起留在回憶裡。</p>
-          </a>
-          <a class="pain-point__swipe" href="blog/family-ski-trip.html" aria-label="閱讀親子滑雪文章">→</a>
-        </article>
-        <article class="pain-point glass">
-          <div class="pain-point__article-link">
-            <span class="pain-point__type">這麼多年過去了</span>
-            <h3>去過這麼多地方，<br>真正留下來的是哪一個畫面？</h3>
-            <p>去過的地方會忘，<br>留下的回憶不會。</p>
+          <p class="story__hint">加入後貼上這句話傳送，我們就知道要給你哪一份懶人包。</p>
+          <a class="story__cta story__cta--line" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener">加 LINE 好友 →</a>
+        </template>
+      </article>
+      <article class="pain-point glass" data-story-card>
+        <a class="pain-point__link" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener">
+          <span class="pain-point__type">情侶旅行</span>
+          <h3>每次想留張照片，<br>最後卻為了拍照吵架？</h3>
+          <p>旅行是為了留下回憶。<br>不是為了誰拍得不好看而生氣。</p>
+        </a>
+        <span class="pain-point__foot" aria-hidden="true"><span class="pain-point__foot-icon">→</span>點開查看故事</span>
+        <template data-role="article">
+          <span class="story__step-tag">對應文章</span>
+          <h3 class="story__headline">文章準備中</h3>
+          <p class="story__body">這個困擾的完整攻略還在整理，先加 LINE，我們直接告訴你。</p>
+          <span class="story__soon">即將推出</span>
+        </template>
+        <template data-role="line">
+          <span class="story__step-tag">加入 LINE</span>
+          <h3 class="story__headline">加 LINE，領情侶滑雪旅拍懶人包</h3>
+          <p class="story__body">文章準備中，先加 LINE，我們直接傳懶人包給你。</p>
+          <div class="story__copy-row">
+            <span class="story__copy-text">「我想了解：情侶旅行滑雪攝影」</span>
+            <button type="button" class="story__copy-btn" data-copy="我想了解：情侶旅行滑雪攝影">複製</button>
           </div>
-          <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問滑雪攝影">→</a>
-        </article>
-      </div>
-      <button type="button" class="pain-points__arrow pain-points__arrow--next" data-dir="1" aria-label="下一個困擾" aria-controls="painPointsTrack">›</button>
+          <p class="story__hint">加入後貼上這句話傳送，我們就知道要給你哪一份懶人包。</p>
+          <a class="story__cta story__cta--line" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener">加 LINE 好友 →</a>
+        </template>
+      </article>
+      <article class="pain-point glass" data-story-card>
+        <a class="pain-point__link" href="blog/family-ski-trip.html">
+          <span class="pain-point__type">親子滑雪</span>
+          <h3>又要顧孩子、又要上課，<br>誰來記錄全家人的這一天？</h3>
+          <p>別讓媽媽永遠站在鏡頭後面。<br>這一次，全家人一起留在回憶裡。</p>
+        </a>
+        <span class="pain-point__foot" aria-hidden="true"><span class="pain-point__foot-icon">→</span>點開查看故事</span>
+        <template data-role="article">
+          <span class="story__step-tag">親子滑雪紀錄</span>
+          <h3 class="story__headline">顧孩子、顧上課，誰來拍下全家人？</h3>
+          <p class="story__body">親子雪場常見的拍攝難題，跟建議的拍攝時段整理給你。</p>
+          <a class="story__cta" href="blog/family-ski-trip.html" target="_blank" rel="noopener">閱讀全文 →</a>
+        </template>
+        <template data-role="line">
+          <span class="story__step-tag">加入 LINE</span>
+          <h3 class="story__headline">加 LINE，領親子滑雪拍攝懶人包</h3>
+          <p class="story__body">課程時間怎麼喬、拍攝怎麼跟，一次整理給你。</p>
+          <div class="story__copy-row">
+            <span class="story__copy-text">「我想了解：親子滑雪攝影」</span>
+            <button type="button" class="story__copy-btn" data-copy="我想了解：親子滑雪攝影">複製</button>
+          </div>
+          <p class="story__hint">加入後貼上這句話傳送，我們就知道要給你哪一份懶人包。</p>
+          <a class="story__cta story__cta--line" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener">加 LINE 好友 →</a>
+        </template>
+      </article>
+      <article class="pain-point glass" data-story-card>
+        <a class="pain-point__link" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener">
+          <span class="pain-point__type">這麼多年過去了</span>
+          <h3>去過這麼多地方，<br>真正留下來的是哪一個畫面？</h3>
+          <p>去過的地方會忘，<br>留下的回憶不會。</p>
+        </a>
+        <span class="pain-point__foot" aria-hidden="true"><span class="pain-point__foot-icon">→</span>點開查看故事</span>
+        <template data-role="article">
+          <span class="story__step-tag">對應文章</span>
+          <h3 class="story__headline">文章準備中</h3>
+          <p class="story__body">這個困擾的完整攻略還在整理，先加 LINE，我們直接告訴你。</p>
+          <span class="story__soon">即將推出</span>
+        </template>
+        <template data-role="line">
+          <span class="story__step-tag">加入 LINE</span>
+          <h3 class="story__headline">加 LINE，聊聊你的滑雪回憶</h3>
+          <p class="story__body">文章準備中，先加 LINE，我們直接傳懶人包給你。</p>
+          <div class="story__copy-row">
+            <span class="story__copy-text">「我想了解：滑雪攝影紀錄」</span>
+            <button type="button" class="story__copy-btn" data-copy="我想了解：滑雪攝影紀錄">複製</button>
+          </div>
+          <p class="story__hint">加入後貼上這句話傳送，我們就知道要給你哪一份懶人包。</p>
+          <a class="story__cta story__cta--line" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener">加 LINE 好友 →</a>
+        </template>
+      </article>
     </div>
-    <div class="pain-points__dots" id="painPointsDots" role="tablist" aria-label="困擾分類指示"></div>
   </section>
+
+  <div class="story" id="story" aria-hidden="true">
+    <div class="story__chrome">
+      <div class="story__progress" id="storyProgress">
+        <div class="story__seg"><i></i></div>
+        <div class="story__seg"><i></i></div>
+        <div class="story__seg"><i></i></div>
+      </div>
+      <div class="story__top">
+        <span class="story__type" id="storyType"></span>
+        <button type="button" class="story__close" id="storyClose" aria-label="關閉">×</button>
+      </div>
+    </div>
+    <button type="button" class="story__nav story__nav--prev" id="storyNavPrev" aria-label="上一頁">‹</button>
+    <div class="story__track" id="storyTrack"></div>
+    <button type="button" class="story__nav story__nav--next" id="storyNavNext" aria-label="下一頁">›</button>
+  </div>
 
   <section class="gallery-section" id="gallery">
     <div class="section-head">

@@ -207,91 +207,139 @@
   }
 })();
 
-// ---------- Pain points carousel (Apple-style horizontal swipe/snap) ----------
-// Uses native scroll-snap for touch/trackpad swipe, plus arrow buttons and dot
-// indicators (built dynamically like the side-nav dots above) for mouse/keyboard.
-// Controls auto-hide when every card already fits without scrolling.
+// ---------- Pain points story overlay (痛點 → 對應文章 → 加LINE) ----------
+// Each card in the static grid opens a fullscreen 3-page swipeable story instead of
+// navigating straight away. Page 1 is read from the card's own visible text; pages 2
+// and 3 are cloned from <template data-role="article"|"line"> children of the card,
+// so all copy stays authored in index.njk rather than duplicated into this file.
+// Clicking a card without JS (or opening it in a new tab) still follows its real href.
 (() => {
-  const track = document.getElementById('painPointsTrack');
-  const dotsWrap = document.getElementById('painPointsDots');
-  if (!track || !dotsWrap) return;
+  const story = document.getElementById('story');
+  const cards = Array.from(document.querySelectorAll('[data-story-card]'));
+  if (!story || !cards.length) return;
 
-  const slides = Array.from(track.children);
-  const prevBtn = document.querySelector('.pain-points__arrow--prev');
-  const nextBtn = document.querySelector('.pain-points__arrow--next');
+  const storyType = document.getElementById('storyType');
+  const storyTrack = document.getElementById('storyTrack');
+  const storyClose = document.getElementById('storyClose');
+  const storySegs = Array.from(document.querySelectorAll('#storyProgress .story__seg'));
+  const navPrev = document.getElementById('storyNavPrev');
+  const navNext = document.getElementById('storyNavNext');
 
-  slides.forEach((slide, i) => {
-    const dot = document.createElement('span');
-    dot.dataset.index = String(i);
-    dot.setAttribute('role', 'tab');
-    dot.setAttribute('tabindex', '0');
-    dot.setAttribute('aria-label', `第 ${i + 1} 個困擾`);
-    const goTo = () => slide.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    dot.addEventListener('click', goTo);
-    dot.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(); }
-    });
-    dotsWrap.appendChild(dot);
-  });
-  const dots = Array.from(dotsWrap.children);
+  let slides = [];
+  let observer = null;
 
-  function setActive(i) {
-    dots.forEach((dot, di) => dot.classList.toggle('is-active', di === i));
+  function panelMarkup(source) {
+    const panel = document.createElement('div');
+    panel.className = 'story__panel';
+    const inner = document.createElement('div');
+    inner.className = 'story__panel-inner';
+    inner.append(source);
+    panel.appendChild(inner);
+    return panel;
   }
 
-  // Track each slide's visible fraction and keep the most-visible one active, rather
-  // than whichever slide's threshold crossing was reported last (which picks the wrong
-  // card when two slides straddle the viewport edge at once).
-  const ratios = new Map(slides.map((slide) => [slide, 0]));
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => ratios.set(entry.target, entry.intersectionRatio));
-    let bestSlide = slides[0];
-    let bestRatio = -1;
-    slides.forEach((slide) => {
-      const ratio = ratios.get(slide) || 0;
-      if (ratio > bestRatio) { bestRatio = ratio; bestSlide = slide; }
-    });
-    setActive(slides.indexOf(bestSlide));
-  }, { root: track, threshold: [0, 0.25, 0.5, 0.75, 1] });
-  slides.forEach((slide) => observer.observe(slide));
+  function painPanelContent(card) {
+    const wrap = document.createDocumentFragment();
+    const tag = document.createElement('span');
+    tag.className = 'story__step-tag';
+    tag.textContent = card.querySelector('.pain-point__type')?.textContent || '';
+    const headline = document.createElement('h3');
+    headline.className = 'story__headline';
+    headline.innerHTML = card.querySelector('.pain-point__link h3')?.innerHTML || '';
+    const body = document.createElement('p');
+    body.className = 'story__body';
+    body.innerHTML = card.querySelector('.pain-point__link p')?.innerHTML || '';
+    const hint = document.createElement('p');
+    hint.className = 'story__hint';
+    hint.textContent = '往右滑，看看我們怎麼幫你解決 →';
+    wrap.append(tag, headline, body, hint);
+    return wrap;
+  }
 
-  function updateControls() {
-    const scrollable = track.scrollWidth > track.clientWidth + 2;
-    if (prevBtn && nextBtn) {
-      prevBtn.hidden = !scrollable;
-      nextBtn.hidden = !scrollable;
-      prevBtn.disabled = track.scrollLeft <= 2;
-      nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
-    }
-    dotsWrap.hidden = !scrollable;
+  function openStory(card) {
+    const type = card.querySelector('.pain-point__type')?.textContent || '';
+    storyType.textContent = type;
+    storyTrack.innerHTML = '';
+    storyTrack.appendChild(panelMarkup(painPanelContent(card)));
+
+    ['article', 'line'].forEach((role) => {
+      const tpl = card.querySelector(`template[data-role="${role}"]`);
+      if (tpl) storyTrack.appendChild(panelMarkup(tpl.content.cloneNode(true)));
+    });
+
+    slides = Array.from(storyTrack.children);
+
+    if (observer) observer.disconnect();
+    const ratios = new Map(slides.map((s) => [s, 0]));
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => ratios.set(entry.target, entry.intersectionRatio));
+      let best = 0;
+      let bestRatio = -1;
+      slides.forEach((s, si) => {
+        const r = ratios.get(s) || 0;
+        if (r > bestRatio) { bestRatio = r; best = si; }
+      });
+      storySegs.forEach((seg, si) => {
+        seg.classList.toggle('is-current', si === best);
+        seg.classList.toggle('is-done', si < best);
+      });
+      navPrev.disabled = best === 0;
+      navNext.disabled = best === slides.length - 1;
+    }, { root: storyTrack, threshold: [0, 0.25, 0.5, 0.75, 1] });
+    slides.forEach((s) => observer.observe(s));
+
+    storyTrack.querySelectorAll('[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.copy);
+          btn.textContent = '已複製';
+          btn.classList.add('is-copied');
+          setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('is-copied'); }, 1600);
+        } catch (e) { /* clipboard unavailable in this context */ }
+      });
+    });
+
+    storySegs.forEach((seg, si) => {
+      seg.classList.toggle('is-current', si === 0);
+      seg.classList.toggle('is-done', false);
+    });
+    story.classList.add('is-open');
+    story.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    storyTrack.scrollLeft = 0;
+    navPrev.disabled = true;
+    navNext.disabled = slides.length <= 1;
+  }
+
+  function closeStory() {
+    story.classList.remove('is-open');
+    story.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }
 
   function scrollByDir(dir) {
-    const amount = (slides[0]?.getBoundingClientRect().width || track.clientWidth) + 16;
-    track.scrollBy({ left: amount * dir, behavior: 'smooth' });
+    const amount = slides[0]?.getBoundingClientRect().width || storyTrack.clientWidth;
+    storyTrack.scrollBy({ left: amount * dir, behavior: 'smooth' });
   }
 
-  [prevBtn, nextBtn].forEach((btn) => {
-    if (!btn) return;
-    btn.addEventListener('click', () => scrollByDir(Number(btn.dataset.dir)));
+  cards.forEach((card) => {
+    const link = card.querySelector('.pain-point__link');
+    if (!link) return;
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openStory(card);
+    });
   });
 
-  track.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); scrollByDir(1); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); scrollByDir(-1); }
+  storyClose.addEventListener('click', closeStory);
+  navPrev.addEventListener('click', () => scrollByDir(-1));
+  navNext.addEventListener('click', () => scrollByDir(1));
+  document.addEventListener('keydown', (e) => {
+    if (!story.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeStory();
+    if (e.key === 'ArrowRight') scrollByDir(1);
+    if (e.key === 'ArrowLeft') scrollByDir(-1);
   });
-
-  let carouselTicking = false;
-  track.addEventListener('scroll', () => {
-    if (!carouselTicking) {
-      requestAnimationFrame(() => { updateControls(); carouselTicking = false; });
-      carouselTicking = true;
-    }
-  }, { passive: true });
-
-  window.addEventListener('resize', updateControls);
-  updateControls();
-  setActive(0);
 })();
 
 // ---------- UTM capture (conversion sprint P0/P1) ----------
