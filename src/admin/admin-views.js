@@ -271,7 +271,10 @@ const AdminViews = (() => {
 
     form.appendChild(
       saveBar({
-        onSave: () => AdminApi.putFile("src/_data/site.json", JSON.stringify(data, null, 2) + "\n", "更新封面設定", file.sha),
+        onSave: async () => {
+          const result = await AdminApi.putFile("src/_data/site.json", JSON.stringify(data, null, 2) + "\n", "更新封面設定", file.sha);
+          file.sha = result.content.sha;
+        },
       })
     );
 
@@ -306,11 +309,12 @@ const AdminViews = (() => {
     const wrap = el("div", {}, [section("作品集", [list])]);
     wrap.appendChild(
       saveBar({
-        onSave: () => {
+        onSave: async () => {
           items.forEach((item) => {
             if (!item.id) item.id = "photo-" + Date.now() + Math.random().toString(36).slice(2, 6);
           });
-          return AdminApi.putFile("src/_data/gallery.json", JSON.stringify(items, null, 2) + "\n", "更新作品集", file.sha);
+          const result = await AdminApi.putFile("src/_data/gallery.json", JSON.stringify(items, null, 2) + "\n", "更新作品集", file.sha);
+          file.sha = result.content.sha;
         },
       })
     );
@@ -463,7 +467,8 @@ const AdminViews = (() => {
           if (!slugValue) throw new Error("請輸入網址代稱 (slug)");
           parsedData.layout = "plan";
           const raw = stringifyFrontmatter(parsedData, "");
-          await AdminApi.putFile(`src/plans/${slugValue}.md`, raw, `${isNew ? "新增" : "更新"}方案：${slugValue}`, isNew ? undefined : fileSha);
+          const result = await AdminApi.putFile(`src/plans/${slugValue}.md`, raw, `${isNew ? "新增" : "更新"}方案：${slugValue}`, isNew ? undefined : fileSha);
+          fileSha = result.content.sha;
           if (isNew) location.hash = `#/plans/edit/${slugValue}`;
         },
       })
@@ -608,7 +613,8 @@ const AdminViews = (() => {
           parsedData.layout = "article";
           parsedData.contentBlocks = gjsHandle.getContentBlocks();
           const raw = stringifyFrontmatter(parsedData, "");
-          await AdminApi.putFile(`src/posts/${slugValue}.md`, raw, `${isNew ? "新增" : "更新"}文章：${slugValue}`, isNew ? undefined : fileSha);
+          const result = await AdminApi.putFile(`src/posts/${slugValue}.md`, raw, `${isNew ? "新增" : "更新"}文章：${slugValue}`, isNew ? undefined : fileSha);
+          fileSha = result.content.sha;
           if (isNew) location.hash = `#/posts/edit/${slugValue}`;
         },
       })
