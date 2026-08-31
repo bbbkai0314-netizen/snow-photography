@@ -207,11 +207,11 @@
   }
 })();
 
-// ---------- Pain points story overlay (痛點 → 對應文章 → 加LINE) ----------
-// Each card in the static grid opens a fullscreen 3-page swipeable story instead of
-// navigating straight away. Page 1 is read from the card's own visible text; pages 2
-// and 3 are cloned from <template data-role="article"|"line"> children of the card,
-// so all copy stays authored in index.njk rather than duplicated into this file.
+// ---------- Pain points story overlay (對應文章 → 加LINE) ----------
+// The card itself already states the pain point, so clicking it opens straight onto
+// the article page instead of repeating that text; swiping right once more reveals the
+// LINE page. Both pages are cloned from <template data-role="article"|"line"> children
+// of the card, so all copy stays authored in index.njk rather than duplicated here.
 // Clicking a card without JS (or opening it in a new tab) still follows its real href.
 (() => {
   const story = document.getElementById('story');
@@ -238,29 +238,10 @@
     return panel;
   }
 
-  function painPanelContent(card) {
-    const wrap = document.createDocumentFragment();
-    const tag = document.createElement('span');
-    tag.className = 'story__step-tag';
-    tag.textContent = card.querySelector('.pain-point__type')?.textContent || '';
-    const headline = document.createElement('h3');
-    headline.className = 'story__headline';
-    headline.innerHTML = card.querySelector('.pain-point__link h3')?.innerHTML || '';
-    const body = document.createElement('p');
-    body.className = 'story__body';
-    body.innerHTML = card.querySelector('.pain-point__link p')?.innerHTML || '';
-    const hint = document.createElement('p');
-    hint.className = 'story__hint';
-    hint.textContent = '往右滑，看看我們怎麼幫你解決 →';
-    wrap.append(tag, headline, body, hint);
-    return wrap;
-  }
-
   function openStory(card) {
     const type = card.querySelector('.pain-point__type')?.textContent || '';
     storyType.textContent = type;
     storyTrack.innerHTML = '';
-    storyTrack.appendChild(panelMarkup(painPanelContent(card)));
 
     ['article', 'line'].forEach((role) => {
       const tpl = card.querySelector(`template[data-role="${role}"]`);
