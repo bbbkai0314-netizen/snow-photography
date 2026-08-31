@@ -69,40 +69,45 @@
       <h2 id="pain-points-title">出發滑雪前，你最大的擔憂是什麼？</h2>
       <p>Your story</p>
     </div>
-    <div class="pain-points__grid">
-      <article class="pain-point glass">
-        <a class="pain-point__article-link" href="blog/solo-ski-photography.html">
-          <span class="pain-point__type">一個人出發</span>
-          <h3>想去滑雪，<br>卻一直找不到人陪？</h3>
-          <p>到了陌生的雪場，<br>沒人一起滑，也沒人幫你記錄。</p>
-        </a>
-        <a class="pain-point__swipe" href="blog/solo-ski-photography.html" aria-label="閱讀陪伴式滑雪攝影文章">→</a>
-      </article>
-      <article class="pain-point glass">
-        <div class="pain-point__article-link">
-          <span class="pain-point__type">情侶旅行</span>
-          <h3>每次想留張照片，<br>最後卻為了拍照吵架？</h3>
-          <p>旅行是為了留下回憶。<br>不是為了誰拍得不好看而生氣。</p>
-        </div>
-        <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問情侶旅行拍攝">→</a>
-      </article>
-      <article class="pain-point glass">
-        <a class="pain-point__article-link" href="blog/family-ski-trip.html">
-          <span class="pain-point__type">親子滑雪</span>
-          <h3>又要顧孩子、又要上課，<br>誰來記錄全家人的這一天？</h3>
-          <p>別讓媽媽永遠站在鏡頭後面。<br>這一次，全家人一起留在回憶裡。</p>
-        </a>
-        <a class="pain-point__swipe" href="blog/family-ski-trip.html" aria-label="閱讀親子滑雪文章">→</a>
-      </article>
-      <article class="pain-point glass">
-        <div class="pain-point__article-link">
-          <span class="pain-point__type">這麼多年過去了</span>
-          <h3>去過這麼多地方，<br>真正留下來的是哪一個畫面？</h3>
-          <p>去過的地方會忘，<br>留下的回憶不會。</p>
-        </div>
-        <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問滑雪攝影">→</a>
-      </article>
+    <div class="pain-points__carousel">
+      <button type="button" class="pain-points__arrow pain-points__arrow--prev" data-dir="-1" aria-label="上一個困擾" aria-controls="painPointsTrack">‹</button>
+      <div class="pain-points__track" id="painPointsTrack" tabindex="0" aria-label="顧客常見困擾，左右滑動查看更多">
+        <article class="pain-point glass">
+          <a class="pain-point__article-link" href="blog/solo-ski-photography.html">
+            <span class="pain-point__type">一個人出發</span>
+            <h3>想去滑雪，<br>卻一直找不到人陪？</h3>
+            <p>到了陌生的雪場，<br>沒人一起滑，也沒人幫你記錄。</p>
+          </a>
+          <a class="pain-point__swipe" href="blog/solo-ski-photography.html" aria-label="閱讀陪伴式滑雪攝影文章">→</a>
+        </article>
+        <article class="pain-point glass">
+          <div class="pain-point__article-link">
+            <span class="pain-point__type">情侶旅行</span>
+            <h3>每次想留張照片，<br>最後卻為了拍照吵架？</h3>
+            <p>旅行是為了留下回憶。<br>不是為了誰拍得不好看而生氣。</p>
+          </div>
+          <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問情侶旅行拍攝">→</a>
+        </article>
+        <article class="pain-point glass">
+          <a class="pain-point__article-link" href="blog/family-ski-trip.html">
+            <span class="pain-point__type">親子滑雪</span>
+            <h3>又要顧孩子、又要上課，<br>誰來記錄全家人的這一天？</h3>
+            <p>別讓媽媽永遠站在鏡頭後面。<br>這一次，全家人一起留在回憶裡。</p>
+          </a>
+          <a class="pain-point__swipe" href="blog/family-ski-trip.html" aria-label="閱讀親子滑雪文章">→</a>
+        </article>
+        <article class="pain-point glass">
+          <div class="pain-point__article-link">
+            <span class="pain-point__type">這麼多年過去了</span>
+            <h3>去過這麼多地方，<br>真正留下來的是哪一個畫面？</h3>
+            <p>去過的地方會忘，<br>留下的回憶不會。</p>
+          </div>
+          <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問滑雪攝影">→</a>
+        </article>
+      </div>
+      <button type="button" class="pain-points__arrow pain-points__arrow--next" data-dir="1" aria-label="下一個困擾" aria-controls="painPointsTrack">›</button>
     </div>
+    <div class="pain-points__dots" id="painPointsDots" role="tablist" aria-label="困擾分類指示"></div>
   </section>
 
   <section class="gallery-section" id="gallery">

@@ -207,6 +207,93 @@
   }
 })();
 
+// ---------- Pain points carousel (Apple-style horizontal swipe/snap) ----------
+// Uses native scroll-snap for touch/trackpad swipe, plus arrow buttons and dot
+// indicators (built dynamically like the side-nav dots above) for mouse/keyboard.
+// Controls auto-hide when every card already fits without scrolling.
+(() => {
+  const track = document.getElementById('painPointsTrack');
+  const dotsWrap = document.getElementById('painPointsDots');
+  if (!track || !dotsWrap) return;
+
+  const slides = Array.from(track.children);
+  const prevBtn = document.querySelector('.pain-points__arrow--prev');
+  const nextBtn = document.querySelector('.pain-points__arrow--next');
+
+  slides.forEach((slide, i) => {
+    const dot = document.createElement('span');
+    dot.dataset.index = String(i);
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('tabindex', '0');
+    dot.setAttribute('aria-label', `第 ${i + 1} 個困擾`);
+    const goTo = () => slide.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    dot.addEventListener('click', goTo);
+    dot.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(); }
+    });
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function setActive(i) {
+    dots.forEach((dot, di) => dot.classList.toggle('is-active', di === i));
+  }
+
+  // Track each slide's visible fraction and keep the most-visible one active, rather
+  // than whichever slide's threshold crossing was reported last (which picks the wrong
+  // card when two slides straddle the viewport edge at once).
+  const ratios = new Map(slides.map((slide) => [slide, 0]));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => ratios.set(entry.target, entry.intersectionRatio));
+    let bestSlide = slides[0];
+    let bestRatio = -1;
+    slides.forEach((slide) => {
+      const ratio = ratios.get(slide) || 0;
+      if (ratio > bestRatio) { bestRatio = ratio; bestSlide = slide; }
+    });
+    setActive(slides.indexOf(bestSlide));
+  }, { root: track, threshold: [0, 0.25, 0.5, 0.75, 1] });
+  slides.forEach((slide) => observer.observe(slide));
+
+  function updateControls() {
+    const scrollable = track.scrollWidth > track.clientWidth + 2;
+    if (prevBtn && nextBtn) {
+      prevBtn.hidden = !scrollable;
+      nextBtn.hidden = !scrollable;
+      prevBtn.disabled = track.scrollLeft <= 2;
+      nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    }
+    dotsWrap.hidden = !scrollable;
+  }
+
+  function scrollByDir(dir) {
+    const amount = (slides[0]?.getBoundingClientRect().width || track.clientWidth) + 16;
+    track.scrollBy({ left: amount * dir, behavior: 'smooth' });
+  }
+
+  [prevBtn, nextBtn].forEach((btn) => {
+    if (!btn) return;
+    btn.addEventListener('click', () => scrollByDir(Number(btn.dataset.dir)));
+  });
+
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); scrollByDir(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); scrollByDir(-1); }
+  });
+
+  let carouselTicking = false;
+  track.addEventListener('scroll', () => {
+    if (!carouselTicking) {
+      requestAnimationFrame(() => { updateControls(); carouselTicking = false; });
+      carouselTicking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', updateControls);
+  updateControls();
+  setActive(0);
+})();
+
 // ---------- UTM capture (conversion sprint P0/P1) ----------
 // Reads utm_* params from the landing URL, remembers them for the session, and exposes
 // window.ssfUTM() so tracking.js / booking-form.js can attach the same source data to
