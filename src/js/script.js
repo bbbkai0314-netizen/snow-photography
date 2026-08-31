@@ -231,3 +231,53 @@
 
   window.ssfUTM = () => (Object.keys(fromUrl).length ? fromUrl : readStoredUTM());
 })();
+
+// ---------- Session path tracking ----------
+// Gives every browser session a stable ID and keeps the ordered list of pages visited
+// in sessionStorage, then reports both to GA4 on every page load. This lets tracking.js
+// stamp the same session_id on conversion events (LINE click, booking, etc.) so a
+// customer's whole journey — which pages they saw before they converted — can be read
+// straight off the "session_path_step" event's path_so_far parameter in GA4, without
+// having to reconstruct it from raw page_view hits.
+(() => {
+  const SESSION_ID_KEY = 'ssf_session_id';
+  const PATH_KEY = 'ssf_session_path';
+  const MAX_STEPS = 25; // caps sessionStorage growth for an unusually long browsing session
+
+  function makeId() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+  }
+
+  let sessionId;
+  try { sessionId = sessionStorage.getItem(SESSION_ID_KEY); } catch (e) {}
+  if (!sessionId) {
+    sessionId = makeId();
+    try { sessionStorage.setItem(SESSION_ID_KEY, sessionId); } catch (e) {}
+  }
+
+  let path = [];
+  try { path = JSON.parse(sessionStorage.getItem(PATH_KEY) || '[]'); } catch (e) {}
+  const isEntryPage = path.length === 0;
+  const page = window.location.pathname;
+
+  // Skip logging a repeat entry for the same page (e.g. a hash-only navigation).
+  if (path[path.length - 1] !== page) {
+    path.push(page);
+    if (path.length > MAX_STEPS) path = path.slice(path.length - MAX_STEPS);
+    try { sessionStorage.setItem(PATH_KEY, JSON.stringify(path)); } catch (e) {}
+  }
+
+  window.ssfSessionId = sessionId;
+  window.ssfSessionPath = () => path;
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'session_path_step', {
+      session_id: sessionId,
+      step: path.length,
+      page_path: page,
+      is_entry_page: isEntryPage,
+      entry_referrer: isEntryPage ? (document.referrer || '(direct)') : '(n/a)',
+      path_so_far: path.join(' > ').slice(0, 100),
+    });
+  }
+})();

@@ -44,7 +44,8 @@
   function trackEvent(name, params) {
     if (typeof gtag !== 'function') return;
     const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
-    gtag('event', name, { ...params, ...utm });
+    const sessionId = window.ssfSessionId;
+    gtag('event', name, { ...params, ...utm, ...(sessionId ? { session_id: sessionId } : {}) });
   }
 
   // Reads GA4's client_id so it can ride along in the Form submission. Apps Script later
@@ -79,7 +80,7 @@
     if (el) el.textContent = message || '';
   }
 
-  // ---------- Step 1: plan selection ----------
+  // ---------- Step 2: plan selection ----------
   const planOptions = Array.from(wizard.querySelectorAll('.booking-plan-option'));
   planOptions.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -87,7 +88,7 @@
       btn.classList.add('is-selected');
       state.planLabel = btn.querySelector('.booking-plan-option__title').textContent.trim();
       state.serviceValue = btn.dataset.serviceValue;
-      showError(1, '');
+      showError(2, '');
 
       if (!hasFiredBookingStart) {
         hasFiredBookingStart = true;
@@ -96,15 +97,140 @@
     });
   });
 
-  // ---------- Step 2: date / location / people / notes ----------
-  const dateInput = document.getElementById('bookingDate');
+  // ---------- Step 1: date / location / people / notes ----------
+  // The date picker is a hand-rolled month-grid calendar (Google Calendar style) rather than
+  // a plain <input type="date">, so dates in `window.SSF_BLOCKED_DATES` (set by Ellie from the
+  // admin panel — see src/admin/admin-calendar.js) can render as "已被預約" and be unselectable.
+  // This is scarcity marketing: a date being marked blocked does not mean it was actually
+  // booked, it just needs to look sold-out on the page.
+  const blockedDates = new Set(Array.isArray(window.SSF_BLOCKED_DATES) ? window.SSF_BLOCKED_DATES : []);
+  const calendarEl = document.getElementById('bookingCalendar');
+  const calGrid = calendarEl?.querySelector('[data-cal-grid]');
+  const calTitle = calendarEl?.querySelector('[data-cal-title]');
+  const calHint = calendarEl?.querySelector('[data-cal-hint]');
+  const calSelected = calendarEl?.querySelector('[data-cal-selected]');
+  const calPrevBtn = calendarEl?.querySelector('[data-cal-prev]');
+  const calNextBtn = calendarEl?.querySelector('[data-cal-next]');
+
+  const CAL_WEEKDAY_LABELS = ['日', '一', '二', '三', '四', '五', '六'];
+  // SnowSurfStudio only shoots during ski season (November–April) — the calendar should
+  // never default to, or let visitors browse into, the snowless months.
+  const SEASON_START_MONTH = 10; // November (0-indexed)
+  const SEASON_END_MONTH = 3; // April (0-indexed)
+  const calToday = new Date();
+  calToday.setHours(0, 0, 0, 0);
+
+  function seasonWindow(date) {
+    const y = date.getFullYear();
+    const m = date.getMonth();
+    let startYear;
+    if (m >= SEASON_START_MONTH) startYear = y; // Nov/Dec: this season already started
+    else if (m <= SEASON_END_MONTH) startYear = y - 1; // Jan-Apr: season started last year
+    else startYear = y; // May-Oct (off-season): next season starts this coming November
+    return { startYear, startMonth: SEASON_START_MONTH, endYear: startYear + 1, endMonth: SEASON_END_MONTH };
+  }
+
+  const calSeason = seasonWindow(calToday);
+  const calSeasonStart = new Date(calSeason.startYear, calSeason.startMonth, 1);
+  const calInSeason = calToday >= calSeasonStart;
+  const CAL_MIN_YEAR = calInSeason ? calToday.getFullYear() : calSeason.startYear;
+  const CAL_MIN_MONTH = calInSeason ? calToday.getMonth() : calSeason.startMonth;
+  const CAL_MAX_YEAR = calSeason.endYear;
+  const CAL_MAX_MONTH = calSeason.endMonth;
+
+  let calYear = CAL_MIN_YEAR;
+  let calMonth = CAL_MIN_MONTH;
+
+  function calDateStr(y, m, d) {
+    return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+  }
+
+  function calSelectedLabel(dateStr) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const dow = CAL_WEEKDAY_LABELS[new Date(y, m - 1, d).getDay()];
+    return `已選擇：${y}年${m}月${d}日（週${dow}）`;
+  }
+
+  function selectCalDate(dateStr, cellEl) {
+    state.date = dateStr;
+    calGrid.querySelectorAll('.booking-calendar__cell.is-selected').forEach((c) => c.classList.remove('is-selected'));
+    cellEl.classList.add('is-selected');
+    calSelected.textContent = calSelectedLabel(dateStr);
+    showError(1, '');
+  }
+
+  function renderCalendar() {
+    if (!calGrid) return;
+    calTitle.textContent = `${calYear}年${calMonth + 1}月`;
+    calGrid.innerHTML = '';
+
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i += 1) {
+      const empty = document.createElement('span');
+      empty.className = 'booking-calendar__cell booking-calendar__cell--empty';
+      calGrid.appendChild(empty);
+    }
+
+    let blockedInMonth = 0;
+    for (let d = 1; d <= daysInMonth; d += 1) {
+      const dateStr = calDateStr(calYear, calMonth, d);
+      const isPast = new Date(calYear, calMonth, d) < calToday;
+      const isBlocked = blockedDates.has(dateStr);
+      if (isBlocked) blockedInMonth += 1;
+
+      const cell = document.createElement('button');
+      cell.type = 'button';
+      cell.className = 'booking-calendar__cell';
+      cell.textContent = String(d);
+
+      if (isBlocked) {
+        cell.classList.add('is-full');
+        cell.disabled = true;
+        cell.title = '已被預約';
+      } else if (isPast) {
+        cell.classList.add('is-disabled');
+        cell.disabled = true;
+      } else {
+        cell.classList.add('is-open');
+        cell.addEventListener('click', () => selectCalDate(dateStr, cell));
+      }
+
+      if (state.date === dateStr) cell.classList.add('is-selected');
+      calGrid.appendChild(cell);
+    }
+
+    if (calHint) {
+      if (blockedInMonth > 0) {
+        calHint.textContent = `本月已有 ${blockedInMonth} 天被搶先預約，手刀把握還開放的日期！`;
+        calHint.hidden = false;
+      } else {
+        calHint.hidden = true;
+      }
+    }
+
+    if (calPrevBtn) calPrevBtn.disabled = calYear === CAL_MIN_YEAR && calMonth === CAL_MIN_MONTH;
+    if (calNextBtn) calNextBtn.disabled = calYear === CAL_MAX_YEAR && calMonth === CAL_MAX_MONTH;
+  }
+
+  calPrevBtn?.addEventListener('click', () => {
+    calMonth -= 1;
+    if (calMonth < 0) { calMonth = 11; calYear -= 1; }
+    renderCalendar();
+  });
+  calNextBtn?.addEventListener('click', () => {
+    calMonth += 1;
+    if (calMonth > 11) { calMonth = 0; calYear += 1; }
+    renderCalendar();
+  });
+
+  renderCalendar();
+
   const peopleInput = document.getElementById('bookingPeople');
   const notesInput = document.getElementById('bookingNotes');
   const locationPills = Array.from(wizard.querySelectorAll('.booking-pill'));
 
-  dateInput?.addEventListener('change', () => {
-    state.date = dateInput.value;
-  });
   peopleInput?.addEventListener('input', () => {
     state.people = peopleInput.value;
   });
@@ -116,7 +242,7 @@
       locationPills.forEach((p) => p.classList.remove('is-selected'));
       pill.classList.add('is-selected');
       state.location = pill.dataset.value;
-      showError(2, '');
+      showError(1, '');
     });
   });
 
@@ -134,15 +260,15 @@
   // ---------- Navigation ----------
   function validateStep(n) {
     if (n === 1) {
-      if (!state.serviceValue) {
-        showError(1, '請先選擇一個方案');
-        return false;
-      }
+      if (!state.date) { showError(1, '請選擇拍攝日期'); return false; }
+      if (!state.location) { showError(1, '請選擇雪場地點'); return false; }
+      if (!state.people || Number(state.people) < 1) { showError(1, '請填寫正確人數'); return false; }
     }
     if (n === 2) {
-      if (!state.date) { showError(2, '請選擇拍攝日期'); return false; }
-      if (!state.location) { showError(2, '請選擇雪場地點'); return false; }
-      if (!state.people || Number(state.people) < 1) { showError(2, '請填寫正確人數'); return false; }
+      if (!state.serviceValue) {
+        showError(2, '請先選擇一個方案');
+        return false;
+      }
     }
     if (n === 3) {
       if (!state.name.trim()) { showError(3, '請填寫姓名'); return false; }

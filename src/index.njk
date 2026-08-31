@@ -64,6 +64,47 @@
     </div>
   </section>
 
+  <section class="pain-points" aria-labelledby="pain-points-title">
+    <div class="section-head pain-points__head">
+      <h2 id="pain-points-title">出發滑雪前，你最大的擔憂是什麼？</h2>
+      <p>Your story</p>
+    </div>
+    <div class="pain-points__grid">
+      <article class="pain-point glass">
+        <a class="pain-point__article-link" href="blog/solo-ski-photography.html">
+          <span class="pain-point__type">一個人出發</span>
+          <h3>想去滑雪，<br>卻一直找不到人陪？</h3>
+          <p>到了陌生的雪場，<br>沒人一起滑，也沒人幫你記錄。</p>
+        </a>
+        <a class="pain-point__swipe" href="blog/solo-ski-photography.html" aria-label="閱讀陪伴式滑雪攝影文章">→</a>
+      </article>
+      <article class="pain-point glass">
+        <div class="pain-point__article-link">
+          <span class="pain-point__type">情侶旅行</span>
+          <h3>每次想留張照片，<br>最後卻為了拍照吵架？</h3>
+          <p>旅行是為了留下回憶。<br>不是為了誰拍得不好看而生氣。</p>
+        </div>
+        <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問情侶旅行拍攝">→</a>
+      </article>
+      <article class="pain-point glass">
+        <a class="pain-point__article-link" href="blog/family-ski-trip.html">
+          <span class="pain-point__type">親子滑雪</span>
+          <h3>又要顧孩子、又要上課，<br>誰來記錄全家人的這一天？</h3>
+          <p>別讓媽媽永遠站在鏡頭後面。<br>這一次，全家人一起留在回憶裡。</p>
+        </a>
+        <a class="pain-point__swipe" href="blog/family-ski-trip.html" aria-label="閱讀親子滑雪文章">→</a>
+      </article>
+      <article class="pain-point glass">
+        <div class="pain-point__article-link">
+          <span class="pain-point__type">這麼多年過去了</span>
+          <h3>去過這麼多地方，<br>真正留下來的是哪一個畫面？</h3>
+          <p>去過的地方會忘，<br>留下的回憶不會。</p>
+        </div>
+        <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問滑雪攝影">→</a>
+      </article>
+    </div>
+  </section>
+
   <section class="life-chapters" id="life-chapters" aria-labelledby="life-chapters-title">
     <div class="life-chapters__head">
       <div class="life-chapters__heading">
@@ -227,12 +268,12 @@
         <div class="booking-wizard__stepper">
           <div class="booking-wizard__step is-active" data-step="1">
             <span class="booking-wizard__step-num">1</span>
-            <span class="booking-wizard__step-label">選擇方案</span>
+            <span class="booking-wizard__step-label">拍攝細節</span>
           </div>
           <div class="booking-wizard__step-line"></div>
           <div class="booking-wizard__step" data-step="2">
             <span class="booking-wizard__step-num">2</span>
-            <span class="booking-wizard__step-label">拍攝細節</span>
+            <span class="booking-wizard__step-label">選擇方案</span>
           </div>
           <div class="booking-wizard__step-line"></div>
           <div class="booking-wizard__step" data-step="3">
@@ -245,6 +286,51 @@
           <div class="booking-wizard__main">
             <form id="bookingForm" novalidate>
               <div class="booking-wizard__panel is-active" data-panel="1">
+                <h3 class="booking-wizard__panel-title">拍攝細節</h3>
+                <div class="booking-field">
+                  <label>日期 *</label>
+                  <div class="booking-calendar" id="bookingCalendar">
+                    <p class="booking-calendar__banner">🔥 熱門日期陸續被搶訂中，越晚預約可選日期越少</p>
+                    <div class="booking-calendar__head">
+                      <button type="button" class="booking-calendar__nav" data-cal-prev aria-label="上個月">‹</button>
+                      <span class="booking-calendar__title" data-cal-title></span>
+                      <button type="button" class="booking-calendar__nav" data-cal-next aria-label="下個月">›</button>
+                    </div>
+                    <div class="booking-calendar__weekdays">
+                      <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+                    </div>
+                    <div class="booking-calendar__grid" data-cal-grid></div>
+                    <p class="booking-calendar__hint" data-cal-hint hidden></p>
+                    <div class="booking-calendar__legend">
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--open"></i>可預約</span>
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--selected"></i>已選擇</span>
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--full"></i>已被預約</span>
+                    </div>
+                    <p class="booking-calendar__selected" data-cal-selected>尚未選擇日期</p>
+                  </div>
+                </div>
+                <div class="booking-field">
+                  <label>地點 *</label>
+                  <div class="booking-pill-group">
+                    <button type="button" class="booking-pill" data-value="白馬">白馬</button>
+                  </div>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingPeople">人數 *</label>
+                  <input type="number" id="bookingPeople" min="1" value="1" required>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingNotes">拍攝風格或特殊需求（選填）</label>
+                  <textarea id="bookingNotes" rows="3" placeholder="例如：自然抓拍為主、希望多拍滑行瞬間…"></textarea>
+                </div>
+                <p class="booking-wizard__error" data-error-for="1"></p>
+                <div class="booking-wizard__actions">
+                  <span></span>
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
+                </div>
+              </div>
+
+              <div class="booking-wizard__panel" data-panel="2">
                 <h3 class="booking-wizard__panel-title">選擇方案</h3>
                 <div class="booking-plan-options">
                   <button type="button" class="booking-plan-option" data-service-value="A 陪伴滑雪方案">
@@ -267,33 +353,6 @@
                     <span class="booking-plan-option__title">尊榮服務方案</span>
                     <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
                   </button>
-                </div>
-                <p class="booking-wizard__error" data-error-for="1"></p>
-                <div class="booking-wizard__actions">
-                  <span></span>
-                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
-                </div>
-              </div>
-
-              <div class="booking-wizard__panel" data-panel="2">
-                <h3 class="booking-wizard__panel-title">拍攝細節</h3>
-                <div class="booking-field">
-                  <label for="bookingDate">日期 *</label>
-                  <input type="date" id="bookingDate" required>
-                </div>
-                <div class="booking-field">
-                  <label>地點 *</label>
-                  <div class="booking-pill-group">
-                    <button type="button" class="booking-pill" data-value="白馬">白馬</button>
-                  </div>
-                </div>
-                <div class="booking-field">
-                  <label for="bookingPeople">人數 *</label>
-                  <input type="number" id="bookingPeople" min="1" value="1" required>
-                </div>
-                <div class="booking-field">
-                  <label for="bookingNotes">拍攝風格或特殊需求（選填）</label>
-                  <textarea id="bookingNotes" rows="3" placeholder="例如：自然抓拍為主、希望多拍滑行瞬間…"></textarea>
                 </div>
                 <p class="booking-wizard__error" data-error-for="2"></p>
                 <div class="booking-wizard__actions">
@@ -345,6 +404,7 @@
     </div>
   </section>
 
+
   {% include "partials/footer.njk" %}
 
 </main>
@@ -364,6 +424,7 @@
 
 <script src="js/script.js?v={{ assetVersion }}"></script>
 <script src="js/tracking.js?v={{ assetVersion }}"></script>
+<script>window.SSF_BLOCKED_DATES = {{ blockedDates | dump | safe }};</script>
 <script src="js/booking-form.js?v={{ assetVersion }}"></script>
 </body>
 </html>

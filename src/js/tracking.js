@@ -4,7 +4,12 @@
   function fireGaEvent(name, parameters) {
     if (typeof window.gtag === 'function') {
       const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
-      window.gtag('event', name, { ...parameters, ...utm });
+      const sessionId = window.ssfSessionId;
+      window.gtag('event', name, {
+        ...parameters,
+        ...utm,
+        ...(sessionId ? { session_id: sessionId } : {}),
+      });
     }
   }
 
@@ -28,6 +33,46 @@
 
   function fireBookingComplete() {
     fireGaEvent('booking_complete');
+  }
+
+  function fireContentView(name, category) {
+    fireGaEvent('view_article', { content_name: name, content_category: category });
+    if (typeof fbq === 'function') {
+      fbq('track', 'ViewContent', { content_name: name, content_category: category });
+    }
+  }
+
+  // Fire once per threshold per page load, in order, so a fast scroll to the bottom
+  // still reports every milestone passed rather than jumping straight to 90.
+  const SCROLL_THRESHOLDS = [25, 50, 75, 90];
+  let scrollThresholdIndex = 0;
+  let scrollTicking = false;
+
+  function checkScrollDepth() {
+    scrollTicking = false;
+    if (scrollThresholdIndex >= SCROLL_THRESHOLDS.length) return;
+
+    const doc = document.documentElement;
+    const scrollable = doc.scrollHeight - window.innerHeight;
+    const percent = scrollable > 0 ? ((window.scrollY / scrollable) * 100) : 100;
+
+    while (
+      scrollThresholdIndex < SCROLL_THRESHOLDS.length &&
+      percent >= SCROLL_THRESHOLDS[scrollThresholdIndex]
+    ) {
+      const threshold = SCROLL_THRESHOLDS[scrollThresholdIndex];
+      fireGaEvent('scroll_depth', { percent: threshold });
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'ScrollDepth', { percent: threshold });
+      }
+      scrollThresholdIndex += 1;
+    }
+  }
+
+  function onScrollDepthCheck() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(checkScrollDepth);
   }
 
   function isLineLink(link) {
@@ -57,6 +102,15 @@
     selectPlan: fireSelectPlan,
     bookingComplete: fireBookingComplete,
   };
+
+  const contentName = document.body.dataset.contentName;
+  const contentType = document.body.dataset.contentType;
+  if (contentName && contentType) {
+    fireContentView(contentName, contentType);
+  }
+
+  window.addEventListener('scroll', onScrollDepthCheck, { passive: true });
+  checkScrollDepth();
 
   document.addEventListener('click', (e) => {
     const planBtn = e.target.closest('.booking-plan-option');

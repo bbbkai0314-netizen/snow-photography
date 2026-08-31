@@ -9,8 +9,10 @@ const AdminViews = (() => {
     { key: "gallery", label: "作品集", hash: "#/gallery" },
     { key: "plans", label: "拍攝方案", hash: "#/plans" },
     { key: "posts", label: "部落格文章", hash: "#/posts" },
+    { key: "calendar", label: "預約行事曆", hash: "#/calendar" },
     { key: "bookings", label: "預約管理", hash: "#/bookings" },
     { key: "automation", label: "自動化", hash: "#/automation" },
+    { key: "insights", label: "行銷數據", hash: "#/insights" },
   ];
 
   function parseFrontmatter(raw) {
@@ -154,6 +156,24 @@ const AdminViews = (() => {
     ]);
   }
 
+  // ---------------- 預約行事曆 (blockedDates.json，飢餓行銷用) ----------------
+
+  async function renderCalendar() {
+    const file = await AdminApi.getFile("src/_data/blockedDates.json");
+    let dates = JSON.parse(file.content || "[]");
+
+    const wrap = el("div", {}, [section("預約行事曆", [AdminCalendar.renderPanel(dates, (next) => (dates = next))])]);
+    wrap.appendChild(
+      saveBar({
+        onSave: async () => {
+          const result = await AdminApi.putFile("src/_data/blockedDates.json", JSON.stringify(dates, null, 2) + "\n", "更新預約行事曆", file.sha);
+          file.sha = result.content.sha;
+        },
+      })
+    );
+    return shell("calendar", wrap);
+  }
+
   // ---------------- 預約管理 (Google Sheet, 透過 Apps Script Web App) ----------------
 
   async function renderBookings() {
@@ -164,6 +184,12 @@ const AdminViews = (() => {
 
   async function renderAutomation() {
     return shell("automation", el("div", {}, [section("自動化發布", [AdminAutomation.renderPanel()])]));
+  }
+
+  // ---------------- 行銷數據 ----------------
+
+  async function renderInsights() {
+    return shell("insights", el("div", {}, [section("行銷數據", [AdminMetaInsights.renderPanel()])]));
   }
 
   // ---------------- Dashboard ----------------
@@ -231,7 +257,10 @@ const AdminViews = (() => {
 
     form.appendChild(
       saveBar({
-        onSave: () => AdminApi.putFile("src/_data/site.json", JSON.stringify(data, null, 2) + "\n", "更新封面設定", file.sha),
+        onSave: async () => {
+          const result = await AdminApi.putFile("src/_data/site.json", JSON.stringify(data, null, 2) + "\n", "更新封面設定", file.sha);
+          file.sha = result.content.sha;
+        },
       })
     );
 
@@ -266,11 +295,12 @@ const AdminViews = (() => {
     const wrap = el("div", {}, [section("作品集", [list])]);
     wrap.appendChild(
       saveBar({
-        onSave: () => {
+        onSave: async () => {
           items.forEach((item) => {
             if (!item.id) item.id = "photo-" + Date.now() + Math.random().toString(36).slice(2, 6);
           });
-          return AdminApi.putFile("src/_data/gallery.json", JSON.stringify(items, null, 2) + "\n", "更新作品集", file.sha);
+          const result = await AdminApi.putFile("src/_data/gallery.json", JSON.stringify(items, null, 2) + "\n", "更新作品集", file.sha);
+          file.sha = result.content.sha;
         },
       })
     );
@@ -423,7 +453,8 @@ const AdminViews = (() => {
           if (!slugValue) throw new Error("請輸入網址代稱 (slug)");
           parsedData.layout = "plan";
           const raw = stringifyFrontmatter(parsedData, "");
-          await AdminApi.putFile(`src/plans/${slugValue}.md`, raw, `${isNew ? "新增" : "更新"}方案：${slugValue}`, isNew ? undefined : fileSha);
+          const result = await AdminApi.putFile(`src/plans/${slugValue}.md`, raw, `${isNew ? "新增" : "更新"}方案：${slugValue}`, isNew ? undefined : fileSha);
+          fileSha = result.content.sha;
           if (isNew) location.hash = `#/plans/edit/${slugValue}`;
         },
       })
@@ -568,7 +599,8 @@ const AdminViews = (() => {
           parsedData.layout = "article";
           parsedData.contentBlocks = gjsHandle.getContentBlocks();
           const raw = stringifyFrontmatter(parsedData, "");
-          await AdminApi.putFile(`src/posts/${slugValue}.md`, raw, `${isNew ? "新增" : "更新"}文章：${slugValue}`, isNew ? undefined : fileSha);
+          const result = await AdminApi.putFile(`src/posts/${slugValue}.md`, raw, `${isNew ? "新增" : "更新"}文章：${slugValue}`, isNew ? undefined : fileSha);
+          fileSha = result.content.sha;
           if (isNew) location.hash = `#/posts/edit/${slugValue}`;
         },
       })
@@ -594,7 +626,9 @@ const AdminViews = (() => {
     renderPlanEdit,
     renderPostsList,
     renderPostEdit,
+    renderCalendar,
     renderBookings,
     renderAutomation,
+    renderInsights,
   };
 })();
