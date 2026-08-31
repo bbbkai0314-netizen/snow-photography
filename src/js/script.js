@@ -207,6 +207,122 @@
   }
 })();
 
+// ---------- Pain points story overlay (對應文章 → 加LINE) ----------
+// The card itself already states the pain point, so clicking it opens straight onto
+// the article page instead of repeating that text; swiping right once more reveals the
+// LINE page. Both pages are cloned from <template data-role="article"|"line"> children
+// of the card, so all copy stays authored in index.njk rather than duplicated here.
+// Clicking a card without JS (or opening it in a new tab) still follows its real href.
+(() => {
+  const story = document.getElementById('story');
+  const cards = Array.from(document.querySelectorAll('[data-story-card]'));
+  if (!story || !cards.length) return;
+
+  const storyType = document.getElementById('storyType');
+  const storyTrack = document.getElementById('storyTrack');
+  const storyClose = document.getElementById('storyClose');
+  const storySegs = Array.from(document.querySelectorAll('#storyProgress .story__seg'));
+  const navPrev = document.getElementById('storyNavPrev');
+  const navNext = document.getElementById('storyNavNext');
+
+  let slides = [];
+  let observer = null;
+
+  function panelMarkup(source) {
+    const panel = document.createElement('div');
+    panel.className = 'story__panel';
+    const inner = document.createElement('div');
+    inner.className = 'story__panel-inner';
+    inner.append(source);
+    panel.appendChild(inner);
+    return panel;
+  }
+
+  function openStory(card) {
+    const type = card.querySelector('.pain-point__type')?.textContent || '';
+    storyType.textContent = type;
+    storyTrack.innerHTML = '';
+
+    ['article', 'line'].forEach((role) => {
+      const tpl = card.querySelector(`template[data-role="${role}"]`);
+      if (tpl) storyTrack.appendChild(panelMarkup(tpl.content.cloneNode(true)));
+    });
+
+    slides = Array.from(storyTrack.children);
+
+    if (observer) observer.disconnect();
+    const ratios = new Map(slides.map((s) => [s, 0]));
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => ratios.set(entry.target, entry.intersectionRatio));
+      let best = 0;
+      let bestRatio = -1;
+      slides.forEach((s, si) => {
+        const r = ratios.get(s) || 0;
+        if (r > bestRatio) { bestRatio = r; best = si; }
+      });
+      storySegs.forEach((seg, si) => {
+        seg.classList.toggle('is-current', si === best);
+        seg.classList.toggle('is-done', si < best);
+      });
+      navPrev.disabled = best === 0;
+      navNext.disabled = best === slides.length - 1;
+    }, { root: storyTrack, threshold: [0, 0.25, 0.5, 0.75, 1] });
+    slides.forEach((s) => observer.observe(s));
+
+    storyTrack.querySelectorAll('[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.copy);
+          btn.textContent = '已複製';
+          btn.classList.add('is-copied');
+          setTimeout(() => { btn.textContent = '複製'; btn.classList.remove('is-copied'); }, 1600);
+        } catch (e) { /* clipboard unavailable in this context */ }
+      });
+    });
+
+    storySegs.forEach((seg, si) => {
+      seg.classList.toggle('is-current', si === 0);
+      seg.classList.toggle('is-done', false);
+    });
+    story.classList.add('is-open');
+    story.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    storyTrack.scrollLeft = 0;
+    navPrev.disabled = true;
+    navNext.disabled = slides.length <= 1;
+  }
+
+  function closeStory() {
+    story.classList.remove('is-open');
+    story.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function scrollByDir(dir) {
+    const amount = slides[0]?.getBoundingClientRect().width || storyTrack.clientWidth;
+    storyTrack.scrollBy({ left: amount * dir, behavior: 'smooth' });
+  }
+
+  cards.forEach((card) => {
+    const link = card.querySelector('.pain-point__link');
+    if (!link) return;
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openStory(card);
+    });
+  });
+
+  storyClose.addEventListener('click', closeStory);
+  navPrev.addEventListener('click', () => scrollByDir(-1));
+  navNext.addEventListener('click', () => scrollByDir(1));
+  document.addEventListener('keydown', (e) => {
+    if (!story.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeStory();
+    if (e.key === 'ArrowRight') scrollByDir(1);
+    if (e.key === 'ArrowLeft') scrollByDir(-1);
+  });
+})();
+
 // ---------- UTM capture (conversion sprint P0/P1) ----------
 // Reads utm_* params from the landing URL, remembers them for the session, and exposes
 // window.ssfUTM() so tracking.js / booking-form.js can attach the same source data to
