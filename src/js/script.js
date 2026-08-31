@@ -208,33 +208,37 @@
 
   // ---------- MY OWN WAY carousel ----------
   // Visitors advance the story deliberately; the final action opens LINE for an inquiry.
-  const carouselCard = document.querySelector('.chapter-card--carousel');
-  const carouselSlides = carouselCard
-    ? Array.from(carouselCard.querySelectorAll('.chapter-card__media--carousel .chapter-card__slide'))
-    : [];
-  const carouselNext = carouselCard?.querySelector('.chapter-card__carousel-next');
-  if (carouselSlides.length > 1 && carouselNext) {
-    document.documentElement.classList.add('js');
+  const carouselCards = Array.from(document.querySelectorAll('.chapter-card--carousel'));
+  if (carouselCards.length) document.documentElement.classList.add('js');
+  carouselCards.forEach((carouselCard) => {
+    const carouselSlides = Array.from(carouselCard.querySelectorAll('.chapter-card__media--carousel .chapter-card__slide'));
+    const carouselNext = carouselCard.querySelector('.chapter-card__carousel-next');
+    if (carouselSlides.length < 2 || !carouselNext) return;
+
     let activeSlide = 0;
+    let isTransitioning = false;
     const actionLabel = carouselNext.querySelector('.chapter-card__carousel-action');
+    const carouselName = carouselCard.querySelector('.chapter-card__title').textContent;
     const renderCarousel = () => {
       carouselSlides.forEach((slide, index) => {
         slide.classList.toggle('is-current', index === activeSlide);
         slide.style.zIndex = index === activeSlide ? '2' : '0';
       });
       const isLastSlide = activeSlide === carouselSlides.length - 1;
-      carouselNext.setAttribute('aria-label', isLastSlide ? '前往 LINE 詢問陪伴滑雪服務' : `查看第 ${activeSlide + 2} 張 MY OWN WAY 圖文`);
+      carouselNext.setAttribute('aria-label', isLastSlide ? '前往 LINE 詢問滑雪攝影服務' : `查看第 ${activeSlide + 2} 張 ${carouselName} 圖文`);
       actionLabel.textContent = '→';
     };
     renderCarousel();
 
     carouselNext.addEventListener('click', () => {
+      if (isTransitioning) return;
       if (activeSlide === carouselSlides.length - 1) {
         window.location.assign(carouselCard.dataset.lineUrl);
         return;
       }
+      isTransitioning = true;
       const outgoingSlide = carouselSlides[activeSlide];
-      const nextSlideIndex = (activeSlide + 1) % carouselSlides.length;
+      const nextSlideIndex = activeSlide + 1;
       const incomingSlide = carouselSlides[nextSlideIndex];
 
       incomingSlide.style.zIndex = '2';
@@ -245,10 +249,11 @@
       window.setTimeout(() => {
         outgoingSlide.style.zIndex = '0';
         activeSlide = nextSlideIndex;
+        isTransitioning = false;
         renderCarousel();
       }, 650);
     });
-  }
+  });
 })();
 
 // ---------- UTM capture (conversion sprint P0/P1) ----------
