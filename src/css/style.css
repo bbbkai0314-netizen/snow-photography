@@ -307,8 +307,8 @@ button{ font-family:inherit; }
   }
 }
 @keyframes heroCrossfade{
-  0%, 33.33% { opacity:1; }
-  50%, 83.33% { opacity:0; }
+  0%, 30% { opacity:1; }
+  50%, 80% { opacity:0; }
   100% { opacity:1; }
 }
 
