@@ -44,7 +44,7 @@ ID: SSS-20260901-005
 Brand / Risk / CTA / SEO QA: 全繁中；保留已核准的文章標題、配圖、SEO metadata 與 CTA；僅精簡正文導言。
 狀態: APPROVED
 Ellie 核准: 2026-09-01，明確指示「部署吧。上線吧」。
-執行結果與數據: 待執行。
+執行結果與數據: 2026-09-01 已推送 commit `e8d8d7b`（文章精簡）與 `8289788`（核准紀錄）至 `main`；GitHub Pages workflow `33465447737` 已成功完成部署。
 Knowledge 回寫判斷: 待部署驗收後評估。
 
 ---
