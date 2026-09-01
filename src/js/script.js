@@ -60,6 +60,7 @@
         media.style.transform = `scale(${1.03 + heroProgress * 0.05}) translateY(${scrollY * 0.25}px)`;
         content.style.opacity = String(clamp(1 - heroProgress * 1.6, 0, 1));
         content.style.transform = `translateY(${-40 + heroProgress * -20}%)`;
+        document.body.classList.toggle('line-float-hidden', heroProgress < 0.4);
         return;
       }
 
