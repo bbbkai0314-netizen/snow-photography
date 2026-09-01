@@ -292,20 +292,17 @@ button{ font-family:inherit; }
   object-position:50% 0%;
 }
 
-.chapter__media--crossfade .chapter__media-img{
-  opacity:0;
-}
-.chapter__media--crossfade .chapter__media-img--winter{
-  opacity:1;
-}
 .chapter__media--crossfade .chapter__media-img--summer{
   object-position:50% 45%;
 }
+
+.hero-fade{ opacity:0; }
+.hero-fade--a{ opacity:1; }
 @media (prefers-reduced-motion: no-preference){
-  .chapter__media--crossfade .chapter__media-img{
+  .hero-fade{
     animation:heroCrossfade 24s ease-in-out infinite;
   }
-  .chapter__media--crossfade .chapter__media-img--summer{
+  .hero-fade--b{
     animation-delay:-12s;
   }
 }
@@ -320,7 +317,12 @@ button{ font-family:inherit; }
   background:
     linear-gradient(180deg, rgba(5,8,12,.55) 0%, rgba(5,8,12,.05) 30%, rgba(5,8,12,.75) 100%);
 }
-.chapter__scrim--hero{
+.chapter__scrim--hero-left{
+  background:
+    linear-gradient(180deg, rgba(5,8,12,.4) 0%, rgba(5,8,12,.1) 35%, rgba(5,8,12,.9) 100%),
+    linear-gradient(90deg, rgba(5,8,12,.5) 0%, rgba(5,8,12,0) 45%);
+}
+.chapter__scrim--hero-right{
   background:
     linear-gradient(180deg, rgba(5,8,12,.4) 0%, rgba(5,8,12,.1) 35%, rgba(5,8,12,.9) 100%),
     linear-gradient(270deg, rgba(5,8,12,.55) 0%, rgba(5,8,12,0) 45%);
@@ -343,6 +345,10 @@ button{ font-family:inherit; }
 .chapter__content--right{
   left:auto; right:6vw;
   text-align:right;
+}
+.chapter__content--nowrap{
+  white-space:nowrap;
+  font-size:clamp(28px, 4.6vw, 58px) !important;
 }
 .glass-card{
   padding:30px 32px;

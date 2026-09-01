@@ -48,8 +48,7 @@
 
     chapters.forEach((chapter, i) => {
       const media = chapter.querySelector('.chapter__media');
-      const content = chapter.querySelector('.chapter__content');
-      const isHero = chapter.classList.contains('chapter') && content.classList.contains('chapter__content--hero');
+      const isHero = chapter.dataset.tag === 'HERO';
 
       if (isPinned(chapter) || chapter.getBoundingClientRect().top <= 1) {
         activeIndex = i;
@@ -58,12 +57,17 @@
       if (isHero) {
         const heroProgress = clamp(scrollY / vh, 0, 1);
         media.style.transform = `scale(${1.03 + heroProgress * 0.05}) translateY(${scrollY * 0.25}px)`;
-        content.style.opacity = String(clamp(1 - heroProgress * 1.6, 0, 1));
-        content.style.transform = `translateY(${-40 + heroProgress * -20}%)`;
+        const heroOpacity = String(clamp(1 - heroProgress * 1.6, 0, 1));
+        const heroTransform = `translateY(${-40 + heroProgress * -20}%)`;
+        chapter.querySelectorAll('.chapter__content').forEach((content) => {
+          content.style.opacity = heroOpacity;
+          content.style.transform = heroTransform;
+        });
         document.body.classList.toggle('line-float-hidden', heroProgress < 0.4);
         return;
       }
 
+      const content = chapter.querySelector('.chapter__content');
       const progress = chapterProgress(chapter);
 
       // Media: gentle zoom-out + slight vertical drift (kept subtle so subjects near
