@@ -1,6 +1,6 @@
 ---
 layout: plan
-title: "尊榮服務方案"
+title: "一條龍服務方案"
 subtitleEn: "Snow Experience Package"
 eyebrowNumber: "04"
 eyebrowLabel: "最完整方案"
@@ -60,6 +60,6 @@ groups:
       - "不需自行聯絡多個店家"
       - "讓旅程更省時、更安心"
 seo:
-  description: "SnowSurfStudio 尊榮服務方案，適合海外旅客、親子家庭與希望享受完整滑雪體驗的客人。滑雪攝影、教練安排、住宿協助、雪具租借、滑雪資訊整合，單一窗口一次搞定所有需求。"
+  description: "SnowSurfStudio 一條龍服務方案，適合海外旅客、親子家庭與希望享受完整滑雪體驗的客人。滑雪攝影、教練安排、住宿協助、雪具租借、滑雪資訊整合，單一窗口一次搞定所有需求。"
   keywords: "日本滑雪包套行程,滑雪攝影,Snowboard,Ski,滑雪教練安排,滑雪住宿協助,滑雪裝備租借,白馬滑雪旅遊"
 ---

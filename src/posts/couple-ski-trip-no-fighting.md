@@ -83,7 +83,7 @@ contentBlocks:
         <p>如果你們正在規劃日本滑雪旅行，想同時留下自然的滑行照、合照與旅程裡的生活片段，可以告訴 SnowSurfStudio：日期、人數、程度，以及你們最想記得的是哪一段。</p>
         <div class="article-cta__links">
           <a class="article-cta__btn glass" href="../index.html#booking">看看拍攝方案 →</a>
-          <a href="../plans/photography.html">滑雪攝影方案</a>
+          <a href="../index.html#plans">查看更多拍攝方案</a>
         </div>
       </div>
 ---

@@ -1,6 +1,6 @@
 ---
 layout: plan
-title: "合作教練＋攝影方案"
+title: "滑雪教練＋攝影方案"
 subtitleEn: "Lesson + Photography"
 eyebrowNumber: "03"
 serviceType: "滑雪教練課程與滑雪攝影"
@@ -24,6 +24,6 @@ sections:
       - "滑行動作拍攝"
       - "課程成果留念"
 seo:
-  description: "SnowSurfStudio 合作教練＋攝影方案，適合第一次滑雪、想進步的滑雪者與親子家庭。合作滑雪教練課程搭配專業滑雪攝影，記錄學習過程與每一次進步的瞬間。"
+  description: "SnowSurfStudio 滑雪教練＋攝影方案，適合第一次滑雪、想進步的滑雪者與親子家庭。合作滑雪教練課程搭配專業滑雪攝影，記錄學習過程與每一次進步的瞬間。"
   keywords: "滑雪教練課程,滑雪攝影方案,Snowboard,Ski,新手滑雪,親子滑雪課程,白馬滑雪教學"
 ---
