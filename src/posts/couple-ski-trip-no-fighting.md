@@ -9,7 +9,6 @@ heroImageAlt: 兩位伴侶帶著雪板走在雪山夕陽中，象徵一起留下
 previewImage: images/couple-ski-trip-memories.png
 previewImageAlt: 兩位伴侶在夕陽雪山中同行
 previewImagePosition: "50% 72%"
-leadParagraph: 情侶一起滑雪，最容易卡住的往往不是技術，而是節奏、體力，還有那句「你幫我拍一張」。這篇整理五個不掃興的小默契，讓你們真的享受滑雪旅行，也把值得記得的瞬間好好留下來。
 date: '2026-09-01'
 dateModified: '2026-09-01'
 previewDescription: 程度不同怎麼滑、另一半能不能教、累了怎麼辦、拍照為什麼容易吵架——五個讓情侶雪季旅行更舒服的小默契。
@@ -25,8 +24,6 @@ contentBlocks:
       - 你還記得，對方曾經為你做過最浪漫的事嗎？
       - 可能不是一束花，也不是昂貴的禮物。
       - 而是某一次，你們一起去了哪裡、做了什麼，留下了一段只有你們兩個才懂的回憶。
-      - 照片會讓人想起的，通常不只是畫面。
-      - 多年以後再看到那張照片，你可能會想起那天的雪、第一次一起搭纜車時的緊張，或是下午累到坐在餐廳裡不想說話的樣子。
   - heading: 先記得：你們不是來完成滑雪 KPI
     image: images/couple-ski-trip-memories.png
     imageAlt: 兩位伴侶帶著雪板走在雪山夕陽中
