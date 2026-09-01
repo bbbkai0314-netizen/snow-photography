@@ -43,7 +43,7 @@ ID: SSS-20260901-004
 Brand / Risk / CTA / SEO QA: 全繁中；文章採情緒共鳴＋實用攻略排版；使用 Ellie 桌面 `伴侶/1.png` 素材；SEO 標題、描述、關鍵字及 article metadata 已建立；無價格、付款、預約規則異動。
 狀態: APPROVED
 Ellie 核准: 2026-09-01，明確指示「commit部署吧」。範圍為目前首頁圖文與新增文章版本。
-執行結果與數據: 待執行。
+執行結果與數據: 2026-09-01 已提交 `389a515`（`Add couple ski trip guide`）並推送至 `main`；GitHub Pages workflow `33464485930` 已成功完成部署。
 Knowledge 回寫判斷: 已記錄長文手機段落規則；發布後待觀察文章流量、預約 CTA 點擊與相關詢問。
 
 ---
