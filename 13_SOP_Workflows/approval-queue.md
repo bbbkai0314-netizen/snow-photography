@@ -8,6 +8,7 @@
 | SSS-20260831-002 | LINE / Access | `SnowSurfStudio｜LINE 詢問 Webhook` Web App v1 | 只記錄文字訊息；Channel Secret、Access Token 與專屬 webhook key 均為指令碼屬性；公開端點要求 webhook key | APPROVED | 2026-08-31：Ellie 核准以 Ellie 身分、任何人可存取公開部署。 | 待建立部署 |
 | SSS-20260831-003 | LINE / Access | `snowsurf-line-webhook-proxy` Cloudflare Worker v1 | 公開 Worker 驗證 LINE 簽章、轉送至既有 Apps Script，並直接回應 200；機密設定為 Worker secrets | APPROVED | 2026-08-31：Ellie 明確指示「你幫我用」，同意建立、公開部署、回填、Verify 與開啟此 LINE Webhook proxy。 | 執行中 |
 | SSS-20260901-004 | Website | 首頁 LIFE CHAPTERS 圖文更新＋〈情侶滑雪不吵架攻略〉 | Brand / CTA / SEO / 手機段落排版已完成；無價格、無表單規則異動 | APPROVED | 2026-09-01：Ellie 明確指示「commit部署吧」。 | 待執行 |
+| SSS-20260901-005 | Website | 〈情侶滑雪不吵架攻略〉精簡開頭版 | Brand / CTA / SEO 已沿用已上線版本；刪除 3 段導言，無價格、無表單規則異動 | APPROVED | 2026-09-01：Ellie 明確指示「部署吧。上線吧」。 | 待執行 |
 
 ID: SSS-20260829-001
 類型: Website
@@ -32,6 +33,19 @@ Brand / Risk / CTA / SEO QA: 僅記錄文字訊息，不自動回覆或已讀。
 Ellie 核准: 2026-08-31，明確核准「以 Ellie 身分、任何人可存取公開部署」。
 執行結果與數據: 已確認既有 Web App URL；2026-08-31 已輪替 `LINE_WEBHOOK_KEY`（新值僅用於受控設定，不記錄於本檔）。LINE Verify 已成功。手機測試已新增一列到 `LINE 詢問`；暱稱欄回退為 LINE user ID，表示 GAS 的 Channel Access Token 仍未成功取得 Profile，待重新核對／寫入新 token 後複測。
 Knowledge 回寫判斷: 待驗收後評估。
+
+---
+
+ID: SSS-20260901-005
+類型: Website
+商業目標與 KPI: 以更精簡的文章開頭提升閱讀進入速度；維持 Journal 閱讀與拍攝方案 CTA 導流。
+版本／素材連結: commit `e8d8d7b`（〈情侶滑雪不吵架攻略〉刪除開頭 3 段文字）。
+影響範圍與不可逆性: Git commit 推送至 `main` 後，GitHub Pages 會自動公開部署網站。
+Brand / Risk / CTA / SEO QA: 全繁中；保留已核准的文章標題、配圖、SEO metadata 與 CTA；僅精簡正文導言。
+狀態: APPROVED
+Ellie 核准: 2026-09-01，明確指示「部署吧。上線吧」。
+執行結果與數據: 待執行。
+Knowledge 回寫判斷: 待部署驗收後評估。
 
 ---
 
