@@ -37,7 +37,7 @@
     <div class="article-hero">
       <a class="article-breadcrumb" href="index.html">← 返回滑雪日誌</a>
       <span class="article-hero__tag">{{ tag }}</span>
-      <h1>{{ title }}</h1>
+      <h1>{{ displayTitle | safe if displayTitle else title }}</h1>
       <p class="article-hero__meta">{{ metaLine }}</p>
     </div>
 
