@@ -300,10 +300,10 @@ button{ font-family:inherit; }
 .hero-fade--a{ opacity:1; }
 @media (prefers-reduced-motion: no-preference){
   .hero-fade{
-    animation:heroCrossfade 12s ease-in-out infinite;
+    animation:heroCrossfade 10s ease-in-out infinite;
   }
   .hero-fade--b{
-    animation-delay:-6s;
+    animation-delay:-5s;
   }
 }
 @keyframes heroCrossfade{
