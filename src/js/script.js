@@ -48,8 +48,7 @@
 
     chapters.forEach((chapter, i) => {
       const media = chapter.querySelector('.chapter__media');
-      const content = chapter.querySelector('.chapter__content');
-      const isHero = chapter.classList.contains('chapter') && content.classList.contains('chapter__content--hero');
+      const isHero = chapter.dataset.tag === 'HERO';
 
       if (isPinned(chapter) || chapter.getBoundingClientRect().top <= 1) {
         activeIndex = i;
@@ -58,11 +57,17 @@
       if (isHero) {
         const heroProgress = clamp(scrollY / vh, 0, 1);
         media.style.transform = `scale(${1.03 + heroProgress * 0.05}) translateY(${scrollY * 0.25}px)`;
-        content.style.opacity = String(clamp(1 - heroProgress * 1.6, 0, 1));
-        content.style.transform = `translateY(${-40 + heroProgress * -20}%)`;
+        const heroOpacity = String(clamp(1 - heroProgress * 1.6, 0, 1));
+        const heroTransform = `translateY(${-40 + heroProgress * -20}%)`;
+        chapter.querySelectorAll('.chapter__content').forEach((content) => {
+          content.style.opacity = heroOpacity;
+          content.style.transform = heroTransform;
+        });
+        document.body.classList.toggle('line-float-hidden', heroProgress < 0.4);
         return;
       }
 
+      const content = chapter.querySelector('.chapter__content');
       const progress = chapterProgress(chapter);
 
       // Media: gentle zoom-out + slight vertical drift (kept subtle so subjects near
@@ -205,6 +210,58 @@
       if (e.key === 'ArrowLeft') prev();
     });
   }
+
+  // ---------- MY OWN WAY carousel ----------
+  // Visitors advance the story deliberately; the final action opens LINE for an inquiry.
+  const carouselCards = Array.from(document.querySelectorAll('.chapter-card--carousel'));
+  if (carouselCards.length) document.documentElement.classList.add('js');
+  carouselCards.forEach((carouselCard) => {
+    const carouselSlides = Array.from(carouselCard.querySelectorAll('.chapter-card__media--carousel .chapter-card__slide'));
+    const carouselNext = carouselCard.querySelector('.chapter-card__carousel-next');
+    if (carouselSlides.length < 2 || !carouselNext) return;
+
+    let activeSlide = 0;
+    let isTransitioning = false;
+    const actionLabel = carouselNext.querySelector('.chapter-card__carousel-action');
+    const carouselName = carouselCard.querySelector('.chapter-card__title').textContent;
+    const renderCarousel = () => {
+      carouselSlides.forEach((slide, index) => {
+        slide.classList.toggle('is-current', index === activeSlide);
+        slide.style.zIndex = index === activeSlide ? '2' : '0';
+      });
+      const isLastSlide = activeSlide === carouselSlides.length - 1;
+      carouselNext.setAttribute('aria-label', isLastSlide ? '前往 LINE 詢問滑雪攝影服務' : `查看第 ${activeSlide + 2} 張 ${carouselName} 圖文`);
+      actionLabel.textContent = '→';
+    };
+    renderCarousel();
+
+    carouselNext.addEventListener('click', () => {
+      if (isTransitioning) return;
+      if (activeSlide === carouselSlides.length - 1) {
+        if (window.ssTrack && typeof window.ssTrack.lineContact === 'function') {
+          window.ssTrack.lineContact('life_chapter_carousel');
+        }
+        window.location.assign(carouselCard.dataset.lineUrl);
+        return;
+      }
+      isTransitioning = true;
+      const outgoingSlide = carouselSlides[activeSlide];
+      const nextSlideIndex = activeSlide + 1;
+      const incomingSlide = carouselSlides[nextSlideIndex];
+
+      incomingSlide.style.zIndex = '2';
+      incomingSlide.classList.add('is-current');
+      outgoingSlide.style.zIndex = '1';
+      outgoingSlide.classList.remove('is-current');
+
+      window.setTimeout(() => {
+        outgoingSlide.style.zIndex = '0';
+        activeSlide = nextSlideIndex;
+        isTransitioning = false;
+        renderCarousel();
+      }, 650);
+    });
+  });
 })();
 
 // ---------- UTM capture (conversion sprint P0/P1) ----------

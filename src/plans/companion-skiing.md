@@ -2,14 +2,14 @@
 layout: plan
 title: "陪伴滑雪方案"
 subtitleEn: "一個人滑雪找不到人？SnowSurfStudio 幫你把回憶留下來"
-eyebrowNumber: "01"
+eyebrowNumber: "02"
 serviceType: "陪伴滑雪攝影服務"
 heroImage: "images/DSCF0108-wide.jpg"
 heroImageAlt: "日本雪場單板滑雪者騰空抓板動作，滑雪攝影記錄一個人滑雪旅程的瞬間"
 heroImageAspect: "1824/1142"
 leadParagraph: "一個人去日本滑雪，其實很自由。想幾點上山就幾點上山，喜歡哪一條雪道就多滑幾趟；不用等待別人，也不用一直配合同行者的滑雪程度。"
 previewDescription: "一個人滑雪找不到人？SnowSurfStudio 幫你把回憶留下來。"
-order: 1
+order: 2
 ctaText: "想預約陪伴滑雪方案，請告訴我們你的滑雪日期、雪場與最想留下的畫面。SnowSurfStudio 會為你安排適合這趟旅程的拍攝方式。❄️"
 contentBlocks:
   - type: html

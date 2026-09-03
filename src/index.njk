@@ -48,59 +48,92 @@
 
   <section class="chapter" data-tag="HERO" style="--h:100vh">
     <div class="chapter__pin">
-      <div class="chapter__media">
-        <img src="{{ site.heroImage }}" alt="{{ site.heroImageAlt }}">
+      <div class="chapter__media chapter__media--crossfade">
+        <img class="hero-fade hero-fade--a" src="{{ site.heroImage }}" alt="{{ site.heroImageAlt }}">
+        <img class="chapter__media-img--summer hero-fade hero-fade--b" src="{{ site.heroImageSecondary }}" alt="{{ site.heroImageSecondaryAlt }}">
       </div>
-      <div class="chapter__scrim chapter__scrim--hero"></div>
-      <div class="chapter__content chapter__content--hero">
-        <p class="eyebrow">Snow photographer · 滑雪攝影</p>
-        <h1>snowsurfstudio</h1>
-        <p class="hero__booking">2026/27 日本滑雪攝影服務｜Snowboard &amp; Ski</p>
-        <p class="chapter__location">{{ site.heroLocationLine }}</p>
-        <p class="chapter__lead">2026/27 雪季，SnowSurfStudio 將在日本白馬提供滑雪攝影服務，以 Snowboard 與 Ski 平面拍攝為主；專為一個人旅行、情侶、家庭與朋友打造自然紀錄式滑雪攝影，留下每一季最珍貴的滑雪回憶。</p>
-        <p class="chapter__sub">2026 / 27 Season &middot; @snowsurfstudio</p>
+      <div class="chapter__scrim chapter__scrim--hero-left hero-fade hero-fade--a"></div>
+      <div class="chapter__scrim chapter__scrim--hero-right hero-fade hero-fade--b"></div>
+      <div class="hero-fade hero-fade--a">
+        <div class="chapter__content chapter__content--hero">
+          <p class="eyebrow">Snow photographer · 滑雪攝影</p>
+          <h1>snowsurfstudio</h1>
+          <p class="hero__booking">2026/27 日本滑雪攝影服務｜Snowboard &amp; Ski</p>
+          <p class="chapter__location">{{ site.heroLocationLine }}</p>
+          <p class="chapter__lead">旅行照片很多，卻很少有一張是你。SnowSurfStudio 在日本白馬，以自然、不打斷旅程的方式，替一個人、情侶、家庭與朋友留下真正投入雪季的樣子。</p>
+          <p class="chapter__sub">2026 / 27 Season &middot; @snowsurfstudio</p>
+        </div>
+      </div>
+      <div class="hero-fade hero-fade--b">
+        <div class="chapter__content chapter__content--hero chapter__content--right">
+          <p class="eyebrow">人生轉場攝影師 · Life in Transition</p>
+          <h1 class="chapter__content--nowrap">Life in Transition</h1>
+          <p class="hero__booking">人生轉場記錄者</p>
+          <p class="chapter__lead">人生很多轉折，卻很少有一張照片留住那個瞬間。離職的那天、畢業典禮後的擁抱、搬進新城市的第一個早晨——我們陪你走進人生正在翻篇的那一刻，把「正在轉變中的自己」好好留下來。</p>
+        </div>
       </div>
       <div class="scroll-cue">SCROLL</div>
     </div>
   </section>
 
-  <section class="pain-points" aria-labelledby="pain-points-title">
-    <div class="section-head pain-points__head">
-      <h2 id="pain-points-title">出發滑雪前，你最大的擔憂是什麼？</h2>
-      <p>Your story</p>
+  <section class="life-chapters" id="life-chapters" aria-labelledby="life-chapters-title">
+    <div class="life-chapters__head">
+      <div class="life-chapters__heading">
+        <p class="life-chapters__eyebrow">Life Chapters</p>
+        <h2 id="life-chapters-title">LIFE CHAPTERS</h2>
+      </div>
     </div>
-    <div class="pain-points__grid">
-      <article class="pain-point glass">
-        <a class="pain-point__article-link" href="blog/solo-ski-photography.html">
-          <span class="pain-point__type">一個人出發</span>
-          <h3>想去滑雪，<br>卻一直找不到人陪？</h3>
-          <p>到了陌生的雪場，<br>沒人一起滑，也沒人幫你記錄。</p>
-        </a>
-        <a class="pain-point__swipe" href="blog/solo-ski-photography.html" aria-label="閱讀陪伴式滑雪攝影文章">→</a>
-      </article>
-      <article class="pain-point glass">
-        <div class="pain-point__article-link">
-          <span class="pain-point__type">情侶旅行</span>
-          <h3>每次想留張照片，<br>最後卻為了拍照吵架？</h3>
-          <p>旅行是為了留下回憶。<br>不是為了誰拍得不好看而生氣。</p>
+    <div class="chapters-grid">
+      <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
+        <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
+          <img class="chapter-card__slide" src="images/my-own-way-01.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-02.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-03.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-04.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-05.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-06.png" alt="" loading="lazy">
         </div>
-        <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問情侶旅行拍攝">→</a>
-      </article>
-      <article class="pain-point glass">
-        <a class="pain-point__article-link" href="blog/family-ski-trip.html">
-          <span class="pain-point__type">親子滑雪</span>
-          <h3>又要顧孩子、又要上課，<br>誰來記錄全家人的這一天？</h3>
-          <p>別讓媽媽永遠站在鏡頭後面。<br>這一次，全家人一起留在回憶裡。</p>
-        </a>
-        <a class="pain-point__swipe" href="blog/family-ski-trip.html" aria-label="閱讀親子滑雪文章">→</a>
-      </article>
-      <article class="pain-point glass">
-        <div class="pain-point__article-link">
-          <span class="pain-point__type">這麼多年過去了</span>
-          <h3>去過這麼多地方，<br>真正留下來的是哪一個畫面？</h3>
-          <p>去過的地方會忘，<br>留下的回憶不會。</p>
+        <div class="chapter-card__scrim"></div>
+        <div class="chapter-card__body">
+          <p class="chapter-card__title">MY OWN WAY</p>
+          <p class="chapter-card__subtitle">A trip with myself</p>
         </div>
-        <a class="pain-point__swipe" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener" aria-label="透過 LINE 詢問滑雪攝影">→</a>
+        <button class="chapter-card__carousel-next" type="button" aria-label="查看下一張 MY OWN WAY 圖文">
+          <span class="chapter-card__carousel-action" aria-hidden="true">→</span>
+        </button>
+      </article>
+      <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
+        <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
+          <img class="chapter-card__slide" src="images/chapter-couple-01.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-02.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-03.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-04.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-05.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-06.png" alt="" loading="lazy">
+        </div>
+        <div class="chapter-card__scrim"></div>
+        <div class="chapter-card__body">
+          <p class="chapter-card__title">COUPLE</p>
+          <p class="chapter-card__subtitle">A trip together</p>
+        </div>
+        <button class="chapter-card__carousel-next" type="button" aria-label="查看下一張 COUPLE 圖文">
+          <span class="chapter-card__carousel-action" aria-hidden="true">→</span>
+        </button>
+      </article>
+      <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
+        <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
+          <img class="chapter-card__slide" src="images/chapter-family-01.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-family-02.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-family-03.png" alt="" loading="lazy">
+        </div>
+        <div class="chapter-card__scrim"></div>
+        <div class="chapter-card__body">
+          <p class="chapter-card__title">FAMILY</p>
+          <p class="chapter-card__subtitle">A season to remember</p>
+        </div>
+        <button class="chapter-card__carousel-next" type="button" aria-label="查看下一張 FAMILY 圖文">
+          <span class="chapter-card__carousel-action" aria-hidden="true">→</span>
+        </button>
       </article>
     </div>
   </section>
@@ -133,7 +166,7 @@
     <div class="section-head">
       <h2 id="plans-title">拍攝方案</h2>
       <p>Photo Session</p>
-      <a class="journal__more" href="plans/photography.html">滑雪攝影方案｜NT$13,000 起 →</a>
+      <a class="journal__more" href="plans/life-transition.html">人生轉場攝影方案 →</a>
     </div>
 
     <div class="plans-grid">
@@ -289,24 +322,24 @@
               <div class="booking-wizard__panel" data-panel="2">
                 <h3 class="booking-wizard__panel-title">選擇方案</h3>
                 <div class="booking-plan-options">
-                  <button type="button" class="booking-plan-option" data-service-value="A 陪伴滑雪方案">
+                  <button type="button" class="booking-plan-option" data-service-value="A 人生轉場攝影">
+                    <span class="booking-plan-option__icon">🌅</span>
+                    <span class="booking-plan-option__title">人生轉場攝影方案</span>
+                    <span class="booking-plan-option__desc">離職、分手、畢業——為正在轉變的自己留下一張照片</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="B 陪伴滑雪方案">
                     <span class="booking-plan-option__icon">❄️</span>
                     <span class="booking-plan-option__title">陪伴滑雪方案</span>
                     <span class="booking-plan-option__desc">一個人滑雪找不到人？我們陪你把回憶留下來</span>
                   </button>
-                  <button type="button" class="booking-plan-option" data-service-value="B 滑雪攝影">
-                    <span class="booking-plan-option__icon">📸</span>
-                    <span class="booking-plan-option__title">攝影方案</span>
-                    <span class="booking-plan-option__desc">適合想留下滑雪回憶的旅客</span>
-                  </button>
-                  <button type="button" class="booking-plan-option" data-service-value="C 教練課程＋滑雪攝影">
+                  <button type="button" class="booking-plan-option" data-service-value="C 滑雪教練＋滑雪攝影">
                     <span class="booking-plan-option__icon">🏂</span>
-                    <span class="booking-plan-option__title">合作教練＋攝影方案</span>
+                    <span class="booking-plan-option__title">滑雪教練＋攝影方案</span>
                     <span class="booking-plan-option__desc">一次完成學習與紀錄</span>
                   </button>
-                  <button type="button" class="booking-plan-option" data-service-value="D 尊榮方案（滑雪教練＋滑雪攝影＋住宿＋滑雪裝備＋接駁）">
+                  <button type="button" class="booking-plan-option" data-service-value="D 一條龍服務（滑雪教練＋滑雪攝影＋住宿＋滑雪裝備＋接駁）">
                     <span class="booking-plan-option__icon">🤝</span>
-                    <span class="booking-plan-option__title">尊榮服務方案</span>
+                    <span class="booking-plan-option__title">一條龍服務方案</span>
                     <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
                   </button>
                 </div>
@@ -359,6 +392,7 @@
       </div>
     </div>
   </section>
+
 
   {% include "partials/footer.njk" %}
 
