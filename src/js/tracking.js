@@ -15,6 +15,16 @@
 
   function fireLineContact(source) {
     fireGaEvent('line_click', { source });
+    // Keep the Google Ads conversion alongside the existing GA4/Meta events. This
+    // handler runs synchronously within the click event, before the browser follows
+    // the original LINE link (which opens in a new tab where applicable).
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-18359584407/xG5WCKHCsO0cEJeNxLJE',
+        value: 1.0,
+        currency: 'TWD',
+      });
+    }
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { content_name: source });
     }
