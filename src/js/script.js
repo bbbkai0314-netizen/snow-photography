@@ -327,14 +327,14 @@
   window.ssfSessionId = sessionId;
   window.ssfSessionPath = () => path;
 
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', 'session_path_step', {
-      session_id: sessionId,
-      step: path.length,
-      page_path: page,
-      is_entry_page: isEntryPage,
-      entry_referrer: isEntryPage ? (document.referrer || '(direct)') : '(n/a)',
-      path_so_far: path.join(' > ').slice(0, 100),
-    });
-  }
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'session_path_step',
+    session_id: sessionId,
+    step: path.length,
+    page_path: page,
+    is_entry_page: isEntryPage,
+    entry_referrer: isEntryPage ? (document.referrer || '(direct)') : '(n/a)',
+    path_so_far: path.join(' > ').slice(0, 100),
+  });
 })();
