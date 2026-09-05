@@ -13,7 +13,7 @@ ctaText: "想預約陪伴式滑雪 A，請告訴我們你的滑雪日期、雪�
 contentBlocks:
   - type: html
     html: |
-      <h2>一人滑雪攝影 A｜2 小時</h2>
+      <h2>陪伴式滑雪 A｜一人・2 小時</h2>
       <h3>2 小時滑雪攝影</h3>
       <h3>拍攝內容</h3>
       <ul class="article-checklist">
