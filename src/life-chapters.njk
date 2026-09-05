@@ -1,0 +1,101 @@
+---
+permalink: "life-chapters.html"
+---
+{%- set htmlTitle = "人生章節｜用照片留住人生轉場的那一刻 - SnowSurfStudio" -%}
+{%- set socialTitle = htmlTitle -%}
+{%- set canonicalUrl = "https://snowsurfstudio.net/life-chapters.html" -%}
+{%- set ogImageUrl = "https://snowsurfstudio.net/" + site.seo.ogImage -%}
+{%- set ogType = "website" -%}
+{%- set assetPrefix = "" -%}
+{%- set seo = { description: "離職、分手、畢業、搬進新城市——人生很多轉折，卻很少有一張照片留住那個瞬間。SnowSurfStudio 陪你走進人生正在翻篇的那一刻，把正在轉變中的自己好好留下來。", keywords: "人生轉場攝影,人生章節,滑雪攝影,SnowSurfStudio,Life in Transition" } -%}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include "partials/head-meta.njk" %}
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MVCP2M"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{% include "partials/glow.njk" %}
+
+{% include "partials/nav.njk" %}
+
+<main>
+  <section class="life-chapters life-chapters--standalone" id="life-chapters">
+    <a class="article-breadcrumb" href="index.html#top">← 返回首頁</a>
+    <div class="life-chapters__head">
+      <div class="life-chapters__heading">
+        <p class="life-chapters__eyebrow">Life Chapters</p>
+        <h1 id="life-chapters-title">LIFE CHAPTERS</h1>
+      </div>
+    </div>
+    <div class="chapters-grid">
+      <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
+        <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
+          <img class="chapter-card__slide" src="images/my-own-way-01.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-02.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-03.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-04.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-05.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-06.png" alt="" loading="lazy">
+        </div>
+        <div class="chapter-card__scrim"></div>
+        <div class="chapter-card__body">
+          <p class="chapter-card__title">MY OWN WAY</p>
+          <p class="chapter-card__subtitle">A trip with myself</p>
+        </div>
+        <button class="chapter-card__carousel-next" type="button" aria-label="查看下一張 MY OWN WAY 圖文">
+          <span class="chapter-card__carousel-action" aria-hidden="true">→</span>
+        </button>
+      </article>
+      <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
+        <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
+          <img class="chapter-card__slide" src="images/chapter-couple-01.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-02.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-03.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-04.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-05.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-06.png" alt="" loading="lazy">
+        </div>
+        <div class="chapter-card__scrim"></div>
+        <div class="chapter-card__body">
+          <p class="chapter-card__title">COUPLE</p>
+          <p class="chapter-card__subtitle">A trip together</p>
+        </div>
+        <button class="chapter-card__carousel-next" type="button" aria-label="查看下一張 COUPLE 圖文">
+          <span class="chapter-card__carousel-action" aria-hidden="true">→</span>
+        </button>
+      </article>
+      <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
+        <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
+          <img class="chapter-card__slide" src="images/chapter-family-01.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-family-02.jpg" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-family-03.png" alt="" loading="lazy">
+        </div>
+        <div class="chapter-card__scrim"></div>
+        <div class="chapter-card__body">
+          <p class="chapter-card__title">FAMILY</p>
+          <p class="chapter-card__subtitle">A season to remember</p>
+        </div>
+        <button class="chapter-card__carousel-next" type="button" aria-label="查看下一張 FAMILY 圖文">
+          <span class="chapter-card__carousel-action" aria-hidden="true">→</span>
+        </button>
+      </article>
+    </div>
+
+    {% set ctaMessage = "想留下屬於你自己的人生章節嗎？填寫需求表單，告訴我們你的方案與拍攝日期。" %}
+    {% include "partials/cta-booking.njk" %}
+  </section>
+
+  {% include "partials/footer.njk" %}
+</main>
+
+{% include "partials/line-float.njk" %}
+
+<script src="js/script.js?v={{ assetVersion }}"></script>
+<script src="js/tracking.js?v={{ assetVersion }}"></script>
+</body>
+</html>

@@ -569,8 +569,16 @@ button{ font-family:inherit; }
   border-radius:var(--radius-lg);
 }
 .about .section-head{ padding:0 0 20px; justify-content:center; }
-.about--standalone{ margin-top:130px; }
-@media (max-width:720px){ .about--standalone{ margin-top:110px; } }
+.about--standalone,
+.appointment--standalone{ margin-top:130px; }
+.life-chapters--standalone,
+.gallery-section--standalone{ padding-top:130px; }
+@media (max-width:720px){
+  .about--standalone,
+  .appointment--standalone{ margin-top:110px; }
+  .life-chapters--standalone,
+  .gallery-section--standalone{ padding-top:110px; }
+}
 .about__inner{ text-align:center; }
 .about__brand{
   font-family:'Noto Sans TC', sans-serif;

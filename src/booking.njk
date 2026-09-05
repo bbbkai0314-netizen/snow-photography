@@ -1,0 +1,189 @@
+---
+permalink: "booking.html"
+---
+{%- set htmlTitle = "我要預約｜日本滑雪攝影預約 - SnowSurfStudio" -%}
+{%- set socialTitle = htmlTitle -%}
+{%- set canonicalUrl = "https://snowsurfstudio.net/booking.html" -%}
+{%- set ogImageUrl = "https://snowsurfstudio.net/" + site.seo.ogImage -%}
+{%- set ogType = "website" -%}
+{%- set assetPrefix = "" -%}
+{%- set seo = { description: "預約 SnowSurfStudio 日本滑雪攝影服務：選擇拍攝日期、地點與方案，三步驟完成你的雪季拍攝預約。", keywords: "滑雪攝影預約,日本滑雪攝影,SnowSurfStudio 預約" } -%}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include "partials/head-meta.njk" %}
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MVCP2M"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{% include "partials/glow.njk" %}
+
+{% include "partials/nav.njk" %}
+
+<main>
+  <section class="appointment glass-panel appointment--standalone" id="booking">
+    <a class="article-breadcrumb" href="index.html#top">← 返回首頁</a>
+    <div class="section-head">
+      <h1>我要預約</h1>
+      <p>Booking</p>
+    </div>
+    <div class="appointment__inner">
+      <a class="booking-notice glass" href="blog/ski-lesson-photography-guide.html">
+        <span class="booking-notice__icon" aria-hidden="true">📋</span>
+        <span class="booking-notice__text">預約前必讀：滑雪教學＋平面攝影服務說明與注意事項</span>
+        <span class="booking-notice__arrow" aria-hidden="true">→</span>
+      </a>
+      <div class="booking-wizard" id="bookingWizard">
+        <div class="booking-wizard__stepper">
+          <div class="booking-wizard__step is-active" data-step="1">
+            <span class="booking-wizard__step-num">1</span>
+            <span class="booking-wizard__step-label">拍攝細節</span>
+          </div>
+          <div class="booking-wizard__step-line"></div>
+          <div class="booking-wizard__step" data-step="2">
+            <span class="booking-wizard__step-num">2</span>
+            <span class="booking-wizard__step-label">選擇方案</span>
+          </div>
+          <div class="booking-wizard__step-line"></div>
+          <div class="booking-wizard__step" data-step="3">
+            <span class="booking-wizard__step-num">3</span>
+            <span class="booking-wizard__step-label">聯絡方式</span>
+          </div>
+        </div>
+
+        <div class="booking-wizard__body">
+          <div class="booking-wizard__main">
+            <form id="bookingForm" novalidate>
+              <div class="booking-wizard__panel is-active" data-panel="1">
+                <h3 class="booking-wizard__panel-title">拍攝細節</h3>
+                <div class="booking-field">
+                  <label>日期 *</label>
+                  <div class="booking-calendar" id="bookingCalendar">
+                    <p class="booking-calendar__banner">🔥 熱門日期陸續被搶訂中，越晚預約可選日期越少</p>
+                    <div class="booking-calendar__head">
+                      <button type="button" class="booking-calendar__nav" data-cal-prev aria-label="上個月">‹</button>
+                      <span class="booking-calendar__title" data-cal-title></span>
+                      <button type="button" class="booking-calendar__nav" data-cal-next aria-label="下個月">›</button>
+                    </div>
+                    <div class="booking-calendar__weekdays">
+                      <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+                    </div>
+                    <div class="booking-calendar__grid" data-cal-grid></div>
+                    <p class="booking-calendar__hint" data-cal-hint hidden></p>
+                    <div class="booking-calendar__legend">
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--open"></i>可預約</span>
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--selected"></i>已選擇</span>
+                      <span class="booking-calendar__legend-item"><i class="booking-calendar__dot booking-calendar__dot--full"></i>已被預約</span>
+                    </div>
+                    <p class="booking-calendar__selected" data-cal-selected>尚未選擇日期</p>
+                  </div>
+                </div>
+                <div class="booking-field">
+                  <label>地點 *</label>
+                  <div class="booking-pill-group">
+                    <button type="button" class="booking-pill" data-value="白馬">白馬</button>
+                  </div>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingPeople">人數 *</label>
+                  <input type="number" id="bookingPeople" min="1" value="1" required>
+                </div>
+                <div class="booking-field">
+                  <label for="bookingNotes">拍攝風格或特殊需求（選填）</label>
+                  <textarea id="bookingNotes" rows="3" placeholder="例如：自然抓拍為主、希望多拍滑行瞬間…"></textarea>
+                </div>
+                <p class="booking-wizard__error" data-error-for="1"></p>
+                <div class="booking-wizard__actions">
+                  <span></span>
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
+                </div>
+              </div>
+
+              <div class="booking-wizard__panel" data-panel="2">
+                <h3 class="booking-wizard__panel-title">選擇方案</h3>
+                <div class="booking-plan-options">
+                  <button type="button" class="booking-plan-option" data-service-value="A 人生轉場攝影">
+                    <span class="booking-plan-option__icon">🌅</span>
+                    <span class="booking-plan-option__title">人生轉場攝影方案</span>
+                    <span class="booking-plan-option__desc">離職、分手、畢業——為正在轉變的自己留下一張照片</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="B 陪伴滑雪方案">
+                    <span class="booking-plan-option__icon">❄️</span>
+                    <span class="booking-plan-option__title">陪伴滑雪方案</span>
+                    <span class="booking-plan-option__desc">一個人滑雪找不到人？我們陪你把回憶留下來</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="C 滑雪教練＋滑雪攝影">
+                    <span class="booking-plan-option__icon">🏂</span>
+                    <span class="booking-plan-option__title">滑雪教練＋攝影方案</span>
+                    <span class="booking-plan-option__desc">一次完成學習與紀錄</span>
+                  </button>
+                  <button type="button" class="booking-plan-option" data-service-value="D 尊榮方案（滑雪教練＋滑雪攝影＋住宿＋滑雪裝備＋接駁）">
+                    <span class="booking-plan-option__icon">🤝</span>
+                    <span class="booking-plan-option__title">尊榮服務方案</span>
+                    <span class="booking-plan-option__desc">從攝影到住宿，一次滿足</span>
+                  </button>
+                </div>
+                <p class="booking-wizard__error" data-error-for="2"></p>
+                <div class="booking-wizard__actions">
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--prev" data-prev>← 上一步</button>
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--next" data-next>下一步 →</button>
+                </div>
+              </div>
+
+              <div class="booking-wizard__panel" data-panel="3">
+                <h3 class="booking-wizard__panel-title">聯絡方式</h3>
+                <div class="booking-field">
+                  <label for="bookingName">姓名 *</label>
+                  <input type="text" id="bookingName" required placeholder="王小明">
+                </div>
+                <div class="booking-field">
+                  <label for="bookingEmail">Email *</label>
+                  <input type="email" id="bookingEmail" required placeholder="you@example.com">
+                </div>
+                <div class="booking-field">
+                  <label for="bookingLine">LINE ID *</label>
+                  <input type="text" id="bookingLine" required placeholder="方便我們用 LINE 聯繫你">
+                </div>
+                <p class="booking-wizard__error" data-error-for="3"></p>
+                <div class="booking-wizard__actions">
+                  <button type="button" class="booking-wizard__btn booking-wizard__btn--prev" data-prev>← 上一步</button>
+                  <button type="submit" class="booking-wizard__btn booking-wizard__btn--submit">送出預約</button>
+                </div>
+              </div>
+            </form>
+
+            <div class="booking-wizard__confirm" data-panel="confirm" hidden>
+              <div class="booking-wizard__confirm-icon">✅</div>
+              <h3>已收到你的預約需求！</h3>
+              <p>正在為你開啟 LINE，請點「加入」加我們為好友，我們會盡快回覆可拍攝檔期與訂金付款資訊。</p>
+              <a class="booking-wizard__line-link" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">沒有自動跳轉？點此前往 LINE</a>
+              <p class="booking-wizard__fallback">
+                無法使用 LINE？改用<a href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">原始需求表單</a>。
+              </p>
+            </div>
+
+            <div class="booking-wizard__error-banner" data-panel="submit-error" hidden>
+              <p>送出時發生網路問題，請改用下方連結：</p>
+              <a href="https://forms.gle/sd9qTAxuh2A3K5FF9" target="_blank" rel="noopener noreferrer">填寫原始需求表單 →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include "partials/footer.njk" %}
+</main>
+
+{% include "partials/line-float.njk" %}
+
+<script src="js/script.js?v={{ assetVersion }}"></script>
+<script src="js/tracking.js?v={{ assetVersion }}"></script>
+<script>window.SSF_BLOCKED_DATES = {{ blockedDates | dump | safe }};</script>
+<script src="js/booking-form.js?v={{ assetVersion }}"></script>
+</body>
+</html>

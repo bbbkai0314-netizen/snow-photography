@@ -1,0 +1,60 @@
+---
+permalink: "partners.html"
+---
+{%- set htmlTitle = "合作夥伴｜SnowSurfStudio" -%}
+{%- set socialTitle = htmlTitle -%}
+{%- set canonicalUrl = "https://snowsurfstudio.net/partners.html" -%}
+{%- set ogImageUrl = "https://snowsurfstudio.net/" + site.seo.ogImage -%}
+{%- set ogType = "website" -%}
+{%- set assetPrefix = "" -%}
+{%- set seo = { description: "SnowSurfStudio 合作夥伴：住宿與接駁安排、滑雪學校教學攝影、WHITESPACE Taiwan 裝備優惠，陪你打理滑雪旅行的每一個環節。", keywords: "SnowSurfStudio 合作夥伴,滑雪住宿,滑雪學校,WHITESPACE Taiwan" } -%}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+{% include "partials/head-meta.njk" %}
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MVCP2M"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{% include "partials/glow.njk" %}
+
+{% include "partials/nav.njk" %}
+
+<main>
+  <section class="about glass-panel about--standalone" id="partners">
+    <a class="article-breadcrumb" href="index.html#top">← 返回首頁</a>
+    <div class="section-head">
+      <h1>合作夥伴</h1>
+      <p>Partners</p>
+    </div>
+    <div class="partners">
+      <div class="partner-card glass">
+        <h5>協助住宿・接駁安排</h5>
+        <p>提供雪季住宿規劃、交通接駁與行程安排，讓旅客享有便利、安心的滑雪體驗。</p>
+      </div>
+      <div class="partner-card glass">
+        <h5>滑雪學校</h5>
+        <p>與滑雪學校合作，提供課程紀錄、教學攝影、活動拍攝及影像內容創作，捕捉每位滑雪者最精彩的雪季時刻。</p>
+      </div>
+      <div class="partner-card glass">
+        <h5>WHITESPACE Taiwan</h5>
+        <p>SnowSurfStudio 為 WHITESPACE Taiwan 合作夥伴。透過我們購買 WHITESPACE 商品，即可享有合作專屬優惠，並提供產品諮詢與選購建議，陪伴你打造理想的滑雪裝備。</p>
+      </div>
+    </div>
+
+    {% set ctaMessage = "想搭配我們的合作夥伴一起規劃滑雪旅行嗎？填寫需求表單，告訴我們你的方案與拍攝日期。" %}
+    {% include "partials/cta-booking.njk" %}
+  </section>
+
+  {% include "partials/footer.njk" %}
+</main>
+
+{% include "partials/line-float.njk" %}
+
+<script src="js/script.js?v={{ assetVersion }}"></script>
+<script src="js/tracking.js?v={{ assetVersion }}"></script>
+</body>
+</html>
