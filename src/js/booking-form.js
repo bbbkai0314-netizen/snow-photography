@@ -19,6 +19,46 @@
 
   const GA_CLIENT_ID_ENTRY = 'entry.255043109'; // Form 裡「GA Client ID」那一題
 
+  // ---------- LINE 帳號綁定（讓後台可以在預約後主動發 LINE 訊息） ----------
+  // 填入 LINE Developers Console 建立的 LIFF ID 之後，客人送出預約表單、被導去 LINE 時，
+  // 會順便自動抓他的 LINE userId 送給後台，之後 GAS 才能主動推送 LINE 訊息給他。
+  // LIFF_ID 沒填的話，就維持原本「直接導去 LINE 加好友連結」的行為，不會出錯、也不會多載任何東西。
+  const LIFF_ID = '';
+  // GAS 網頁應用程式（doPost）的網址，填了才會把綁定資料送過去（見 automation/gas/booking-confirmation.gs）。
+  const LINE_BIND_WEBHOOK_URL = '';
+  const LINE_BIND_STASH_KEY = 'ssfPendingLineBind';
+
+  function loadLiffSdk() {
+    return new Promise((resolve, reject) => {
+      if (window.liff) { resolve(window.liff); return; }
+      const script = document.createElement('script');
+      script.src = 'https://static.line-scdn.net/liff/edge/2/sdk.js';
+      script.onload = () => resolve(window.liff);
+      script.onerror = () => reject(new Error('LIFF SDK 載入失敗'));
+      document.head.appendChild(script);
+    });
+  }
+
+  // 送綁定資料失敗不影響預約本身——客人一樣會被導去 LINE，只是後台沒辦法自動發訊息而已。
+  async function sendLineBind(profile, identity) {
+    if (!LINE_BIND_WEBHOOK_URL) return;
+    try {
+      await fetch(LINE_BIND_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          name: identity.name,
+          email: identity.email,
+          userId: profile.userId,
+          displayName: profile.displayName,
+        }),
+      });
+    } catch (err) {
+      // 靜默失敗——見上方註解
+    }
+  }
+
   const form = document.getElementById('bookingForm');
   const steps = Array.from(wizard.querySelectorAll('.booking-wizard__step'));
   const panels = Array.from(wizard.querySelectorAll('.booking-wizard__panel'));
@@ -295,6 +335,47 @@
   const lineLink = confirmPanel.querySelector('.booking-wizard__line-link');
   const LINE_URL = lineLink ? lineLink.href : '';
 
+  // 送出預約成功後呼叫。回傳 true 代表已經觸發 liff.login() 導轉（頁面即將離開），
+  // 呼叫端就不用再自己導去 LINE_URL 了；回傳 false 代表要照常導去 LINE_URL。
+  async function tryBindLineAndRedirect(identity) {
+    if (!LIFF_ID) return false;
+    try {
+      const liff = await loadLiffSdk();
+      await liff.init({ liffId: LIFF_ID });
+      if (liff.isLoggedIn()) {
+        const profile = await liff.getProfile();
+        await sendLineBind(profile, identity);
+        return false;
+      }
+      sessionStorage.setItem(LINE_BIND_STASH_KEY, JSON.stringify(identity));
+      liff.login({ redirectUri: location.href });
+      return true; // 頁面即將被 liff.login() 導離，不用再繼續往下做
+    } catch (err) {
+      return false; // LIFF 初始化失敗（例如網路問題）——照常導去 LINE_URL 就好
+    }
+  }
+
+  // 處理「剛從 LIFF 登入畫面導回來」的情況：頁面重新整理後，用剛才存的預約人資料
+  // 加上現在已經登入的 LINE profile 送去綁定，再導去 LINE。這段跟表單送出流程無關，
+  // 頁面一載入就會檢查一次。
+  (async () => {
+    const stashed = sessionStorage.getItem(LINE_BIND_STASH_KEY);
+    if (!stashed || !LIFF_ID) return;
+    sessionStorage.removeItem(LINE_BIND_STASH_KEY);
+    try {
+      const liff = await loadLiffSdk();
+      await liff.init({ liffId: LIFF_ID });
+      if (liff.isLoggedIn()) {
+        const profile = await liff.getProfile();
+        await sendLineBind(profile, JSON.parse(stashed));
+      }
+    } catch (err) {
+      // 綁定失敗就算了，客人反正等等還是會被導去 LINE
+    } finally {
+      if (LINE_URL) window.location.href = LINE_URL;
+    }
+  })();
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (state.isSubmitting || state.submissionCompleted || !validateStep(3)) return;
@@ -342,7 +423,8 @@
       wizard.querySelector('.booking-wizard__stepper').hidden = true;
       confirmPanel.hidden = false;
 
-      if (LINE_URL) {
+      const redirecting = await tryBindLineAndRedirect({ name: state.name.trim(), email: state.email.trim() });
+      if (!redirecting && LINE_URL) {
         window.location.href = LINE_URL;
       }
     } catch (err) {
