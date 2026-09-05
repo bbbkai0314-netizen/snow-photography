@@ -41,7 +41,9 @@
     </div>
 
     <div class="article-body">
+      {% if leadParagraph %}
       <p class="article-body__lead">{{ leadParagraph }}</p>
+      {% endif %}
 
       {% for block in contentBlocks %}
       <div class="article-section">
