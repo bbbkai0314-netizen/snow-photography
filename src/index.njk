@@ -76,7 +76,7 @@
     </div>
   </section>
 
-  <section class="life-chapters" id="life-chapters" aria-labelledby="life-chapters-title">
+  <section class="life-chapters" id="life-chapters" data-tag="CHAPTERS" aria-labelledby="life-chapters-title">
     <div class="life-chapters__head">
       <div class="life-chapters__heading">
         <p class="life-chapters__eyebrow">Life Chapters</p>
@@ -138,7 +138,7 @@
     </div>
   </section>
 
-  <section class="gallery-section" id="gallery">
+  <section class="gallery-section" id="gallery" data-tag="GALLERY">
     <div class="section-head">
       <h2>完整作品</h2>
       <p>All Work</p>
@@ -162,7 +162,7 @@
     </div>
   </section>
 
-  <section class="service-plans" id="plans" aria-labelledby="plans-title">
+  <section class="service-plans" id="plans" data-tag="PLANS" aria-labelledby="plans-title">
     <div class="section-head">
       <h2 id="plans-title">拍攝方案</h2>
       <p>Photo Session</p>
@@ -183,7 +183,7 @@
     </div>
   </section>
 
-  <section class="journal glass-panel" id="journal">
+  <section class="journal glass-panel" id="journal" data-tag="JOURNAL">
     <div class="section-head">
       <h2>滑雪日誌</h2>
       <p>Journal</p>
@@ -205,7 +205,7 @@
     </div>
   </section>
 
-  <section class="about glass-panel" id="partners">
+  <section class="about glass-panel" id="partners" data-tag="PARTNERS">
     <div class="section-head">
       <h2>合作夥伴</h2>
       <p>Partners</p>
@@ -228,7 +228,7 @@
 
   {% set activeNews = site.newsItems | activeItem %}
   {% if activeNews %}
-  <section class="news-banner" id="news" aria-labelledby="news-title">
+  <section class="news-banner" id="news" data-tag="NEWS" aria-labelledby="news-title">
     <div class="news-banner__card glass">
       <span class="news-banner__eyebrow">最新消息 · NEWS</span>
       <h2 id="news-title">{{ activeNews.title }}</h2>
@@ -242,7 +242,7 @@
   </section>
   {% endif %}
 
-  <section class="appointment glass-panel" id="booking">
+  <section class="appointment glass-panel" id="booking" data-tag="BOOKING">
     <div class="section-head">
       <h2>我要預約</h2>
       <p>Booking</p>

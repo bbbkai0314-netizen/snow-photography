@@ -1,14 +1,19 @@
 (() => {
   const chapters = Array.from(document.querySelectorAll('.chapter'));
+  // All top-level named sections, used to drive the side label/dots as the
+  // page scrolls — independent of `.chapter`, which only covers the pinned
+  // hero and would otherwise leave the label stuck on "HERO" past it.
+  const sections = Array.from(document.querySelectorAll('main > section[data-tag]'));
+  const seenSections = new Set();
   const glowA = document.getElementById('glowA');
   const glowB = document.getElementById('glowB');
   const nav = document.getElementById('nav');
   const sideDotsWrap = document.getElementById('sideDots');
   const sideLabel = document.getElementById('sideLabel');
 
-  // Build side-nav dots (only present on pages with scrolly chapters)
+  // Build side-nav dots (only present on pages with the side-card widget)
   if (sideDotsWrap) {
-    chapters.forEach((ch, i) => {
+    sections.forEach((section, i) => {
       const dot = document.createElement('span');
       dot.dataset.index = i;
       sideDotsWrap.appendChild(dot);
@@ -28,11 +33,6 @@
     return clamp(-rect.top / holdRange, 0, 1);
   }
 
-  function isPinned(chapter) {
-    const rect = chapter.getBoundingClientRect();
-    return rect.top <= 1 && rect.bottom >= window.innerHeight - 1;
-  }
-
   function update() {
     const scrollY = window.scrollY;
     const vh = window.innerHeight;
@@ -44,15 +44,9 @@
     // Nav glass intensify
     nav.classList.toggle('nav--scrolled', scrollY > 40);
 
-    let activeIndex = 0;
-
-    chapters.forEach((chapter, i) => {
+    chapters.forEach((chapter) => {
       const media = chapter.querySelector('.chapter__media');
       const isHero = chapter.dataset.tag === 'HERO';
-
-      if (isPinned(chapter) || chapter.getBoundingClientRect().top <= 1) {
-        activeIndex = i;
-      }
 
       if (isHero) {
         const heroProgress = clamp(scrollY / vh, 0, 1);
@@ -84,11 +78,28 @@
       content.style.transform = `translateY(${28 * (1 - opacity)}px)`;
     });
 
-    // Side dots + label
-    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === activeIndex));
+    // Side dots + label: whichever named section's top has scrolled past
+    // the vertical midpoint of the viewport is "current".
+    let activeSectionIndex = 0;
+    sections.forEach((section, i) => {
+      if (section.getBoundingClientRect().top <= vh * 0.5) {
+        activeSectionIndex = i;
+      }
+    });
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === activeSectionIndex));
+    const activeTag = sections[activeSectionIndex]?.dataset.tag || '';
     if (sideLabel) {
-      const tag = chapters[activeIndex]?.dataset.tag || '';
-      sideLabel.textContent = tag;
+      sideLabel.textContent = activeTag;
+    }
+    // Report each section once per page load, the first time it becomes current,
+    // so GA4/Tag Assistant show which section a visitor reached without
+    // inflating counts every time they scroll back and forth over one. Guarded
+    // together so a call before tracking.js has run (this fires once
+    // synchronously on script load) doesn't get marked "seen" without actually
+    // reporting — it'll be picked up on the next scroll or the load re-sync instead.
+    if (activeTag && !seenSections.has(activeTag) && typeof window.ssTrack?.sectionView === 'function') {
+      seenSections.add(activeTag);
+      window.ssTrack.sectionView(activeTag);
     }
   }
 

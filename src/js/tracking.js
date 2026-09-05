@@ -45,6 +45,13 @@
     fireGaEvent('booking_complete');
   }
 
+  // Fired by script.js whenever the section under the viewport (tracked by the
+  // side-label widget) changes, so section engagement is visible in GA4/Tag
+  // Assistant without digging through scroll_depth percentages.
+  function fireSectionView(sectionName) {
+    fireGaEvent('section_view', { section_name: sectionName });
+  }
+
   function fireContentView(name, category) {
     fireGaEvent('view_article', { content_name: name, content_category: category });
     if (typeof fbq === 'function') {
@@ -111,6 +118,7 @@
     lineContact: fireLineContact,
     selectPlan: fireSelectPlan,
     bookingComplete: fireBookingComplete,
+    sectionView: fireSectionView,
   };
 
   const contentName = document.body.dataset.contentName;
