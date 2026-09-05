@@ -4,7 +4,7 @@
 
 | ID | 類型 | 摘要／版本 | 風險檢查 | 狀態 | Ellie 核准紀錄 | 執行結果 |
 | --- | --- | --- | --- | --- | --- | --- |
-| SSS-20260829-001 | Website | 「給每天努力生活的你」一頁式行銷網站 v1 | Brand / Risk / CTA / SEO 已完成草稿 QA；無價格、無預約或對外連結 | WAITING FOR OWNER APPROVAL | — | 尚未部署 |
+| SSS-20260829-001 | Website | 「給每天努力生活的你」一頁式行銷網站 v1 | Brand / Risk / CTA / SEO 已完成草稿 QA；無價格、無預約或對外連結 | CANCELLED | 2026-09-05：Ellie 表示這個案子不做了。 | 未部署即取消，草稿保留於原專案資料夾 |
 | SSS-20260831-002 | LINE / Access | `SnowSurfStudio｜LINE 詢問 Webhook` Web App v1 | 只記錄文字訊息；Channel Secret、Access Token 與專屬 webhook key 均為指令碼屬性；公開端點要求 webhook key | REVOKED | 2026-08-31：Ellie 核准以 Ellie 身分、任何人可存取公開部署。2026-09-05：Ellie 指示拿掉整個 LINE 自動化串接。 | 2026-09-05 已撤除：`automation/gas/line-webhook.gs` 自專案移除；Apps Script Web App 與 LINE Webhook 待 Ellie 於後台停用。 |
 | SSS-20260831-003 | LINE / Access | `snowsurf-line-webhook-proxy` Cloudflare Worker v1 | 公開 Worker 驗證 LINE 簽章、轉送至既有 Apps Script，並直接回應 200；機密設定為 Worker secrets | REVOKED | 2026-08-31：Ellie 明確指示「你幫我用」，同意建立、公開部署、回填、Verify 與開啟此 LINE Webhook proxy。2026-09-05：Ellie 指示拿掉整個 LINE 自動化串接。 | 2026-09-05 已撤除：轉送目標已不存在；Worker 與其 secrets 待 Ellie 於 Cloudflare 後台刪除。 |
 | SSS-20260901-004 | Website | 首頁 LIFE CHAPTERS 圖文更新＋〈情侶滑雪不吵架攻略〉 | Brand / CTA / SEO / 手機段落排版已完成；無價格、無表單規則異動 | APPROVED | 2026-09-01：Ellie 明確指示「commit部署吧」。 | 待執行 |
@@ -16,10 +16,10 @@ ID: SSS-20260829-001
 版本／素材連結: `09_Automation_Tech/Repositories/上班族探索感Landing`；僅使用 Ellie 提供的「上班族輪播貼文」圖片與文案來源。
 影響範圍與不可逆性: 正式網站部署與公開可見。
 Brand / Risk / CTA / SEO QA: 全繁中；沿用深藍／雪青／日出暖色；無價格、無表單／追蹤器；網站 metadata 已建立。CTA 目前為草稿用途，正式寄信入口需於核准時一併確認。
-狀態: WAITING FOR OWNER APPROVAL
-Ellie 核准: [日期、明確核准的版本與範圍]
-執行結果與數據: 尚未部署。
-Knowledge 回寫判斷: 待上線與數據累積後再評估。
+狀態: CANCELLED（2026-09-05 Ellie 表示這個案子不做了）
+Ellie 核准: 未核准即取消。2026-09-05 Ellie 明確表示不做這個案子。
+執行結果與數據: 未部署即取消；草稿保留於原專案資料夾，未對外發布過。
+Knowledge 回寫判斷: 案子取消，無數據可回寫。
 
 ---
 
