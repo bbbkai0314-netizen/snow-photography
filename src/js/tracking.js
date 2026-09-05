@@ -42,11 +42,23 @@
   }
 
   // Fired by script.js whenever the section under the viewport (tracked by the
-  // side-label widget) changes. Each section gets its own event name (rather
-  // than one shared name + parameter) so it reads directly in Tag Assistant's
-  // event list without having to open each row to check a parameter.
+  // side-label widget) changes. The event name is the section's own Chinese
+  // label (matching the nav/section-head text) so it reads directly in Tag
+  // Assistant's event list without opening a row to check a parameter.
+  const SECTION_LABELS = {
+    HERO: '首頁',
+    CHAPTERS: '人生章節',
+    GALLERY: '完整作品',
+    PLANS: '拍攝方案',
+    JOURNAL: '滑雪日誌',
+    PARTNERS: '合作夥伴',
+    NEWS: '最新消息',
+    BOOKING: '我要預約',
+  };
+
   function fireSectionView(sectionTag) {
-    fireGaEvent(`view_section_${sectionTag.toLowerCase()}`, { section_name: sectionTag });
+    const label = SECTION_LABELS[sectionTag] || sectionTag;
+    fireGaEvent(label, { section_tag: sectionTag });
   }
 
   function fireContentView(name, category) {
