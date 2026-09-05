@@ -1022,7 +1022,7 @@ button{ font-family:inherit; }
 
 .booking-plan-options{
   display:grid;
-  grid-template-columns:repeat(4, 1fr);
+  grid-template-columns:repeat(3, 1fr);
   gap:14px;
   margin-bottom:8px;
 }
