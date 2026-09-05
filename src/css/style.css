@@ -1453,7 +1453,8 @@ button{ font-family:inherit; }
   color:#cfe3ec;
   margin-bottom:8px;
 }
-.article-block__text h3{
+.article-block__text h3,
+.article-section h3{
   font-family:'Noto Sans TC', sans-serif;
   font-weight:700;
   font-size:15.5px;

@@ -24,138 +24,55 @@ contentBlocks:
       <p>而是會看見：原來那一年的自己，是這樣滑雪的。</p>
   - type: html
     html: |
-      <h2>方案總覽</h2>
-      <p>提供 2 小時與 5 小時兩種一人拍攝方案，依你這趟旅程想留下的紀錄多寡選擇。</p>
-      <table class="article-table">
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th>方案 A・2 小時滑雪攝影</th>
-            <th>方案 B・5 小時陪滑攝影</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>服務性質</td>
-            <td>單次滑雪攝影</td>
-            <td>陪你滑過完整的雪場旅程</td>
-          </tr>
-          <tr>
-            <td>雪地個人人像</td>
-            <td>✓</td>
-            <td>✓（含山頂／景觀點人像）</td>
-          </tr>
-          <tr>
-            <td>滑行動作 Turn／Carving／噴雪</td>
-            <td>✓</td>
-            <td>✓（不同雪道、不同地形與角度）</td>
-          </tr>
-          <tr>
-            <td>連續動作定格</td>
-            <td>✓</td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td>雪道 × 雪山大景</td>
-            <td>✓</td>
-            <td>✓（含不同雪場區域景色）</td>
-          </tr>
-          <tr>
-            <td>纜車與移動旅程感</td>
-            <td>✓</td>
-            <td>✓（含山頂休息、看風景）</td>
-          </tr>
-          <tr>
-            <td>雪場午餐紀錄</td>
-            <td>—</td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td>雪板 × 雪山合影</td>
-            <td>—</td>
-            <td>✓</td>
-          </tr>
-          <tr>
-            <td>適合情境</td>
-            <td>想快速留下這趟滑雪最想要的畫面</td>
-            <td>想記錄完整一天的雪場旅程</td>
-          </tr>
-        </tbody>
-      </table>
+      <h2>一人拍攝方案 A｜2 小時滑雪攝影</h2>
+      <p>拍攝內容</p>
+      <ul class="article-checklist">
+        <li>✓ 雪地個人人像</li>
+        <li>✓ 滑行動作攝影</li>
+        <li>✓ Turn／Carving／噴雪瞬間</li>
+        <li>✓ 連續動作定格</li>
+        <li>✓ 雪道 × 雪山大景</li>
+        <li>✓ 拿雪板、穿裝備等自然畫面</li>
+        <li>✓ 纜車與雪場旅程感</li>
+        <li>✓ 依程度安排適合的拍攝位置</li>
+      </ul>
+      <p><strong>新手也可以拍。</strong>不需要為了拍照做高難度動作，會依你的程度、雪況與安全條件安排畫面。</p>
   - type: html
     html: |
-      <div class="article-block">
-        <div class="article-block__media">
-          <img src="../images/IMG_7148.jpg" alt="日本雪場單板滑雪者雪地人像，一人拍攝方案 A 個人紀錄" loading="lazy">
-        </div>
-        <div class="article-block__text">
-          <h2>一人拍攝方案 A｜2 小時滑雪攝影</h2>
-          <p>拍攝內容</p>
-          <ul class="article-checklist">
-            <li>✓ 雪地個人人像</li>
-            <li>✓ 滑行動作攝影</li>
-            <li>✓ Turn／Carving／噴雪瞬間</li>
-            <li>✓ 連續動作定格</li>
-            <li>✓ 雪道 × 雪山大景</li>
-            <li>✓ 拿雪板、穿裝備等自然畫面</li>
-            <li>✓ 纜車與雪場旅程感</li>
-            <li>✓ 依程度安排適合的拍攝位置</li>
-          </ul>
-          <p><strong>新手也可以拍。</strong>不需要為了拍照做高難度動作，會依你的程度、雪況與安全條件安排畫面。</p>
-        </div>
-      </div>
-  - type: html
-    html: |
-      <div class="article-block article-block--reverse">
-        <div class="article-block__media">
-          <img src="../images/black-white-japan-ski-photography-snowboard-ski.jpg" alt="日本滑雪攝影黑白剪影滑行畫面，陪滑攝影方案 B 滑行紀錄" loading="lazy">
-        </div>
-        <div class="article-block__text">
-          <h2>一人拍攝方案 B｜5 小時陪滑攝影</h2>
-          <p>陪你滑過一段完整的雪場旅程。</p>
-          <h3>滑行紀錄</h3>
-          <ul class="article-checklist">
-            <li>✓ 不同雪道滑行畫面</li>
-            <li>✓ Turn／Carving／噴雪瞬間</li>
-            <li>✓ 連續動作定格</li>
-            <li>✓ 不同地形與角度拍攝</li>
-            <li>✓ 雪道 × 雪山環境大景</li>
-          </ul>
-          <h3>旅程紀錄</h3>
-          <ul class="article-checklist">
-            <li>✓ 搭纜車、移動中的自然畫面</li>
-            <li>✓ 拿雪板、整理裝備</li>
-            <li>✓ 山頂休息、看風景</li>
-            <li>✓ 不同雪場區域與景色</li>
-            <li>✓ 想拍的畫面可事前討論</li>
-          </ul>
-        </div>
-      </div>
-  - type: html
-    html: |
-      <div class="article-block">
-        <div class="article-block__media">
-          <img src="../images/pizza-house-luis-snow-lunch-hakuba47.png" alt="雪場餐廳午餐與雪景生活感，陪滑攝影方案 B 午餐紀錄" loading="lazy">
-        </div>
-        <div class="article-block__text">
-          <h3>午餐紀錄</h3>
-          <ul class="article-checklist">
-            <li>✓ 雪場餐廳用餐</li>
-            <li>✓ 餐點 × 雪景生活感</li>
-            <li>✓ 脫下裝備休息的自然畫面</li>
-            <li>✓ 窗邊、露台等雪場氛圍照</li>
-            <li>✓ 午餐後重新出發的旅程畫面</li>
-          </ul>
-          <h3>雪地人像</h3>
-          <ul class="article-checklist">
-            <li>✓ 個人雪地人像</li>
-            <li>✓ 雪板 × 雪山合影</li>
-            <li>✓ 山頂／景觀點人像</li>
-            <li>✓ 自然、不刻意擺拍的旅行感</li>
-          </ul>
-          <p>5 小時，記錄的不只是滑行，而是你在雪場度過的一段旅程。</p>
-        </div>
-      </div>
+      <h2>一人拍攝方案 B｜5 小時陪滑攝影</h2>
+      <p>陪你滑過一段完整的雪場旅程。</p>
+      <h3>滑行紀錄</h3>
+      <ul class="article-checklist">
+        <li>✓ 不同雪道滑行畫面</li>
+        <li>✓ Turn／Carving／噴雪瞬間</li>
+        <li>✓ 連續動作定格</li>
+        <li>✓ 不同地形與角度拍攝</li>
+        <li>✓ 雪道 × 雪山環境大景</li>
+      </ul>
+      <h3>旅程紀錄</h3>
+      <ul class="article-checklist">
+        <li>✓ 搭纜車、移動中的自然畫面</li>
+        <li>✓ 拿雪板、整理裝備</li>
+        <li>✓ 山頂休息、看風景</li>
+        <li>✓ 不同雪場區域與景色</li>
+        <li>✓ 想拍的畫面可事前討論</li>
+      </ul>
+      <h3>午餐紀錄</h3>
+      <ul class="article-checklist">
+        <li>✓ 雪場餐廳用餐</li>
+        <li>✓ 餐點 × 雪景生活感</li>
+        <li>✓ 脫下裝備休息的自然畫面</li>
+        <li>✓ 窗邊、露台等雪場氛圍照</li>
+        <li>✓ 午餐後重新出發的旅程畫面</li>
+      </ul>
+      <h3>雪地人像</h3>
+      <ul class="article-checklist">
+        <li>✓ 個人雪地人像</li>
+        <li>✓ 雪板 × 雪山合影</li>
+        <li>✓ 山頂／景觀點人像</li>
+        <li>✓ 自然、不刻意擺拍的旅行感</li>
+      </ul>
+      <p>5 小時，記錄的不只是滑行，而是你在雪場度過的一段旅程。</p>
 seo:
   description: "SnowSurfStudio 陪伴滑雪方案，提供 2 小時滑雪攝影（方案 A）與 5 小時陪滑攝影（方案 B），專為一個人滑雪的旅客設計。攝影師依照你的滑雪程度與雪道環境，在不打斷滑行節奏下陪你滑一段，記錄自己看不到的瞬間，把每一季的回憶留下來。"
   keywords: "一個人滑雪,陪伴滑雪方案,一個人滑雪找不到人,日本滑雪攝影,陪伴式滑雪攝影,陪滑攝影,滑雪攝影,白馬滑雪攝影"
