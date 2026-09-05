@@ -1453,6 +1453,23 @@ button{ font-family:inherit; }
   color:#cfe3ec;
   margin-bottom:8px;
 }
+.article-block__text h3{
+  font-family:'Noto Sans TC', sans-serif;
+  font-weight:700;
+  font-size:15.5px;
+  color:var(--ice);
+  margin:20px 0 8px;
+}
+.article-checklist{
+  list-style:none;
+  margin:0 0 16px;
+}
+.article-checklist li{
+  font-size:15px;
+  line-height:1.85;
+  color:#cfe3ec;
+  margin-bottom:6px;
+}
 
 .article-section{ margin-bottom:56px; }
 .article-section h2{
