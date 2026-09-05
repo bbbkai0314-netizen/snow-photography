@@ -1,30 +1,26 @@
-// GA4 is installed site-wide in head-meta.njk. Keep all conversion-event rules here so
-// every desktop and mobile CTA uses the same classification and cannot double-count.
+// GTM is installed site-wide in head-meta.njk (container GTM-M5MVCP2M). Keep all
+// conversion-event rules here so every desktop and mobile CTA uses the same
+// classification and cannot double-count. Events are pushed to window.dataLayer;
+// the corresponding GA4 / Google Ads tags and triggers are configured inside the
+// GTM container, not in this file.
 (() => {
   function fireGaEvent(name, parameters) {
-    if (typeof window.gtag === 'function') {
-      const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
-      const sessionId = window.ssfSessionId;
-      window.gtag('event', name, {
-        ...parameters,
-        ...utm,
-        ...(sessionId ? { session_id: sessionId } : {}),
-      });
-    }
+    window.dataLayer = window.dataLayer || [];
+    const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
+    const sessionId = window.ssfSessionId;
+    window.dataLayer.push({
+      event: name,
+      ...parameters,
+      ...utm,
+      ...(sessionId ? { session_id: sessionId } : {}),
+    });
   }
 
   function fireLineContact(source) {
+    // The Google Ads conversion (AW-18359584407/xG5WCKHCsO0cEJeNxLJE) now fires from
+    // a GTM tag triggered on this same "line_click" dataLayer event, instead of being
+    // pushed directly from here.
     fireGaEvent('line_click', { source });
-    // Keep the Google Ads conversion alongside the existing GA4/Meta events. This
-    // handler runs synchronously within the click event, before the browser follows
-    // the original LINE link (which opens in a new tab where applicable).
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-18359584407/xG5WCKHCsO0cEJeNxLJE',
-        value: 1.0,
-        currency: 'TWD',
-      });
-    }
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { content_name: source });
     }

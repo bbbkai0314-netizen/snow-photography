@@ -42,16 +42,19 @@
 
   let hasFiredBookingStart = false;
   function trackEvent(name, params) {
-    if (typeof gtag !== 'function') return;
+    window.dataLayer = window.dataLayer || [];
     const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
     const sessionId = window.ssfSessionId;
-    gtag('event', name, { ...params, ...utm, ...(sessionId ? { session_id: sessionId } : {}) });
+    window.dataLayer.push({ event: name, ...params, ...utm, ...(sessionId ? { session_id: sessionId } : {}) });
   }
 
   // Reads GA4's client_id so it can ride along in the Form submission. Apps Script later
   // uses the same client_id to send booking_confirmed/purchase via Measurement Protocol,
   // which is the only way those two events can still be attributed to the original
   // marketing source even though they fire from the admin panel, not a browser.
+  // NOTE: gtag() is no longer loaded directly (GTM-M5MVCP2M owns tag delivery now), so
+  // this only resolves once a GA4 tag for G-H578W2CXH6 is configured inside the GTM
+  // container and has fired on the page (GTM's Google tag exposes window.gtag itself).
   const GA4_MEASUREMENT_ID = 'G-H578W2CXH6';
   function getGaClientId() {
     return new Promise((resolve) => {
