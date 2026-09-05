@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!--
+  SnowSurfStudio 作業儀表板（靜態頁）
+
+  這份檔案是已發布 Artifact 的原始碼備份，直接用瀏覽器開啟即可檢視。
+  發布位置：https://claude.ai/code/artifact/c2dfc349-33a1-4785-9c32-cd9c0ce76494
+  內容以 13_SOP_Workflows 底下的 approval-queue.md、task-log.md 為準；
+  那兩份文件更新後，這頁要一起改，並重新發布 Artifact 才會同步。
+
+  注意：這頁不屬於 Eleventy 網站，不會被 npm run build 打包，也不會出現在
+  snowsurfstudio.net 上。
+-->
+<style>
+  html { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<title>SnowSurfStudio 作業儀表板</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --snow: #eef3f7;
+    --surface: #ffffff;
+    --surface-2: #f6f9fb;
+    --ink: #16283a;
+    --ink-soft: #55677c;
+    --ink-faint: #8496a8;
+    --line: #dbe4ec;
+    --line-soft: #e8eef3;
+    --accent: #c96a3e;
+    --accent-ink: #ffffff;
+    --accent-soft: #f7e3d6;
+    --pine: #2f6e4c;
+    --pine-soft: #e1efe7;
+    --gold: #9c6d1e;
+    --gold-soft: #f5ead2;
+    --brick: #a1453a;
+    --brick-soft: #f6e0db;
+    --shadow: 0 1px 2px rgba(22, 40, 58, 0.07);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --font-display: "Fraunces", Georgia, "Noto Serif TC", serif;
+    --font-body: "Work Sans", "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --snow: #0f1a26;
+      --surface: #16232f;
+      --surface-2: #1b2836;
+      --ink: #eef3f7;
+      --ink-soft: #a6b7c7;
+      --ink-faint: #708294;
+      --line: #2a3b4c;
+      --line-soft: #22303f;
+      --accent: #e2895a;
+      --accent-ink: #1a120c;
+      --accent-soft: #3a2a1f;
+      --pine: #6ba586;
+      --pine-soft: #1c3327;
+      --gold: #cfa04f;
+      --gold-soft: #372c16;
+      --brick: #cc7060;
+      --brick-soft: #392420;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --snow: #0f1a26;
+    --surface: #16232f;
+    --surface-2: #1b2836;
+    --ink: #eef3f7;
+    --ink-soft: #a6b7c7;
+    --ink-faint: #708294;
+    --line: #2a3b4c;
+    --line-soft: #22303f;
+    --accent: #e2895a;
+    --accent-ink: #1a120c;
+    --accent-soft: #3a2a1f;
+    --pine: #6ba586;
+    --pine-soft: #1c3327;
+    --gold: #cfa04f;
+    --gold-soft: #372c16;
+    --brick: #cc7060;
+    --brick-soft: #392420;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--snow);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  code, .mono { font-family: var(--font-mono); }
+  ::selection { background: var(--accent-soft); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 40px 28px 96px; }
+
+  /* ---------- Header ---------- */
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: block;
+  }
+  h1.brand { font-size: clamp(30px, 4vw, 42px); font-weight: 600; letter-spacing: -0.01em; }
+  .meta-block { text-align: right; font-size: 13px; color: var(--ink-soft); }
+  .meta-block strong { color: var(--ink); font-weight: 600; }
+
+  .northstar {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .northstar .step {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 12px;
+    color: var(--ink);
+  }
+  .northstar .arrow { color: var(--ink-faint); }
+
+  /* ---------- Stat strip ---------- */
+  .stats {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .stat {
+    background: var(--surface);
+    padding: 18px 20px;
+  }
+  .stat .num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .stat .num small { font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--ink-soft); margin-left: 4px; }
+  .stat .label { margin-top: 4px; font-size: 12px; color: var(--ink-soft); }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 52px; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+  .section-head h2 { font-size: 21px; font-weight: 600; }
+  .section-note { font-size: 12.5px; color: var(--ink-faint); max-width: 46ch; }
+
+  /* ---------- Chips / tags ---------- */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-family: var(--font-mono);
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  .chip .dot { width: 6px; height: 6px; border-radius: 50%; flex: none; }
+  .chip-green { background: var(--pine-soft); color: var(--pine); }
+  .chip-green .dot { background: var(--pine); }
+  .chip-amber { background: var(--gold-soft); color: var(--gold); }
+  .chip-amber .dot { background: var(--gold); }
+  .chip-red { background: var(--brick-soft); color: var(--brick); }
+  .chip-red .dot { background: var(--brick); }
+  .chip-neutral { background: var(--surface-2); color: var(--ink-soft); border-color: var(--line); }
+
+  /* ---------- Permission tiers ---------- */
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .tier {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 18px 18px 20px;
+    border-top: 3px solid var(--tier-color);
+  }
+  .tier.green { --tier-color: var(--pine); }
+  .tier.amber { --tier-color: var(--gold); }
+  .tier.red { --tier-color: var(--brick); }
+  .tier h3 { font-size: 14.5px; font-family: var(--font-body); font-weight: 600; margin-bottom: 8px; }
+  .tier p { font-size: 13px; color: var(--ink-soft); }
+
+  /* ---------- Approval queue ---------- */
+  .queue-card {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .queue-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; justify-content: space-between; }
+  .queue-id { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+  .queue-title { font-weight: 600; font-size: 15.5px; }
+  .queue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 4px; font-size: 12.5px; }
+  .queue-grid dt { color: var(--ink-faint); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10.5px; }
+  .queue-grid dd { margin: 0; color: var(--ink-soft); }
+  .queue-stack { display: flex; flex-direction: column; gap: 12px; }
+  .empty-note { font-size: 13px; color: var(--ink-faint); font-style: italic; }
+
+  /* ---------- Org flow ---------- */
+  .flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .flow-node {
+    width: 100%;
+    max-width: 640px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+  }
+  .flow-node strong { display: block; font-size: 15px; }
+  .flow-node span { display: block; margin-top: 3px; font-size: 12.5px; color: var(--ink-soft); }
+  .flow-connector { padding: 6px 0; color: var(--ink-faint); font-size: 12px; font-family: var(--font-mono); display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .flow-connector .line { width: 1px; height: 16px; background: var(--line); }
+
+  /* ---------- Agent grid ---------- */
+  .filter-tabs { display: flex; gap: 8px; }
+  .filter-tabs button {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .filter-tabs button:hover { border-color: var(--accent); color: var(--ink); }
+  .filter-tabs button.is-active { background: var(--ink); color: var(--snow); border-color: var(--ink); }
+  :root[data-theme="dark"] .filter-tabs button.is-active,
+  :root:not([data-theme="light"]) .filter-tabs button.is-active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+  .agent-grid { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(266px, 1fr)); gap: 14px; }
+  .agent-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 16px 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.15s ease;
+  }
+  .agent-card:hover { border-color: var(--accent); }
+  .agent-card.is-hidden { display: none; }
+  .agent-card header { display: flex; flex-direction: column; gap: 4px; }
+  .agent-card .dept { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .agent-card .agent-name { font-size: 13px; color: var(--accent); }
+  .agent-card .task { font-size: 13px; color: var(--ink-soft); }
+  .agent-card .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .agent-card details { margin-top: 2px; border-top: 1px dashed var(--line); padding-top: 8px; }
+  .agent-card summary { cursor: pointer; font-size: 12px; color: var(--ink-faint); font-family: var(--font-mono); }
+  .agent-card summary:hover { color: var(--accent); }
+  .agent-card dl { margin: 10px 0 0; font-size: 12.5px; }
+  .agent-card dt { font-weight: 600; color: var(--ink); margin-top: 8px; }
+  .agent-card dt:first-child { margin-top: 0; }
+  .agent-card dd { margin: 3px 0 0; color: var(--ink-soft); }
+
+  .gap-card { border-style: dashed; background: var(--surface-2); }
+
+  /* ---------- Funnel ---------- */
+  .funnel { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  @media (max-width: 900px) { .funnel { grid-template-columns: 1fr; } }
+  .funnel-step {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 14px 15px;
+    position: relative;
+  }
+  .funnel-step .idx {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .funnel-step h3 { font-size: 13.5px; font-family: var(--font-body); font-weight: 600; margin-bottom: 8px; }
+  .funnel-step dt { font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 8px; }
+  .funnel-step dt:first-of-type { margin-top: 0; }
+  .funnel-step dd { margin: 2px 0 0; font-size: 12px; color: var(--ink-soft); }
+  .funnel-arrow { display: none; }
+  @media (min-width: 901px) {
+    .funnel-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink-faint);
+      font-size: 13px;
+      z-index: 1;
+    }
+  }
+
+  /* ---------- Connections ---------- */
+  .conn-table { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .conn-row { display: grid; grid-template-columns: 1.1fr 1.4fr 1.6fr 1fr; gap: 12px; padding: 13px 18px; font-size: 13px; align-items: center; }
+  .conn-row + .conn-row { border-top: 1px solid var(--line-soft); }
+  .conn-row.head { background: var(--surface-2); font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .conn-row .name { font-weight: 600; }
+  .conn-row .sub { color: var(--ink-soft); }
+  @media (max-width: 720px) {
+    .conn-row { grid-template-columns: 1fr; gap: 4px; }
+    .conn-row.head { display: none; }
+    .conn-row .name { font-weight: 700; }
+  }
+
+  /* ---------- Footer ---------- */
+  footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .loc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 24px; font-size: 12.5px; }
+  .loc-grid dt { color: var(--ink-faint); }
+  .loc-grid dd { margin: 2px 0 0; font-family: var(--font-mono); color: var(--ink-soft); }
+  .isolation-note {
+    margin-top: 22px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+  }
+  .source-note { margin-top: 16px; font-size: 11.5px; color: var(--ink-faint); }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div>
+      <span class="eyebrow">AI 公司作業儀表板</span>
+      <h1 class="brand">SnowSurfStudio</h1>
+      <div class="northstar">
+        <span class="step">流量</span><span class="arrow">→</span>
+        <span class="step">LINE 詢問</span><span class="arrow">→</span>
+        <span class="step">報價</span><span class="arrow">→</span>
+        <span class="step">預約</span><span class="arrow">→</span>
+        <span class="step">成交</span><span class="arrow">→</span>
+        <span class="step">評價／推薦</span>
+      </div>
+    </div>
+    <div class="meta-block">
+      Owner / CEO：<strong>Ellie</strong><br>
+      範圍：SnowSurfStudio（日本雪場滑雪攝影、預約、交付）<br>
+      最後更新：<strong>2026-09-05</strong>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="num">12<small>位</small></div><div class="label">真實 AI 員工</div></div>
+    <div class="stat"><div class="num">1<small>位</small></div><div class="label">可寫入檔案（website-agent）</div></div>
+    <div class="stat"><div class="num">0<small>筆</small></div><div class="label">待 Ellie 核准事項</div></div>
+    <div class="stat"><div class="num">16<small>筆</small></div><div class="label">已記錄任務（task-log）</div></div>
+  </div>
+
+  <!-- ================= 待審核佇列 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>待審核佇列</h2>
+      <span class="section-note">所有對外或不可逆動作都要先出現在這裡，等 Ellie 明確核准才能執行。</span>
+    </div>
+    <p class="empty-note">目前沒有待核准事項。有需要 Ellie 拍板的對外或不可逆動作時，才會出現在這裡。</p>
+  </section>
+
+  <!-- ================= 今日總覽 / 權限分級 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>今日總覽</h2>
+      <span class="section-note">三個等級決定 AI 能不能自己動手。</span>
+    </div>
+    <div class="tiers">
+      <div class="tier green">
+        <h3><span class="chip chip-green"><span class="dot"></span>可自動完成</span></h3>
+        <p>研究、內容拆解、SEO 建議、文案與素材草稿、數據分析、QA、建立預覽、知識整理——只產草稿，不對外送出。</p>
+      </div>
+      <div class="tier amber">
+        <h3><span class="chip chip-amber"><span class="dot"></span>等待 Ellie 核准</span></h3>
+        <p>正式網站、IG／Facebook、EDM／LINE、報價、合約、排程、對外回覆——草稿完成後進核准佇列。</p>
+      </div>
+      <div class="tier red">
+        <h3><span class="chip chip-red"><span class="dot"></span>不得自動執行</span></h3>
+        <p>花費／廣告、改價、收款／退款、刪除資料、權限異動、重大品牌策略——一律由 Ellie 親自處理。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 公司指揮圖 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>公司指揮圖</h2>
+      <span class="section-note">AI 主管與知識管理員不是獨立 Agent，是目前對話的主線 Claude 在扮演的角色。</span>
+    </div>
+    <div class="flow">
+      <div class="flow-node">
+        <strong>Ellie · Owner / CEO</strong>
+        <span>下達商業目標，不必指定 Agent</span>
+      </div>
+      <div class="flow-connector"><div class="line"></div>下達目標<div class="line"></div></div>
+      <div class="flow-node">
+        <strong>AI 主管 = 主線 Claude</strong>
+        <span>理解目標、分派、驗收、整合、提出下一步</span>
+      </div>
+      <div class="flow-connector"><div class="line"></div>用 Agent tool 派工給下方 12 位員工<div class="line"></div></div>
+      <div class="flow-node" style="max-width:100%; background:var(--surface-2); border-style:dashed;">
+        <strong>12 位真實 AI 員工</strong>
+        <span>詳見下方「部門與 Agent」——工具權限只有唯讀，唯一能寫檔案的是 website-agent</span>
+      </div>
+      <div class="flow-connector"><div class="line"></div>任務結束後判斷要不要回寫<div class="line"></div></div>
+      <div class="flow-node">
+        <strong>AI 知識管理員 = 主線 Claude</strong>
+        <span>只把可重複使用的 SOP、洞察與 Ellie 的修正寫入 12_Brand_Knowledge</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 部門與 Agent ================= -->
+  <section>
+    <div class="section-head">
+      <h2>部門與 Agent 路由</h2>
+      <span class="section-note">點卡片上的「能做／不能做」可以展開細節。</span>
+    </div>
+    <div class="filter-tabs" role="tablist" aria-label="依工具權限篩選">
+      <button type="button" class="is-active" data-filter="all">全部 13</button>
+      <button type="button" data-filter="readonly">唯讀 12</button>
+      <button type="button" data-filter="write">可寫入 1</button>
+    </div>
+
+    <div class="agent-grid" id="agentGrid">
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">CEO / Strategy</span><code class="agent-name">ceo-strategy-agent</code></header>
+        <p class="task">不確定該做什麼、該找誰的第一入口；排出本週前三優先。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准策略／價格</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>優先序排序、取捨建議、判斷該分派給哪個部門</dd>
+            <dt>不能做</dt><dd>不決定價格／退款；不寫成品文案；不寫程式；不對外發送</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">Marketing / Brand</span><code class="agent-name">marketing-brand-agent</code></header>
+        <p class="task">行銷切角、活動宣傳、品牌訊息一致性草稿。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准對外發布</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>產出 3 個內容方向、維持跨渠道訊息一致、檔期節奏建議</dd>
+            <dt>不能做</dt><dd>只做草稿，不發布、不排實際發文、不投放廣告、不改程式</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">Content（長文／部落格）</span><code class="agent-name">content-agent</code></header>
+        <p class="task">部落格文章、網站文案、深度內容企劃。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">交 QA 把關</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>規劃主題、撰寫潤飾長文與網站文案，動筆前先跑讀者洞察企劃</dd>
+            <dt>不能做</dt><dd>不寫社群短文；不改程式；不發布，只交草稿</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">SEO</span><code class="agent-name">seo-agent</code></header>
+        <p class="task">關鍵字研究、搜尋意圖、競品分析、技術 SEO 健檢。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">交 website-agent 執行</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>檢查標題／meta／內部連結、sitemap、結構化資料，提供文章結構建議</dd>
+            <dt>不能做</dt><dd>不直接改程式；不保證排名或流量；數字要標來源與日期</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">Social（社群）</span><code class="agent-name">social-agent</code></header>
+        <p class="task">IG／FB 貼文企劃、短文案、成效解讀、留言草擬。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">只準備，不代發</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>規劃主題節奏、寫短文案／hashtag、解讀 Insights、草擬回覆建議</dd>
+            <dt>不能做</dt><dd>不代發、不代回；客訴／負評要轉交客服並標記 Ellie 處理</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">內容品質把關</span><code class="agent-name">content-quality-reviewer</code></header>
+        <p class="task">交付前最後一關：獨特性／豐富度／深度三維評分。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">三項都 ≥9 才可交付</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>三維各自評分、抓未標記的未確認價格／日期、成效保證等硬性退件項目</dd>
+            <dt>不能做</dt><dd>不能代寫或修稿，只能指出問題退回；不給同情分</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">Sales / Customer Service</span><code class="agent-name">sales-customer-service-agent</code></header>
+        <p class="task">LINE／Email 詢問判讀、回覆草稿、跟進節奏。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准對外回覆</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>分類判斷急迫度、寫回覆草稿、列缺的資訊、規劃 7 天跟進節奏</dd>
+            <dt>不能做</dt><dd>絕不代為寄送或回覆；價格／日期一律標「待 Ellie 確認」</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">Analytics / Data</span><code class="agent-name">analytics-agent</code></header>
+        <p class="task">GA4 流量、頁面表現、轉換與異常診斷。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀＋查詢腳本</span><span class="chip chip-neutral">唯讀分析為預設</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>解讀流量來源與路徑、追蹤詢問／預約轉換、對異常提出多個假設</dd>
+            <dt>不能做</dt><dd>不把相關性寫成因果；查不到資料不可臆測；不改程式或內容</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">Finance / Admin</span><code class="agent-name">finance-admin-agent</code></header>
+        <p class="task">收款欄位、成本結構、到期提醒清單。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准款項／改價</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>設計收款狀態機、拆解成本結構、列到期提醒與待會計師確認清單</dd>
+            <dt>不能做</dt><dd>不收款、不退款、不轉帳；不看付款憑證；不提供稅務建議</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">Product / Service Ops</span><code class="agent-name">product-operations-agent</code></header>
+        <p class="task">攝影產品、行程營運、客戶旅程的流程與例外處理。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准服務規則</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>畫流程圖與檢查表、寫清楚每個例外情境「誰決定、依據什麼」</dd>
+            <dt>不能做</dt><dd>不提供醫療／安全建議；不自訂退款等規則；不改程式</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="readonly">
+        <header><span class="dept">Market Research</span><code class="agent-name">market-evidence-agent</code></header>
+        <p class="task">市場事實查核，產出 Evidence Card。</p>
+        <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">沒證據不能當事實寫</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>至少兩個獨立來源＋一個官方／有方法學的研究，才算「市場事實」</dd>
+            <dt>不能做</dt><dd>不推測、不外推預測；查無證據就直說，不降低門檻交差</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card" data-tool="write">
+        <header><span class="dept">Website Dev</span><code class="agent-name">website-agent</code></header>
+        <p class="task">SnowSurfStudio Eleventy 網站的實作與 UI/UX。</p>
+        <div class="tags"><span class="chip chip-amber">可寫入</span><span class="chip chip-neutral">只在核准後改程式</span></div>
+        <details>
+          <summary>能做／不能做</summary>
+          <dl>
+            <dt>能做</dt><dd>實作與維護網站 UI／UX，套用其他部門提出的內容或 SEO 調整</dd>
+            <dt>不能做</dt><dd>不部署、不上線、不改 DNS，除非 Ellie 明確指示</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="agent-card gap-card" data-tool="readonly">
+        <header><span class="dept">Legal / Risk</span><span class="chip chip-neutral">尚未建立</span></header>
+        <p class="task">合約、取消政策、肖像／個資授權風險複核——目前沒有對應的真實 Agent。</p>
+        <div class="tags"><span class="chip chip-neutral">legal-risk-agent（草案）</span></div>
+        <details>
+          <summary>這個缺口是什麼</summary>
+          <dl>
+            <dt>缺口</dt><dd>目前沒有 Agent 檢查合約／肖像／個資風險用語，只能靠 Ellie 親自看</dd>
+            <dt>建議權限</dt><dd>唯讀（Read／Grep／Glob），只列風險清單，不做法律結論</dd>
+          </dl>
+        </details>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= 轉換漏斗 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>轉換漏斗與 KPI</h2>
+      <span class="section-note">卡住時先看「若卡住先檢查」欄。</span>
+    </div>
+    <div class="funnel">
+      <div class="funnel-step">
+        <span class="idx">01</span>
+        <h3>流量</h3>
+        <dt>主責</dt><dd>Marketing</dd>
+        <dt>每週 KPI</dt><dd>自然流量、社群觸及、CTR</dd>
+        <dt>先檢查</dt><dd>關鍵字、內容切角、素材 Hook</dd>
+      </div>
+      <div class="funnel-step">
+        <span class="idx">02</span>
+        <h3>Landing → CTA</h3>
+        <dt>主責</dt><dd>Marketing / Product</dd>
+        <dt>每週 KPI</dt><dd>CTA CTR、LINE 點擊率</dd>
+        <dt>先檢查</dt><dd>價值主張、案例、方案清楚度</dd>
+      </div>
+      <div class="funnel-step">
+        <span class="idx">03</span>
+        <h3>LINE 詢問</h3>
+        <dt>主責</dt><dd>Sales</dd>
+        <dt>每週 KPI</dt><dd>詢問數、首次回覆時間、合格率</dd>
+        <dt>先檢查</dt><dd>問答、引導問題、信任訊號</dd>
+      </div>
+      <div class="funnel-step">
+        <span class="idx">04</span>
+        <h3>報價 → 預約</h3>
+        <dt>主責</dt><dd>Sales / Finance</dd>
+        <dt>每週 KPI</dt><dd>報價率、成交率、平均客單</dd>
+        <dt>先檢查</dt><dd>方案、時程、異議處理、價格呈現</dd>
+      </div>
+      <div class="funnel-step">
+        <span class="idx">05</span>
+        <h3>拍攝 → 評價</h3>
+        <dt>主責</dt><dd>CX / Product</dd>
+        <dt>每週 KPI</dt><dd>NPS、評價率、推薦率、回購</dd>
+        <dt>先檢查</dt><dd>行前溝通、現場體驗、交付品質</dd>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 現有串接盤點 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>現有串接盤點</h2>
+    </div>
+    <div class="conn-table">
+      <div class="conn-row head"><div>串接</div><div>現況</div><div>可做的事</div><div>安全狀態</div></div>
+      <div class="conn-row">
+        <div class="name">網站／GitHub Pages</div>
+        <div class="sub">已有 Eleventy 網站與管理後台</div>
+        <div class="sub">文章與圖片建立、部署</div>
+        <div><span class="chip chip-green"><span class="dot"></span>核准後手動部署</span></div>
+      </div>
+      <div class="conn-row">
+        <div class="name">Facebook / Instagram Graph API</div>
+        <div class="sub">已有官方 API 管線</div>
+        <div class="sub">發布單圖貼文、回寫 Notion（選用）</div>
+        <div><span class="chip chip-green"><span class="dot"></span>已加核准旗標</span></div>
+      </div>
+      <div class="conn-row">
+        <div class="name">GA4</div>
+        <div class="sub">已有報表／Measurement Protocol</div>
+        <div class="sub">流量、轉換解讀</div>
+        <div><span class="chip chip-green"><span class="dot"></span>唯讀為預設</span></div>
+      </div>
+      <div class="conn-row">
+        <div class="name">Cloudflare</div>
+        <div class="sub">防護已開啟：5 筆 DNS 已 Proxy、SSL 為 Full、Bot Fight Mode 已開（Ellie 手動操作）</div>
+        <div class="sub">待確認網站實際打開正常</div>
+        <div><span class="chip chip-green"><span class="dot"></span>已開啟</span></div>
+      </div>
+      <div class="conn-row">
+        <div class="name">Gmail</div>
+        <div class="sub">已連線並確認範圍：標籤「SnowSurfStudio／待回覆」，已貼上 2 封（洽談信＋真實客戶預約）</div>
+        <div class="sub">疑似自我測試的預約通知未收入；不得出現在網站公開文字</div>
+        <div><span class="chip chip-green"><span class="dot"></span>已確認範圍</span></div>
+      </div>
+      <div class="conn-row">
+        <div class="name">Google Drive</div>
+        <div class="sub">已連線並確認範圍：`SnowSurfStudio｜營運工作區`（含 CRM）＋ `snowsurfstudio 社群貼文`</div>
+        <div class="sub">讀取拍攝素材、文件、交付物</div>
+        <div><span class="chip chip-green"><span class="dot"></span>已確認範圍</span></div>
+      </div>
+      <div class="conn-row">
+        <div class="name">Notion</div>
+        <div class="sub">已連線並確認範圍：5 個 SnowSurfStudio 專屬頁面／資料庫（含客戶名單）</div>
+        <div class="sub">內容排程、發布紀錄、廣告成效</div>
+        <div><span class="chip chip-green"><span class="dot"></span>已確認範圍</span></div>
+      </div>
+      <div class="conn-row">
+        <div class="name">Canva</div>
+        <div class="sub">已連線並確認範圍：新建 `SnowSurfStudio` 資料夾，搬入 1 個既有設計</div>
+        <div class="sub">帳號裡其他資料夾是別的接案客戶作品，不主動搜尋</div>
+        <div><span class="chip chip-green"><span class="dot"></span>已確認範圍</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <dl class="loc-grid">
+      <div><dt>正式網站</dt><dd>09_Automation_Tech/Repositories/SnowSurfStudio_Website</dd></div>
+      <div><dt>行銷／SEO</dt><dd>02_Marketing/SEO</dd></div>
+      <div><dt>內容與影像</dt><dd>04_Content</dd></div>
+      <div><dt>品牌系統</dt><dd>10_Skills/Brand_System</dd></div>
+      <div><dt>Connector 登錄</dt><dd>11_MCP_Connectors</dd></div>
+      <div><dt>SOP／核准佇列／任務記錄</dt><dd>13_SOP_Workflows</dd></div>
+      <div><dt>知識庫</dt><dd>12_Brand_Knowledge</dd></div>
+    </dl>
+    <p class="isolation-note">資料隔離：SnowSurfStudio 的客戶、影像、預約、GA4、社群帳號、知識與設定不得寫入或取用 MWC。舊雙品牌檔案只在 99_Archive 保留歷史追溯。</p>
+    <p class="source-note">這頁是 DASHBOARD.md 的視覺版快照，內容以 DASHBOARD.md 本身為準；文件更新後請重新請 Claude 發布這頁。</p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll(".filter-tabs button");
+    var cards = document.querySelectorAll(".agent-card");
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        buttons.forEach(function (b) { b.classList.remove("is-active"); });
+        btn.classList.add("is-active");
+        var filter = btn.getAttribute("data-filter");
+        cards.forEach(function (card) {
+          var tool = card.getAttribute("data-tool");
+          var show = filter === "all" || filter === tool;
+          card.classList.toggle("is-hidden", !show);
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
