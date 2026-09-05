@@ -42,9 +42,11 @@
   }
 
   // Fired by script.js whenever the section under the viewport (tracked by the
-  // side-label widget) changes. The event name is the section's own Chinese
-  // label (matching the nav/section-head text) so it reads directly in Tag
-  // Assistant's event list without opening a row to check a parameter.
+  // side-label widget) changes. GA4 silently drops event names with non-ASCII
+  // characters, so the event name itself must stay English/snake_case (same
+  // convention as booking_click, view_article, etc., which do get recorded);
+  // the section's Chinese label rides along as a parameter so it's still
+  // readable once you open the row in GA4 or Tag Assistant.
   const SECTION_LABELS = {
     HERO: '首頁',
     CHAPTERS: '人生章節',
@@ -58,7 +60,7 @@
 
   function fireSectionView(sectionTag) {
     const label = SECTION_LABELS[sectionTag] || sectionTag;
-    fireGaEvent(label, { section_tag: sectionTag });
+    fireGaEvent(`view_section_${sectionTag.toLowerCase()}`, { section_label: label });
   }
 
   function fireContentView(name, category) {
