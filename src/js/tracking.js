@@ -46,10 +46,11 @@
   }
 
   // Fired by script.js whenever the section under the viewport (tracked by the
-  // side-label widget) changes, so section engagement is visible in GA4/Tag
-  // Assistant without digging through scroll_depth percentages.
-  function fireSectionView(sectionName) {
-    fireGaEvent('section_view', { section_name: sectionName });
+  // side-label widget) changes. Each section gets its own event name (rather
+  // than one shared name + parameter) so it reads directly in Tag Assistant's
+  // event list without having to open each row to check a parameter.
+  function fireSectionView(sectionTag) {
+    fireGaEvent(`view_section_${sectionTag.toLowerCase()}`, { section_name: sectionTag });
   }
 
   function fireContentView(name, category) {
