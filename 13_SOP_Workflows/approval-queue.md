@@ -5,8 +5,8 @@
 | ID | 類型 | 摘要／版本 | 風險檢查 | 狀態 | Ellie 核准紀錄 | 執行結果 |
 | --- | --- | --- | --- | --- | --- | --- |
 | SSS-20260829-001 | Website | 「給每天努力生活的你」一頁式行銷網站 v1 | Brand / Risk / CTA / SEO 已完成草稿 QA；無價格、無預約或對外連結 | WAITING FOR OWNER APPROVAL | — | 尚未部署 |
-| SSS-20260831-002 | LINE / Access | `SnowSurfStudio｜LINE 詢問 Webhook` Web App v1 | 只記錄文字訊息；Channel Secret、Access Token 與專屬 webhook key 均為指令碼屬性；公開端點要求 webhook key | APPROVED | 2026-08-31：Ellie 核准以 Ellie 身分、任何人可存取公開部署。 | 待建立部署 |
-| SSS-20260831-003 | LINE / Access | `snowsurf-line-webhook-proxy` Cloudflare Worker v1 | 公開 Worker 驗證 LINE 簽章、轉送至既有 Apps Script，並直接回應 200；機密設定為 Worker secrets | APPROVED | 2026-08-31：Ellie 明確指示「你幫我用」，同意建立、公開部署、回填、Verify 與開啟此 LINE Webhook proxy。 | 執行中 |
+| SSS-20260831-002 | LINE / Access | `SnowSurfStudio｜LINE 詢問 Webhook` Web App v1 | 只記錄文字訊息；Channel Secret、Access Token 與專屬 webhook key 均為指令碼屬性；公開端點要求 webhook key | REVOKED | 2026-08-31：Ellie 核准以 Ellie 身分、任何人可存取公開部署。2026-09-05：Ellie 指示拿掉整個 LINE 自動化串接。 | 2026-09-05 已撤除：`automation/gas/line-webhook.gs` 自專案移除；Apps Script Web App 與 LINE Webhook 待 Ellie 於後台停用。 |
+| SSS-20260831-003 | LINE / Access | `snowsurf-line-webhook-proxy` Cloudflare Worker v1 | 公開 Worker 驗證 LINE 簽章、轉送至既有 Apps Script，並直接回應 200；機密設定為 Worker secrets | REVOKED | 2026-08-31：Ellie 明確指示「你幫我用」，同意建立、公開部署、回填、Verify 與開啟此 LINE Webhook proxy。2026-09-05：Ellie 指示拿掉整個 LINE 自動化串接。 | 2026-09-05 已撤除：轉送目標已不存在；Worker 與其 secrets 待 Ellie 於 Cloudflare 後台刪除。 |
 | SSS-20260901-004 | Website | 首頁 LIFE CHAPTERS 圖文更新＋〈情侶滑雪不吵架攻略〉 | Brand / CTA / SEO / 手機段落排版已完成；無價格、無表單規則異動 | APPROVED | 2026-09-01：Ellie 明確指示「commit部署吧」。 | 待執行 |
 | SSS-20260901-005 | Website | 〈情侶滑雪不吵架攻略〉精簡開頭版 | Brand / CTA / SEO 已沿用已上線版本；刪除 3 段導言，無價格、無表單規則異動 | APPROVED | 2026-09-01：Ellie 明確指示「部署吧。上線吧」。 | 待執行 |
 
@@ -29,9 +29,9 @@ ID: SSS-20260831-002
 版本／素材連結: Apps Script `SnowSurfStudio｜LINE 詢問 Webhook`（ID: `1gCfKVpZBKbDfabRlHxiTHScBozCTnQK-Iy-KorwselPzSgayWce5m8Au`）；程式來源 `automation/gas/line-webhook.gs`。
 影響範圍與不可逆性: 建立公開可存取的 Apps Script Web App；Webhook URL 將回填 LINE Developers Console。
 Brand / Risk / CTA / SEO QA: 僅記錄文字訊息，不自動回覆或已讀。Access Token、Channel Secret 與 `LINE_WEBHOOK_KEY` 存於指令碼屬性；URL 必須包含 webhook key。
-狀態: APPROVED
+狀態: REVOKED（2026-09-05 Ellie 指示拿掉整個 LINE 自動化串接）
 Ellie 核准: 2026-08-31，明確核准「以 Ellie 身分、任何人可存取公開部署」。
-執行結果與數據: 已確認既有 Web App URL；2026-08-31 已輪替 `LINE_WEBHOOK_KEY`（新值僅用於受控設定，不記錄於本檔）。LINE Verify 已成功。手機測試已新增一列到 `LINE 詢問`；暱稱欄回退為 LINE user ID，表示 GAS 的 Channel Access Token 仍未成功取得 Profile，待重新核對／寫入新 token 後複測。
+執行結果與數據: 已確認既有 Web App URL；2026-08-31 已輪替 `LINE_WEBHOOK_KEY`（新值僅用於受控設定，不記錄於本檔）。LINE Verify 已成功。手機測試已新增一列到 `LINE 詢問`；暱稱欄回退為 LINE user ID，表示 GAS 的 Channel Access Token 仍未成功取得 Profile，待重新核對／寫入新 token 後複測。 2026-09-05 已撤除：`automation/gas/line-webhook.gs` 自專案移除；待 Ellie 停用 Apps Script Web App 部署、撤銷 LINE Channel Access Token，Google Sheet「LINE 詢問記錄」保留為歷史資料。
 Knowledge 回寫判斷: 待驗收後評估。
 
 ---
@@ -68,9 +68,9 @@ ID: SSS-20260831-003
 版本／素材連結: `automation/line-webhook-worker.js`；名稱 `snowsurf-line-webhook-proxy`。
 影響範圍與不可逆性: 新建公開 Cloudflare Worker、設定 Worker secrets、LINE Webhook URL 回填、Verify 與啟用。
 Brand / Risk / CTA / SEO QA: Worker 僅處理 LINE Webhook；以 LINE 簽章驗證來源；Channel Secret、Apps Script URL、Apps Script webhook key 均作為 Cloudflare secrets，不寫入程式碼、Git 或文件。
-狀態: APPROVED
+狀態: REVOKED（2026-09-05 Ellie 指示拿掉整個 LINE 自動化串接）
 Ellie 核准: 2026-08-31，明確指示「你幫我用」，同意建立、公開部署、回填、Verify 與開啟此 LINE Webhook proxy。
-執行結果與數據: 2026-08-31 已移除 3 個明文變數，並以同名 Cloudflare Worker secrets 重新建立：`LINE_CHANNEL_SECRET`、`APPS_SCRIPT_URL`、`APPS_SCRIPT_WEBHOOK_KEY`；重新載入確認三者皆顯示為加密。LINE Webhook URL 已回填為 Worker URL、Verify 成功且 Use webhook 已啟用；Official Account 已改為手動聊天，加入好友歡迎訊息依 Ellie 最新指示維持啟用。手機實測已寫入 Sheet，但暱稱仍回退為 user ID，待修正 GAS Access Token 後複測。
+執行結果與數據: 2026-08-31 已移除 3 個明文變數，並以同名 Cloudflare Worker secrets 重新建立：`LINE_CHANNEL_SECRET`、`APPS_SCRIPT_URL`、`APPS_SCRIPT_WEBHOOK_KEY`；重新載入確認三者皆顯示為加密。LINE Webhook URL 已回填為 Worker URL、Verify 成功且 Use webhook 已啟用；Official Account 已改為手動聊天，加入好友歡迎訊息依 Ellie 最新指示維持啟用。手機實測已寫入 Sheet，但暱稱仍回退為 user ID，待修正 GAS Access Token 後複測。 2026-09-05 已撤除：轉送目標 Apps Script 已從專案移除，此 Worker 不再有用途；待 Ellie 於 Cloudflare 後台刪除 `snowsurf-line-webhook-proxy` 與其 secrets，並在 LINE Developers Console 關閉 Use webhook、清空 Webhook URL。
 Knowledge 回寫判斷: 待驗收後評估。
 
 ## 建立項目格式

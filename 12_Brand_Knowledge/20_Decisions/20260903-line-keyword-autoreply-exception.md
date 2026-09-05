@@ -12,3 +12,7 @@ related_approval: —
 **可重用規則**：這個例外**只涵蓋這兩組寫死在 `AUTO_REPLY` 裡的固定文字**，不代表「LINE 自動回覆」整體解禁。之後如果要新增關鍵字或改成 AI 動態生成回覆內容，都要回來跟 Ellie 確認，不能由 AI 自行擴充 `AUTO_REPLY` 的範圍或邏輯。如果之後需求變複雜（例如很多組關鍵字、需要判斷語意而非完全比對），代表已經超出「固定罐頭訊息」的範疇，應該重新走一次核准，而不是直接加大 `AUTO_REPLY`。
 
 **適用範圍**：只適用 SnowSurfStudio 的 LINE 官方帳號 Webhook（`automation/gas/line-webhook.gs`）。不影響 MWC 或其他任何品牌的訊息串接規則。
+
+---
+
+**2026-09-05 更新：本例外已失效。** Ellie 決定拿掉整個 LINE 自動化串接，`automation/gas/line-webhook.gs` 已從專案移除，`AUTO_REPLY` 的「1」「2」關鍵字自動回覆隨之停止。LINE 訊息回到全人工處理：Ellie 直接在 LINE 上看、自己回，不再有任何自動回覆或 Google Sheet 自動記錄。這份決策保留為歷史紀錄；日後若要重新做 LINE 自動化，要當成全新提案重走一次核准，不能直接沿用這裡的例外。
