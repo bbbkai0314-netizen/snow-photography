@@ -103,6 +103,7 @@ button{ font-family:inherit; }
   transition:background .25s ease, color .25s ease;
 }
 .nav__icon-btn svg{ width:15px; height:15px; }
+.nav__icon-btn--mail svg{ width:17px; height:17px; }
 .nav__icon-btn:hover{ background:var(--glass-bg-strong); }
 .nav__item--dropdown{ position:relative; display:flex; align-items:center; }
 .nav__dropdown-trigger{
@@ -1301,6 +1302,7 @@ button{ font-family:inherit; }
   transition:background .25s ease, transform .25s ease, color .25s ease;
 }
 .contact__icon-btn svg{ width:24px; height:24px; }
+.contact__icon-btn--mail svg{ width:27px; height:27px; }
 .contact__icon-btn:hover{
   background:var(--glass-bg-strong);
   color:var(--ice);
