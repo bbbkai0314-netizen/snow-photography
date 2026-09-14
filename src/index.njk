@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="plan-preview glass" href="plans/{{ plan.fileSlug }}.html">
         <img src="{% if isMotionPlan %}images/a-life-in-moments-beach.jpg{% else %}{{ plan.data.heroImage }}{% endif %}" alt="{% if isMotionPlan %}自然陽光下的藍天、海面與海岸公路大景{% else %}{{ plan.data.heroImageAlt }}{% endif %}" loading="lazy"{% if isMotionPlan %} style="object-position:50% 72%;"{% elseif plan.data.previewImagePosition %} style="object-position:{{ plan.data.previewImagePosition }};"{% endif %}>
         <div class="plan-preview__body">
-          <h3>{% if isMotionPlan %}戶外活動攝影師{% else %}{{ plan.data.title }}{% endif %}</h3>
+          <h3>{% if isMotionPlan %}戶外活動攝影{% else %}{{ plan.data.title }}{% endif %}</h3>
           <p class="plan-preview__desc">{% if isMotionPlan %}海邊、山林、露營、旅行。記錄風、光線、動作，也記錄那些來不及刻意安排的瞬間。{% else %}{{ plan.data.previewDescription }}{% endif %}</p>
           <span class="plan-preview__link">{% if isMotionPlan %}查看動態攝影方案 →{% else %}查看方案內容 →{% endif %}</span>
         </div>
