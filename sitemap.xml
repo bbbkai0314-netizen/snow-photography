@@ -1,33 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml-stylesheet type="text/css" href="https://www.xml-sitemaps.com/css/sitemap.css"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+       <loc>https://snowsurfstudio.net/</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>1.0000</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/blog/index.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+       <loc>https://snowsurfstudio.net/life-chapters.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/blog/ski-photo-poses.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+       <loc>https://snowsurfstudio.net/gallery.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/blog/selfie-vs-professional-photographer.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+       <loc>https://snowsurfstudio.net/plans/life-transition.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/blog/yuzawa-resort-guide.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+       <loc>https://snowsurfstudio.net/plans/companion-skiing.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
   </url>
   <url>
-    <loc>https://bbbkai0314-netizen.github.io/snow-photography/blog/skiing-different-levels-together.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+       <loc>https://snowsurfstudio.net/plans/companion-skiing-b.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/plans/group-ski-photography.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/plans/lesson-photography.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/hakuba-photography/</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/news.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/booking.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/policies.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/faq.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/about.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/partners.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/couple-ski-trip-no-fighting.html</loc>
+       <lastmod>2026-09-01T00:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/hakuba-ski-lodging-guide.html</loc>
+       <lastmod>2026-08-23T00:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/ski-season-early-planning.html</loc>
+       <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/family-ski-trip.html</loc>
+       <lastmod>2026-09-02T00:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/goryu-hakuba47-one-day-ski-tour.html</loc>
+       <lastmod>2026-08-12T00:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/solo-ski-photography.html</loc>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/hakuba-ski-resorts-guide.html</loc>
+       <lastmod>2026-08-09T00:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/whitespace-cargo-vest.html</loc>
+       <lastmod>2026-08-07T00:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/ski-lesson-photography-guide.html</loc>
+       <lastmod>2026-08-07T00:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/ski-photo-poses.html</loc>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/selfie-vs-professional-photographer.html</loc>
+       <lastmod>2026-07-18T00:00:00+00:00</lastmod>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://snowsurfstudio.net/blog/index.html</loc>
+       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <priority>0.8000</priority>
   </url>
 </urlset>
