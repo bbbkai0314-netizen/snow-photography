@@ -30,4 +30,22 @@ Claude Code 只會自動讀這份 `CLAUDE.md`，不會讀 `AGENTS.md`（那是�
   - 事實查證：要寫進對外內容的市場事實、數字、趨勢，主線自己查，至少兩個獨立來源，加上一個官方或有研究方法的來源；查不到就標「待確認」，不能當事實寫。
   - 網站實作：主線直接改 Eleventy 網站。改之前要 Ellie 核准，改完開 PR，合併與部署也要 Ellie 核准。
 - `legal-risk-agent` 還只是招募提案，實際不存在，不要呼叫。
+
+## 文案標準流程：主題 → 文章 → 社群 → 品質
+
+Ellie 給一個主題，就依序跑完三步，不用她再分派：
+
+1. **長文**（行銷 · `content-agent`）
+   - 主線先查證要用到的市場事實（至少兩個獨立來源，加上一個官方或有研究方法的來源），整理成 Evidence Card；再用品牌、SEO 的 Skill 做 brief。
+   - 派 `content-agent`，附上 brief 和 Evidence Card，要求它先讀 `10_Skills/Article_Writing_Spec/SKILL.md`，產出文章草稿。
+2. **社群貼文**（行銷 · `social-agent`）
+   - 以完成的文章為底，派 `social-agent` 寫 FB、IG、Threads 三個版本，要求它先讀 `10_Skills/Content_Planning_Channel_Adaptation/SKILL.md`。三個平台共用同一個 CTA。
+3. **品質把關**（行銷 · `content-quality-reviewer`）
+   - 文章、FB、IG、Threads 各自評分：獨特性、豐富度、深度三項都要 ≥ 9／10 才能交付，並檢查硬性退件條件。
+   - 沒過的退回原本寫的 Agent，照「必須補的東西」修改後再評。最多重來兩輪；還是沒過，就把分數和卡住的原因一起交給 Ellie。
+
+交付給 Ellie 的是草稿：文章、三則貼文，加上每一份的評分結果。實際發布照核准流程，另外等 Ellie 核准。
+
+## 維護
+
 - 部門名單的正本是 `DASHBOARD.md` 的「四部門路由與 8 個 Agent」。那邊改了，這張表和 `13_SOP_Workflows/dashboard.html` 要一起改，並重新發布儀表板 Artifact。
