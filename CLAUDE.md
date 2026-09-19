@@ -50,4 +50,4 @@ Ellie 給一個主題，就依序跑完三步，不用她再分派：
 
 ## 維護
 
-- 部門名單的正本是 `DASHBOARD.md` 的「四部門路由與 8 個 Agent」。那邊改了，這張表和 `13_SOP_Workflows/dashboard.html` 要一起改，並重新發布儀表板 Artifact。
+- 部門名單的正本是 `DASHBOARD.md` 的「四部門路由與 8 個 Agent」。那邊改了，這張表和 `13_SOP_Workflows/dashboard.html` 要一起改；儀表板合併到 main 後自動部署到 https://snowsurfstudio.net/ops/dashboard.html（Claude Artifact 版已停止更新）。

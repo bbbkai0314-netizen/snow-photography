@@ -3,6 +3,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
+  // 營運儀表板：原始碼在 13_SOP_Workflows，不公開連結（noindex＋robots.txt 擋 /ops/）
+  eleventyConfig.addPassthroughCopy({ "13_SOP_Workflows/dashboard.html": "ops/dashboard.html" });
   eleventyConfig.addPassthroughCopy("src/admin/admin.css");
   eleventyConfig.addPassthroughCopy("src/admin/admin.js");
   eleventyConfig.addPassthroughCopy("src/admin/admin-api.js");
