@@ -332,6 +332,16 @@
 
   .gap-card { border-style: dashed; background: var(--surface-2); }
 
+  .department-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; margin-top: 16px; }
+  .department-list article { padding: 13px 15px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-2); }
+  .department-list h3 { font-size: 13px; margin: 0 0 5px; }
+  .department-list p { font-size: 12px; color: var(--ink-soft); margin: 0; }
+  .skill-panel { margin-top: 20px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .skill-panel h3 { font-size: 15px; margin: 0 0 10px; }
+  .skill-panel p { color: var(--ink-soft); font-size: 13px; margin: 6px 0; }
+  .skill-panel a { color: var(--accent); }
+  .skill-panel code { overflow-wrap: anywhere; word-break: break-word; }
+
   /* ---------- Funnel ---------- */
   .funnel { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
   @media (max-width: 900px) { .funnel { grid-template-columns: 1fr; } }
@@ -424,7 +434,7 @@
     <div class="stat"><div class="num">1<small>位</small></div><div class="label">可寫入檔案（website-agent）</div></div>
     <div class="stat"><div class="num">0<small>筆</small></div><div class="label">待 Ellie 核准事項</div></div>
     <div class="stat"><div class="num">16<small>筆</small></div><div class="label">已記錄任務（task-log）</div></div>
-    <div class="stat"><div class="num">23<small>份</small></div><div class="label">標準流程（Skills）</div></div>
+    <div class="stat"><div class="num">1<small>份</small></div><div class="label">本次行銷 Skill</div></div>
     <div class="stat"><div class="num">45<small>條</small></div><div class="label">權限規則（allow／ask／deny）</div></div>
   </div>
 
@@ -470,14 +480,14 @@
 
       <div class="gov-row">
         <div class="name">Skills<em>標準流程</em></div>
-        <div><span class="chip chip-green"><span class="dot"></span>已建立 23 份</span></div>
-        <div class="gap">見下方「標準流程」。絕大多數存在<strong>帳號層級</strong>，只有 <code>frontend-design</code> 放在 repo 的 <code>.claude/skills/</code> 裡——換機器或換帳號時不會跟著走。</div>
+        <div><span class="chip chip-green"><span class="dot"></span>已建立行銷流程 Skill</span></div>
+        <div class="gap">帳號層級的通用 skill 仍在帳號中；下方只列本公司行銷流程。絕大多數存在<strong>帳號層級</strong>，已將「內容企劃與渠道改寫」流程收進 repo 的 <code>10_Skills/</code>；可自動呼叫的 Claude Code skill 仍須放在 <code>.claude/skills/</code>——換機器或換帳號時不會跟著走。</div>
       </div>
 
       <div class="gov-row">
         <div class="name">Subagents<em>子代理分工</em></div>
         <div><span class="chip chip-amber"><span class="dot"></span>只有角色定義</span></div>
-        <div class="gap">repo 裡沒有 <code>.claude/agents/</code>。下方 13 張卡是<strong>角色說明</strong>，由主線 Claude 扮演，不是獨立脈絡、帶工具白名單的真子代理——「不能做」目前靠自律，不是技術限制。</div>
+        <div class="gap">repo 裡沒有 <code>.claude/agents/</code>。下方 12 張卡是<strong>角色說明</strong>，由主線 Claude 扮演，不是獨立脈絡、帶工具白名單的真子代理——「不能做」目前靠自律，不是技術限制。</div>
       </div>
 
       <div class="gov-row">
@@ -504,26 +514,26 @@
   <section>
     <div class="section-head">
       <h2>公司指揮圖</h2>
-      <span class="section-note">AI 主管與知識管理員不是獨立 Agent，是目前對話的主線 Claude 在扮演的角色。</span>
+      <span class="section-note">CEO 主線是唯一入口；依任務派到五個部門。</span>
     </div>
     <div class="flow">
       <div class="flow-node">
-        <strong>Ellie · Owner / CEO</strong>
-        <span>下達商業目標，不必指定 Agent</span>
+        <strong>Ellie · Owner</strong>
+        <span>下達任務，不必指定 Agent 或 Skill</span>
       </div>
       <div class="flow-connector"><div class="line"></div>下達目標<div class="line"></div></div>
       <div class="flow-node">
-        <strong>AI 主管 = 主線 Claude</strong>
-        <span>理解目標、分派、驗收、整合、提出下一步</span>
+        <strong>CEO 入口 = 主線 AI 主管</strong>
+        <span>釐清目標、選主責部門、派工、驗收與整合；需要優先序判斷時使用 ceo-strategy-agent</span>
       </div>
-      <div class="flow-connector"><div class="line"></div>用 Agent tool 派工給下方 12 位員工<div class="line"></div></div>
+      <div class="flow-connector"><div class="line"></div>選一個主責部門，必要時跨部門協作<div class="line"></div></div>
       <div class="flow-node" style="max-width:100%; background:var(--surface-2); border-style:dashed;">
-        <strong>12 個 AI 角色定義</strong>
-        <span>詳見下方「部門與 Agent」。這些是角色說明，由主線 Claude 依描述扮演；repo 裡沒有 <code>.claude/agents/</code> 定義檔，所以工具邊界靠遵守而非技術限制</span>
+        <strong>HR　│　行銷　│　客服　│　數據分析　│　財務</strong>
+        <span>12 個現有角色定義依工作歸屬使用；HR 目前由 CEO 主線執行，沒有獨立 Agent</span>
       </div>
-      <div class="flow-connector"><div class="line"></div>任務結束後判斷要不要回寫<div class="line"></div></div>
+      <div class="flow-connector"><div class="line"></div>CEO 整合、驗收；對外或不可逆動作交 Ellie 核准<div class="line"></div></div>
       <div class="flow-node">
-        <strong>AI 知識管理員 = 主線 Claude</strong>
+        <strong>CEO 回報與知識回寫</strong>
         <span>只把可重複使用的 SOP、洞察與 Ellie 的修正寫入 12_Brand_Knowledge</span>
       </div>
     </div>
@@ -532,19 +542,26 @@
   <!-- ================= 部門與 Agent ================= -->
   <section>
     <div class="section-head">
-      <h2>部門與 Agent 路由</h2>
-      <span class="section-note">點卡片上的「能做／不能做」可以展開細節。這些是角色與邊界的<strong>書面定義</strong>，不是獨立的子代理程式——見上方「治理積木現況」。</span>
+      <h2>五部門與現有角色</h2>
+      <span class="section-note">部門是派工入口；卡片是角色定義；Skill 是工作流程，列在下方。</span>
+    </div>
+    <div class="department-list">
+      <article><h3>HR · 0 角色</h3><p>CEO 主線執行能力盤點、訓練與招募提案；法律風險 Agent 尚待核准。</p></article>
+      <article><h3>行銷 · 7 角色</h3><p>品牌、內容、SEO、社群、查證、品質與網站實作。</p></article>
+      <article><h3>客服 · 2 角色</h3><p>詢問與回覆草稿、預約旅程、攝影交付與例外處理。</p></article>
+      <article><h3>數據分析 · 1 角色</h3><p>流量、詢問、預約與轉換診斷。</p></article>
+      <article><h3>財務 · 1 角色</h3><p>成本、收款欄位與提醒；款項仍由 Ellie 決定。</p></article>
     </div>
     <div class="filter-tabs" role="tablist" aria-label="依工具權限篩選">
-      <button type="button" class="is-active" data-filter="all">全部 13</button>
-      <button type="button" data-filter="readonly">唯讀 12</button>
+      <button type="button" class="is-active" data-filter="all">全部 12</button>
+      <button type="button" data-filter="readonly">唯讀 11</button>
       <button type="button" data-filter="write">可寫入 1</button>
     </div>
 
     <div class="agent-grid" id="agentGrid">
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">CEO / Strategy</span><code class="agent-name">ceo-strategy-agent</code></header>
+        <header><span class="dept">CEO 入口</span><code class="agent-name">ceo-strategy-agent</code></header>
         <p class="task">不確定該做什麼、該找誰的第一入口；排出本週前三優先。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准策略／價格</span></div>
         <details>
@@ -557,7 +574,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">Marketing / Brand</span><code class="agent-name">marketing-brand-agent</code></header>
+        <header><span class="dept">行銷部門 · 品牌</span><code class="agent-name">marketing-brand-agent</code></header>
         <p class="task">行銷切角、活動宣傳、品牌訊息一致性草稿。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准對外發布</span></div>
         <details>
@@ -570,7 +587,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">Content（長文／部落格）</span><code class="agent-name">content-agent</code></header>
+        <header><span class="dept">行銷部門 · 長文</span><code class="agent-name">content-agent</code></header>
         <p class="task">部落格文章、網站文案、深度內容企劃。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">交 QA 把關</span></div>
         <details>
@@ -583,7 +600,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">SEO</span><code class="agent-name">seo-agent</code></header>
+        <header><span class="dept">行銷部門 · SEO</span><code class="agent-name">seo-agent</code></header>
         <p class="task">關鍵字研究、搜尋意圖、競品分析、技術 SEO 健檢。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">交 website-agent 執行</span></div>
         <details>
@@ -596,7 +613,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">Social（社群）</span><code class="agent-name">social-agent</code></header>
+        <header><span class="dept">行銷部門 · 社群</span><code class="agent-name">social-agent</code></header>
         <p class="task">IG／FB 貼文企劃、短文案、成效解讀、留言草擬。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">只準備，不代發</span></div>
         <details>
@@ -609,7 +626,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">內容品質把關</span><code class="agent-name">content-quality-reviewer</code></header>
+        <header><span class="dept">行銷部門 · 內容品質</span><code class="agent-name">content-quality-reviewer</code></header>
         <p class="task">交付前最後一關：獨特性／豐富度／深度三維評分。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">三項都 ≥9 才可交付</span></div>
         <details>
@@ -622,7 +639,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">Sales / Customer Service</span><code class="agent-name">sales-customer-service-agent</code></header>
+        <header><span class="dept">客服部門 · 詢問與回覆</span><code class="agent-name">sales-customer-service-agent</code></header>
         <p class="task">LINE／Email 詢問判讀、回覆草稿、跟進節奏。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准對外回覆</span></div>
         <details>
@@ -635,7 +652,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">Analytics / Data</span><code class="agent-name">analytics-agent</code></header>
+        <header><span class="dept">數據分析部門</span><code class="agent-name">analytics-agent</code></header>
         <p class="task">GA4 流量、頁面表現、轉換與異常診斷。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀＋查詢腳本</span><span class="chip chip-neutral">唯讀分析為預設</span></div>
         <details>
@@ -648,7 +665,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">Finance / Admin</span><code class="agent-name">finance-admin-agent</code></header>
+        <header><span class="dept">財務部門</span><code class="agent-name">finance-admin-agent</code></header>
         <p class="task">收款欄位、成本結構、到期提醒清單。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准款項／改價</span></div>
         <details>
@@ -661,7 +678,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">Product / Service Ops</span><code class="agent-name">product-operations-agent</code></header>
+        <header><span class="dept">客服部門 · 服務流程</span><code class="agent-name">product-operations-agent</code></header>
         <p class="task">攝影產品、行程營運、客戶旅程的流程與例外處理。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准服務規則</span></div>
         <details>
@@ -674,7 +691,7 @@
       </article>
 
       <article class="agent-card" data-tool="readonly">
-        <header><span class="dept">Market Research</span><code class="agent-name">market-evidence-agent</code></header>
+        <header><span class="dept">行銷部門 · 事實查證</span><code class="agent-name">market-evidence-agent</code></header>
         <p class="task">市場事實查核，產出 Evidence Card。</p>
         <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">沒證據不能當事實寫</span></div>
         <details>
@@ -687,7 +704,7 @@
       </article>
 
       <article class="agent-card" data-tool="write">
-        <header><span class="dept">Website Dev</span><code class="agent-name">website-agent</code></header>
+        <header><span class="dept">行銷部門 · 網站實作</span><code class="agent-name">website-agent</code></header>
         <p class="task">SnowSurfStudio Eleventy 網站的實作與 UI/UX。</p>
         <div class="tags"><span class="chip chip-amber">可寫入</span><span class="chip chip-neutral">只在核准後改程式</span></div>
         <details>
@@ -699,83 +716,11 @@
         </details>
       </article>
 
-      <article class="agent-card gap-card" data-tool="readonly">
-        <header><span class="dept">Legal / Risk</span><span class="chip chip-neutral">尚未建立</span></header>
-        <p class="task">合約、取消政策、肖像／個資授權風險複核——目前沒有對應的真實 Agent。</p>
-        <div class="tags"><span class="chip chip-neutral">legal-risk-agent（草案）</span></div>
-        <details>
-          <summary>這個缺口是什麼</summary>
-          <dl>
-            <dt>缺口</dt><dd>目前沒有 Agent 檢查合約／肖像／個資風險用語，只能靠 Ellie 親自看</dd>
-            <dt>建議權限</dt><dd>唯讀（Read／Grep／Glob），只列風險清單，不做法律結論</dd>
-          </dl>
-        </details>
-      </article>
-
     </div>
-  </section>
-
-  <!-- ================= 標準流程 ================= -->
-  <section>
-    <div class="section-head">
-      <h2>標準流程（Skills）</h2>
-      <span class="section-note">遇到對應情境時會自動被叫用，不必指名。以下是與 SnowSurfStudio 業務相關的；Claude Code 自身的開發用 skill 未列入。</span>
-    </div>
-    <div class="skill-grid">
-
-      <div class="skill-group">
-        <h3>內容製作</h3>
-        <ul>
-          <li>AI 設計部門總表，定義 10 個角色的分工<code>design-department</code></li>
-          <li>統籌、審核方向、判斷該交給誰<code>creative-director</code></li>
-          <li>影片主題、切角、段落架構<code>content-planner</code></li>
-          <li>逐字腳本、口播稿、字卡、CTA<code>script-writer</code></li>
-          <li>分鏡、錄屏插入點、剪輯節奏<code>video-director</code></li>
-          <li>AI 工具深度調查與競品比較<code>ai-researcher</code></li>
-          <li>業配 Brief 解析與風險評估<code>brief-analyst</code></li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <h3>品牌與素材</h3>
-        <ul>
-          <li>識別系統、色彩、字型、品牌手冊<code>brand-design</code></li>
-          <li>海報、Banner、EDM、IG 貼文圖<code>marketing-materials</code></li>
-          <li>PNG／PDF 靜態視覺作品<code>canvas-design</code></li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <h3>社群與流量</h3>
-        <ul>
-          <li>自媒體經營、內容日曆、互動<code>social-media</code></li>
-          <li>關鍵字、搜尋意圖、技術健檢<code>seo</code></li>
-          <li>行銷準則<code>marketing</code></li>
-          <li>IG 輪播貼文產出器<code>ig-post-maker</code></li>
-          <li>每週二產出下週批次 IG 貼文<code>snowsurfstudio-weekly-content</code></li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <h3>品牌專屬</h3>
-        <ul>
-          <li>SnowSurfStudio 品牌知識<code>snowsurfstudio</code></li>
-          <li>滑雪領域知識<code>snowskill</code></li>
-          <li>單板滑雪選手參考<code>shaun-white</code></li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <h3>網站與文件</h3>
-        <ul>
-          <li>前端視覺設計方向<strong>（唯一放在 repo 裡的）</strong><code>frontend-design</code></li>
-          <li>Word 文件<code>docx</code></li>
-          <li>簡報<code>pptx</code></li>
-          <li>試算表<code>xlsx</code></li>
-          <li>PDF 處理<code>pdf</code></li>
-        </ul>
-      </div>
-
+    <div class="skill-panel">
+      <h3>行銷部門 · Skills（流程，不是 Agent）</h3>
+      <p><strong>內容企劃與渠道改寫：</strong>從真實主題產出網站／IG／FB 草稿、素材需求與共同 CTA。<code>10_Skills/Content_Planning_Channel_Adaptation/SKILL.md</code></p>
+      <p><strong>文章寫作規格：</strong>部落格／Journal 長文按 MODE A／B／C 撰寫。<code>10_Skills/Article_Writing_Spec/SKILL.md</code></p>
     </div>
   </section>
 
@@ -789,35 +734,35 @@
       <div class="funnel-step">
         <span class="idx">01</span>
         <h3>流量</h3>
-        <dt>主責</dt><dd>Marketing</dd>
+        <dt>主責</dt><dd>行銷</dd>
         <dt>每週 KPI</dt><dd>自然流量、社群觸及、CTR</dd>
         <dt>先檢查</dt><dd>關鍵字、內容切角、素材 Hook</dd>
       </div>
       <div class="funnel-step">
         <span class="idx">02</span>
         <h3>Landing → CTA</h3>
-        <dt>主責</dt><dd>Marketing / Product</dd>
+        <dt>主責</dt><dd>行銷／客服</dd>
         <dt>每週 KPI</dt><dd>CTA CTR、LINE 點擊率</dd>
         <dt>先檢查</dt><dd>價值主張、案例、方案清楚度</dd>
       </div>
       <div class="funnel-step">
         <span class="idx">03</span>
         <h3>LINE 詢問</h3>
-        <dt>主責</dt><dd>Sales</dd>
+        <dt>主責</dt><dd>客服</dd>
         <dt>每週 KPI</dt><dd>詢問數、首次回覆時間、合格率</dd>
         <dt>先檢查</dt><dd>問答、引導問題、信任訊號</dd>
       </div>
       <div class="funnel-step">
         <span class="idx">04</span>
         <h3>報價 → 預約</h3>
-        <dt>主責</dt><dd>Sales / Finance</dd>
+        <dt>主責</dt><dd>客服／財務</dd>
         <dt>每週 KPI</dt><dd>報價率、成交率、平均客單</dd>
         <dt>先檢查</dt><dd>方案、時程、異議處理、價格呈現</dd>
       </div>
       <div class="funnel-step">
         <span class="idx">05</span>
         <h3>拍攝 → 評價</h3>
-        <dt>主責</dt><dd>CX / Product</dd>
+        <dt>主責</dt><dd>客服</dd>
         <dt>每週 KPI</dt><dd>NPS、評價率、推薦率、回購</dd>
         <dt>先檢查</dt><dd>行前溝通、現場體驗、交付品質</dd>
       </div>
