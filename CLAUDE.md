@@ -17,7 +17,7 @@ Claude Code 只會自動讀這份 `CLAUDE.md`，不會讀 `AGENTS.md`（那是�
 | 部門 | 派給哪些 Agent |
 | --- | --- |
 | CEO 入口 | 主線自己，也兼管原本 HR 的工作（能力缺口、訓練、新 Agent 提案，流程見 `13_SOP_Workflows/ai-hr-capability-gap.md`）；需要排優先序、取捨時用 `ceo-strategy-agent` |
-| 行銷 | `content-agent`、`social-agent`、`market-evidence-agent`、`content-quality-reviewer`、`website-agent`。品牌與 SEO 不派 Agent，主線直接用 Skill：品牌 `snowsurfstudio`、`design-marketing-quality`；SEO `seo-audit`、`seo` |
+| 行銷 | `content-agent`、`social-agent`、`content-quality-reviewer`。品牌與 SEO 不派 Agent，主線直接用 Skill：品牌 `snowsurfstudio`、`design-marketing-quality`；SEO `seo-audit`、`seo`。事實查證與網站實作也由主線直接做 |
 | 客服 | `sales-customer-service-agent`、`product-operations-agent` |
 | 數據分析 | `analytics-agent` |
 | 財務 | `finance-admin-agent` |
@@ -26,6 +26,8 @@ Claude Code 只會自動讀這份 `CLAUDE.md`，不會讀 `AGENTS.md`（那是�
   1. 主線先用 Skill 產出 brief：品牌用 `snowsurfstudio`、`design-marketing-quality`，SEO 用 `seo`、`seo-audit`（Agent 不能自己執行 Skill）。
   2. prompt 裡附上 brief，並要求它先讀 `10_Skills/Article_Writing_Spec/SKILL.md`；跨渠道內容再加讀 `10_Skills/Content_Planning_Channel_Adaptation/SKILL.md`。
 - 沒有 HR 部門：HR 的工作就是 CEO 入口的工作。
-- `marketing-brand-agent`、`seo-agent` 只有文字設定、不能執行 Skill，SnowSurfStudio 不派工給它們（檔案保留，MWC 還在用）。
+- `marketing-brand-agent`、`seo-agent`、`market-evidence-agent`、`website-agent` 停止派工（檔案保留，MWC 還在用），這些工作由主線直接做：
+  - 事實查證：要寫進對外內容的市場事實、數字、趨勢，主線自己查，至少兩個獨立來源，加上一個官方或有研究方法的來源；查不到就標「待確認」，不能當事實寫。
+  - 網站實作：主線直接改 Eleventy 網站。改之前要 Ellie 核准，改完開 PR，合併與部署也要 Ellie 核准。
 - `legal-risk-agent` 還只是招募提案，實際不存在，不要呼叫。
-- 部門名單的正本是 `DASHBOARD.md` 的「四部門路由與 10 個 Agent」。那邊改了，這張表和 `13_SOP_Workflows/dashboard.html` 要一起改，並重新發布儀表板 Artifact。
+- 部門名單的正本是 `DASHBOARD.md` 的「四部門路由與 8 個 Agent」。那邊改了，這張表和 `13_SOP_Workflows/dashboard.html` 要一起改，並重新發布儀表板 Artifact。
