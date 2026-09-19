@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <!--
   SnowSurfStudio 作業儀表板（靜態頁）
 
@@ -10,9 +10,6 @@
   發布位置：https://claude.ai/code/artifact/c2dfc349-33a1-4785-9c32-cd9c0ce76494
   內容以 13_SOP_Workflows 底下的 approval-queue.md、task-log.md 為準；
   那兩份文件更新後，這頁要一起改，並重新發布 Artifact 才會同步。
-
-  「AI 指令中控台」是交接工具，不會執行任務：它把輸入的文字複製到剪貼簿，
-  再由使用者到 Claude／Codex 工作區貼上；圖片只留在瀏覽器端，必須手動附加。
 
   注意：這頁不屬於 Eleventy 網站，不會被 npm run build 打包，也不會出現在
   snowsurfstudio.net 上。
@@ -184,233 +181,32 @@
   .stat .num small { font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--ink-soft); margin-left: 4px; }
   .stat .label { margin-top: 4px; font-size: 12px; color: var(--ink-soft); }
 
-  /* ---------- AI 指令中控台 ---------- */
-  .cmd { margin-top: 28px; }
-  .cmd-shell {
+  /* ---------- 治理積木 ---------- */
+  .gov-table { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .gov-row { display: grid; grid-template-columns: 1.15fr 1fr 1.9fr; gap: 12px 16px; padding: 13px 18px; font-size: 13px; align-items: start; }
+  .gov-row + .gov-row { border-top: 1px solid var(--line-soft); }
+  .gov-row.head { background: var(--surface-2); font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .gov-row .name { font-weight: 600; }
+  .gov-row .name em { display: block; font-style: normal; font-weight: 400; font-size: 11.5px; color: var(--ink-faint); margin-top: 1px; }
+  .gov-row .gap { color: var(--ink-soft); }
+  .gov-row .gap code { font-size: 11.5px; overflow-wrap: anywhere; }
+  @media (max-width: 720px) {
+    .gov-row { grid-template-columns: 1fr; gap: 5px; }
+    .gov-row.head { display: none; }
+  }
+
+  /* ---------- 標準流程 ---------- */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .skill-group {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--surface);
-    overflow: hidden;
+    padding: 15px 17px 14px;
   }
-  .cmd-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px 16px;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--line);
-    background: var(--surface-2);
-  }
-  .cmd-head h2 { font-size: 18px; font-weight: 600; }
-  .cmd-head .cmd-sub { font-size: 12.5px; color: var(--ink-soft); max-width: 62ch; }
-
-  .cmd-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
-    gap: 1px;
-    background: var(--line);
-  }
-  .cmd-col { background: var(--surface); padding: 20px; display: flex; flex-direction: column; gap: 14px; }
-  @media (max-width: 860px) { .cmd-grid { grid-template-columns: 1fr; } }
-
-  .cmd-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    display: block;
-    margin-bottom: 6px;
-  }
-  .cmd-label .opt { text-transform: none; letter-spacing: 0; margin-left: 4px; }
-  .cmd-hint { font-size: 12px; color: var(--ink-faint); line-height: 1.6; }
-
-  .cmd-input {
-    width: 100%;
-    min-height: 150px;
-    resize: vertical;
-    padding: 12px 14px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--surface-2);
-    color: var(--ink);
-    font-family: var(--font-body);
-    font-size: 14.5px;
-    line-height: 1.7;
-  }
-  .cmd-input::placeholder { color: var(--ink-faint); }
-  .cmd-input:focus-visible { border-color: var(--accent); }
-  .cmd-meter { margin-top: 6px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
-
-  .cmd-drop {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    padding: 20px 16px;
-    border: 1px dashed var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--surface-2);
-    color: var(--ink-soft);
-    font-family: var(--font-body);
-    font-size: 13.5px;
-    cursor: pointer;
-    text-align: center;
-  }
-  .cmd-drop:hover { border-color: var(--accent); color: var(--ink); }
-  .cmd-drop.is-over { border-color: var(--accent); border-style: solid; background: var(--accent-soft); color: var(--ink); }
-  .cmd-drop strong { font-weight: 600; color: var(--ink); }
-  .cmd-drop span { font-size: 12px; color: var(--ink-faint); }
-
-  .cmd-thumbs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
-  .cmd-thumb {
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--surface-2);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  .cmd-thumb .shot { aspect-ratio: 4 / 3; max-width: 100%; background: var(--line-soft); display: flex; align-items: center; justify-content: center; }
-  .cmd-thumb .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .cmd-thumb .shot .noprev { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); }
-  .cmd-thumb .meta { padding: 7px 8px; display: flex; align-items: flex-start; gap: 6px; }
-  .cmd-thumb .name { font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; overflow-wrap: anywhere; flex: 1; }
-  .cmd-thumb .name b { display: block; font-weight: 500; color: var(--ink); }
-  .cmd-drop-x {
-    flex: none;
-    width: 22px; height: 22px;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    background: var(--surface);
-    color: var(--ink-soft);
-    font-size: 13px;
-    line-height: 1;
-    cursor: pointer;
-  }
-  .cmd-drop-x:hover { border-color: var(--brick); color: var(--brick); }
-
-  .cmd-errors { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
-  .cmd-errors li { font-size: 12px; color: var(--brick); overflow-wrap: anywhere; }
-
-  .cmd-targets { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-  .cmd-target {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 11px 13px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--surface-2);
-    cursor: pointer;
-  }
-  .cmd-target:hover { border-color: var(--accent); }
-  .cmd-target input { margin: 2px 0 0; accent-color: var(--accent); flex: none; }
-  .cmd-target:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
-  .cmd-target.is-on { border-color: var(--accent); background: var(--accent-soft); }
-  .cmd-target:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .cmd-target .t-name { font-size: 13.5px; font-weight: 600; color: var(--ink); display: block; }
-  .cmd-target .t-note { font-size: 11.5px; color: var(--ink-soft); display: block; margin-top: 1px; }
-
-  .cmd-go {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--accent);
-    border-radius: var(--radius-sm);
-    background: var(--accent);
-    color: var(--accent-ink);
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .cmd-go:hover:not(:disabled) { filter: brightness(1.06); }
-  .cmd-go:disabled { opacity: 0.45; cursor: not-allowed; }
-  .cmd-reset {
-    align-self: flex-start;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: var(--ink-faint);
-    font-family: var(--font-body);
-    font-size: 12px;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  .cmd-reset:hover { color: var(--brick); }
-
-  .cmd-status { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; }
-  .cmd-status .chip { margin-top: 1px; }
-  .cmd-status .say { color: var(--ink-soft); line-height: 1.6; }
-
-  .cmd-rules {
-    border-top: 1px solid var(--line);
-    padding: 12px 14px;
-    background: var(--surface-2);
-    border-radius: var(--radius-sm);
-    font-size: 12px;
-    color: var(--ink-soft);
-    line-height: 1.7;
-  }
-  .cmd-rules b { color: var(--ink); font-weight: 600; }
-
-  .cmd-handoff { border-top: 1px solid var(--line); padding: 18px 20px 20px; background: var(--surface); display: flex; flex-direction: column; gap: 14px; }
-  .cmd-handoff h3 { font-family: var(--font-body); font-size: 14px; font-weight: 600; }
-  .cmd-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-  .cmd-step {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 14px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--surface-2);
-  }
-  .cmd-step .s-body { flex: 1 1 240px; min-width: 0; }
-  .cmd-step .s-name { font-size: 13.5px; font-weight: 600; color: var(--ink); }
-  .cmd-step .s-note { font-size: 12px; color: var(--ink-soft); margin-top: 2px; overflow-wrap: anywhere; }
-  .cmd-open {
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 15px;
-    border: 1px solid var(--ink);
-    border-radius: var(--radius-sm);
-    background: var(--ink);
-    color: var(--snow);
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .cmd-open:hover { filter: brightness(1.15); }
-  .cmd-step.is-done { border-color: var(--pine); }
-  .cmd-step.is-done .cmd-open { background: var(--surface); color: var(--pine); border-color: var(--pine); }
-
-  .cmd-attach { border: 1px solid var(--gold); border-radius: var(--radius-sm); background: var(--gold-soft); padding: 12px 14px; font-size: 12.5px; color: var(--gold); line-height: 1.7; }
-  .cmd-attach b { display: block; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
-  .cmd-attach ul { margin: 6px 0 0; padding-left: 18px; }
-  .cmd-attach li { overflow-wrap: anywhere; }
-
-  .cmd-raw summary { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); cursor: pointer; }
-  .cmd-raw summary:hover { color: var(--accent); }
-  .cmd-raw textarea {
-    width: 100%;
-    margin-top: 8px;
-    min-height: 130px;
-    padding: 10px 12px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    background: var(--surface-2);
-    color: var(--ink);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    line-height: 1.65;
-    resize: vertical;
-  }
+  .skill-group h3 { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; margin-bottom: 10px; }
+  .skill-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .skill-group li { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .skill-group code { display: block; font-size: 11.5px; color: var(--accent); overflow-wrap: anywhere; }
 
   /* ---------- Sections ---------- */
   section { margin-top: 52px; }
@@ -619,105 +415,17 @@
     <div class="meta-block">
       Owner / CEO：<strong>Ellie</strong><br>
       範圍：SnowSurfStudio（日本雪場滑雪攝影、預約、交付）<br>
-      最後更新：<strong>2026-09-05</strong>
+      最後更新：<strong>2026-09-19</strong>
     </div>
   </header>
 
-  <!-- ================= AI 指令中控台 ================= -->
-  <section class="cmd" aria-labelledby="cmdHeading">
-    <div class="cmd-shell">
-
-      <div class="cmd-head">
-        <h2 id="cmdHeading">AI 指令中控台</h2>
-        <p class="cmd-sub">這裡是<strong>交接站</strong>，不是執行器。按下按鈕不會直接開始跑任務——它會把你寫的內容整理好、複製到剪貼簿，再帶你到 Claude／Codex 的工作區貼上。</p>
-      </div>
-
-      <div class="cmd-grid">
-
-        <div class="cmd-col">
-          <div>
-            <label class="cmd-label" for="cmdBrief">要交代的事</label>
-            <textarea id="cmdBrief" class="cmd-input" placeholder="告訴 AI 你要完成什麼……" aria-describedby="cmdBriefHint"></textarea>
-            <p class="cmd-meter"><span id="cmdCount">0</span> 字</p>
-            <p class="cmd-hint" id="cmdBriefHint">寫清楚「要什麼結果」比「怎麼做」更有用。例如：把這三張雪場照片挑出最適合放官網方案頁的一張，並說明理由。</p>
-          </div>
-
-          <div>
-            <span class="cmd-label" id="cmdDropLabel">參考圖片<span class="opt">（選填）</span></span>
-            <button type="button" class="cmd-drop" id="cmdDrop" aria-describedby="cmdDropHint">
-              <strong>拖曳圖片到這裡，或點擊選擇</strong>
-              <span>JPG／PNG／WebP／GIF／HEIC・單張 10 MB 以內・最多 12 張</span>
-            </button>
-            <input type="file" id="cmdFile" accept="image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.gif,.heic,.heif" multiple hidden>
-            <p class="cmd-hint" id="cmdDropHint" style="margin-top:6px">圖片只留在這個頁面，<strong>不會跟著文字一起送出</strong>——交接時要在 Claude／Codex 的工作區自己重新附加。這裡列出檔名是為了讓你在電腦上找得到它們。</p>
-          </div>
-
-          <ul class="cmd-errors" id="cmdErrors" aria-live="polite"></ul>
-          <ul class="cmd-thumbs" id="cmdThumbs" aria-labelledby="cmdDropLabel"></ul>
-        </div>
-
-        <div class="cmd-col">
-          <fieldset class="cmd-targets">
-            <legend class="cmd-label">交給誰</legend>
-            <label class="cmd-target">
-              <input type="radio" name="cmdTarget" value="claude" checked>
-              <span>
-                <span class="t-name">Claude</span>
-                <span class="t-note">內容、企劃、文案、判斷與整理</span>
-              </span>
-            </label>
-            <label class="cmd-target">
-              <input type="radio" name="cmdTarget" value="codex">
-              <span>
-                <span class="t-name">Codex</span>
-                <span class="t-note">程式碼、網站修改、技術實作</span>
-              </span>
-            </label>
-            <label class="cmd-target">
-              <input type="radio" name="cmdTarget" value="both">
-              <span>
-                <span class="t-name">Claude ＋ Codex</span>
-                <span class="t-note">同一份內容交給兩邊，分頭處理</span>
-              </span>
-            </label>
-          </fieldset>
-
-          <button type="button" class="cmd-go" id="cmdGo" disabled>準備並前往工作區</button>
-
-          <p class="cmd-status">
-            <span class="chip chip-neutral" id="cmdChip"><span class="dot"></span>尚未送出</span>
-            <span class="say" id="cmdSay" role="status" aria-live="polite">寫下要交代的事之後，這顆按鈕才會啟用。</span>
-          </p>
-
-          <button type="button" class="cmd-reset" id="cmdReset" hidden>清空，重新寫一次</button>
-
-          <p class="cmd-rules">
-            <b>安全規則沒有變。</b>
-            研究、拆解、分析、草稿——AI 可以直接做完。
-            發布上線、報價、對外回覆、收款與任何不可逆的操作——一律先回來給 Ellie 確認，不得自行執行。
-          </p>
-        </div>
-
-      </div>
-
-      <div class="cmd-handoff" id="cmdHandoff" hidden>
-        <h3>交接步驟</h3>
-        <ul class="cmd-steps" id="cmdSteps"></ul>
-        <div class="cmd-attach" id="cmdAttach" hidden></div>
-        <details class="cmd-raw">
-          <summary>看／手動複製完整內容</summary>
-          <textarea id="cmdRaw" readonly spellcheck="false" aria-label="要貼到工作區的完整內容"></textarea>
-        </details>
-      </div>
-
-    </div>
-  </section>
-
   <div class="stats">
-    <div class="stat"><div class="num">12<small>位</small></div><div class="label">真實 AI 員工</div></div>
+    <div class="stat"><div class="num">12<small>個</small></div><div class="label">AI 角色定義</div></div>
     <div class="stat"><div class="num">1<small>位</small></div><div class="label">可寫入檔案（website-agent）</div></div>
     <div class="stat"><div class="num">0<small>筆</small></div><div class="label">待 Ellie 核准事項</div></div>
     <div class="stat"><div class="num">16<small>筆</small></div><div class="label">已記錄任務（task-log）</div></div>
+    <div class="stat"><div class="num">23<small>份</small></div><div class="label">標準流程（Skills）</div></div>
+    <div class="stat"><div class="num">45<small>條</small></div><div class="label">權限規則（allow／ask／deny）</div></div>
   </div>
 
   <!-- ================= 待審核佇列 ================= -->
@@ -751,6 +459,47 @@
     </div>
   </section>
 
+  <!-- ================= 治理積木現況 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>治理積木現況</h2>
+      <span class="section-note">上面那面權限牆要真的擋得住，得靠五塊東西。這裡照實記錄哪幾塊已經在跑、哪幾塊還只是紙上約定。規則細節與「擋不住什麼」見 <code>13_SOP_Workflows/ai-governance.md</code>。</span>
+    </div>
+    <div class="gov-table">
+      <div class="gov-row head"><div>積木</div><div>現況</div><div>缺口與下一步</div></div>
+
+      <div class="gov-row">
+        <div class="name">Skills<em>標準流程</em></div>
+        <div><span class="chip chip-green"><span class="dot"></span>已建立 23 份</span></div>
+        <div class="gap">見下方「標準流程」。絕大多數存在<strong>帳號層級</strong>，只有 <code>frontend-design</code> 放在 repo 的 <code>.claude/skills/</code> 裡——換機器或換帳號時不會跟著走。</div>
+      </div>
+
+      <div class="gov-row">
+        <div class="name">Subagents<em>子代理分工</em></div>
+        <div><span class="chip chip-amber"><span class="dot"></span>只有角色定義</span></div>
+        <div class="gap">repo 裡沒有 <code>.claude/agents/</code>。下方 13 張卡是<strong>角色說明</strong>，由主線 Claude 扮演，不是獨立脈絡、帶工具白名單的真子代理——「不能做」目前靠自律，不是技術限制。</div>
+      </div>
+
+      <div class="gov-row">
+        <div class="name">Hooks<em>硬性關卡</em></div>
+        <div><span class="chip chip-green"><span class="dot"></span>已建立 2 支</span></div>
+        <div class="gap"><code>PreToolUse</code> 攔截推送 main、強制推送、遞迴刪除、丟棄修改與對外送資料；<code>PostToolUse</code> 把每次工具使用寫進 <code>.claude/logs/</code>（只記摘要，不記檔案內容與信件內文）。規則說明見 <code>13_SOP_Workflows/ai-governance.md</code>。</div>
+      </div>
+
+      <div class="gov-row">
+        <div class="name">Permissions<em>合規基線</em></div>
+        <div><span class="chip chip-green"><span class="dot"></span>45 條規則</span></div>
+        <div class="gap"><code>.claude/settings.json</code> 已把上面三級權限翻成 <code>allow</code> 18 條、<code>ask</code> 16 條、<code>deny</code> 11 條。金鑰檔案、強制推送、刪除信件與雲端檔案為技術封死，無法臨時放行。</div>
+      </div>
+
+      <div class="gov-row">
+        <div class="name">MCP<em>受控資料門</em></div>
+        <div><span class="chip chip-green"><span class="dot"></span>10 個連接器</span></div>
+        <div class="gap">已連線且確認過範圍，見下方「現有串接盤點」。這是目前唯一「設定與實際一致」的一塊。</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= 公司指揮圖 ================= -->
   <section>
     <div class="section-head">
@@ -769,8 +518,8 @@
       </div>
       <div class="flow-connector"><div class="line"></div>用 Agent tool 派工給下方 12 位員工<div class="line"></div></div>
       <div class="flow-node" style="max-width:100%; background:var(--surface-2); border-style:dashed;">
-        <strong>12 位真實 AI 員工</strong>
-        <span>詳見下方「部門與 Agent」——工具權限只有唯讀，唯一能寫檔案的是 website-agent</span>
+        <strong>12 個 AI 角色定義</strong>
+        <span>詳見下方「部門與 Agent」。這些是角色說明，由主線 Claude 依描述扮演；repo 裡沒有 <code>.claude/agents/</code> 定義檔，所以工具邊界靠遵守而非技術限制</span>
       </div>
       <div class="flow-connector"><div class="line"></div>任務結束後判斷要不要回寫<div class="line"></div></div>
       <div class="flow-node">
@@ -784,7 +533,7 @@
   <section>
     <div class="section-head">
       <h2>部門與 Agent 路由</h2>
-      <span class="section-note">點卡片上的「能做／不能做」可以展開細節。</span>
+      <span class="section-note">點卡片上的「能做／不能做」可以展開細節。這些是角色與邊界的<strong>書面定義</strong>，不是獨立的子代理程式——見上方「治理積木現況」。</span>
     </div>
     <div class="filter-tabs" role="tablist" aria-label="依工具權限篩選">
       <button type="button" class="is-active" data-filter="all">全部 13</button>
@@ -966,6 +715,70 @@
     </div>
   </section>
 
+  <!-- ================= 標準流程 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>標準流程（Skills）</h2>
+      <span class="section-note">遇到對應情境時會自動被叫用，不必指名。以下是與 SnowSurfStudio 業務相關的；Claude Code 自身的開發用 skill 未列入。</span>
+    </div>
+    <div class="skill-grid">
+
+      <div class="skill-group">
+        <h3>內容製作</h3>
+        <ul>
+          <li>AI 設計部門總表，定義 10 個角色的分工<code>design-department</code></li>
+          <li>統籌、審核方向、判斷該交給誰<code>creative-director</code></li>
+          <li>影片主題、切角、段落架構<code>content-planner</code></li>
+          <li>逐字腳本、口播稿、字卡、CTA<code>script-writer</code></li>
+          <li>分鏡、錄屏插入點、剪輯節奏<code>video-director</code></li>
+          <li>AI 工具深度調查與競品比較<code>ai-researcher</code></li>
+          <li>業配 Brief 解析與風險評估<code>brief-analyst</code></li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>品牌與素材</h3>
+        <ul>
+          <li>識別系統、色彩、字型、品牌手冊<code>brand-design</code></li>
+          <li>海報、Banner、EDM、IG 貼文圖<code>marketing-materials</code></li>
+          <li>PNG／PDF 靜態視覺作品<code>canvas-design</code></li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>社群與流量</h3>
+        <ul>
+          <li>自媒體經營、內容日曆、互動<code>social-media</code></li>
+          <li>關鍵字、搜尋意圖、技術健檢<code>seo</code></li>
+          <li>行銷準則<code>marketing</code></li>
+          <li>IG 輪播貼文產出器<code>ig-post-maker</code></li>
+          <li>每週二產出下週批次 IG 貼文<code>snowsurfstudio-weekly-content</code></li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>品牌專屬</h3>
+        <ul>
+          <li>SnowSurfStudio 品牌知識<code>snowsurfstudio</code></li>
+          <li>滑雪領域知識<code>snowskill</code></li>
+          <li>單板滑雪選手參考<code>shaun-white</code></li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>網站與文件</h3>
+        <ul>
+          <li>前端視覺設計方向<strong>（唯一放在 repo 裡的）</strong><code>frontend-design</code></li>
+          <li>Word 文件<code>docx</code></li>
+          <li>簡報<code>pptx</code></li>
+          <li>試算表<code>xlsx</code></li>
+          <li>PDF 處理<code>pdf</code></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ================= 轉換漏斗 ================= -->
   <section>
     <div class="section-head">
@@ -1031,6 +844,12 @@
         <div><span class="chip chip-green"><span class="dot"></span>已加核准旗標</span></div>
       </div>
       <div class="conn-row">
+        <div class="name">GitHub</div>
+        <div class="sub">已連線：PR 建立與合併、CI 狀態、程式碼讀寫（透過 MCP）</div>
+        <div class="sub">網站改動走 PR 流程，合併會觸發部署</div>
+        <div><span class="chip chip-amber"><span class="dot"></span>合併與部署需核准</span></div>
+      </div>
+      <div class="conn-row">
         <div class="name">GA4</div>
         <div class="sub">已有報表／Measurement Protocol</div>
         <div class="sub">流量、轉換解讀</div>
@@ -1047,6 +866,12 @@
         <div class="sub">已連線並確認範圍：標籤「SnowSurfStudio／待回覆」，已貼上 2 封（洽談信＋真實客戶預約）</div>
         <div class="sub">疑似自我測試的預約通知未收入；不得出現在網站公開文字</div>
         <div><span class="chip chip-green"><span class="dot"></span>已確認範圍</span></div>
+      </div>
+      <div class="conn-row">
+        <div class="name">Google Calendar</div>
+        <div class="sub">已連線：預約自動化會寫入拍攝檔期事件</div>
+        <div class="sub">查詢檔期、建立與刪除拍攝預約事件</div>
+        <div><span class="chip chip-amber"><span class="dot"></span>刪改事件需逐次確認</span></div>
       </div>
       <div class="conn-row">
         <div class="name">Google Drive</div>
@@ -1101,369 +926,6 @@
         });
       });
     });
-  })();
-</script>
-
-<script>
-  (function () {
-    var MAX_FILES = 12;
-    var MAX_BYTES = 10 * 1024 * 1024;
-    var OK_EXT = /\.(jpe?g|png|webp|gif|heic|heif)$/i;
-
-    var brief   = document.getElementById('cmdBrief');
-    var count   = document.getElementById('cmdCount');
-    var drop    = document.getElementById('cmdDrop');
-    var fileIn  = document.getElementById('cmdFile');
-    var thumbs  = document.getElementById('cmdThumbs');
-    var errBox  = document.getElementById('cmdErrors');
-    var go      = document.getElementById('cmdGo');
-    var reset   = document.getElementById('cmdReset');
-    var chip    = document.getElementById('cmdChip');
-    var say     = document.getElementById('cmdSay');
-    var panel   = document.getElementById('cmdHandoff');
-    var steps   = document.getElementById('cmdSteps');
-    var attach  = document.getElementById('cmdAttach');
-    var raw     = document.getElementById('cmdRaw');
-    var rawWrap = raw ? raw.closest('details') : null;
-    if (!brief || !go) return;
-
-    var picked = [];
-    var seq = 0;
-    var pending = 0;
-
-    var TARGETS = {
-      claude: [{ key: 'claude', name: 'Claude', url: 'https://claude.ai/new' }],
-      codex:  [{ key: 'codex',  name: 'Codex',  url: 'https://chatgpt.com/codex' }],
-      both:   [{ key: 'claude', name: 'Claude', url: 'https://claude.ai/new' },
-               { key: 'codex',  name: 'Codex',  url: 'https://chatgpt.com/codex' }]
-    };
-
-    function fmtSize(n) {
-      if (n < 1024) { return n + ' B'; }
-      if (n < 1024 * 1024) { return (n / 1024).toFixed(0) + ' KB'; }
-      return (n / 1024 / 1024).toFixed(1) + ' MB';
-    }
-
-    function setStatus(tone, label, text) {
-      chip.className = 'chip chip-' + tone;
-      chip.textContent = '';
-      var dot = document.createElement('span');
-      dot.className = 'dot';
-      chip.appendChild(dot);
-      chip.appendChild(document.createTextNode(label));
-      say.textContent = text;
-    }
-
-    function idle() {
-      setStatus('neutral', '尚未送出', picked.length || brief.value.trim()
-        ? '還沒交接出去。按「準備並前往工作區」才會複製內容並開啟工作區。'
-        : '寫下要交代的事之後，這顆按鈕才會啟用。');
-    }
-
-    function closePanel() {
-      panel.hidden = true;
-      steps.textContent = '';
-      attach.hidden = true;
-      attach.textContent = '';
-      pending = 0;
-      if (rawWrap) { rawWrap.open = false; }
-      reset.hidden = !(brief.value.trim() || picked.length);
-      idle();
-    }
-
-    function syncGo() {
-      go.disabled = brief.value.trim() === '';
-    }
-
-    brief.addEventListener('input', function () {
-      count.textContent = String(brief.value.length);
-      syncGo();
-      if (!panel.hidden) { closePanel(); } else { idle(); }
-    });
-
-    /* ---------- 圖片 ---------- */
-    function renderErrors(list) {
-      errBox.textContent = '';
-      list.forEach(function (msg) {
-        var li = document.createElement('li');
-        li.textContent = msg;
-        errBox.appendChild(li);
-      });
-    }
-
-    function renderThumbs() {
-      thumbs.textContent = '';
-      picked.forEach(function (item) {
-        var li = document.createElement('li');
-        li.className = 'cmd-thumb';
-
-        var shot = document.createElement('div');
-        shot.className = 'shot';
-        var img = document.createElement('img');
-        img.src = item.url;
-        img.alt = '';
-        img.addEventListener('error', function () {
-          shot.textContent = '';
-          var no = document.createElement('span');
-          no.className = 'noprev';
-          var dot = item.file.name.lastIndexOf('.');
-          no.textContent = dot > -1 ? item.file.name.slice(dot + 1).toUpperCase() : '圖片';
-          shot.appendChild(no);
-        });
-        shot.appendChild(img);
-
-        var meta = document.createElement('div');
-        meta.className = 'meta';
-        var name = document.createElement('div');
-        name.className = 'name';
-        var b = document.createElement('b');
-        b.textContent = item.file.name;
-        name.appendChild(b);
-        name.appendChild(document.createTextNode(fmtSize(item.file.size)));
-
-        var x = document.createElement('button');
-        x.type = 'button';
-        x.className = 'cmd-drop-x';
-        x.textContent = '×';
-        x.setAttribute('aria-label', '移除 ' + item.file.name);
-        x.addEventListener('click', function () {
-          URL.revokeObjectURL(item.url);
-          picked = picked.filter(function (p) { return p.id !== item.id; });
-          renderThumbs();
-          if (!panel.hidden) { closePanel(); }
-          drop.focus();
-        });
-
-        meta.appendChild(name);
-        meta.appendChild(x);
-        li.appendChild(shot);
-        li.appendChild(meta);
-        thumbs.appendChild(li);
-      });
-      reset.hidden = !(brief.value.trim() || picked.length);
-    }
-
-    function addFiles(list) {
-      var errs = [];
-      Array.prototype.forEach.call(list, function (f) {
-        if (picked.length >= MAX_FILES) {
-          errs.push('最多 ' + MAX_FILES + ' 張，「' + f.name + '」沒有加入。');
-          return;
-        }
-        var typeOk = (f.type && f.type.indexOf('image/') === 0) || OK_EXT.test(f.name);
-        if (!typeOk) {
-          errs.push('「' + f.name + '」不是支援的圖片格式，沒有加入。');
-          return;
-        }
-        if (f.size > MAX_BYTES) {
-          errs.push('「' + f.name + '」是 ' + fmtSize(f.size) + '，超過單張 10 MB，沒有加入。');
-          return;
-        }
-        var dup = picked.some(function (p) {
-          return p.file.name === f.name && p.file.size === f.size;
-        });
-        if (dup) {
-          errs.push('「' + f.name + '」已經在清單裡了。');
-          return;
-        }
-        picked.push({ id: 'f' + (++seq), file: f, url: URL.createObjectURL(f) });
-      });
-      renderErrors(errs);
-      renderThumbs();
-      if (!panel.hidden) { closePanel(); }
-    }
-
-    drop.addEventListener('click', function () { fileIn.click(); });
-    fileIn.addEventListener('change', function () {
-      addFiles(fileIn.files);
-      fileIn.value = '';
-    });
-    ['dragenter', 'dragover'].forEach(function (ev) {
-      drop.addEventListener(ev, function (e) {
-        e.preventDefault();
-        drop.classList.add('is-over');
-      });
-    });
-    ['dragleave', 'dragend'].forEach(function (ev) {
-      drop.addEventListener(ev, function () { drop.classList.remove('is-over'); });
-    });
-    drop.addEventListener('drop', function (e) {
-      e.preventDefault();
-      drop.classList.remove('is-over');
-      if (e.dataTransfer && e.dataTransfer.files) { addFiles(e.dataTransfer.files); }
-    });
-
-    /* ---------- 目標 ---------- */
-    var radios = Array.prototype.slice.call(document.querySelectorAll('input[name="cmdTarget"]'));
-    function paintTargets() {
-      radios.forEach(function (r) {
-        r.closest('.cmd-target').classList.toggle('is-on', r.checked);
-      });
-    }
-    radios.forEach(function (r) {
-      r.addEventListener('change', function () {
-        paintTargets();
-        if (!panel.hidden) { closePanel(); }
-      });
-    });
-    paintTargets();
-
-    /* ---------- 組稿 ---------- */
-    function compose() {
-      var out = [brief.value.trim()];
-      if (picked.length) {
-        out.push('', '參考圖片共 ' + picked.length + ' 張，需要在這個工作區手動附加：');
-        picked.forEach(function (p, i) {
-          out.push((i + 1) + '. ' + p.file.name + '（' + fmtSize(p.file.size) + '）');
-        });
-      }
-      out.push('', '—');
-      out.push('交接自 SnowSurfStudio 作業儀表板。');
-      out.push('安全規則：研究、拆解、分析、草稿可直接完成；發布上線、報價、對外回覆、收款與任何不可逆的操作，一律先回來給 Ellie 確認。');
-      return out.join('\n');
-    }
-
-    function legacyCopy(text) {
-      try {
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.setAttribute('readonly', '');
-        ta.style.position = 'fixed';
-        ta.style.top = '0';
-        ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        ta.setSelectionRange(0, text.length);
-        var ok = document.execCommand('copy');
-        document.body.removeChild(ta);
-        return !!ok;
-      } catch (e) {
-        return false;
-      }
-    }
-
-    function copyText(text) {
-      return new Promise(function (resolve) {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(
-            function () { resolve(true); },
-            function () { resolve(legacyCopy(text)); }
-          );
-        } else {
-          resolve(legacyCopy(text));
-        }
-      });
-    }
-
-    /* ---------- 交接 ---------- */
-    function buildSteps(list, copied) {
-      steps.textContent = '';
-      pending = list.length;
-      list.forEach(function (t) {
-        var li = document.createElement('li');
-        li.className = 'cmd-step';
-
-        var body = document.createElement('div');
-        body.className = 's-body';
-        var n = document.createElement('div');
-        n.className = 's-name';
-        n.textContent = '在 ' + t.name + ' 貼上';
-        var note = document.createElement('div');
-        note.className = 's-note';
-        note.textContent = copied
-          ? t.name + ' 沒有可靠的「用網址帶入內容」機制，所以開啟後請自己貼上（⌘V／Ctrl+V）。'
-          : '內容沒有複製成功，請先從下方「手動複製完整內容」自行複製，再開啟 ' + t.name + '。';
-        body.appendChild(n);
-        body.appendChild(note);
-
-        var a = document.createElement('a');
-        a.className = 'cmd-open';
-        a.href = t.url;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.textContent = '開啟 ' + t.name + ' ↗';
-        a.addEventListener('click', function () {
-          if (li.classList.contains('is-done')) { return; }
-          li.classList.add('is-done');
-          n.textContent = '已開啟 ' + t.name;
-          pending -= 1;
-          if (pending <= 0) {
-            setStatus('green', '已完成交接', '兩邊都開啟了。內容還是要你在工作區貼上'
-              + (picked.length ? '，圖片也要手動附加。' : '。')
-              + '這個頁面不會知道任務有沒有真的開始執行。');
-          }
-        });
-
-        li.appendChild(body);
-        li.appendChild(a);
-        steps.appendChild(li);
-      });
-    }
-
-    function buildAttach() {
-      attach.textContent = '';
-      if (!picked.length) { attach.hidden = true; return; }
-      var b = document.createElement('b');
-      b.textContent = '圖片不會自動過去，' + picked.length + ' 張都要在工作區手動附加';
-      attach.appendChild(b);
-      attach.appendChild(document.createTextNode('這個頁面沒有辦法把檔案送進 Claude 或 Codex。檔名列在下面，請從你電腦上原本的位置拖進去：'));
-      var ul = document.createElement('ul');
-      picked.forEach(function (p) {
-        var li = document.createElement('li');
-        li.textContent = p.file.name + '（' + fmtSize(p.file.size) + '）';
-        ul.appendChild(li);
-      });
-      attach.appendChild(ul);
-      attach.hidden = false;
-    }
-
-    go.addEventListener('click', function () {
-      var text = compose();
-      var target = (radios.filter(function (r) { return r.checked; })[0] || {}).value || 'claude';
-      var list = TARGETS[target] || TARGETS.claude;
-
-      raw.value = text;
-      go.disabled = true;
-      setStatus('neutral', '準備中', '正在整理內容並複製到剪貼簿……');
-
-      copyText(text).then(function (copied) {
-        go.disabled = false;
-        buildSteps(list, copied);
-        buildAttach();
-        panel.hidden = false;
-        reset.hidden = false;
-
-        if (copied) {
-          setStatus('amber', '已複製，請到工作區貼上並附加圖片',
-            '文字已在剪貼簿。點下面的連結開啟工作區，貼上之後'
-            + (picked.length ? '記得把 ' + picked.length + ' 張圖片手動附加。' : '就可以開始。')
-            + ' 到目前為止還沒有任何任務被執行。');
-        } else {
-          if (rawWrap) { rawWrap.open = true; }
-          setStatus('red', '複製失敗，請手動選取下方文字複製',
-            '瀏覽器擋下了自動複製（常見於 iOS 與內嵌頁面）。請展開下方「看／手動複製完整內容」，全選後自行複製。');
-        }
-        panel.scrollIntoView({ block: 'nearest' });
-      });
-    });
-
-    reset.addEventListener('click', function () {
-      picked.forEach(function (p) { URL.revokeObjectURL(p.url); });
-      picked = [];
-      brief.value = '';
-      count.textContent = '0';
-      raw.value = '';
-      renderErrors([]);
-      renderThumbs();
-      closePanel();
-      syncGo();
-      reset.hidden = true;
-      brief.focus();
-    });
-
-    count.textContent = String(brief.value.length);
-    syncGo();
-    idle();
   })();
 </script>
 

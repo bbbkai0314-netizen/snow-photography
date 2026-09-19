@@ -56,7 +56,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img class="chapter__media-img--summer hero-fade hero-fade--b" src="{{ site.heroImageSecondary }}" alt="{{ site.heroImageSecondaryAlt }}">
       </div>
       <div class="chapter__scrim chapter__scrim--hero-left hero-fade hero-fade--a"></div>
-      <div class="chapter__scrim chapter__scrim--hero-right hero-fade hero-fade--b"></div>
+      <div class="chapter__scrim chapter__scrim--hero-left hero-fade hero-fade--b"></div>
       <div class="hero-fade hero-fade--a">
         <div class="chapter__content chapter__content--hero">
           <p class="eyebrow">Snow photographer · 滑雪攝影</p>
@@ -68,11 +68,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="hero-fade hero-fade--b">
-        <div class="chapter__content chapter__content--hero chapter__content--right">
-          <p class="eyebrow">人生轉場攝影師 · Life in Transition</p>
-          <h1 class="chapter__content--nowrap">Life in Transition</h1>
-          <p class="hero__booking">人生轉場記錄者</p>
-          <p class="chapter__lead">人生很多轉折，卻很少有一張照片留住那個瞬間。離職的那天、畢業典禮後的擁抱、搬進新城市的第一個早晨——我們陪你走進人生正在翻篇的那一刻，把「正在轉變中的自己」好好留下來。</p>
+        <div class="chapter__content chapter__content--hero">
+          <p class="eyebrow">戶外動態攝影・Outdoor Documentary Photography</p>
+          <h1 class="chapter__content--nowrap">A Life in Moments</h1>
+          <p class="hero__booking">動態攝影紀錄</p>
+          <p class="chapter__lead">戶外攝影<br>SnowSurfStudio，<br>用最自然的方式，記錄你在戶外的每一刻。<br><br>無論是山林、海邊、露營，<br>還是日常旅程與戶外活動，<br>我們專注捕捉最真實、自然且充滿故事感的畫面，<br>讓每一張照片都成為你值得珍藏的回憶。</p>
         </div>
       </div>
       <div class="scroll-cue">SCROLL</div>
@@ -169,17 +169,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-head">
       <h2 id="plans-title">拍攝方案</h2>
       <p>Photo Session</p>
-      <a class="journal__more" href="plans/life-transition.html">人生轉場攝影方案 →</a>
+      <a class="journal__more" href="plans/life-transition.html">查看戶外活動攝影方案 →</a>
     </div>
 
     <div class="plans-grid">
       {% for plan in collections.plans | sortByOrder %}
+      {% set isMotionPlan = plan.fileSlug == "life-transition" %}
       <a class="plan-preview glass" href="plans/{{ plan.fileSlug }}.html">
-        <img src="{{ plan.data.heroImage }}" alt="{{ plan.data.heroImageAlt }}" loading="lazy"{% if plan.data.previewImagePosition %} style="object-position:{{ plan.data.previewImagePosition }};"{% endif %}>
+        <img src="{% if isMotionPlan %}images/a-life-in-moments-beach.jpg{% else %}{{ plan.data.heroImage }}{% endif %}" alt="{% if isMotionPlan %}自然陽光下的藍天、海面與海岸公路大景{% else %}{{ plan.data.heroImageAlt }}{% endif %}" loading="lazy"{% if isMotionPlan %} style="object-position:50% 72%;"{% elseif plan.data.previewImagePosition %} style="object-position:{{ plan.data.previewImagePosition }};"{% endif %}>
         <div class="plan-preview__body">
-          <h3>{{ plan.data.title }}</h3>
-          <p class="plan-preview__desc">{{ plan.data.previewDescription }}</p>
-          <span class="plan-preview__link">查看方案內容 →</span>
+          <h3>{% if isMotionPlan %}戶外活動攝影{% else %}{{ plan.data.title }}{% endif %}</h3>
+          <p class="plan-preview__desc">{% if isMotionPlan %}海邊、山林、露營、旅行。記錄風、光線、動作，也記錄那些來不及刻意安排的瞬間。{% else %}{{ plan.data.previewDescription }}{% endif %}</p>
+          <span class="plan-preview__link">{% if isMotionPlan %}查看動態攝影方案 →{% else %}查看方案內容 →{% endif %}</span>
         </div>
       </a>
       {% endfor %}
@@ -325,10 +326,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="booking-wizard__panel" data-panel="2">
                 <h3 class="booking-wizard__panel-title">選擇方案</h3>
                 <div class="booking-plan-options">
-                  <button type="button" class="booking-plan-option" data-service-value="A 人生轉場攝影">
+                  <button type="button" class="booking-plan-option" data-service-value="A 戶外活動攝影">
                     <span class="booking-plan-option__icon">🌅</span>
-                    <span class="booking-plan-option__title">人生轉場攝影方案</span>
-                    <span class="booking-plan-option__desc">離職、分手、畢業——為正在轉變的自己留下一張照片</span>
+                    <span class="booking-plan-option__title">戶外活動攝影</span>
+                    <span class="booking-plan-option__desc">海邊、山林、露營與旅行，留下真實自然的活動紀錄</span>
                   </button>
                   <button type="button" class="booking-plan-option" data-service-value="B 陪伴式滑雪 A｜一人 2 小時攝影">
                     <span class="booking-plan-option__icon">❄️</span>
