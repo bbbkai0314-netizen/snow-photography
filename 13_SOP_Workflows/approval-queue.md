@@ -34,6 +34,7 @@
 | SSS-20260919-028 | Dashboard / GitHub | 移除 HR 部門與品牌／SEO 兩個 Agent | HR 工作併入 CEO 入口；`marketing-brand-agent`、`seo-agent` 停止派工，改由主線用 Skill；Agent 檔案未刪（MWC 仍在用）；未更動網站內容、價格、預約或對外發信 | APPROVED | 2026-09-19：Ellie 明確指示「部署上線」，核准合併 PR #37。 | 儀表板 Artifact 已發布 Version 20；PR #37 合併後 GitHub 上的派工規則與儀表板原始碼同步。 |
 | SSS-20260919-029 | Dashboard / GitHub | 行銷 Skill 併入長文（content-agent）卡片 | 移除獨立的行銷 Skill 面板，4 項 Skill 改列在 content-agent 卡片；`CLAUDE.md` 寫明派長文時主線先跑品牌／SEO Skill、再要 content-agent 讀 `10_Skills` 規格；未更動網站內容、價格、預約或對外發信 | APPROVED | 2026-09-19：Ellie 明確指示「部署上線」，核准合併 PR #38。 | 儀表板 Artifact 已發布 Version 21；PR #38 合併後 GitHub 上的派工規則與儀表板原始碼同步。 |
 | SSS-20260919-030 | Dashboard / GitHub | 移除事實查證與網站實作兩個 Agent；`CLAUDE.md` 加入文案標準流程（主題→文章→FB／IG／Threads→三維評分） | `market-evidence-agent`、`website-agent` 停止派工，改由主線直接做（查證維持兩個獨立來源＋一個官方或有研究方法來源的門檻；改網站、合併、部署仍須 Ellie 核准）；派工中的 Agent 變成 8 個且全部唯讀，移除篩選按鈕；Agent 檔案未刪（MWC 仍在用）；未更動網站內容、價格、預約或對外發信 | APPROVED | 2026-09-19：Ellie 明確指示「部署上線」，核准合併 PR #39（含文案標準流程）。 | 儀表板 Artifact 已發布 Version 22；PR #39 已合併（移除兩個 Agent）；文案標準流程在 #39 合併後才推上，改由 PR #40 補上。 |
+| SSS-20260919-031 | Dashboard / GitHub | 社群加入 IG 輪播「互動／選項型」產圖規格 | social-agent 卡片列出使用的 Skill；`CLAUDE.md` 文案流程第二步加入產圖（social-agent 寫每頁文字，主線跑 `10_Skills/Brand_System/scripts/render_options.py`）；背景只用 Ellie 實拍照；未更動網站內容、價格、預約或對外發信 | APPROVED | 2026-09-19：Ellie 明確指示「可以。部署上線」，核准合併 PR #41。 | 儀表板 Artifact 已發布 Version 23；範例背景改用實拍照 `src/images/town-02.jpg`；PR #41 合併後 GitHub 上的社群流程與儀表板原始碼同步。 |
 
 ID: SSS-20260829-001
 類型: Website

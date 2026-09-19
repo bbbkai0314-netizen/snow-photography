@@ -40,11 +40,13 @@ Ellie 給一個主題，就依序跑完三步，不用她再分派：
    - 派 `content-agent`，附上 brief 和 Evidence Card，要求它先讀 `10_Skills/Article_Writing_Spec/SKILL.md`，產出文章草稿。
 2. **社群貼文**（行銷 · `social-agent`）
    - 以完成的文章為底，派 `social-agent` 寫 FB、IG、Threads 三個版本，要求它先讀 `10_Skills/Content_Planning_Channel_Adaptation/SKILL.md`。三個平台共用同一個 CTA。
+   - IG 輪播圖用「互動／選項型」版面：要求 `social-agent` 也讀 `10_Skills/Brand_System/SKILL.md` 的同名章節，交出每頁的主標、選項（A｜標題＋一句說明）與 CTA，格式照 `10_Skills/Brand_System/scripts/options_example.json`。
+   - 主線把內容存成 spec.json，執行 `python3 10_Skills/Brand_System/scripts/render_options.py <spec.json>` 產圖，逐張打開檢查。背景只用 Ellie 的實拍照；沒有照片就先用程式雪山漸層，並在交付時註明要換照片。
 3. **品質把關**（行銷 · `content-quality-reviewer`）
    - 文章、FB、IG、Threads 各自評分：獨特性、豐富度、深度三項都要 ≥ 9／10 才能交付，並檢查硬性退件條件。
    - 沒過的退回原本寫的 Agent，照「必須補的東西」修改後再評。最多重來兩輪；還是沒過，就把分數和卡住的原因一起交給 Ellie。
 
-交付給 Ellie 的是草稿：文章、三則貼文，加上每一份的評分結果。實際發布照核准流程，另外等 Ellie 核准。
+交付給 Ellie 的是草稿：文章、三則貼文、IG 輪播圖，加上每一份的評分結果。實際發布照核准流程，另外等 Ellie 核准。
 
 ## 維護
 
