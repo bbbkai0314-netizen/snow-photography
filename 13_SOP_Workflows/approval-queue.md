@@ -9,7 +9,7 @@
 | SSS-20260831-003 | LINE / Access | `snowsurf-line-webhook-proxy` Cloudflare Worker v1 | 公開 Worker 驗證 LINE 簽章、轉送至既有 Apps Script，並直接回應 200；機密設定為 Worker secrets | REVOKED | 2026-08-31：Ellie 明確指示「你幫我用」，同意建立、公開部署、回填、Verify 與開啟此 LINE Webhook proxy。2026-09-05：Ellie 指示拿掉整個 LINE 自動化串接。 | 2026-09-05 已撤除：轉送目標已不存在；Worker 與其 secrets 待 Ellie 於 Cloudflare 後台刪除。 |
 | SSS-20260901-004 | Website | 首頁 LIFE CHAPTERS 圖文更新＋〈情侶滑雪不吵架攻略〉 | Brand / CTA / SEO / 手機段落排版已完成；無價格、無表單規則異動 | APPROVED | 2026-09-01：Ellie 明確指示「commit部署吧」。 | 待執行 |
 | SSS-20260901-005 | Website | 〈情侶滑雪不吵架攻略〉精簡開頭版 | Brand / CTA / SEO 已沿用已上線版本；刪除 3 段導言，無價格、無表單規則異動 | APPROVED | 2026-09-01：Ellie 明確指示「部署吧。上線吧」。 | 待執行 |
-| SSS-20260919-026 | Dashboard / GitHub | Dashboard 五部門路由與行銷 Skill 版，PR #34 | 12 個現有角色完整保留；移除無內容的舊 Skill 清單；兩個保留的 Skill 均有完整文件；390px 手機版無橫向溢出；未更動價格、預約或對外發信 | APPROVED | 2026-09-19：Ellie 指示同步並發布 Dashboard 至 GitHub 與行動端，並要求刪除空白或只有一兩行的內容。 | GitHub PR #34 待合併；Claude Artifact 另行同步與驗收。 |
+| SSS-20260919-026 | Dashboard / GitHub | Dashboard 五部門路由與行銷 Skill 版，PR #34 | 12 個現有角色完整保留；移除無內容的舊 Skill 清單；兩個保留的 Skill 均有完整文件；390px 手機版無橫向溢出；未更動價格、預約或對外發信 | APPROVED | 2026-09-19：Ellie 指示同步並發布 Dashboard 至 GitHub 與行動端，並要求刪除空白或只有一兩行的內容。 | PR #34 已合併；GitHub Pages 建置成功。原 Claude Artifact 因使用量上限暫停，已設為額度恢復後自動續跑，尚待驗收。 |
 
 ID: SSS-20260829-001
 類型: Website
