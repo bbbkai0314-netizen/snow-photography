@@ -438,11 +438,11 @@
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="num">12<small>個</small></div><div class="label">AI 角色定義</div></div>
+    <div class="stat"><div class="num">10<small>個</small></div><div class="label">派工中的 AI 角色</div></div>
     <div class="stat"><div class="num">1<small>位</small></div><div class="label">可寫入檔案（website-agent）</div></div>
     <div class="stat"><div class="num">0<small>筆</small></div><div class="label">待 Ellie 核准事項</div></div>
     <div class="stat"><div class="num">16<small>筆</small></div><div class="label">已記錄任務（task-log）</div></div>
-    <div class="stat"><div class="num">1<small>份</small></div><div class="label">本次行銷 Skill</div></div>
+    <div class="stat"><div class="num">6<small>份</small></div><div class="label">行銷部門 Skill</div></div>
     <div class="stat"><div class="num">45<small>條</small></div><div class="label">權限規則（allow／ask／deny）</div></div>
   </div>
 
@@ -494,8 +494,8 @@
 
       <div class="gov-row">
         <div class="name">Subagents<em>子代理分工</em></div>
-        <div><span class="chip chip-green"><span class="dot"></span>12 個，按部門派工</span></div>
-        <div class="gap">12 個真子代理放在帳號層級的 <code>~/.claude/agents/</code>（和 MWC 共用），各有工具白名單，唯讀角色技術上改不了檔案。部門派工規則寫在專案的 <code>CLAUDE.md</code>，Claude 每次開工自動載入。「不發布、不代回」這類界線仍靠規則，不是技術限制。</div>
+        <div><span class="chip chip-green"><span class="dot"></span>10 個，按部門派工</span></div>
+        <div class="gap">SnowSurfStudio 派工用帳號層級 <code>~/.claude/agents/</code> 裡的 10 個真子代理（和 MWC 共用），各有工具白名單，唯讀角色技術上改不了檔案。品牌與 SEO 兩個 Agent 不能執行 Skill，已停止派工，改由主線直接用 Skill。部門派工規則寫在專案的 <code>CLAUDE.md</code>，Claude 每次開工自動載入。「不發布、不代回」這類界線仍靠規則，不是技術限制。</div>
       </div>
 
       <div class="gov-row">
@@ -522,7 +522,7 @@
   <section>
     <div class="section-head">
       <h2>公司指揮圖</h2>
-      <span class="section-note">CEO 主線是唯一入口；依任務派到五個部門。</span>
+      <span class="section-note">CEO 主線是唯一入口，也兼管原本 HR 的工作；依任務派到四個部門。</span>
     </div>
     <div class="flow">
       <div class="flow-node">
@@ -532,12 +532,12 @@
       <div class="flow-connector"><div class="line"></div>下達目標<div class="line"></div></div>
       <div class="flow-node">
         <strong>CEO 入口 = 主線 AI 主管</strong>
-        <span>釐清目標、選主責部門、派工、驗收與整合；需要優先序判斷時使用 ceo-strategy-agent</span>
+        <span>釐清目標、選主責部門、派工、驗收與整合；能力缺口與新 Agent 提案也在這裡處理</span>
       </div>
       <div class="flow-connector"><div class="line"></div>選一個主責部門，必要時跨部門協作<div class="line"></div></div>
       <div class="flow-node" style="max-width:100%; background:var(--surface-2); border-style:dashed;">
-        <strong>HR　│　行銷　│　客服　│　數據分析　│　財務</strong>
-        <span>12 個現有角色定義依工作歸屬使用；HR 目前由 CEO 主線執行，沒有獨立 Agent</span>
+        <strong>行銷　│　客服　│　數據分析　│　財務</strong>
+        <span>10 個角色依工作歸屬派工；品牌與 SEO 由主線直接用 Skill</span>
       </div>
       <div class="flow-connector"><div class="line"></div>CEO 整合、驗收；對外或不可逆動作交 Ellie 核准<div class="line"></div></div>
       <div class="flow-node">
@@ -550,12 +550,12 @@
   <!-- ================= 部門與 Agent ================= -->
   <section>
     <div class="section-head">
-      <h2>五部門與現有角色</h2>
+      <h2>四部門與現有角色</h2>
       <span class="section-note">每個部門底下就是它的角色卡片；點「能做／不能做」看細節。Skill 是工作流程，放在行銷部門最後。</span>
     </div>
     <div class="filter-tabs" role="tablist" aria-label="依工具權限篩選">
-      <button type="button" class="is-active" data-filter="all">全部 12</button>
-      <button type="button" data-filter="readonly">唯讀 11</button>
+      <button type="button" class="is-active" data-filter="all">全部 10</button>
+      <button type="button" data-filter="readonly">唯讀 9</button>
       <button type="button" data-filter="write">可寫入 1</button>
     </div>
 
@@ -565,7 +565,7 @@
         <div class="dept-info">
           <h3>CEO 入口</h3>
           <span class="chip chip-neutral">1 個角色</span>
-          <p>排優先序、取捨，判斷主責與協作部門；實際派工由主線負責。</p>
+          <p>排優先序、取捨，判斷主責與協作部門；能力缺口與新 Agent 提案（原 HR）也由主線處理。</p>
         </div>
         <div class="dept-body">
           <div class="agent-grid">
@@ -587,42 +587,12 @@
 
       <div class="dept-group">
         <div class="dept-info">
-          <h3>HR</h3>
-          <span class="chip chip-neutral">0 個角色</span>
-          <p>沒有獨立 Agent，由 CEO 主線按 AI HR 流程盤點能力、規劃訓練與招募。</p>
-        </div>
-        <div class="dept-body">
-          <div class="agent-grid">
-          <article class="agent-card gap-card" data-tool="gap">
-            <header><span class="dept">招募提案 · 待 Ellie 核准</span><code class="agent-name">legal-risk-agent</code></header>
-            <p class="task">合約、取消政策、肖像／個資授權的風險複核。核准前不算在 12 個角色裡，這類檢查目前由 Ellie 親自看。</p>
-            <div class="tags"><span class="chip chip-neutral">建議唯讀</span><span class="chip chip-neutral">只列風險，不下法律結論</span></div>
-          </article>
-          </div>
-        </div>
-      </div>
-
-      <div class="dept-group">
-        <div class="dept-info">
           <h3>行銷</h3>
-          <span class="chip chip-neutral">7 個角色</span>
-          <p>品牌、內容、SEO、社群、查證、品質與網站實作；改網站仍須先經核准。</p>
+          <span class="chip chip-neutral">5 個角色</span>
+          <p>內容、社群、查證、品質與網站實作；品牌與 SEO 由主線直接用 Skill。改網站仍須先經核准。</p>
         </div>
         <div class="dept-body">
           <div class="agent-grid">
-        <article class="agent-card" data-tool="readonly">
-          <header><span class="dept">品牌</span><code class="agent-name">marketing-brand-agent</code></header>
-          <p class="task">行銷切角、活動宣傳、品牌訊息一致性草稿。</p>
-          <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">Ellie 核准對外發布</span></div>
-          <details>
-            <summary>能做／不能做</summary>
-            <dl>
-              <dt>能做</dt><dd>產出 3 個內容方向、維持跨渠道訊息一致、檔期節奏建議</dd>
-              <dt>不能做</dt><dd>只做草稿，不發布、不排實際發文、不投放廣告、不改程式</dd>
-            </dl>
-          </details>
-        </article>
-
         <article class="agent-card" data-tool="readonly">
           <header><span class="dept">長文</span><code class="agent-name">content-agent</code></header>
           <p class="task">部落格文章、網站文案、深度內容企劃。</p>
@@ -632,19 +602,6 @@
             <dl>
               <dt>能做</dt><dd>規劃主題、撰寫潤飾長文與網站文案，動筆前先跑讀者洞察企劃</dd>
               <dt>不能做</dt><dd>不寫社群短文；不改程式；不發布，只交草稿</dd>
-            </dl>
-          </details>
-        </article>
-
-        <article class="agent-card" data-tool="readonly">
-          <header><span class="dept">SEO</span><code class="agent-name">seo-agent</code></header>
-          <p class="task">關鍵字研究、搜尋意圖、競品分析、技術 SEO 健檢。</p>
-          <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">交 website-agent 執行</span></div>
-          <details>
-            <summary>能做／不能做</summary>
-            <dl>
-              <dt>能做</dt><dd>檢查標題／meta／內部連結、sitemap、結構化資料，提供文章結構建議</dd>
-              <dt>不能做</dt><dd>不直接改程式；不保證排名或流量；數字要標來源與日期</dd>
             </dl>
           </details>
         </article>
@@ -703,6 +660,8 @@
           </div>
         <div class="skill-panel">
           <h3>行銷部門 · Skills（流程，不是 Agent）</h3>
+              <p><strong>品牌：</strong>品牌知識與行銷素材全流程，由主線直接執行。<code>snowsurfstudio</code>、<code>design-marketing-quality</code></p>
+              <p><strong>SEO：</strong>網站 SEO 健檢、關鍵字與搜尋意圖，由主線直接執行。<code>seo-audit</code>、<code>seo</code></p>
           <p><strong>內容企劃與渠道改寫：</strong>從真實主題產出網站／IG／FB 草稿、素材需求與共同 CTA。<code>10_Skills/Content_Planning_Channel_Adaptation/SKILL.md</code></p>
           <p><strong>文章寫作規格：</strong>部落格／Journal 長文按 MODE A／B／C 撰寫。<code>10_Skills/Article_Writing_Spec/SKILL.md</code></p>
         </div>
