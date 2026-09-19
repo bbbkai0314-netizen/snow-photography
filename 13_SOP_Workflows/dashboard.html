@@ -3,16 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
 <!--
   SnowSurfStudio 作業儀表板（靜態頁）
 
-  這份檔案是已發布 Artifact 的原始碼備份，直接用瀏覽器開啟即可檢視。
-  發布位置：https://claude.ai/code/artifact/c2dfc349-33a1-4785-9c32-cd9c0ce76494
-  內容以 13_SOP_Workflows 底下的 approval-queue.md、task-log.md 為準；
-  那兩份文件更新後，這頁要一起改，並重新發布 Artifact 才會同步。
-
-  注意：這頁不屬於 Eleventy 網站，不會被 npm run build 打包，也不會出現在
-  snowsurfstudio.net 上。
+  這份檔案是儀表板的唯一原始碼，直接用瀏覽器開啟也能看。
+  發布位置：https://snowsurfstudio.net/ops/dashboard.html
+  發布方式：.eleventy.js 把這個檔案複製到 _site/ops/，合併到 main 後 GitHub Pages
+  自動部署，不需要 Claude。Claude Artifact 版（claude.ai/code/artifact/c2dfc349…）
+  已停止更新。
+  不公開：這頁加了 noindex，robots.txt 也擋掉 /ops/，網站上沒有連結指過來。
+  內容以 DASHBOARD.md、13_SOP_Workflows/approval-queue.md、task-log.md 為準；
+  那幾份文件更新後，這頁要一起改。
 -->
 <style>
   html { color-scheme: light dark; }
@@ -480,7 +482,7 @@
       <div class="gov-row">
         <div class="name">Subagents<em>子代理分工</em></div>
         <div><span class="chip chip-green"><span class="dot"></span>8 個，按部門派工</span></div>
-        <div class="gap">SnowSurfStudio 派工用帳號層級 <code>~/.claude/agents/</code> 裡的 8 個真子代理（和 MWC 共用），全部唯讀，工具白名單讓它們技術上改不了檔案。品牌、SEO、事實查證、網站實作 4 個 Agent 已停止派工，改由主線直接處理。部門派工規則寫在專案的 <code>CLAUDE.md</code>，Claude 每次開工自動載入。「不發布、不代回」這類界線仍靠規則，不是技術限制。</div>
+        <div class="gap">SnowSurfStudio 派工用帳號層級 <code>~/.claude/agents/</code> 裡的 8 個真子代理（和 MWC 共用），全部唯讀，工具白名單讓它們技術上改不了檔案。品牌、SEO、事實查證、網站實作 4 個 Agent 已停止派工，改由主線直接處理。部門派工規則：Codex 開工讀 <code>AGENTS.md</code>、Claude 讀 <code>CLAUDE.md</code>，兩份都以 <code>DASHBOARD.md</code> 的部門表為準。「不發布、不代回」這類界線仍靠規則，不是技術限制。</div>
       </div>
 
       <div class="gov-row">
@@ -845,7 +847,7 @@
       <div><dt>知識庫</dt><dd>12_Brand_Knowledge</dd></div>
     </dl>
     <p class="isolation-note">資料隔離：SnowSurfStudio 的客戶、影像、預約、GA4、社群帳號、知識與設定不得寫入或取用 MWC。舊雙品牌檔案只在 99_Archive 保留歷史追溯。</p>
-    <p class="source-note">這頁是 DASHBOARD.md 的視覺版快照，內容以 DASHBOARD.md 本身為準；文件更新後請重新請 Claude 發布這頁。</p>
+    <p class="source-note">這頁是 DASHBOARD.md 的視覺版快照，內容以 DASHBOARD.md 本身為準；改完合併到 main，會自動部署到 snowsurfstudio.net/ops/dashboard.html。</p>
   </footer>
 
 </div>
