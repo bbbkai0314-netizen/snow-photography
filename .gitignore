@@ -3,3 +3,4 @@
 automation/.env
 node_modules/
 _site/
+.claude/logs/
