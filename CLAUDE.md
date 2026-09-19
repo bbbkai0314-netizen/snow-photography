@@ -22,6 +22,9 @@ Claude Code 只會自動讀這份 `CLAUDE.md`，不會讀 `AGENTS.md`（那是�
 | 數據分析 | `analytics-agent` |
 | 財務 | `finance-admin-agent` |
 
+- 派 `content-agent` 寫長文時：
+  1. 主線先用 Skill 產出 brief：品牌用 `snowsurfstudio`、`design-marketing-quality`，SEO 用 `seo`、`seo-audit`（Agent 不能自己執行 Skill）。
+  2. prompt 裡附上 brief，並要求它先讀 `10_Skills/Article_Writing_Spec/SKILL.md`；跨渠道內容再加讀 `10_Skills/Content_Planning_Channel_Adaptation/SKILL.md`。
 - 沒有 HR 部門：HR 的工作就是 CEO 入口的工作。
 - `marketing-brand-agent`、`seo-agent` 只有文字設定、不能執行 Skill，SnowSurfStudio 不派工給它們（檔案保留，MWC 還在用）。
 - `legal-risk-agent` 還只是招募提案，實際不存在，不要呼叫。

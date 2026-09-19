@@ -344,11 +344,13 @@
   @media (max-width: 720px) {
     .dept-group { grid-template-columns: 1fr; }
   }
-  .skill-panel { padding: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-  .skill-panel h3 { font-size: 15px; margin: 0 0 10px; }
-  .skill-panel p { color: var(--ink-soft); font-size: 13px; margin: 6px 0; }
-  .skill-panel a { color: var(--accent); }
-  .skill-panel code { overflow-wrap: anywhere; word-break: break-word; }
+  .card-skills { border-top: 1px dashed var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+  .card-skills .label { font-size: 11px; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .card-skills ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .card-skills li { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .card-skills li strong { color: var(--ink); font-weight: 600; }
+  .card-skills code { display: block; margin-top: 2px; font-size: 11.5px; color: var(--accent); overflow-wrap: anywhere; }
+  .card-skills .via { color: var(--ink-faint); }
 
   /* ---------- Funnel ---------- */
   .funnel { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
@@ -489,7 +491,7 @@
       <div class="gov-row">
         <div class="name">Skills<em>標準流程</em></div>
         <div><span class="chip chip-green"><span class="dot"></span>已建立行銷流程 Skill</span></div>
-        <div class="gap">帳號層級的通用 skill 仍在帳號中；下方只列本公司行銷流程。絕大多數存在<strong>帳號層級</strong>，已將「內容企劃與渠道改寫」流程收進 repo 的 <code>10_Skills/</code>；可自動呼叫的 Claude Code skill 仍須放在 <code>.claude/skills/</code>——換機器或換帳號時不會跟著走。</div>
+        <div class="gap">帳號層級的通用 skill 仍在帳號中；下方長文角色卡片列出它用的 Skill。絕大多數存在<strong>帳號層級</strong>，已將「內容企劃與渠道改寫」流程收進 repo 的 <code>10_Skills/</code>；可自動呼叫的 Claude Code skill 仍須放在 <code>.claude/skills/</code>——換機器或換帳號時不會跟著走。</div>
       </div>
 
       <div class="gov-row">
@@ -551,7 +553,7 @@
   <section>
     <div class="section-head">
       <h2>四部門與現有角色</h2>
-      <span class="section-note">每個部門底下就是它的角色卡片；點「能做／不能做」看細節。Skill 是工作流程，放在行銷部門最後。</span>
+      <span class="section-note">每個部門底下就是它的角色卡片；點「能做／不能做」看細節。Skill 放在會用到它的角色卡片裡。</span>
     </div>
     <div class="filter-tabs" role="tablist" aria-label="依工具權限篩選">
       <button type="button" class="is-active" data-filter="all">全部 10</button>
@@ -597,6 +599,15 @@
           <header><span class="dept">長文</span><code class="agent-name">content-agent</code></header>
           <p class="task">部落格文章、網站文案、深度內容企劃。</p>
           <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">交 QA 把關</span></div>
+          <div class="card-skills">
+            <span class="label">使用的 Skill</span>
+            <ul>
+              <li><strong>文章寫作規格</strong>：部落格／Journal 長文先求實用，敘事題型用 MODE A／B／C。<span class="via">它自己讀檔照做。</span><code>10_Skills/<wbr>Article_Writing_Spec/<wbr>SKILL.md</code></li>
+              <li><strong>內容企劃與渠道改寫</strong>：一個主題產出網站／IG／FB 草稿、素材需求與共同 CTA。<span class="via">它自己讀檔照做。</span><code>10_Skills/<wbr>Content_Planning_<wbr>Channel_Adaptation/<wbr>SKILL.md</code></li>
+              <li><strong>品牌</strong>：品牌知識與行銷素材方向。<span class="via">主線先跑，結果交給它。</span><code>snowsurfstudio、design-marketing-quality</code></li>
+              <li><strong>SEO</strong>：關鍵字、搜尋意圖與網站健檢。<span class="via">主線先跑，結果交給它。</span><code>seo、seo-audit</code></li>
+            </ul>
+          </div>
           <details>
             <summary>能做／不能做</summary>
             <dl>
@@ -658,13 +669,6 @@
           </details>
         </article>
           </div>
-        <div class="skill-panel">
-          <h3>行銷部門 · Skills（流程，不是 Agent）</h3>
-              <p><strong>品牌：</strong>品牌知識與行銷素材全流程，由主線直接執行。<code>snowsurfstudio</code>、<code>design-marketing-quality</code></p>
-              <p><strong>SEO：</strong>網站 SEO 健檢、關鍵字與搜尋意圖，由主線直接執行。<code>seo-audit</code>、<code>seo</code></p>
-          <p><strong>內容企劃與渠道改寫：</strong>從真實主題產出網站／IG／FB 草稿、素材需求與共同 CTA。<code>10_Skills/Content_Planning_Channel_Adaptation/SKILL.md</code></p>
-          <p><strong>文章寫作規格：</strong>部落格／Journal 長文按 MODE A／B／C 撰寫。<code>10_Skills/Article_Writing_Spec/SKILL.md</code></p>
-        </div>
         </div>
       </div>
 

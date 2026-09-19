@@ -32,6 +32,7 @@
 | SSS-20260919-026 | Dashboard / GitHub | Dashboard 五部門路由與行銷 Skill 版，PR #34 | 12 個現有角色完整保留；移除無內容的舊 Skill 清單；兩個保留的 Skill 均有完整文件；390px 手機版無橫向溢出；未更動價格、預約或對外發信 | APPROVED | 2026-09-19：Ellie 指示同步並發布 Dashboard 至 GitHub 與行動端，並要求刪除空白或只有一兩行的內容。 | PR #34 已合併；GitHub Pages 建置成功。2026-09-19 Claude 已重新發布原 Artifact（Version 18），確認連結顯示五部門版本。 |
 | SSS-20260919-027 | Dashboard / GitHub | 部門派工實裝與儀表板部門分組，PR #36 | 角色卡片歸入 CEO 入口／HR／行銷／客服／數據分析／財務；新增 `CLAUDE.md` 讓 Claude 開工自動載入部門派工規則；私人計畫本網址已遮蔽；未更動網站內容、價格、預約或對外發信 | APPROVED | 2026-09-19：Ellie 明確指示「幫我commit上線」，核准合併 PR #36。 | 儀表板 Artifact 已發布 Version 19；PR #36 合併後 GitHub 上的紀錄與儀表板原始碼同步。 |
 | SSS-20260919-028 | Dashboard / GitHub | 移除 HR 部門與品牌／SEO 兩個 Agent | HR 工作併入 CEO 入口；`marketing-brand-agent`、`seo-agent` 停止派工，改由主線用 Skill；Agent 檔案未刪（MWC 仍在用）；未更動網站內容、價格、預約或對外發信 | APPROVED | 2026-09-19：Ellie 明確指示「部署上線」，核准合併 PR #37。 | 儀表板 Artifact 已發布 Version 20；PR #37 合併後 GitHub 上的派工規則與儀表板原始碼同步。 |
+| SSS-20260919-029 | Dashboard / GitHub | 行銷 Skill 併入長文（content-agent）卡片 | 移除獨立的行銷 Skill 面板，4 項 Skill 改列在 content-agent 卡片；`CLAUDE.md` 寫明派長文時主線先跑品牌／SEO Skill、再要 content-agent 讀 `10_Skills` 規格；未更動網站內容、價格、預約或對外發信 | WAITING FOR OWNER APPROVAL | — | 儀表板 Artifact 已更新；GitHub 待 Ellie 核准合併 |
 
 ID: SSS-20260829-001
 類型: Website
