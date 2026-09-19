@@ -288,22 +288,6 @@
   .flow-connector .line { width: 1px; height: 16px; background: var(--line); }
 
   /* ---------- Agent grid ---------- */
-  .filter-tabs { display: flex; gap: 8px; }
-  .filter-tabs button {
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    padding: 6px 13px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: var(--surface);
-    color: var(--ink-soft);
-    cursor: pointer;
-  }
-  .filter-tabs button:hover { border-color: var(--accent); color: var(--ink); }
-  .filter-tabs button.is-active { background: var(--ink); color: var(--snow); border-color: var(--ink); }
-  :root[data-theme="dark"] .filter-tabs button.is-active,
-  :root:not([data-theme="light"]) .filter-tabs button.is-active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-
   .agent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(266px, 1fr)); gap: 14px; }
   .agent-card {
     border: 1px solid var(--line);
@@ -316,7 +300,6 @@
     transition: border-color 0.15s ease;
   }
   .agent-card:hover { border-color: var(--accent); }
-  .agent-card.is-hidden { display: none; }
   .agent-card header { display: flex; flex-direction: column; gap: 4px; }
   .agent-card .dept { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
   .agent-card .agent-name { font-size: 13px; color: var(--accent); }
@@ -440,8 +423,8 @@
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="num">10<small>個</small></div><div class="label">派工中的 AI 角色</div></div>
-    <div class="stat"><div class="num">1<small>位</small></div><div class="label">可寫入檔案（website-agent）</div></div>
+    <div class="stat"><div class="num">8<small>個</small></div><div class="label">派工中的 AI 角色</div></div>
+    <div class="stat"><div class="num">0<small>位</small></div><div class="label">可寫入的 Agent（改網站由主線執行）</div></div>
     <div class="stat"><div class="num">0<small>筆</small></div><div class="label">待 Ellie 核准事項</div></div>
     <div class="stat"><div class="num">16<small>筆</small></div><div class="label">已記錄任務（task-log）</div></div>
     <div class="stat"><div class="num">6<small>份</small></div><div class="label">行銷部門 Skill</div></div>
@@ -496,8 +479,8 @@
 
       <div class="gov-row">
         <div class="name">Subagents<em>子代理分工</em></div>
-        <div><span class="chip chip-green"><span class="dot"></span>10 個，按部門派工</span></div>
-        <div class="gap">SnowSurfStudio 派工用帳號層級 <code>~/.claude/agents/</code> 裡的 10 個真子代理（和 MWC 共用），各有工具白名單，唯讀角色技術上改不了檔案。品牌與 SEO 兩個 Agent 不能執行 Skill，已停止派工，改由主線直接用 Skill。部門派工規則寫在專案的 <code>CLAUDE.md</code>，Claude 每次開工自動載入。「不發布、不代回」這類界線仍靠規則，不是技術限制。</div>
+        <div><span class="chip chip-green"><span class="dot"></span>8 個，按部門派工</span></div>
+        <div class="gap">SnowSurfStudio 派工用帳號層級 <code>~/.claude/agents/</code> 裡的 8 個真子代理（和 MWC 共用），全部唯讀，工具白名單讓它們技術上改不了檔案。品牌、SEO、事實查證、網站實作 4 個 Agent 已停止派工，改由主線直接處理。部門派工規則寫在專案的 <code>CLAUDE.md</code>，Claude 每次開工自動載入。「不發布、不代回」這類界線仍靠規則，不是技術限制。</div>
       </div>
 
       <div class="gov-row">
@@ -539,7 +522,7 @@
       <div class="flow-connector"><div class="line"></div>選一個主責部門，必要時跨部門協作<div class="line"></div></div>
       <div class="flow-node" style="max-width:100%; background:var(--surface-2); border-style:dashed;">
         <strong>行銷　│　客服　│　數據分析　│　財務</strong>
-        <span>10 個角色依工作歸屬派工；品牌與 SEO 由主線直接用 Skill</span>
+        <span>8 個角色依工作歸屬派工；品牌、SEO、事實查證與網站實作由主線直接處理</span>
       </div>
       <div class="flow-connector"><div class="line"></div>CEO 整合、驗收；對外或不可逆動作交 Ellie 核准<div class="line"></div></div>
       <div class="flow-node">
@@ -555,12 +538,6 @@
       <h2>四部門與現有角色</h2>
       <span class="section-note">每個部門底下就是它的角色卡片；點「能做／不能做」看細節。Skill 放在會用到它的角色卡片裡。</span>
     </div>
-    <div class="filter-tabs" role="tablist" aria-label="依工具權限篩選">
-      <button type="button" class="is-active" data-filter="all">全部 10</button>
-      <button type="button" data-filter="readonly">唯讀 9</button>
-      <button type="button" data-filter="write">可寫入 1</button>
-    </div>
-
     <div class="dept-stack" id="agentGrid">
 
       <div class="dept-group">
@@ -590,8 +567,8 @@
       <div class="dept-group">
         <div class="dept-info">
           <h3>行銷</h3>
-          <span class="chip chip-neutral">5 個角色</span>
-          <p>內容、社群、查證、品質與網站實作；品牌與 SEO 由主線直接用 Skill。改網站仍須先經核准。</p>
+          <span class="chip chip-neutral">3 個角色</span>
+          <p>內容、社群與品質把關；品牌、SEO、事實查證與網站實作由主線直接處理。改網站仍須先經核准。</p>
         </div>
         <div class="dept-body">
           <div class="agent-grid">
@@ -643,31 +620,6 @@
           </details>
         </article>
 
-        <article class="agent-card" data-tool="readonly">
-          <header><span class="dept">事實查證</span><code class="agent-name">market-evidence-agent</code></header>
-          <p class="task">市場事實查核，產出 Evidence Card。</p>
-          <div class="tags"><span class="chip chip-neutral">唯讀</span><span class="chip chip-neutral">沒證據不能當事實寫</span></div>
-          <details>
-            <summary>能做／不能做</summary>
-            <dl>
-              <dt>能做</dt><dd>至少兩個獨立來源＋一個官方／有方法學的研究，才算「市場事實」</dd>
-              <dt>不能做</dt><dd>不推測、不外推預測；查無證據就直說，不降低門檻交差</dd>
-            </dl>
-          </details>
-        </article>
-
-        <article class="agent-card" data-tool="write">
-          <header><span class="dept">網站實作</span><code class="agent-name">website-agent</code></header>
-          <p class="task">SnowSurfStudio Eleventy 網站的實作與 UI/UX。</p>
-          <div class="tags"><span class="chip chip-amber">可寫入</span><span class="chip chip-neutral">只在核准後改程式</span></div>
-          <details>
-            <summary>能做／不能做</summary>
-            <dl>
-              <dt>能做</dt><dd>實作與維護網站 UI／UX，套用其他部門提出的內容或 SEO 調整</dd>
-              <dt>不能做</dt><dd>不部署、不上線、不改 DNS，除非 Ellie 明確指示</dd>
-            </dl>
-          </details>
-        </article>
           </div>
         </div>
       </div>
@@ -891,28 +843,6 @@
 
 </div>
 
-<script>
-  (function () {
-    var buttons = document.querySelectorAll(".filter-tabs button");
-    var cards = document.querySelectorAll(".agent-card");
-    var groups = document.querySelectorAll(".dept-group");
-    buttons.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        buttons.forEach(function (b) { b.classList.remove("is-active"); });
-        btn.classList.add("is-active");
-        var filter = btn.getAttribute("data-filter");
-        cards.forEach(function (card) {
-          var tool = card.getAttribute("data-tool");
-          var show = filter === "all" || filter === tool;
-          card.classList.toggle("is-hidden", !show);
-        });
-        groups.forEach(function (group) {
-          group.hidden = !group.querySelector(".agent-card:not(.is-hidden)");
-        });
-      });
-    });
-  })();
-</script>
 
 </body>
 </html>
