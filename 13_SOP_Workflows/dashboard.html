@@ -181,6 +181,33 @@
   .stat .num small { font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--ink-soft); margin-left: 4px; }
   .stat .label { margin-top: 4px; font-size: 12px; color: var(--ink-soft); }
 
+  /* ---------- 治理積木 ---------- */
+  .gov-table { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .gov-row { display: grid; grid-template-columns: 1.15fr 1fr 1.9fr; gap: 12px 16px; padding: 13px 18px; font-size: 13px; align-items: start; }
+  .gov-row + .gov-row { border-top: 1px solid var(--line-soft); }
+  .gov-row.head { background: var(--surface-2); font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .gov-row .name { font-weight: 600; }
+  .gov-row .name em { display: block; font-style: normal; font-weight: 400; font-size: 11.5px; color: var(--ink-faint); margin-top: 1px; }
+  .gov-row .gap { color: var(--ink-soft); }
+  .gov-row .gap code { font-size: 11.5px; overflow-wrap: anywhere; }
+  @media (max-width: 720px) {
+    .gov-row { grid-template-columns: 1fr; gap: 5px; }
+    .gov-row.head { display: none; }
+  }
+
+  /* ---------- 標準流程 ---------- */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .skill-group {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 15px 17px 14px;
+  }
+  .skill-group h3 { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; margin-bottom: 10px; }
+  .skill-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .skill-group li { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .skill-group code { display: block; font-size: 11.5px; color: var(--accent); overflow-wrap: anywhere; }
+
   /* ---------- Sections ---------- */
   section { margin-top: 52px; }
   .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
@@ -357,7 +384,7 @@
   footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); }
   .loc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 24px; font-size: 12.5px; }
   .loc-grid dt { color: var(--ink-faint); }
-  .loc-grid dd { margin: 2px 0 0; font-family: var(--font-mono); color: var(--ink-soft); }
+  .loc-grid dd { margin: 2px 0 0; font-family: var(--font-mono); color: var(--ink-soft); overflow-wrap: anywhere; }
   .isolation-note {
     margin-top: 22px;
     font-size: 12.5px;
@@ -388,15 +415,17 @@
     <div class="meta-block">
       Owner / CEO：<strong>Ellie</strong><br>
       範圍：SnowSurfStudio（日本雪場滑雪攝影、預約、交付）<br>
-      最後更新：<strong>2026-09-05</strong>
+      最後更新：<strong>2026-09-19</strong>
     </div>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="num">12<small>位</small></div><div class="label">真實 AI 員工</div></div>
+    <div class="stat"><div class="num">12<small>個</small></div><div class="label">AI 角色定義</div></div>
     <div class="stat"><div class="num">1<small>位</small></div><div class="label">可寫入檔案（website-agent）</div></div>
     <div class="stat"><div class="num">0<small>筆</small></div><div class="label">待 Ellie 核准事項</div></div>
     <div class="stat"><div class="num">16<small>筆</small></div><div class="label">已記錄任務（task-log）</div></div>
+    <div class="stat"><div class="num">23<small>份</small></div><div class="label">標準流程（Skills）</div></div>
+    <div class="stat"><div class="num">45<small>條</small></div><div class="label">權限規則（allow／ask／deny）</div></div>
   </div>
 
   <!-- ================= 待審核佇列 ================= -->
@@ -430,6 +459,47 @@
     </div>
   </section>
 
+  <!-- ================= 治理積木現況 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>治理積木現況</h2>
+      <span class="section-note">上面那面權限牆要真的擋得住，得靠五塊東西。這裡照實記錄哪幾塊已經在跑、哪幾塊還只是紙上約定。規則細節與「擋不住什麼」見 <code>13_SOP_Workflows/ai-governance.md</code>。</span>
+    </div>
+    <div class="gov-table">
+      <div class="gov-row head"><div>積木</div><div>現況</div><div>缺口與下一步</div></div>
+
+      <div class="gov-row">
+        <div class="name">Skills<em>標準流程</em></div>
+        <div><span class="chip chip-green"><span class="dot"></span>已建立 23 份</span></div>
+        <div class="gap">見下方「標準流程」。絕大多數存在<strong>帳號層級</strong>，只有 <code>frontend-design</code> 放在 repo 的 <code>.claude/skills/</code> 裡——換機器或換帳號時不會跟著走。</div>
+      </div>
+
+      <div class="gov-row">
+        <div class="name">Subagents<em>子代理分工</em></div>
+        <div><span class="chip chip-amber"><span class="dot"></span>只有角色定義</span></div>
+        <div class="gap">repo 裡沒有 <code>.claude/agents/</code>。下方 13 張卡是<strong>角色說明</strong>，由主線 Claude 扮演，不是獨立脈絡、帶工具白名單的真子代理——「不能做」目前靠自律，不是技術限制。</div>
+      </div>
+
+      <div class="gov-row">
+        <div class="name">Hooks<em>硬性關卡</em></div>
+        <div><span class="chip chip-green"><span class="dot"></span>已建立 2 支</span></div>
+        <div class="gap"><code>PreToolUse</code> 攔截推送 main、強制推送、遞迴刪除、丟棄修改與對外送資料；<code>PostToolUse</code> 把每次工具使用寫進 <code>.claude/logs/</code>（只記摘要，不記檔案內容與信件內文）。規則說明見 <code>13_SOP_Workflows/ai-governance.md</code>。</div>
+      </div>
+
+      <div class="gov-row">
+        <div class="name">Permissions<em>合規基線</em></div>
+        <div><span class="chip chip-green"><span class="dot"></span>45 條規則</span></div>
+        <div class="gap"><code>.claude/settings.json</code> 已把上面三級權限翻成 <code>allow</code> 18 條、<code>ask</code> 16 條、<code>deny</code> 11 條。金鑰檔案、強制推送、刪除信件與雲端檔案為技術封死，無法臨時放行。</div>
+      </div>
+
+      <div class="gov-row">
+        <div class="name">MCP<em>受控資料門</em></div>
+        <div><span class="chip chip-green"><span class="dot"></span>10 個連接器</span></div>
+        <div class="gap">已連線且確認過範圍，見下方「現有串接盤點」。這是目前唯一「設定與實際一致」的一塊。</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= 公司指揮圖 ================= -->
   <section>
     <div class="section-head">
@@ -448,8 +518,8 @@
       </div>
       <div class="flow-connector"><div class="line"></div>用 Agent tool 派工給下方 12 位員工<div class="line"></div></div>
       <div class="flow-node" style="max-width:100%; background:var(--surface-2); border-style:dashed;">
-        <strong>12 位真實 AI 員工</strong>
-        <span>詳見下方「部門與 Agent」——工具權限只有唯讀，唯一能寫檔案的是 website-agent</span>
+        <strong>12 個 AI 角色定義</strong>
+        <span>詳見下方「部門與 Agent」。這些是角色說明，由主線 Claude 依描述扮演；repo 裡沒有 <code>.claude/agents/</code> 定義檔，所以工具邊界靠遵守而非技術限制</span>
       </div>
       <div class="flow-connector"><div class="line"></div>任務結束後判斷要不要回寫<div class="line"></div></div>
       <div class="flow-node">
@@ -463,7 +533,7 @@
   <section>
     <div class="section-head">
       <h2>部門與 Agent 路由</h2>
-      <span class="section-note">點卡片上的「能做／不能做」可以展開細節。</span>
+      <span class="section-note">點卡片上的「能做／不能做」可以展開細節。這些是角色與邊界的<strong>書面定義</strong>，不是獨立的子代理程式——見上方「治理積木現況」。</span>
     </div>
     <div class="filter-tabs" role="tablist" aria-label="依工具權限篩選">
       <button type="button" class="is-active" data-filter="all">全部 13</button>
@@ -645,6 +715,70 @@
     </div>
   </section>
 
+  <!-- ================= 標準流程 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>標準流程（Skills）</h2>
+      <span class="section-note">遇到對應情境時會自動被叫用，不必指名。以下是與 SnowSurfStudio 業務相關的；Claude Code 自身的開發用 skill 未列入。</span>
+    </div>
+    <div class="skill-grid">
+
+      <div class="skill-group">
+        <h3>內容製作</h3>
+        <ul>
+          <li>AI 設計部門總表，定義 10 個角色的分工<code>design-department</code></li>
+          <li>統籌、審核方向、判斷該交給誰<code>creative-director</code></li>
+          <li>影片主題、切角、段落架構<code>content-planner</code></li>
+          <li>逐字腳本、口播稿、字卡、CTA<code>script-writer</code></li>
+          <li>分鏡、錄屏插入點、剪輯節奏<code>video-director</code></li>
+          <li>AI 工具深度調查與競品比較<code>ai-researcher</code></li>
+          <li>業配 Brief 解析與風險評估<code>brief-analyst</code></li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>品牌與素材</h3>
+        <ul>
+          <li>識別系統、色彩、字型、品牌手冊<code>brand-design</code></li>
+          <li>海報、Banner、EDM、IG 貼文圖<code>marketing-materials</code></li>
+          <li>PNG／PDF 靜態視覺作品<code>canvas-design</code></li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>社群與流量</h3>
+        <ul>
+          <li>自媒體經營、內容日曆、互動<code>social-media</code></li>
+          <li>關鍵字、搜尋意圖、技術健檢<code>seo</code></li>
+          <li>行銷準則<code>marketing</code></li>
+          <li>IG 輪播貼文產出器<code>ig-post-maker</code></li>
+          <li>每週二產出下週批次 IG 貼文<code>snowsurfstudio-weekly-content</code></li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>品牌專屬</h3>
+        <ul>
+          <li>SnowSurfStudio 品牌知識<code>snowsurfstudio</code></li>
+          <li>滑雪領域知識<code>snowskill</code></li>
+          <li>單板滑雪選手參考<code>shaun-white</code></li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3>網站與文件</h3>
+        <ul>
+          <li>前端視覺設計方向<strong>（唯一放在 repo 裡的）</strong><code>frontend-design</code></li>
+          <li>Word 文件<code>docx</code></li>
+          <li>簡報<code>pptx</code></li>
+          <li>試算表<code>xlsx</code></li>
+          <li>PDF 處理<code>pdf</code></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ================= 轉換漏斗 ================= -->
   <section>
     <div class="section-head">
@@ -710,6 +844,12 @@
         <div><span class="chip chip-green"><span class="dot"></span>已加核准旗標</span></div>
       </div>
       <div class="conn-row">
+        <div class="name">GitHub</div>
+        <div class="sub">已連線：PR 建立與合併、CI 狀態、程式碼讀寫（透過 MCP）</div>
+        <div class="sub">網站改動走 PR 流程，合併會觸發部署</div>
+        <div><span class="chip chip-amber"><span class="dot"></span>合併與部署需核准</span></div>
+      </div>
+      <div class="conn-row">
         <div class="name">GA4</div>
         <div class="sub">已有報表／Measurement Protocol</div>
         <div class="sub">流量、轉換解讀</div>
@@ -726,6 +866,12 @@
         <div class="sub">已連線並確認範圍：標籤「SnowSurfStudio／待回覆」，已貼上 2 封（洽談信＋真實客戶預約）</div>
         <div class="sub">疑似自我測試的預約通知未收入；不得出現在網站公開文字</div>
         <div><span class="chip chip-green"><span class="dot"></span>已確認範圍</span></div>
+      </div>
+      <div class="conn-row">
+        <div class="name">Google Calendar</div>
+        <div class="sub">已連線：預約自動化會寫入拍攝檔期事件</div>
+        <div class="sub">查詢檔期、建立與刪除拍攝預約事件</div>
+        <div><span class="chip chip-amber"><span class="dot"></span>刪改事件需逐次確認</span></div>
       </div>
       <div class="conn-row">
         <div class="name">Google Drive</div>
