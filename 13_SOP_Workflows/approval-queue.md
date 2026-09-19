@@ -4,6 +4,7 @@
 
 | ID | 類型 | 摘要／版本 | 風險檢查 | 狀態 | Ellie 核准紀錄 | 執行結果 |
 | --- | --- | --- | --- | --- | --- | --- |
+| SSS-20260919-037 | Website / Tracking | GA4 事件改由網站直接送（GTM 容器沒有對應觸發條件，GA4 從沒收到轉換）、預約 GA Client ID 修正、Google Ads LINE 轉換、Meta Pixel Schedule、後台行銷數據補講義指標、收款回傳 GA4（Apps Script 新檔）、UTM 規範、Dashboard 數據優化路線圖 | 本機建置通過；用拿掉 GTM／Pixel 的網站副本實測事件名稱與參數（未送出資料）；不改價格、預約規則、文案或對外發信；Apps Script 只送 Client ID、方案與金額，不送姓名／email／LINE | WAITING FOR OWNER APPROVAL | 2026-09-19：Ellie 指示「你可以幫我放到 Dashboard，然後你自己幫我優化嗎？」，同意主線修改並開 PR；合併（即部署）另待核准。 | PR 已開，待合併；Apps Script 需 Ellie 貼上並設定 `GA4_API_SECRET` |
 | SSS-20260919-034 | Website | P3 修正為板在前、人物跳起張手，攝影師抓拍離地瞬間；同步前言與清單 | 建置通過；保留原六張示意圖；補起跳與落地空間說明 | APPROVED | 2026-09-19 Ellie 在官網檢查時要求修正P3，明確說明需叫人跳起並由攝影師捕捉 | 執行中 |
 | SSS-20260919-033 | Website | 六個新手滑雪拍照姿勢，第五版＋品牌SEO修正；六張白衣女性AI動作示意圖 | 已驗證建置、手機排版、圖片、SEO與來源；內部評分7.5／9／8.5，Ellie 明確要求先上線檢查 | APPROVED | 2026-09-19 Ellie：「你先把文章放到我的官網上面。然後圖片要用剛剛的示意圖。我先檢查一下。」核准目前版本先發布官網供檢查，不含社群發布。 | 執行中；頁面 /blog/ski-beginner-photo-tutorial-6-poses.html |
 | SSS-20260829-001 | Website | 「給每天努力生活的你」一頁式行銷網站 v1 | Brand / Risk / CTA / SEO 已完成草稿 QA；無價格、無預約或對外連結 | CANCELLED | 2026-09-05：Ellie 表示這個案子不做了。 | 未部署即取消，草稿保留於原專案資料夾 |
