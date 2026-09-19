@@ -26,6 +26,7 @@
  * 3. 打勾當下會自動寄出訂金收訖信給客人（內含姓名、匯款金額、匯款帳號後五碼），
  *    並在「訂金信已寄送」欄位（程式會自動新增）標記寄送時間，避免重複寄送
  * 4. 尾款流程相同，勾 FinalPaymentReceived 即可
+ * 5. 收款後回傳 GA4 的成交與金額，見 ga4-conversions.gs（同一個專案，另外設定一次密鑰）
  */
 
 const CONFIG = {
@@ -127,6 +128,15 @@ function sendPendingPaymentEmails() {
     const row = i + 1;
     handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.DEPOSIT_RECEIVED, NOTIFY_STATUS_COLUMNS.DEPOSIT_EMAIL, sendDepositReceivedEmail_);
     handleMarkerEdit_(sheet, row, headerRow, MARKER_COLUMNS.FINAL_PAYMENT_RECEIVED, NOTIFY_STATUS_COLUMNS.FINAL_EMAIL, sendFinalPaymentReceivedEmail_);
+  }
+
+  // 收款後回傳 GA4（ga4-conversions.gs）。那個檔案沒貼進專案時就略過，失敗也不影響寄信。
+  if (typeof sendPendingGa4Conversions === 'function') {
+    try {
+      sendPendingGa4Conversions();
+    } catch (err) {
+      Logger.log('GA4 回傳失敗: ' + err.message);
+    }
   }
 }
 

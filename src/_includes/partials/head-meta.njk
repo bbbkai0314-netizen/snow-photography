@@ -5,6 +5,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-M5MVCP2M');</script>
 <!-- End Google Tag Manager -->
+<script>
+  // GTM's Google tag loads gtag.js for G-H578W2CXH6 / AW-18359584407 but does not define
+  // window.gtag. This standard shim lets tracking.js send GA4 events and the Google Ads
+  // conversion straight through that already-loaded tag (the GTM container has no
+  // triggers for the site's custom dataLayer events, so they never reached GA4).
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

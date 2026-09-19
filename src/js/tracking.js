@@ -1,9 +1,20 @@
 // GTM is installed site-wide in head-meta.njk (container GTM-M5MVCP2M). Keep all
 // conversion-event rules here so every desktop and mobile CTA uses the same
-// classification and cannot double-count. Events are pushed to window.dataLayer;
-// the corresponding GA4 / Google Ads tags and triggers are configured inside the
-// GTM container, not in this file.
+// classification and cannot double-count. Each event is still pushed to
+// window.dataLayer for GTM, but the container has no triggers for these custom events,
+// so the ones that matter are also sent straight to GA4 (and the LINE conversion to
+// Google Ads) through the gtag() shim defined in head-meta.njk.
 (() => {
+  const GA4_ID = 'G-H578W2CXH6';
+  const ADS_LINE_CONVERSION = 'AW-18359584407/xG5WCKHCsO0cEJeNxLJE';
+
+  // Only the event's own parameters go to GA4: GA4 already attributes the session from
+  // the landing URL's UTM tags, so re-sending utm_* would only add noise.
+  function sendGa4(name, parameters) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', name, { ...parameters, send_to: GA4_ID });
+  }
+
   function fireGaEvent(name, parameters) {
     window.dataLayer = window.dataLayer || [];
     const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
@@ -17,10 +28,12 @@
   }
 
   function fireLineContact(source) {
-    // The Google Ads conversion (AW-18359584407/xG5WCKHCsO0cEJeNxLJE) now fires from
-    // a GTM tag triggered on this same "line_click" dataLayer event, instead of being
-    // pushed directly from here.
     fireGaEvent('line_click', { source });
+    // "source" is renamed for GA4 so it can't be read as a traffic-source field.
+    sendGa4('line_click', { cta_source: source });
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', { send_to: ADS_LINE_CONVERSION });
+    }
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { content_name: source });
     }
@@ -28,6 +41,7 @@
 
   function fireSelectPlan(planName, serviceValue) {
     fireGaEvent('select_plan', { plan_name: planName, service_value: serviceValue });
+    sendGa4('select_plan', { plan_name: planName, service_value: serviceValue });
     if (typeof fbq === 'function') {
       fbq('track', 'ViewContent', { content_name: planName });
     }
@@ -35,17 +49,22 @@
 
   function fireBookingClick(source) {
     fireGaEvent('booking_click', { source });
+    sendGa4('booking_click', { cta_source: source });
   }
 
+  // GA4 gets this conversion as booking_submit from booking-form.js, so only the
+  // dataLayer push and the Meta Pixel happen here (sending both would double-count).
   function fireBookingComplete() {
     fireGaEvent('booking_complete');
+    if (typeof fbq === 'function') {
+      fbq('track', 'Schedule');
+    }
   }
 
   // Fired by script.js whenever the section under the viewport (tracked by the
   // side-label widget) changes. GA4 silently drops event names with non-ASCII
   // characters, so the event name itself must stay English/snake_case (same
-  // convention as booking_click, view_article, etc., which do get recorded);
-  // the section's Chinese label rides along as a parameter so it's still
+  // convention as booking_click, view_article, etc.); the section's Chinese label rides along as a parameter so it's still
   // readable once you open the row in GA4 or Tag Assistant.
   const SECTION_LABELS = {
     HERO: '首頁',
@@ -58,13 +77,22 @@
     BOOKING: '我要預約',
   };
 
+  // GA4 gets one view_section event name with the section as a parameter (instead of a
+  // separate event name per section), once per section per page load.
+  const sectionsSentToGa4 = new Set();
+
   function fireSectionView(sectionTag) {
     const label = SECTION_LABELS[sectionTag] || sectionTag;
     fireGaEvent(`view_section_${sectionTag.toLowerCase()}`, { section_label: label });
+    if (!sectionsSentToGa4.has(sectionTag)) {
+      sectionsSentToGa4.add(sectionTag);
+      sendGa4('view_section', { section: sectionTag.toLowerCase(), section_label: label });
+    }
   }
 
   function fireContentView(name, category) {
     fireGaEvent('view_article', { content_name: name, content_category: category });
+    sendGa4('view_article', { content_name: name, content_category: category });
     if (typeof fbq === 'function') {
       fbq('track', 'ViewContent', { content_name: name, content_category: category });
     }
@@ -72,6 +100,7 @@
 
   // Fire once per threshold per page load, in order, so a fast scroll to the bottom
   // still reports every milestone passed rather than jumping straight to 90.
+  // Not sent to GA4: the GTM container already sends GA4's own "scroll" event.
   const SCROLL_THRESHOLDS = [25, 50, 75, 90];
   let scrollThresholdIndex = 0;
   let scrollTicking = false;
@@ -126,6 +155,7 @@
   }
 
   window.ssTrack = {
+    ga4: sendGa4,
     lineContact: fireLineContact,
     selectPlan: fireSelectPlan,
     bookingComplete: fireBookingComplete,

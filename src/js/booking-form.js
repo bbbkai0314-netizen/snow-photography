@@ -41,22 +41,29 @@
   };
 
   let hasFiredBookingStart = false;
+  let furthestStepTracked = 1;
   function trackEvent(name, params) {
     window.dataLayer = window.dataLayer || [];
     const utm = typeof window.ssfUTM === 'function' ? window.ssfUTM() : {};
     const sessionId = window.ssfSessionId;
     window.dataLayer.push({ event: name, ...params, ...utm, ...(sessionId ? { session_id: sessionId } : {}) });
+    if (window.ssTrack && typeof window.ssTrack.ga4 === 'function') {
+      window.ssTrack.ga4(name, params);
+    }
   }
 
   // Reads GA4's client_id so it can ride along in the Form submission. Apps Script later
   // uses the same client_id to send booking_confirmed/purchase via Measurement Protocol,
   // which is the only way those two events can still be attributed to the original
   // marketing source even though they fire from the admin panel, not a browser.
-  // NOTE: gtag() is no longer loaded directly (GTM-M5MVCP2M owns tag delivery now), so
-  // this only resolves once a GA4 tag for G-H578W2CXH6 is configured inside the GTM
-  // container and has fired on the page (GTM's Google tag exposes window.gtag itself).
+  // The _ga cookie ("GA1.1.<random>.<timestamp>") is read first because it is always
+  // there once GA4 has loaded; gtag('get') through the shim in head-meta.njk is only a
+  // fallback. Before this, window.gtag was never defined, so the Sheet's GA Client ID
+  // column stayed empty for every booking.
   const GA4_MEASUREMENT_ID = 'G-H578W2CXH6';
   function getGaClientId() {
+    const cookie = document.cookie.match(/(?:^|;\s*)_ga=GA\d\.\d\.(\d+\.\d+)/);
+    if (cookie) return Promise.resolve(cookie[1]);
     return new Promise((resolve) => {
       if (typeof gtag !== 'function') { resolve(''); return; }
       let settled = false;
@@ -68,8 +75,14 @@
     });
   }
 
+  // Each step is reported once, the first time the visitor reaches it, so the GA4
+  // funnel shows exactly where people drop out of the wizard.
   function setStep(n) {
     state.step = n;
+    if (n > furthestStepTracked) {
+      furthestStepTracked = n;
+      trackEvent('booking_step', { step: n });
+    }
     panels.forEach((p) => p.classList.toggle('is-active', Number(p.dataset.panel) === n));
     steps.forEach((s) => {
       const stepNum = Number(s.dataset.step);
@@ -95,7 +108,7 @@
 
       if (!hasFiredBookingStart) {
         hasFiredBookingStart = true;
-        trackEvent('booking_start', { plan: state.planLabel });
+        trackEvent('booking_start', { plan_name: state.planLabel });
       }
     });
   });
@@ -332,7 +345,7 @@
       state.submissionCompleted = true;
       window.ssTrack && window.ssTrack.bookingComplete();
       trackEvent('booking_submit', {
-        plan: state.planLabel,
+        plan_name: state.planLabel,
         location: state.location,
         people: Number(state.people) || undefined,
       });
