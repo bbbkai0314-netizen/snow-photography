@@ -26,6 +26,29 @@
  * 3. 打勾當下會自動寄出訂金收訖信給客人（內含姓名、匯款金額、匯款帳號後五碼），
  *    並在「訂金信已寄送」欄位（程式會自動新增）標記寄送時間，避免重複寄送
  * 4. 尾款流程相同，勾 FinalPaymentReceived 即可
+ *
+ * LINE 訊息通知設定（預約完成後，除了 email，也主動發一則 LINE 訊息給客人）:
+ * 1. 到 LINE Developers Console（developers.line.biz）建立 Provider，並在底下建立一個
+ *    「Messaging API」channel（如果你的 LINE 官方帳號還沒有對應的 channel，也可以直接從
+ *    LINE Official Account Manager 的「設定 -> Messaging API」頁面開通，會自動建好）
+ * 2. 在該 channel 的「Messaging API」頁籤，找到「Channel access token」，點「Issue」核發一組
+ *    長效權杖，複製起來（等一下要貼）
+ * 3. 回到這支 Apps Script 專案，執行一次 setLineChannelAccessToken()，會跳出一個輸入框，
+ *    把剛剛複製的權杖貼進去。這組權杖只會存在這個 Apps Script 專案的設定裡，不會出現在程式碼中
+ * 4. 上方選單「部署 -> 新增部署作業」，類型選「網頁應用程式」，執行身份選「我」，
+ *    誰可以存取選「任何人」，部署後複製網址（結尾是 /exec），這是接下來要用的 Webhook 網址
+ * 5. 回到同一個 Messaging API channel，往下找到「LIFF」區塊，新增一個 LIFF app：
+ *    Endpoint URL 填你的網站首頁完整網址（例如 https://你的網域/）、Size 選「Full」、
+ *    Scope 勾選「profile」，建立後複製 LIFF ID（格式像 1234567890-AbcdEfgh）
+ * 6. 打開網站原始碼的 src/js/booking-form.js，把最上面的 LIFF_ID 填上第 5 步的 LIFF ID、
+ *    LINE_BIND_WEBHOOK_URL 填上第 4 步的網頁應用程式網址，存檔後 push 上去、等網站部署完成
+ * 7. 完成以上步驟後：客人送出預約表單、被導去 LINE 時，會自動幫他當下這筆預約跟他的
+ *    LINE 帳號綁定，這支 Apps Script 就會主動發一則 LINE 訊息給他（跟確認信內容大同小異）。
+ *    Sheet 會自動新增「LineUserId」「LineDisplayName」「LINE訊息狀態」三欄可以看綁定與寄送狀況。
+ *    在完成第 6 步之前，網站行為不會有任何改變（客人一樣會被導去 LINE 官方帳號，只是不會自動綁定）。
+ * 8. 手動測試：先確認 Sheet 最後一列的「LINE訊息狀態」欄位是空的（不是空的就先手動清空），
+ *    到程式碼裡把 testSendLineToLatestRow() 裡的 testUserId 填一個測試用的 userId
+ *    （例如你自己帳號的 userId），再執行這個函式——會用最後一列資料模擬送一則 LINE 訊息
  */
 
 const CONFIG = {
@@ -96,6 +119,15 @@ const PAYMENT_FIELDS = {
   LAST5: 'PaymentLast5',
   AMOUNT: 'PaymentAmount',
 };
+
+// 網站的 LIFF 綁定流程（見 src/js/booking-form.js）送過來的欄位，程式會自動新增這三欄。
+const LINE_BIND_COLUMNS = {
+  USER_ID: 'LineUserId',
+  DISPLAY_NAME: 'LineDisplayName',
+  MESSAGE_STATUS: 'LINE訊息狀態',
+};
+
+const LINE_CHANNEL_TOKEN_PROPERTY = 'LINE_CHANNEL_ACCESS_TOKEN';
 
 function onSheetEdit(e) {
   const row = e.range.getRow();
@@ -198,6 +230,166 @@ function testWithLatestRow() {
   });
 
   processSubmission_(namedValues, sheet.getRange(lastDataRow + 1, 1));
+}
+
+// 網站的 LIFF 綁定流程呼叫的 Webhook：客人送出預約表單、被導去 LINE 時，瀏覽器會把他的
+// LINE userId 連同姓名/email 一起 POST 過來，這裡負責把 userId 寫回對應的那一列，
+// 並主動發一則 LINE 訊息給他。部署方式見檔案最上方「LINE 訊息通知設定」。
+function doPost(e) {
+  try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return ContentService.createTextOutput('missing body');
+    }
+    const body = JSON.parse(e.postData.contents);
+    const email = (body.email || '').toString().trim();
+    const userId = (body.userId || '').toString().trim();
+    const displayName = (body.displayName || '').toString().trim();
+
+    if (!email || !userId) {
+      return ContentService.createTextOutput('missing email or userId');
+    }
+
+    const match = findRowForLineBind_(email);
+    if (!match) {
+      Logger.log('LINE 綁定找不到對應預約列，email: ' + email);
+      return ContentService.createTextOutput('no matching booking row');
+    }
+
+    setStatusCell_(match.sheet, match.rowNum, LINE_BIND_COLUMNS.USER_ID, userId);
+    if (displayName) {
+      setStatusCell_(match.sheet, match.rowNum, LINE_BIND_COLUMNS.DISPLAY_NAME, displayName);
+    }
+    sendLineBookingConfirmation_(match.sheet, match.rowNum, userId);
+
+    return ContentService.createTextOutput('ok');
+  } catch (err) {
+    Logger.log('doPost 綁定失敗: ' + err.message);
+    return ContentService.createTextOutput('error: ' + err.message);
+  }
+}
+
+// 找最近一筆「email 相符、還沒綁定過 LineUserId」的資料列。
+// 客人送出表單到瀏覽器完成 LIFF 登入導回來會有一點時間差，所以這裡會重試幾次，
+// 給 Google 表單把資料寫進 Sheet 的時間。
+function findRowForLineBind_(email) {
+  const sheet = SpreadsheetApp.openById(CONFIG.RESPONSE_SHEET_ID).getSheets()[0];
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    const values = sheet.getDataRange().getValues();
+    if (values.length >= 2) {
+      const headerRow = values[0];
+      const emailCol = headerRow.indexOf(FIELD.EMAIL);
+      const userIdCol = headerRow.indexOf(LINE_BIND_COLUMNS.USER_ID);
+      for (let i = values.length - 1; i >= 1; i -= 1) {
+        const rowEmail = (values[i][emailCol] || '').toString().trim();
+        const alreadyBound = userIdCol >= 0 && values[i][userIdCol];
+        if (rowEmail === email && !alreadyBound) {
+          return { sheet: sheet, rowNum: i + 1 };
+        }
+      }
+    }
+    if (attempt < 3) Utilities.sleep(2000);
+  }
+  return null;
+}
+
+// 組出跟確認信同樣資訊的 LINE 文字訊息並推送，寄送狀態寫回 Sheet 避免重複發送。
+function sendLineBookingConfirmation_(sheet, rowNum, userId) {
+  const statusCol = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0].indexOf(LINE_BIND_COLUMNS.MESSAGE_STATUS) + 1;
+  if (statusCol > 0 && sheet.getRange(rowNum, statusCol).getValue()) {
+    return; // 已經寄過了
+  }
+
+  const headerRow = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const rowValues = sheet.getRange(rowNum, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const namedValues = {};
+  headerRow.forEach((header, i) => { namedValues[header] = rowValues[i]; });
+
+  const name = (namedValues[FIELD.NAME] || '').toString().trim();
+  const dateRaw = (namedValues[FIELD.DATE] || '').toString().trim();
+  const location = (namedValues[FIELD.LOCATION] || '').toString().trim();
+  const service = (namedValues[FIELD.SERVICE] || '').toString().trim();
+  const otherService = (namedValues[FIELD.OTHER_SERVICE] || '').toString().trim();
+  const people = (namedValues[FIELD.PEOPLE] || '').toString().trim();
+  const serviceLabel = service === '其他' && otherService ? `其他服務（${otherService}）` : service;
+  const shootDate = parseDate_(dateRaw);
+  const dateLabel = shootDate ? formatDateForDisplay_(shootDate) : dateRaw;
+
+  const text = [
+    `${name} 您好，這裡是 ${CONFIG.STUDIO_NAME}！`,
+    '已收到您的預約需求：',
+    `拍攝日期：${dateLabel}`,
+    `地點：${location}`,
+    `人數：${people}`,
+    `服務項目：${serviceLabel}`,
+    '',
+    CONFIG.DEPOSIT_INFO,
+    '',
+    '確認信也已經寄到您填寫的 email，有任何問題都可以直接在這裡回覆我們。',
+  ].join('\n');
+
+  try {
+    pushLineMessage_(userId, text);
+    setStatusCell_(sheet, rowNum, LINE_BIND_COLUMNS.MESSAGE_STATUS, '已寄送 ' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy/MM/dd HH:mm'));
+  } catch (err) {
+    Logger.log('LINE 訊息寄送失敗: ' + err.message);
+    setStatusCell_(sheet, rowNum, LINE_BIND_COLUMNS.MESSAGE_STATUS, '寄送失敗: ' + err.message);
+  }
+}
+
+// 呼叫 LINE Messaging API 的 push 端點，發一則純文字訊息給指定的 userId。
+function pushLineMessage_(userId, text) {
+  const token = PropertiesService.getScriptProperties().getProperty(LINE_CHANNEL_TOKEN_PROPERTY);
+  if (!token) {
+    throw new Error('尚未設定 LINE Channel Access Token，請先執行 setLineChannelAccessToken()。');
+  }
+  if (!userId) {
+    throw new Error('缺少 LINE userId，無法推送訊息。');
+  }
+
+  const res = UrlFetchApp.fetch('https://api.line.me/v2/bot/message/push', {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { Authorization: 'Bearer ' + token },
+    payload: JSON.stringify({
+      to: userId,
+      messages: [{ type: 'text', text: text.slice(0, 5000) }],
+    }),
+    muteHttpExceptions: true,
+  });
+  const code = res.getResponseCode();
+  if (code < 200 || code >= 300) {
+    throw new Error('LINE 推送失敗（HTTP ' + code + '）：' + res.getContentText());
+  }
+}
+
+// 執行一次，貼上 LINE Messaging API 的 Channel Access Token（見檔案最上方設定步驟 1-3）。
+function setLineChannelAccessToken() {
+  const ui = SpreadsheetApp.getUi();
+  const result = ui.prompt('設定 LINE Channel Access Token', '貼上剛剛在 LINE Developers Console 核發的 Channel Access Token：', ui.ButtonSet.OK_CANCEL);
+  if (result.getSelectedButton() !== ui.Button.OK) {
+    Logger.log('已取消。');
+    return;
+  }
+  const token = result.getResponseText().trim();
+  if (!token) {
+    Logger.log('沒有輸入內容，未儲存。');
+    return;
+  }
+  PropertiesService.getScriptProperties().setProperty(LINE_CHANNEL_TOKEN_PROPERTY, token);
+  Logger.log('已儲存 Channel Access Token。');
+}
+
+// 手動測試用：拿 Sheet 最後一列資料模擬發一則 LINE 訊息，userId 要自己填一個真的可以測試的帳號
+// （例如你自己的 LINE userId，可以先加你的官方帳號好友，再用官方帳號後台的「一對一聊天」查看）。
+function testSendLineToLatestRow() {
+  const testUserId = ''; // 貼上一個測試用的 userId 再執行
+  if (!testUserId) {
+    Logger.log('請先在這個函式裡填一個測試用的 userId 再執行。');
+    return;
+  }
+  const sheet = SpreadsheetApp.openById(CONFIG.RESPONSE_SHEET_ID).getSheets()[0];
+  const lastRow = sheet.getLastRow();
+  sendLineBookingConfirmation_(sheet, lastRow, testUserId);
 }
 
 function processSubmission_(namedValues, range) {
