@@ -4,9 +4,9 @@ title: 情侶滑雪不吵架攻略｜把雪季旅行變成你們的共同回憶
 displayTitle: 情侶滑雪不吵架攻略<br><span>把雪季旅行變成你們的共同回憶</span>
 tag: 情侶旅行
 metaLine: SnowSurfStudio Journal・情侶滑雪相處指南
-heroImage: images/couple-ski-trip-memories.png
+heroImage: images/couple-ski-trip-memories.jpg
 heroImageAlt: 兩位伴侶帶著雪板走在雪山夕陽中，象徵一起留下滑雪旅行回憶
-previewImage: images/couple-ski-trip-memories.png
+previewImage: images/couple-ski-trip-memories.jpg
 previewImageAlt: 兩位伴侶在夕陽雪山中同行
 previewImagePosition: "50% 72%"
 date: '2026-09-01'
@@ -17,7 +17,7 @@ seo:
   title: 情侶滑雪不吵架攻略｜五個舒服相處的小默契 - SnowSurfStudio
   description: 情侶一起滑雪如何避免吵架？從程度不同、不要互當教練、休息節奏到拍照摩擦，整理五個讓雪季旅行更舒服、也更值得回憶的小默契。
   keywords: 情侶滑雪,情侶滑雪旅行,滑雪情侶吵架,情侶旅行拍照,日本滑雪攝影,白馬滑雪攝影,情侶滑雪攻略
-  ogImage: images/couple-ski-trip-memories.png
+  ogImage: images/couple-ski-trip-memories.jpg
 contentBlocks:
   - heading: 愛情裡最珍貴的，往往是一起經歷過的回憶
     paragraphs:
@@ -25,7 +25,7 @@ contentBlocks:
       - 可能不是一束花，也不是昂貴的禮物。
       - 而是某一次，你們一起去了哪裡、做了什麼，留下了一段只有你們兩個才懂的回憶。
   - heading: 先記得：你們不是來完成滑雪 KPI
-    image: images/couple-ski-trip-memories.png
+    image: images/couple-ski-trip-memories.jpg
     imageAlt: 兩位伴侶帶著雪板走在雪山夕陽中
     imagePosition: right
     paragraphs:

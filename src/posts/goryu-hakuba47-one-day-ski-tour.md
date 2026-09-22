@@ -59,7 +59,7 @@ contentBlocks:
       </ul>
 
       <h3>12:00–13:00｜Hakuba47 Base‧Pizza House Luis 午餐</h3>
-      <img src="../images/pizza-house-luis-snow-lunch-hakuba47.png" alt="Hakuba47 Pizza House Luis 石窯薄皮披薩雪場午餐" style="border-radius: 20px; width: 220px; margin-top: 12px; margin-bottom: 12px;">
+      <img src="../images/pizza-house-luis-snow-lunch-hakuba47.jpg" alt="Hakuba47 Pizza House Luis 石窯薄皮披薩雪場午餐" style="border-radius: 20px; width: 220px; margin-top: 12px; margin-bottom: 12px;">
       <p>午餐｜Pizza House Luis</p>
       <p>人氣石窯薄皮 Pizza</p>
       <p>也可依當天狀況選擇烏龍麵、咖哩、丼飯等餐點。</p>
