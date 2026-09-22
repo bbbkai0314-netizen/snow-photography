@@ -13,22 +13,34 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "SnowSurfStudio",
-  "alternateName": "日本滑雪攝影 SnowSurfStudio",
-  "description": "SnowSurfStudio 提供日本白馬滑雪平面攝影服務，捕捉滑雪旅行中的人像、滑行瞬間與生活紀錄。",
-  "knowsAbout": ["滑雪攝影", "日本滑雪攝影", "Snowboard Photography", "Ski Photography"],
-  "url": "https://snowsurfstudio.net/",
-  "image": "{{ ogImageUrl }}",
-  "email": "bbbkai0314@gmail.com",
-  "areaServed": [
-    { "@type": "Place", "name": "長野・白馬" }
-  ],
-  "sameAs": [
-    "https://www.instagram.com/snowsurfstudio",
-    "https://www.facebook.com/profile.php?id=61589879631526"
-  ],
-  "inLanguage": "zh-Hant"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://snowsurfstudio.net/#organization",
+      "name": "SnowSurfStudio",
+      "alternateName": "日本滑雪攝影 SnowSurfStudio",
+      "description": "SnowSurfStudio 提供日本白馬滑雪攝影與戶外活動攝影，捕捉滑雪旅行中的人像、滑行瞬間與生活紀錄。",
+      "knowsAbout": ["滑雪攝影", "白馬滑雪攝影", "滑雪跟拍", "Snowboard Photography", "Ski Photography", "戶外活動攝影"],
+      "url": "https://snowsurfstudio.net/",
+      "image": "{{ ogImageUrl }}",
+      "areaServed": [
+        { "@type": "Place", "name": "長野縣白馬村（Hakuba），日本" }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/snowsurfstudio",
+        "https://www.facebook.com/profile.php?id=61589879631526",
+        "https://www.threads.com/@snowsurfstudio"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://snowsurfstudio.net/#website",
+      "name": "SnowSurfStudio",
+      "url": "https://snowsurfstudio.net/",
+      "inLanguage": "zh-Hant",
+      "publisher": { "@id": "https://snowsurfstudio.net/#organization" }
+    }
+  ]
 }
 </script>
 </head>
@@ -61,7 +73,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="chapter__content chapter__content--hero">
           <p class="eyebrow">Snow photographer · 滑雪攝影</p>
           <h1>snowsurfstudio</h1>
-          <p class="hero__booking">2026/27 日本滑雪攝影服務｜Snowboard &amp; Ski</p>
+          <a class="hero__booking" href="hakuba-photography/">2026/27 白馬滑雪攝影｜Snowboard &amp; Ski</a>
           <p class="chapter__location">{{ site.heroLocationLine }}</p>
           <p class="chapter__lead">SnowSurfStudio 在日本白馬，<br>用最自然的方式，記錄你在雪上的每一刻。<br><br>不管是一個人、兩個人，<br>還是一家人、一群朋友，<br>都替你留下真正投入雪季、享受滑雪的樣子。</p>
           <p class="chapter__sub">2026 / 27 Season &middot; @snowsurfstudio</p>
@@ -70,7 +82,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero-fade hero-fade--b">
         <div class="chapter__content chapter__content--hero">
           <p class="eyebrow">戶外動態攝影・Outdoor Documentary Photography</p>
-          <h1 class="chapter__content--nowrap">A Life in Moments</h1>
+          <p class="hero__title chapter__content--nowrap">A Life in Moments</p>
           <p class="hero__booking">動態攝影紀錄</p>
           <p class="chapter__lead">戶外攝影<br>SnowSurfStudio，<br>用最自然的方式，記錄你在戶外的每一刻。<br><br>無論是山林、海邊、露營，<br>還是日常旅程與戶外活動，<br>我們專注捕捉最真實、自然且充滿故事感的畫面，<br>讓每一張照片都成為你值得珍藏的回憶。</p>
         </div>
@@ -89,12 +101,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="chapters-grid">
       <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
         <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
-          <img class="chapter-card__slide" src="images/my-own-way-01.jpg" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/my-own-way-02.jpg" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/my-own-way-03.jpg" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/my-own-way-04.png" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/my-own-way-05.png" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/my-own-way-06.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-01.jpg" alt="MY OWN WAY｜有些事，不需要等到有人陪，才可以開始。一個人帶著雪板走在夕陽下的雪山" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-02.jpg" alt="MY OWN WAY｜一年又過去了，你只是一直在等一個「有人陪」的時機。一個人坐在雪山稜線上" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-03.jpg" alt="MY OWN WAY｜你有多少想做的事情，一直停在「等找到人再一起做」。一個人站在雪坡上看夕陽" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-04.jpg" alt="MY OWN WAY｜重新聽見自己。一個人抱著雪板站在夕陽雪山上" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-05.jpg" alt="MY OWN WAY｜原來那個勇敢、很有自信的自己，一直都沒有不見。拿著雪板的人站在山頂望向夕陽" loading="lazy">
+          <img class="chapter-card__slide" src="images/my-own-way-06.jpg" alt="MY OWN WAY｜你還記得那個自己嗎？你會想把他記錄下來嗎？單板滑雪者站在雪山山頂" loading="lazy">
         </div>
         <div class="chapter-card__scrim"></div>
         <div class="chapter-card__body">
@@ -107,12 +119,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </article>
       <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
         <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
-          <img class="chapter-card__slide" src="images/chapter-couple-01.png" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/chapter-couple-02.png" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/chapter-couple-03.png" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/chapter-couple-04.png" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/chapter-couple-05.png" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/chapter-couple-06.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-01.jpg" alt="COUPLE｜旅行是為了留下回憶，不是為了拍照而吵架。情侶拿著雪板走在夕陽雪道上" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-02.jpg" alt="COUPLE｜伴侶在一起久了，好像會慢慢回到各自熟悉的世界。情侶走在傍晚的雪地小鎮" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-03.jpg" alt="COUPLE｜你還記得，他為你做過最浪漫的事嗎？情侶拿著雪板走在雪山上" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-04.jpg" alt="COUPLE｜偶爾一起離開熟悉的日常吧。情侶並肩坐在雪山上看湖景與夕陽" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-05.jpg" alt="COUPLE｜重拾熱情，不一定需要多浪漫的安排。一個人站在夕陽下的雪山稜線" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-couple-06.jpg" alt="COUPLE｜這一次，就好好陪著彼此吧。情侶並肩坐在雪山上看夕陽" loading="lazy">
         </div>
         <div class="chapter-card__scrim"></div>
         <div class="chapter-card__body">
@@ -125,9 +137,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </article>
       <article class="chapter-card chapter-card--carousel" data-line-url="https://lin.ee/xcqRIdT">
         <div class="chapter-card__media chapter-card__media--carousel" aria-hidden="true">
-          <img class="chapter-card__slide" src="images/chapter-family-01.png" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/chapter-family-02.jpg" alt="" loading="lazy">
-          <img class="chapter-card__slide" src="images/chapter-family-03.png" alt="" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-family-01.jpg" alt="FAMILY｜家人一起的時光，是我們最珍貴的回憶。一家四口站在雪山上看夕陽" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-family-02.jpg" alt="FAMILY｜來旅遊，全家福不要永遠少了掌鏡人。一家人穿著雪板站在山頂眺望湖景" loading="lazy">
+          <img class="chapter-card__slide" src="images/chapter-family-03.jpg" alt="FAMILY｜忙著滑雪，又要上課，沒時間幫全家拍照。大人帶著三個孩子在夕陽下滑雪" loading="lazy">
         </div>
         <div class="chapter-card__scrim"></div>
         <div class="chapter-card__body">

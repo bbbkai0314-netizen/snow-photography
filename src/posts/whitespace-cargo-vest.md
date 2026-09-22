@@ -1,20 +1,20 @@
 ---
 layout: article
-title: WHITESPACE REC Cargo Vest  好物分享文
+title: WHITESPACE REC Cargo Vest 好物分享文
 tag: 滑雪背心
-metaLine: 'WHITESPACE REC Cargo Vest '
+metaLine: SnowSurfStudio Journal・滑雪攝影裝備心得
 heroImage: images/下午4.48 2026-8-7的影像.jpg
-heroImageAlt: '日本白馬雪場的滑雪平面攝影與雪地人像紀錄'
+heroImageAlt: '日本雪場的滑雪平面攝影與雪地人像紀錄'
 previewImage: ''
 previewImageAlt: ''
 leadParagraph: 身為一位滑雪攝影師，平常都在雪地上紀錄朋友們滑雪的瞬間。
 date: '2026-08-07'
 dateModified: '2026-08-07'
-previewDescription: 'WHITESPACE REC Cargo Vest '
+previewDescription: 低溫讓相機電池掉得很快。滑雪攝影師分享 WHITESPACE REC Cargo Vest 的收納方式與實際使用心得。
 seo:
-  title: WHITESPACE REC Cargo Vest .滑雪.滑雪好物.滑雪背心.滑雪教練.snowsurfstudio
-  description: WHITESPACE REC Cargo Vest .滑雪.滑雪好物.滑雪背心.滑雪教練.snowsurfstudio
-  keywords: WHITESPACE REC Cargo Vest .滑雪.滑雪好物.滑雪背心.滑雪教練.snowsurfstudio
+  title: WHITESPACE REC Cargo Vest 心得｜滑雪攝影師的雪地收納背心｜SnowSurfStudio
+  description: 滑雪攝影師實際使用 WHITESPACE REC Cargo Vest 的心得：低溫下快速換電池、記憶卡分格收納、防水外層與滑行時的穩定度，適合需要隨身帶裝備的滑雪者。
+  keywords: 滑雪背心,WHITESPACE REC Cargo Vest,滑雪攝影裝備,滑雪收納背心,雪地相機電池
 contentBlocks:
   - type: html
     html: |
@@ -42,5 +42,6 @@ contentBlocks:
 
       <h2>推薦給需要隨時拿取裝備的你</h2>
       <p>如果你平常滑雪也會帶很多裝備，或跟我一樣需要隨時拿取行動電源、手機等用品，我真的很推薦你看看這件背心。</p>
+      <p>在雪地拍照時的站位、路線與快門時機，我整理在<a href="how-to-photograph-ski-action.html">滑雪動態照怎麼拍</a>。</p>
       <p><a href="https://whitespace.qdm.tw/product/product&product_id=27" target="_blank" rel="noopener noreferrer">WHITESPACE REC Cargo Vest 多功能背心－黑色 →</a></p>
 ---

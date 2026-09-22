@@ -8,7 +8,7 @@ eleventyExcludeFromCollections: true
 
   <url>
        <loc>https://snowsurfstudio.net/</loc>
-       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <lastmod>2026-09-22</lastmod>
        <priority>1.0000</priority>
   </url>
   <url>
@@ -48,7 +48,7 @@ eleventyExcludeFromCollections: true
   </url>
   <url>
        <loc>https://snowsurfstudio.net/hakuba-photography/</loc>
-       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <lastmod>2026-09-22</lastmod>
        <priority>0.8000</priority>
   </url>
   <url>
@@ -82,66 +82,15 @@ eleventyExcludeFromCollections: true
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://snowsurfstudio.net/blog/couple-ski-trip-no-fighting.html</loc>
-       <lastmod>2026-09-01T00:00:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/hakuba-ski-lodging-guide.html</loc>
-       <lastmod>2026-08-23T00:00:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/ski-season-early-planning.html</loc>
-       <lastmod>2026-08-21T00:00:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/family-ski-trip.html</loc>
-       <lastmod>2026-09-02T00:00:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/goryu-hakuba47-one-day-ski-tour.html</loc>
-       <lastmod>2026-08-12T00:00:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/solo-ski-photography.html</loc>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/hakuba-ski-resorts-guide.html</loc>
-       <lastmod>2026-08-09T00:00:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/whitespace-cargo-vest.html</loc>
-       <lastmod>2026-08-07T00:00:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/ski-lesson-photography-guide.html</loc>
-       <lastmod>2026-08-07T00:00:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/ski-photo-poses.html</loc>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://snowsurfstudio.net/blog/selfie-vs-professional-photographer.html</loc>
-       <lastmod>2026-07-18T00:00:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
        <loc>https://snowsurfstudio.net/blog/index.html</loc>
-       <lastmod>2026-09-14T07:32:32+00:00</lastmod>
+       <lastmod>2026-09-22</lastmod>
        <priority>0.8000</priority>
   </url>
+{%- for post in collections.posts | reverse %}
   <url>
-       <loc>https://snowsurfstudio.net/blog/ski-beginner-photo-tutorial-6-poses.html</loc>
-       <lastmod>2026-09-19T00:00:00+08:00</lastmod>
+       <loc>https://snowsurfstudio.net/blog/{{ post.fileSlug }}.html</loc>
+       <lastmod>{{ (post.data.dateModified or post.data.date) | isoDate }}</lastmod>
        <priority>0.8000</priority>
   </url>
+{%- endfor %}
 </urlset>

@@ -1,10 +1,10 @@
 ---
 layout: article
-title: 三招教你拍出滑雪雜誌封面照｜
+title: 三招教你拍出滑雪雜誌封面照
 tag: 教學
 metaLine: SnowSurfStudio Journal・滑雪攝影準備
 heroImage: images/air-grab-japan-ski-photography-snowboard-ski.jpg
-heroImageAlt: 日本白馬滑雪攝影的單板滑雪者騰空畫面
+heroImageAlt: 日本滑雪攝影的單板滑雪者騰空畫面
 previewImage: ''
 previewImageAlt: ''
 leadParagraph: 第一次滑雪，除了享受滑雪的樂趣，很多人也希望留下好看的滑雪照片。但雪場環境特殊，常常會遇到人物太小、動作不明顯、雪景沒有氣勢等問題。掌握以下三個滑雪拍照技巧，就能讓你的照片更有質感。
@@ -14,7 +14,7 @@ previewDescription: 低角度、善用連拍、舉板拍背影——三個手機
 seo:
   title: 三招教你拍出滑雪雜誌封面照｜手機也能拍出高質感滑雪照片
   description: 手機也能拍出高質感滑雪照片？整理三個實用滑雪平面攝影技巧：低角度拍攝、善用連拍、舉板拍背影，讓你的滑雪照片更有氣勢與故事感。
-  keywords: 滑雪拍照技巧,滑雪拍照姿勢,滑雪拍照教學,手機滑雪拍照,高質感滑雪照片,滑雪穿搭拍照,滑雪攝影
+  keywords: 手機滑雪拍照,滑雪拍照技巧,滑雪拍照教學,低角度拍攝,滑雪連拍,高質感滑雪照片
 contentBlocks:
   - heading: 滑雪照片怎麼拍才好看？掌握3個簡單技巧
     paragraphs: []
@@ -28,7 +28,7 @@ contentBlocks:
     trailingParagraphs:
       - 低角度拍攝能放大滑雪者的動作張力，讓照片更像滑雪雜誌封面。
     image: images/IMG_7203.jpg
-    imageAlt: 日本白馬滑雪攝影記錄的單板滑雪抓板瞬間
+    imageAlt: 日本滑雪攝影記錄的單板滑雪抓板瞬間
     imagePosition: left
   - heading: 2. 善用連拍，挑選最佳滑雪瞬間
     paragraphs:
@@ -38,7 +38,7 @@ contentBlocks:
       - 更容易捕捉跳躍與轉彎動作
       - 提高拍到好照片的成功率
     image: images/powder-jump-japan-ski-photography-snowboard-ski.jpg
-    imageAlt: 日本白馬滑雪攝影記錄的雙人跳躍瞬間
+    imageAlt: 日本滑雪攝影記錄的雙人跳躍瞬間
     imagePosition: right
   - heading: 3. 舉起雪板拍攝，打造電影感滑雪背影照
     paragraphs:
@@ -48,10 +48,12 @@ contentBlocks:
       - 人物背影更有故事感
       - 輕鬆拍出電影感旅行照片
     image: images/black-white-japan-ski-photography-snowboard-ski.jpg
-    imageAlt: 日本白馬雪場的黑白滑雪剪影平面攝影
+    imageAlt: 日本雪場的黑白滑雪剪影平面攝影
     imagePosition: left
-  - heading: 手機也能拍滑雪照，但專業攝影能留下更多細節
-    paragraphs:
-      - 手機拍攝適合快速記錄旅程，但專業滑雪攝影能掌握拍攝角度、滑行節奏與最佳時機，捕捉你最精彩的滑雪瞬間。
-      - 滑雪旅程只有短短幾天，但一張好的滑雪照片，可以讓這段回憶保存多年。
+  - type: html
+    html: |
+      <h2>手機也能拍滑雪照，但專業攝影能留下更多細節</h2>
+      <p>手機拍攝適合快速記錄旅程，但專業滑雪攝影能掌握拍攝角度、滑行節奏與最佳時機，捕捉你最精彩的滑雪瞬間。</p>
+      <p>滑雪旅程只有短短幾天，但一張好的滑雪照片，可以讓這段回憶保存多年。</p>
+      <p>想要更具體的動作，可以看<a href="ski-beginner-photo-tutorial-6-poses.html">6 個新手滑雪拍照姿勢</a>；自己拍和請攝影師差在哪，整理在<a href="selfie-vs-professional-photographer.html">手機拍攝 vs 專業滑雪攝影</a>。</p>
 ---

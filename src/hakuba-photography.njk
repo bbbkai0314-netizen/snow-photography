@@ -1,13 +1,13 @@
 ---
 permalink: "hakuba-photography/index.html"
 ---
-{%- set htmlTitle = "2026/27 白馬滑雪攝影預約｜Hakuba Snowboard & Ski Photography - SnowSurfStudio" -%}
-{%- set socialTitle = htmlTitle -%}
+{%- set htmlTitle = "白馬滑雪攝影｜Hakuba Snowboard & Ski 跟拍｜SnowSurfStudio" -%}
+{%- set socialTitle = "白馬滑雪攝影｜日本 Hakuba Snowboard & Ski 跟拍" -%}
 {%- set canonicalUrl = "https://snowsurfstudio.net/hakuba-photography/" -%}
 {%- set ogImageUrl = "https://snowsurfstudio.net/images/air-grab-japan-ski-photography-snowboard-ski.jpg" -%}
 {%- set ogType = "website" -%}
 {%- set assetPrefix = "../" -%}
-{%- set seo = { description: "2026/27 雪季，SnowSurfStudio 將在日本白馬 Hakuba 提供滑雪攝影，以 Snowboard 與 Ski 雪地平面拍攝為主，現已開放預約。", keywords: "白馬滑雪攝影,Hakuba Snowboard Photography,Hakuba Ski Photography,日本滑雪攝影,Snowboard,Ski,雪地平面攝影,白馬滑雪寫真" } -%}
+{%- set seo = { description: "SnowSurfStudio 提供日本白馬 Hakuba 滑雪攝影與滑雪跟拍服務，適合 Snowboard、Ski、一個人滑雪、情侶與親子家庭，依滑雪程度、雪況與光線安排拍攝路線。2026/27 雪季開放預約。", keywords: "白馬滑雪攝影,日本滑雪攝影,Hakuba 滑雪攝影,滑雪跟拍,滑雪旅拍,滑雪攝影師,Snowboard Photography,Ski Photography" } -%}
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -15,15 +15,28 @@ permalink: "hakuba-photography/index.html"
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "2026/27 白馬滑雪攝影預約｜SnowSurfStudio",
-  "description": "2026/27 雪季於日本白馬提供的滑雪攝影服務，以 Snowboard 與 Ski 雪地平面拍攝為主。",
-  "provider": { "@type": "Organization", "name": "SnowSurfStudio", "url": "https://snowsurfstudio.net/" },
-  "areaServed": { "@type": "Place", "name": "長野・白馬（Hakuba）" },
-  "serviceType": ["Hakuba Snowboard Photography", "Hakuba Ski Photography", "日本滑雪平面攝影", "白馬滑雪寫真"],
-  "url": "{{ canonicalUrl }}",
-  "image": "{{ ogImageUrl }}",
-  "inLanguage": "zh-Hant"
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "{{ canonicalUrl }}#service",
+      "name": "白馬滑雪攝影",
+      "alternateName": ["Hakuba Snowboard Photography", "Hakuba Ski Photography", "日本滑雪攝影"],
+      "serviceType": ["滑雪攝影", "滑雪跟拍", "滑雪旅拍"],
+      "description": {{ seo.description | dump | safe }},
+      "provider": { "@type": "Organization", "@id": "https://snowsurfstudio.net/#organization", "name": "SnowSurfStudio", "url": "https://snowsurfstudio.net/" },
+      "areaServed": { "@type": "Place", "name": "長野縣白馬村（Hakuba），日本" },
+      "url": "{{ canonicalUrl }}",
+      "image": "{{ ogImageUrl }}",
+      "inLanguage": "zh-Hant"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://snowsurfstudio.net/" },
+        { "@type": "ListItem", "position": 2, "name": "白馬滑雪攝影", "item": "{{ canonicalUrl }}" }
+      ]
+    }
+  ]
 }
 </script>
 </head>
@@ -37,18 +50,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main>
   <section class="about glass-panel about--standalone hakuba-page" aria-labelledby="hakuba-title">
     <a class="article-breadcrumb" href="{{ assetPrefix }}index.html#plans">← 返回拍攝方案</a>
-    <div class="section-head"><h1 id="hakuba-title">2026/27 白馬滑雪攝影預約</h1><p>Hakuba Snowboard &amp; Ski Photography</p></div>
+    <div class="section-head"><h1 id="hakuba-title">白馬滑雪攝影 <span>日本 Hakuba Snowboard &amp; Ski 跟拍</span></h1><p>2026/27 Season · Hakuba Snowboard &amp; Ski Photography</p></div>
     <div class="about__inner">
-      <p class="about__lead">下一個雪季，SnowSurfStudio 將在日本白馬 Hakuba 駐點，開放 Snowboard 與 Ski 雪地平面攝影預約。</p>
-      <div class="about__block">
-        <h4>下一季，在白馬留下你的滑雪故事</h4>
-        <p>2026/27 雪季，SnowSurfStudio 將在白馬提供滑雪平面攝影服務，為一個人旅行、情侶、家庭與朋友團體留下自然的雪地紀錄。目前頁面以雪季預約與服務方向為主；實際拍攝內容將依現場雪況、光線與你的滑雪程度安排。</p>
+      <p class="about__lead">SnowSurfStudio 提供日本白馬 Hakuba 滑雪攝影與滑雪跟拍服務，拍 Snowboard，也拍 Ski；一個人滑雪、情侶、親子家庭與朋友團體都可以預約。無論第一次滑雪，或已經能獨立滑行，我們都會依你的滑雪程度、雪況、光線與安全狀況，安排適合的拍攝路線。</p>
+
+      <div class="hakuba-works">
+        <figure><img src="{{ assetPrefix }}images/DSCF0108-wide.jpg" alt="日本滑雪攝影作品：單板滑雪者抓板，背後是雪山與湖景" width="1824" height="1142" loading="lazy" decoding="async"></figure>
+        <figure><img src="{{ assetPrefix }}images/high-five-japan-ski-photography-snowboard-ski.jpg" alt="滑雪旅拍作品：兩位 Snowboarder 在雪山頂跳起擊掌" width="1600" height="1066" loading="lazy" decoding="async"></figure>
+        <figure><img src="{{ assetPrefix }}images/air-grab-japan-ski-photography-snowboard-ski.jpg" alt="Snowboard 滑雪跟拍作品：單板滑雪者在雪坡上起跳" width="1920" height="1280" loading="lazy" decoding="async"></figure>
       </div>
-      <div class="about__columns">
-        <div class="about__block"><h4>滑雪平面攝影</h4><p>SnowSurfStudio 以雪地平面攝影為主。無論是單板或雙板、初學者練習、親子同遊、朋友互動與自然人像，我們都會依你的實際程度、雪場環境與光線，捕捉最適合當下的畫面。你專心享受白馬雪場，我們則在安全與不打斷滑行節奏的前提下，留下自然、有故事感的雪季照片。</p></div>
-      </div>
+
       <div class="about__block">
-        <h4>預約白馬滑雪攝影前</h4>
+        <h2>在白馬，拍下你真正在滑的樣子</h2>
+        <p>2026/27 雪季，SnowSurfStudio 駐點日本白馬，開放 Snowboard 與 Ski 雪地平面攝影預約。你專心滑雪，滑雪攝影師跟著你的路線移動，在安全、不打斷滑行節奏的位置按下快門。</p>
+        <p>留下來的不只是雪景，而是轉彎時揚起的雪、第一次滑完一整段雪道的表情，和這趟滑雪旅拍裡自然發生的片段。實際拍攝內容，會依現場雪況、光線與你的滑雪程度安排。</p>
+      </div>
+
+      <div class="about__block">
+        <h2>Snowboard 與 Ski 都可以拍</h2>
+        <p>單板或雙板、初學者練習、親子同遊、朋友互動與自然人像，都會依你的實際程度、雪場環境與光線，捕捉最適合當下的畫面。新手不需要為了拍照做高難度動作；已經會滑的人，可以多留一些 Turn、Carving 與噴雪的動態瞬間。</p>
+        <p>想先知道自己適合拍哪些畫面，可以參考<a href="{{ assetPrefix }}blog/ski-beginner-photo-tutorial-6-poses.html">新手滑雪拍照姿勢</a>與<a href="{{ assetPrefix }}blog/how-to-photograph-ski-action.html">滑雪動態照怎麼拍</a>。</p>
+      </div>
+
+      <div class="about__block" id="who">
+        <h2>適合誰</h2>
+        <ul class="about__list about__list--audience">
+          <li><strong>一個人滑雪</strong><span>照自己的節奏滑，也有人陪你上雪、記錄整段旅程。<a href="{{ assetPrefix }}blog/solo-ski-photography.html">一個人滑雪找不到人？</a></span></li>
+          <li><strong>情侶</strong><span>程度不同也沒關係，各自滑、再一起拍，兩個人都能在畫面裡。<a href="{{ assetPrefix }}blog/couple-ski-trip-no-fighting.html">情侶滑雪不吵架攻略</a></span></li>
+          <li><strong>親子家庭</strong><span>孩子上課、爸媽滑自己的雪，從第一次站上雪板到全家合照都記錄下來。<a href="{{ assetPrefix }}blog/family-ski-trip.html">帶孩子去白馬滑雪</a></span></li>
+          <li><strong>朋友團體</strong><span>2–4 人一起的滑行、互動與雪地合照，每個人也有自己的個人畫面。<a href="{{ assetPrefix }}plans/group-ski-photography.html">團體滑雪攝影方案</a></span></li>
+        </ul>
+      </div>
+
+      <div class="about__block">
+        <h2>拍攝方案</h2>
+        <p>依人數和想拍的長度選擇。方案細節與可預約日期，都可以在預約前先問清楚。</p>
+        <ul class="about__list about__list--audience about__list--plans">
+          {% for plan in collections.plans | sortByOrder %}{% if plan.fileSlug != "life-transition" %}
+          <li><a href="{{ assetPrefix }}plans/{{ plan.fileSlug }}.html"><strong>{{ plan.data.title }}</strong><span>{{ plan.data.previewDescription }}</span><span class="about__plan-link">查看方案內容 →</span></a></li>
+          {% endif %}{% endfor %}
+        </ul>
+      </div>
+
+      <div class="about__block">
+        <h2>白馬雪場與拍攝路線</h2>
+        <p>白馬 Valley 有 10 個雪場，八方尾根、Hakuba47、五竜、岩岳與栂池的地形和景色都不一樣。預約時告訴我們想去的雪場，我們會依當天開放的雪道與雪況安排路線；拍攝以開放雪道內的滑行為主，不安排雪道外或未開放區域。</p>
+        <div class="hakuba-works hakuba-works--resorts">
+          <figure><img src="{{ assetPrefix }}images/hakuba-tsugaike-kane-no-naru-oka.jpg" alt="白馬栂池高原「鐘の鳴る丘」緩坡雪道與纜車站，背後是白馬的雪山" width="1706" height="960" loading="lazy" decoding="async"><figcaption>栂池高原｜鐘の鳴る丘</figcaption></figure>
+          <figure><img src="{{ assetPrefix }}images/hakuba-iwatake-mountain-harbor-city-bakery.jpg" alt="白馬岩岳山頂 HAKUBA MOUNTAIN HARBOR 的 CITY BAKERY，後方是北阿爾卑斯雪山" width="1706" height="960" loading="lazy" decoding="async"><figcaption>白馬岩岳｜HAKUBA MOUNTAIN HARBOR</figcaption></figure>
+          <figure><img src="{{ assetPrefix }}images/lake-view-japan-ski-photography-snowboard-ski.jpg" alt="白馬雪場的雪道俯瞰湖景與遠方山稜" width="1706" height="960" loading="lazy" decoding="async"><figcaption>白馬｜湖景雪道</figcaption></figure>
+        </div>
+        <p>還沒決定去哪裡，可以先看<a href="{{ assetPrefix }}blog/hakuba-ski-resorts-guide.html">白馬雪場怎麼選</a>、<a href="{{ assetPrefix }}blog/hakuba-ski-lodging-guide.html">白馬滑雪住宿怎麼選</a>，或參考一整天的<a href="{{ assetPrefix }}blog/goryu-hakuba47-one-day-ski-tour.html">五竜 × Hakuba47 滑雪旅拍路線</a>。</p>
+      </div>
+
+      <div class="about__block">
+        <h2>預約白馬滑雪攝影前</h2>
         <p>請先準備日期、預計前往的白馬雪場、同行人數、每位成員的滑雪程度，以及最想留下的 3 至 5 個畫面。想了解拍攝流程、交件與天候安排，可先閱讀 <a href="{{ assetPrefix }}faq.html">常見問題</a>；也可以直接查看 <a href="{{ assetPrefix }}index.html#booking">日本滑雪攝影預約方案</a>。</p>
       </div>
     </div>

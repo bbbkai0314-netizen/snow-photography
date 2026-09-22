@@ -35,6 +35,40 @@ module.exports = function (eleventyConfig) {
     (arr || []).filter((item) => item.orientation === orientation)
   );
 
+  // YYYY-MM-DD for structured data and the sitemap. Some posts store dates as quoted strings,
+  // others as unquoted YAML timestamps (parsed into Date objects at UTC midnight); read those in
+  // Taipei time so the calendar day doesn't shift.
+  eleventyConfig.addFilter("isoDate", (value) => {
+    if (!value) return "";
+    if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+    const d = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(d.getTime())) return "";
+    return new Date(d.getTime() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  });
+
+  // Percent-encode image paths that contain spaces or CJK characters before using them in og:image.
+  eleventyConfig.addFilter("encodeUri", (value) => encodeURI(value || ""));
+
+  // Blog topic clusters (src/_data/blogClusters.json): look up a post by slug, find which cluster
+  // a post belongs to, and list posts that aren't assigned to any cluster yet.
+  eleventyConfig.addFilter("postBySlug", (posts, slug) =>
+    (posts || []).find((post) => post.fileSlug === slug)
+  );
+  eleventyConfig.addFilter("clusterOf", (clusters, slug) =>
+    (clusters || []).find((cluster) => (cluster.posts || []).includes(slug))
+  );
+  eleventyConfig.addFilter("relatedInCluster", (posts, cluster, slug, limit = 3) =>
+    ((cluster && cluster.posts) || [])
+      .filter((s) => s !== slug)
+      .map((s) => (posts || []).find((post) => post.fileSlug === s))
+      .filter(Boolean)
+      .slice(0, limit)
+  );
+  eleventyConfig.addFilter("unclustered", (posts, clusters) => {
+    const assigned = new Set((clusters || []).flatMap((cluster) => cluster.posts || []));
+    return (posts || []).filter((post) => !assigned.has(post.fileSlug));
+  });
+
   return {
     dir: {
       input: "src",

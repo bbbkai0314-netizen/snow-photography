@@ -4,7 +4,7 @@ title: SnowSurfStudio｜滑雪教學＋平面攝影服務說明與注意事項
 tag: 服務須知
 metaLine: SnowSurfStudio Journal・預約前必讀
 heroImage: images/friends-group-japan-ski-photography-snowboard-ski.jpg
-heroImageAlt: 日本白馬滑雪課程的團體平面攝影紀錄
+heroImageAlt: 滑雪課程的團體平面攝影紀錄
 previewImage: ''
 previewImageAlt: ''
 previewImagePosition: "50% 58%"
@@ -15,7 +15,7 @@ previewDescription: 教練專心教學、攝影師負責記錄——服務方式
 seo:
   title: 滑雪教學＋平面攝影服務說明與注意事項｜SnowSurfStudio
   description: SnowSurfStudio 滑雪教學＋平面攝影服務說明：拍攝方式、服務時間、交件天數、拍攝前準備、服裝建議與完整預約注意事項，讓你在日本白馬滑雪課程中安心留下真實的學習與滑行照片。
-  keywords: 滑雪教學攝影,滑雪平面攝影,滑雪攝影注意事項,白馬滑雪攝影,日本滑雪攝影預約,滑雪課程紀錄,滑雪攝影取消政策
+  keywords: 滑雪教學攝影,滑雪課程紀錄,滑雪教練＋攝影,滑雪平面攝影,滑雪攝影注意事項,滑雪攝影取消政策
 contentBlocks:
   - heading: 服務方式
     paragraphs:
@@ -78,22 +78,13 @@ contentBlocks:
     paragraphs:
       - 教練＋攝影方案的核心是正常上課，同時留下學習過程。攝影師不會為了照片要求學員進行超出自身程度的動作。
       - 若教練判斷某個動作、雪道、路線、地形或拍攝位置具有安全疑慮，將以教練判斷為優先。
-  - heading: 注意事項 4｜第一次滑雪也可以拍攝
-    paragraphs:
-      - 不需要「很會滑」才能預約，初學者同樣非常適合紀錄滑雪旅程。第一次滑雪可以紀錄：
-    items:
-      - 第一次穿上雪板
-      - 教練講解
-      - 練習站立
-      - 練習煞車
-      - 第一次完成轉彎
-      - 跌倒後重新站起來
-      - 親子學習互動
-      - 教練與學員互動
-      - 雪地人像
-      - 家庭／好友合照
-    trailingParagraphs:
-      - SnowSurfStudio 會依照每位學員的程度調整拍攝方式。
+  - type: html
+    html: |
+      <h2>注意事項 4｜第一次滑雪也可以拍攝</h2>
+      <p>不需要「很會滑」才能預約，初學者同樣非常適合紀錄滑雪旅程。第一次滑雪可以紀錄：</p>
+      <ul><li>第一次穿上雪板</li><li>教練講解</li><li>練習站立</li><li>練習煞車</li><li>第一次完成轉彎</li><li>跌倒後重新站起來</li><li>親子學習互動</li><li>教練與學員互動</li><li>雪地人像</li><li>家庭／好友合照</li></ul>
+      <p>SnowSurfStudio 會依照每位學員的程度調整拍攝方式。</p>
+      <p>想先知道新手可以拍哪些動作，可以看<a href="ski-beginner-photo-tutorial-6-poses.html">6 個新手滑雪拍照姿勢</a>；教練課程搭配攝影，請看<a href="../plans/lesson-photography.html">滑雪教練＋攝影方案</a>。</p>
   - heading: 注意事項 5｜請準時抵達集合地點
     paragraphs:
       - 滑雪攝影會受到教練課程時間、雪場營業時間、纜車、接駁車、雪具租借等因素影響。
