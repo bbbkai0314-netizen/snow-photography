@@ -4,7 +4,7 @@ title: SnowSurfStudio｜滑雪教學＋平面攝影服務說明與注意事項
 tag: 服務須知
 metaLine: SnowSurfStudio Journal・預約前必讀
 heroImage: images/friends-group-japan-ski-photography-snowboard-ski.jpg
-heroImageAlt: 日本白馬滑雪課程的團體平面攝影紀錄
+heroImageAlt: 滑雪課程的團體平面攝影紀錄
 previewImage: ''
 previewImageAlt: ''
 previewImagePosition: "50% 58%"

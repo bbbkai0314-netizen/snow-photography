@@ -4,9 +4,9 @@ title: 五竜 × Hakuba47 陪伴式一日暢滑旅拍
 tag: 拍攝行程
 metaLine: SnowSurfStudio Journal・一日滑雪旅拍路線
 heroImage: images/mountain-valley-panorama-japan-ski-photography-snowboard-ski.jpg
-heroImageAlt: 日本白馬五竜滑雪場山頂俯瞰北阿爾卑斯山景與雪鎮全景
+heroImageAlt: 白馬五竜滑雪場山頂俯瞰白馬村與遠方雪山
 previewImage: images/mountain-valley-panorama-japan-ski-photography-snowboard-ski.jpg
-previewImageAlt: 日本白馬五竜滑雪場山頂俯瞰北阿爾卑斯山景與雪鎮全景
+previewImageAlt: 白馬五竜滑雪場山頂俯瞰白馬村與遠方雪山
 leadParagraph: 09:00–16:00　五竜 → Hakuba47 → 五竜｜7 小時滑雪旅拍｜13 個拍攝場景，照片全數提供。
 date: '2026-08-12'
 dateModified: '2026-08-12'
@@ -18,7 +18,7 @@ seo:
 contentBlocks:
   - type: html
     html: |
-      <img src="../images/mountain-valley-panorama-japan-ski-photography-snowboard-ski.jpg" alt="日本白馬五竜滑雪場山頂俯瞰北阿爾卑斯山景與雪鎮全景" style="border-radius: 28px; margin-bottom: 8px;">
+      <img src="../images/mountain-valley-panorama-japan-ski-photography-snowboard-ski.jpg" alt="白馬五竜滑雪場山頂俯瞰白馬村與遠方雪山" style="border-radius: 28px; margin-bottom: 8px;">
 
       <ul>
         <li>基於安全考量，SnowSurfStudio 以雪場開放雪道內的滑行與拍攝為主，不安排雪道外或未開放區域拍攝。</li>
@@ -59,7 +59,7 @@ contentBlocks:
       </ul>
 
       <h3>12:00–13:00｜Hakuba47 Base‧Pizza House Luis 午餐</h3>
-      <img src="../images/pizza-house-luis-snow-lunch-hakuba47.jpg" alt="Hakuba47 Pizza House Luis 石窯薄皮披薩雪場午餐" style="border-radius: 20px; width: 220px; margin-top: 12px; margin-bottom: 12px;">
+      <img src="../images/pizza-house-luis-snow-lunch-hakuba47.jpg" alt="石窯薄皮披薩、熱飲與雪鏡的雪場午餐畫面" style="border-radius: 20px; width: 220px; margin-top: 12px; margin-bottom: 12px;">
       <p>午餐｜Pizza House Luis</p>
       <p>人氣石窯薄皮 Pizza</p>
       <p>也可依當天狀況選擇烏龍麵、咖哩、丼飯等餐點。</p>
