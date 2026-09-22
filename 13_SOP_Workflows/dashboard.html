@@ -766,6 +766,83 @@
     </div>
   </section>
 
+  <!-- ================= 數據優化路線圖 ================= -->
+  <section>
+    <div class="section-head">
+      <h2>數據優化路線圖</h2>
+      <span class="section-note">2026-09-19 依 CloudAD〈GA4 × Meta〉講義對照網站實測排出，照順序做。實測發現 GTM 容器沒有對應網站自訂事件的觸發條件，GA4 從沒收到過 LINE 點擊與預約轉換，所以第一階段先修這個。核准項目見 <code>approval-queue.md</code> SSS-20260919-037（PR #47）／038（PR #48）。</span>
+    </div>
+    <div class="gov-table">
+      <div class="gov-row head"><div>步驟</div><div>狀態</div><div>誰做</div></div>
+
+      <div class="gov-row">
+        <div class="name">1．網站事件直接送 GA4<em>LINE 點擊、預約每一步、送出、看文章、看區塊；不再依賴 GTM 容器設定</em></div>
+        <div><span class="chip chip-amber"><span class="dot"></span>PR 待核准</span></div>
+        <div class="gap">主線</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">2．GA Client ID 修正<em>預約表單的 Client ID 之前永遠空白，成交無法歸因</em></div>
+        <div><span class="chip chip-amber"><span class="dot"></span>PR 待核准</span></div>
+        <div class="gap">主線</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">3．Google Ads／Meta 轉換補齊<em>LINE 轉換改由網站送出；Meta Pixel 補「預約送出」（Schedule）</em></div>
+        <div><span class="chip chip-amber"><span class="dot"></span>PR 待核准</span></div>
+        <div class="gap">主線</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">4．後台行銷數據補指標<em>頻率、CPM、連結點擊、網頁到達率、CPA，可按廣告活動分列</em></div>
+        <div><span class="chip chip-amber"><span class="dot"></span>PR 待核准</span></div>
+        <div class="gap">主線</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">5．成交金額回傳 GA4<em><code>automation/gas/ga4-conversions.gs</code>；算得出 ROAS／MER</em></div>
+        <div><span class="chip chip-amber"><span class="dot"></span>等 Ellie 設定</span></div>
+        <div class="gap">主線寫好；Ellie 貼進 Apps Script、設 <code>GA4_API_SECRET</code></div>
+      </div>
+      <div class="gov-row">
+        <div class="name">6．UTM 命名規範與現成連結<em><code>13_SOP_Workflows/utm-guidelines.md</code></em></div>
+        <div><span class="chip chip-amber"><span class="dot"></span>等 Ellie 換連結</span></div>
+        <div class="gap">主線寫好；Ellie 換 IG／FB／LINE／Google 商家連結</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">7．網站圖片瘦身<em>首頁 4.4MB，31 張圖超過 500KB</em></div>
+        <div><span class="chip chip-amber"><span class="dot"></span>PR 待核准</span></div>
+        <div class="gap">主線</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">8．GA4 後台設定<em>關鍵事件、自訂維度、資料保留 14 個月、排除自己的流量</em></div>
+        <div><span class="chip chip-neutral"><span class="dot"></span>第 1 項上線隔天</span></div>
+        <div class="gap">Ellie，約 15 分鐘</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">9．GA4 三大報表首次體檢<em>記下基準數字，之後才比得出效果</em></div>
+        <div><span class="chip chip-neutral"><span class="dot"></span>上線滿 1 週</span></div>
+        <div class="gap">主線＋Ellie</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">10．預約流程阻力體檢<em>Clarity 錄影＋<code>booking_step</code> 漏斗</em></div>
+        <div><span class="chip chip-neutral"><span class="dot"></span>上線滿 2–3 週</span></div>
+        <div class="gap">主線＋Ellie</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">11．Looker Studio 戰情室<em>GA4＋預約 Sheet＋Meta 一頁看完</em></div>
+        <div><span class="chip chip-neutral"><span class="dot"></span>第 5 項接好後</span></div>
+        <div class="gap">主線＋Ellie</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">12．雪季 Meta 廣告規劃<em>認知／流量／銷售三組，各自的 KPI 與停損</em></div>
+        <div><span class="chip chip-neutral"><span class="dot"></span>10 月下旬</span></div>
+        <div class="gap">Ellie 決定，主線出草稿</div>
+      </div>
+      <div class="gov-row">
+        <div class="name">—．每週一成效檢視<em>Meta CTR → 網頁到達率 → GA4 參與度 → 轉換，卡在哪層修哪層</em></div>
+        <div><span class="chip chip-green"><span class="dot"></span>10/5 起每週</span></div>
+        <div class="gap">Ellie＋主線</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= 現有串接盤點 ================= -->
   <section>
     <div class="section-head">
@@ -793,7 +870,7 @@
       </div>
       <div class="conn-row">
         <div class="name">GA4</div>
-        <div class="sub">已有報表／Measurement Protocol</div>
+        <div class="sub">經 GTM 載入；自訂事件改由網站直接送（PR 待核准），收款成交由 Apps Script 回傳</div>
         <div class="sub">流量、轉換解讀</div>
         <div><span class="chip chip-green"><span class="dot"></span>唯讀為預設</span></div>
       </div>

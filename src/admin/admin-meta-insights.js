@@ -26,6 +26,8 @@ const AdminMetaInsights = (() => {
     "offsite_conversion.fb_pixel_lead": "名單開發 (Lead)",
     view_content: "內容瀏覽 (ViewContent)",
     "offsite_conversion.fb_pixel_view_content": "內容瀏覽 (ViewContent)",
+    schedule_total: "預約 (Schedule)",
+    "offsite_conversion.fb_pixel_schedule": "預約 (Schedule)",
     link_click: "連結點擊",
     landing_page_view: "到達頁瀏覽",
     page_engagement: "粉專互動",
@@ -64,18 +66,80 @@ const AdminMetaInsights = (() => {
     ]);
   }
 
-  async function fetchInsights(token, accountId, datePreset) {
-    const fields = "spend,impressions,reach,clicks,cpc,ctr,actions";
+  // Link clicks (inline_link_*) rather than "all clicks": all clicks also counts likes,
+  // expanding the caption, etc., which inflates CTR and hides a slow landing page.
+  const METRIC_FIELDS =
+    "spend,impressions,reach,frequency,cpm,inline_link_clicks,inline_link_click_ctr,cost_per_inline_link_click,actions";
+
+  async function fetchInsights(token, accountId, datePreset, level) {
+    const fields = level === "campaign" ? `campaign_name,objective,${METRIC_FIELDS}` : METRIC_FIELDS;
     const url =
       `https://graph.facebook.com/${GRAPH_VERSION}/${accountId}/insights` +
-      `?fields=${fields}&date_preset=${datePreset}&access_token=${encodeURIComponent(token)}`;
+      `?fields=${fields}&date_preset=${datePreset}` +
+      (level === "campaign" ? "&level=campaign&limit=50" : "") +
+      `&access_token=${encodeURIComponent(token)}`;
     const res = await fetch(url);
     const json = await res.json();
     if (json.error) {
       throw new Error(json.error.message || "Meta API 回傳錯誤");
     }
-    return (json.data && json.data[0]) || null;
+    return json.data || [];
   }
+
+  // "lead" already includes the pixel's Lead, so the first match wins instead of summing
+  // (summing would double-count).
+  function actionCount(actions, types) {
+    for (const type of types) {
+      const hit = (actions || []).find((a) => a.action_type === type);
+      if (hit) return Number(hit.value) || 0;
+    }
+    return 0;
+  }
+  const LEAD_TYPES = ["lead", "offsite_conversion.fb_pixel_lead", "onsite_conversion.lead_grouped"];
+  const SCHEDULE_TYPES = ["schedule_total", "schedule_website", "offsite_conversion.fb_pixel_schedule"];
+
+  // Landing page view rate = LPV ÷ link clicks: how many people who clicked actually waited
+  // for the page to load. Thresholds from the CloudAD GA4 × Meta course (2026-07).
+  function landingRate(lpv, linkClicks) {
+    if (!linkClicks) return { text: "—" };
+    const rate = (lpv / linkClicks) * 100;
+    const light = rate >= 70 ? "🟢" : rate >= 40 ? "🟡" : "🔴";
+    return { text: `${light} ${rate.toFixed(0)}%` };
+  }
+
+  function summarize(row) {
+    const actions = row.actions || [];
+    const spend = Number(row.spend) || 0;
+    const linkClicks = Number(row.inline_link_clicks) || 0;
+    const lpv = actionCount(actions, ["landing_page_view"]);
+    const leads = actionCount(actions, LEAD_TYPES);
+    const schedules = actionCount(actions, SCHEDULE_TYPES);
+    const conversions = leads + schedules;
+    return {
+      spend,
+      linkClicks,
+      lpv,
+      leads,
+      schedules,
+      conversions,
+      landing: landingRate(lpv, linkClicks),
+      cpa: conversions ? spend / conversions : null,
+    };
+  }
+
+  const OBJECTIVE_GROUPS = {
+    OUTCOME_AWARENESS: "認知",
+    BRAND_AWARENESS: "認知",
+    REACH: "認知",
+    OUTCOME_TRAFFIC: "流量",
+    LINK_CLICKS: "流量",
+    OUTCOME_ENGAGEMENT: "互動",
+    POST_ENGAGEMENT: "互動",
+    OUTCOME_LEADS: "名單",
+    LEAD_GENERATION: "名單",
+    OUTCOME_SALES: "銷售",
+    CONVERSIONS: "銷售",
+  };
 
   function renderPanel() {
     let token = getSavedToken();
@@ -146,9 +210,12 @@ const AdminMetaInsights = (() => {
           status.textContent = "讀取中…";
           resultsBox.innerHTML = "";
           try {
-            const data = await fetchInsights(token, acct, datePreset);
+            const [account, campaigns] = await Promise.all([
+              fetchInsights(token, acct, datePreset),
+              fetchInsights(token, acct, datePreset, "campaign"),
+            ]);
             status.textContent = "";
-            renderResults(data);
+            renderResults(account[0] || null, campaigns);
           } catch (err) {
             status.textContent = "";
             resultsBox.innerHTML = "";
@@ -163,7 +230,7 @@ const AdminMetaInsights = (() => {
       "讀取廣告數據"
     );
 
-    function renderResults(data) {
+    function renderResults(data, campaigns) {
       if (!data) {
         resultsBox.appendChild(
           el("p", { className: "admin-field__hint" }, "這個時間範圍內沒有任何廣告成效資料。")
@@ -172,17 +239,61 @@ const AdminMetaInsights = (() => {
       }
 
       const actions = data.actions || [];
+      const sum = summarize(data);
+      const frequency = Number(data.frequency) || 0;
 
       resultsBox.appendChild(
         el("div", { className: "admin-insights__stats" }, [
           statCard("花費", formatCurrency(data.spend)),
           statCard("曝光次數", formatNumber(data.impressions)),
           statCard("觸及人數", formatNumber(data.reach)),
-          statCard("點擊次數", formatNumber(data.clicks)),
-          statCard("平均點擊成本 (CPC)", data.cpc ? formatCurrency(data.cpc) : "—"),
-          statCard("點擊率 (CTR)", data.ctr ? Number(data.ctr).toFixed(2) + "%" : "—"),
+          statCard("頻率（新客建議 1.5–2）", frequency ? (frequency > 2 ? "⚠️ " : "") + frequency.toFixed(2) : "—"),
+          statCard("每千次曝光成本 (CPM)", data.cpm ? formatCurrency(data.cpm) : "—"),
+          statCard("連結點擊", formatNumber(sum.linkClicks)),
+          statCard("連結點擊率 (CTR)", data.inline_link_click_ctr ? Number(data.inline_link_click_ctr).toFixed(2) + "%" : "—"),
+          statCard("單次連結點擊成本 (CPC)", data.cost_per_inline_link_click ? formatCurrency(data.cost_per_inline_link_click) : "—"),
+          statCard("到達頁瀏覽 (LPV)", formatNumber(sum.lpv)),
+          statCard("網頁到達率（≥70% 健康）", sum.landing.text),
+          statCard("名單 (Lead＝點 LINE)", formatNumber(sum.leads)),
+          statCard("預約 (Schedule＝送出表單)", formatNumber(sum.schedules)),
+          statCard("每筆轉換成本 (CPA)", sum.cpa != null ? formatCurrency(sum.cpa) : "—"),
         ])
       );
+
+      if (campaigns && campaigns.length) {
+        const header = ["廣告活動", "目標", "花費", "頻率", "CPM", "連結 CTR", "CPC", "到達率", "名單＋預約", "CPA"];
+        const rows = campaigns.map((c) => {
+          const cs = summarize(c);
+          return [
+            c.campaign_name || "—",
+            OBJECTIVE_GROUPS[c.objective] || c.objective || "—",
+            formatCurrency(c.spend),
+            c.frequency ? Number(c.frequency).toFixed(2) : "—",
+            c.cpm ? formatCurrency(c.cpm) : "—",
+            c.inline_link_click_ctr ? Number(c.inline_link_click_ctr).toFixed(2) + "%" : "—",
+            c.cost_per_inline_link_click ? formatCurrency(c.cost_per_inline_link_click) : "—",
+            cs.landing.text,
+            formatNumber(cs.conversions),
+            cs.cpa != null ? formatCurrency(cs.cpa) : "—",
+          ];
+        });
+        resultsBox.appendChild(
+          el("div", { className: "admin-insights__campaigns" }, [
+            el("h3", { className: "admin-insights__actions-title" }, "各廣告活動"),
+            el(
+              "p",
+              { className: "admin-field__hint" },
+              "依目標看重點：認知看觸及、頻率、CPM；流量看連結 CTR、CPC、到達率；名單／銷售看名單＋預約與 CPA。"
+            ),
+            el("div", { className: "admin-insights__table-wrap" }, [
+              el("table", { className: "admin-insights__table" }, [
+                el("thead", {}, [el("tr", {}, header.map((h) => el("th", {}, h)))]),
+                el("tbody", {}, rows.map((r) => el("tr", {}, r.map((v) => el("td", {}, String(v)))))),
+              ]),
+            ]),
+          ])
+        );
+      }
 
       if (actions.length) {
         resultsBox.appendChild(

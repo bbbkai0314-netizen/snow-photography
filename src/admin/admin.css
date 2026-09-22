@@ -171,6 +171,11 @@ body { min-height: 100vh; }
 .admin-insights__actions-list { display: flex; flex-direction: column; gap: 2px; }
 .admin-insights__action-row { display: flex; justify-content: space-between; padding: 10px 14px; border-radius: var(--radius-sm); background: rgba(255,255,255,.03); font-size: 14px; }
 .admin-insights__action-value { color: var(--ice); font-weight: 700; }
+.admin-insights__campaigns { display: flex; flex-direction: column; gap: 8px; }
+.admin-insights__table-wrap { overflow-x: auto; border-radius: var(--radius-sm); }
+.admin-insights__table { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+.admin-insights__table th { text-align: left; color: var(--ice-dim); font-weight: 600; padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,.12); }
+.admin-insights__table td { color: var(--white); padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.03); }
 
 /* --- GrapesJS canvas area, restyled to match the dark glass theme --- */
 
