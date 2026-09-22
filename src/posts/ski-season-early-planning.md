@@ -3,10 +3,10 @@ layout: article
 title: "日本滑雪行前規劃：現在該做的 5 件事，別等到開季才訂"
 tag: "行前規劃"
 metaLine: "SnowSurfStudio Journal・雪季前準備"
-heroImage: "images/echigo-yuzawa-station-滑雪攝影.jpg"
-heroImageAlt: "越後湯澤車站.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪"
-previewImage: "images/echigo-yuzawa-station-滑雪攝影.jpg"
-previewImageAlt: "越後湯澤車站.滑雪攝影.滑雪教練.滑雪snowboard.ski.Snowsurfstudio.滑雪學校.日本滑雪.白馬.湯澤.雪山.親子滑雪"
+heroImage: "images/lifestyle-01.jpg"
+heroImageAlt: "越後湯澤車站的滑雪旅行人像紀錄"
+previewImage: "images/lifestyle-01.jpg"
+previewImageAlt: "越後湯澤車站的滑雪旅行人像紀錄"
 leadParagraph: "日本雪場大多要到 11 月底才正式開季，但熱門地區的住宿與教練名額，往往在官方公告開放前就已經被訂走。現在（8、9 月）正是規劃的最好時機，這篇整理雪季前最該先處理的 5 件事，SnowSurfStudio 也能一起協助安排。"
 date: "2026-08-21"
 dateModified: "2026-08-21"
@@ -16,11 +16,12 @@ seo:
   description: "日本雪季通常 11 月底開始，但熱門住宿與教練名額提早就會額滿。整理雪季前該優先處理的住宿、教練、雪票交通、裝備與跟拍安排，SnowSurfStudio 協助一次規劃好。"
   keywords: "日本滑雪行前準備,滑雪早鳥,日本滑雪訂房,滑雪教練預約,雪季規劃,滑雪行程規劃,白馬訂房,湯澤訂房,滑雪早鳥優惠"
 contentBlocks:
-  - heading: "01｜先訂住宿"
-    paragraphs:
-      - "熱門雪場＋熱門日期，住宿很快就會被訂滿。"
-      - "白馬、湯澤這類台灣人熟悉的地區，交通方便、生活機能好的住宿，通常在雪場正式公告開季日期之前就已經被訂走，尤其是能包棟或適合親子、多人同行的房型，選擇會更早變少。"
-      - "如果已經決定要去的地區，現在先把住宿確定下來，之後的教練、接駁、拍攝安排都能圍繞著住宿地點規劃，行程會順很多。"
+  - type: html
+    html: |
+      <h2>01｜先訂住宿</h2>
+      <p>熱門雪場＋熱門日期，住宿很快就會被訂滿。</p>
+      <p>白馬、湯澤這類台灣人熟悉的地區，交通方便、生活機能好的住宿，通常在雪場正式公告開季日期之前就已經被訂走，尤其是能包棟或適合親子、多人同行的房型，選擇會更早變少。</p>
+      <p>如果已經決定要去的地區，現在先把住宿確定下來，之後的教練、接駁、拍攝安排都能圍繞著住宿地點規劃，行程會順很多。白馬的住宿區域怎麼挑，可以參考<a href="hakuba-ski-lodging-guide.html">白馬滑雪住宿怎麼選</a>。</p>
   - heading: "02｜先約教練"
     paragraphs:
       - "教練名額有限，越早安排，越容易排到理想時段。"
@@ -38,11 +39,14 @@ contentBlocks:
       - "建議租借：雪板／雪靴／雪杖／安全帽"
       - "建議自備：雪鏡、手套、發熱衣、雪襪、防曬用品"
       - "視個人需求：護具、暖暖包、頭巾脖圍"
-  - heading: "05｜預約滑雪跟拍"
-    paragraphs:
-      - "把攝影排進行程，留下這趟雪旅的美好回憶。"
-  - heading: "現在開始規劃，才能更從容掌握行程"
-    paragraphs:
-      - "難得安排一趟滑雪旅行，越早確認，越能預留充裕的拍攝時間。無論是單純攝影跟拍、陪伴式滑雪 A，或教練＋攝影方案，都建議在確定住宿與教練後，一併納入行程規劃。"
+  - type: html
+    html: |
+      <h2>05｜預約滑雪跟拍</h2>
+      <p>把攝影排進行程，留下這趟雪旅的美好回憶。</p>
+      <p>第一次滑雪也可以拍，不需要做高難度動作，可以先看<a href="ski-beginner-photo-tutorial-6-poses.html">新手滑雪拍照姿勢</a>；白馬的拍攝方式與方案，請看<a href="../hakuba-photography/">白馬滑雪攝影</a>。</p>
+  - type: html
+    html: |
+      <h2>現在開始規劃，才能更從容掌握行程</h2>
+      <p>難得安排一趟滑雪旅行，越早確認，越能預留充裕的拍攝時間。無論是單純攝影跟拍、<a href="../plans/companion-skiing.html">陪伴式滑雪 A</a>，或<a href="../plans/lesson-photography.html">教練＋攝影方案</a>，都建議在確定住宿與教練後，一併納入行程規劃。</p>
 
 ---

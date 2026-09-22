@@ -1,17 +1,40 @@
 ---
 permalink: blog/index.html
 ---
-{%- set htmlTitle = "滑雪攝影日誌｜Snowboard、Ski 教學與雪場攻略 - SnowSurfStudio" -%}
-{%- set socialTitle = "滑雪攝影日誌｜Snowboard、Ski 教學與雪場攻略" -%}
+{%- set htmlTitle = "日本滑雪攻略｜白馬雪場、第一次滑雪與滑雪攝影技巧｜SnowSurfStudio" -%}
+{%- set socialTitle = "日本滑雪攻略｜白馬雪場、第一次滑雪與滑雪攝影技巧" -%}
 {%- set canonicalUrl = "https://snowsurfstudio.net/blog/index.html" -%}
 {%- set ogImageUrl = "https://snowsurfstudio.net/images/air-grab-japan-ski-photography-snowboard-ski.jpg" -%}
 {%- set ogType = "website" -%}
 {%- set assetPrefix = "../" -%}
-{%- set seo = { description: "滑雪攝影相關教學、Snowboard 與 Ski 平面拍攝比較、雪場攻略文章，寫給正在規劃日本滑雪行程的你。", keywords: "滑雪攝影,日本滑雪攝影,Snowboard Photography,Ski Photography,Snowboard,Ski,滑雪拍照教學,滑雪攝影推薦" } -%}
+{%- set seo = { description: "SnowSurfStudio 滑雪日誌：白馬雪場與住宿攻略、第一次日本滑雪的行前準備、親子／情侶／一個人滑雪的安排，以及滑雪拍照姿勢與動態照拍法。", keywords: "日本滑雪攻略,白馬滑雪攻略,第一次日本滑雪,親子滑雪,情侶滑雪,一個人滑雪,滑雪攝影技巧,滑雪拍照姿勢" } -%}
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 {% include "partials/head-meta.njk" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "{{ canonicalUrl }}#collection",
+      "name": {{ socialTitle | dump | safe }},
+      "description": {{ seo.description | dump | safe }},
+      "url": "{{ canonicalUrl }}",
+      "inLanguage": "zh-Hant",
+      "isPartOf": { "@id": "https://snowsurfstudio.net/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://snowsurfstudio.net/" },
+        { "@type": "ListItem", "position": 2, "name": "滑雪日誌", "item": "{{ canonicalUrl }}" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -27,22 +50,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main>
   <div class="blog-hero">
-    <h1>滑雪攝影日誌</h1>
-    <p>滑雪攝影的準備、Snowboard 與 Ski 平面拍攝比較、雪場攻略，寫給正在規劃日本滑雪行程的你。</p>
+    <h1>滑雪日誌<span>日本滑雪攻略・滑雪攝影</span></h1>
+    <p>白馬雪場與住宿、第一次去日本滑雪的準備、親子／情侶／一個人滑雪的安排，還有滑雪照片怎麼拍。寫給正在規劃日本滑雪行程的你。</p>
+    <nav class="blog-clusters-nav" aria-label="文章主題">
+      {% for cluster in blogClusters.clusters %}<a href="#{{ cluster.id }}">{{ cluster.name }}</a>{% endfor %}
+    </nav>
   </div>
 
   <section class="blog-grid-section">
-    <div class="journal__grid">
-      {% for post in collections.posts | reverse %}
-      <a class="journal-card journal-card--text glass" href="{{ post.fileSlug }}.html">
-        <div class="journal-card__body">
-          <span class="journal-card__tag">{{ post.data.tag }}</span>
-          <h3>{{ post.data.title }}</h3>
-          <p>{{ post.data.previewDescription }}</p>
-        </div>
-      </a>
-      {% endfor %}
-    </div>
+    {% for cluster in blogClusters.clusters %}
+    <section class="blog-cluster" id="{{ cluster.id }}" aria-labelledby="cluster-{{ cluster.id }}">
+      <div class="blog-cluster__head">
+        <p class="blog-cluster__eyebrow">0{{ loop.index }} · {{ cluster.en }}</p>
+        <h2 id="cluster-{{ cluster.id }}">{{ cluster.name }}</h2>
+        <p class="blog-cluster__intro">{{ cluster.intro | safe }}</p>
+      </div>
+      <div class="journal__grid">
+        {% for slug in cluster.posts %}
+        {% set post = collections.posts | postBySlug(slug) %}
+        {% if post %}
+        <a class="journal-card journal-card--text glass" href="{{ post.fileSlug }}.html">
+          <div class="journal-card__body">
+            <span class="journal-card__tag">{{ post.data.tag }}</span>
+            <h3>{{ post.data.title }}</h3>
+            <p>{{ post.data.previewDescription }}</p>
+          </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+
+    {% set otherPosts = collections.posts | unclustered(blogClusters.clusters) %}
+    {% if otherPosts.length %}
+    <section class="blog-cluster" id="more" aria-labelledby="cluster-more">
+      <div class="blog-cluster__head">
+        <p class="blog-cluster__eyebrow">More</p>
+        <h2 id="cluster-more">更多文章</h2>
+      </div>
+      <div class="journal__grid">
+        {% for post in otherPosts | reverse %}
+        <a class="journal-card journal-card--text glass" href="{{ post.fileSlug }}.html">
+          <div class="journal-card__body">
+            <span class="journal-card__tag">{{ post.data.tag }}</span>
+            <h3>{{ post.data.title }}</h3>
+            <p>{{ post.data.previewDescription }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
   </section>
 </main>
 

@@ -1,0 +1,65 @@
+{
+  "_note": "Blog 主題群集與關鍵字對照（Keyword Mapping）的唯一正本。blog/index.njk 依 clusters 分區顯示文章，article.njk 依此產生「同主題文章」與服務頁連結。新增文章時：把 slug 加進對應 cluster 的 posts，並在 keywords 設定 1 個 primary。沒有歸類的文章會出現在 Blog 首頁最後的「更多文章」。「白馬滑雪攝影」只由 /hakuba-photography/ 主打，文章不要設為 primary。",
+  "moneyPage": {
+    "url": "/hakuba-photography/",
+    "primary": "白馬滑雪攝影",
+    "secondary": ["日本滑雪攝影", "Hakuba 滑雪攝影", "滑雪跟拍", "滑雪旅拍", "滑雪攝影師", "Snowboard photography", "Ski photography"]
+  },
+  "clusters": [
+    {
+      "id": "hakuba-guide",
+      "name": "白馬滑雪攻略",
+      "en": "Hakuba Guide",
+      "coreKeyword": "白馬滑雪",
+      "intro": "雪場怎麼選、住宿住哪一區、一天的路線怎麼排。先把白馬的雪場與住宿想清楚，再決定要不要把<a href=\"../hakuba-photography/\">白馬滑雪攝影</a>排進行程。",
+      "serviceLead": "想在白馬留下自己滑雪的樣子，可以看看",
+      "serviceAnchor": "白馬滑雪攝影",
+      "posts": ["hakuba-ski-resorts-guide", "hakuba-ski-lodging-guide", "goryu-hakuba47-one-day-ski-tour"]
+    },
+    {
+      "id": "first-time",
+      "name": "第一次滑雪",
+      "en": "First Time",
+      "coreKeyword": "第一次日本滑雪",
+      "intro": "第一次去日本滑雪，住宿、教練、雪票與裝備越早安排越從容。還不知道到了雪場怎麼拍照，可以先看<a href=\"ski-beginner-photo-tutorial-6-poses.html\">新手滑雪拍照姿勢</a>。",
+      "serviceLead": "第一次滑雪也可以拍，拍攝方式可以看",
+      "serviceAnchor": "白馬滑雪跟拍",
+      "posts": ["ski-season-early-planning", "ski-lesson-photography-guide"]
+    },
+    {
+      "id": "travelers",
+      "name": "親子・情侶・一個人滑雪",
+      "en": "Family, Couple & Solo",
+      "coreKeyword": "親子滑雪／情侶滑雪／一個人滑雪",
+      "intro": "帶孩子、和另一半，或一個人出發，需要的安排都不一樣。依同行的人找到適合的滑法，也可以直接看<a href=\"../hakuba-photography/#who\">白馬滑雪跟拍適合誰</a>。",
+      "serviceLead": "想請攝影師陪你滑、幫你拍，可以看看",
+      "serviceAnchor": "白馬滑雪旅拍",
+      "posts": ["family-ski-trip", "couple-ski-trip-no-fighting", "solo-ski-photography"]
+    },
+    {
+      "id": "photography",
+      "name": "滑雪攝影",
+      "en": "Ski Photography",
+      "coreKeyword": "滑雪攝影",
+      "intro": "好看的滑雪照，多半在按快門前就決定了：機位、路線、光線與動作。這裡整理新手姿勢、動態照拍法，以及手機和專業攝影的差別；想把拍照交給攝影師，可以看<a href=\"../hakuba-photography/\">Hakuba 滑雪攝影</a>。",
+      "serviceLead": "想專心滑、把拍照交給攝影師，可以看看",
+      "serviceAnchor": "Hakuba 滑雪攝影",
+      "posts": ["ski-beginner-photo-tutorial-6-poses", "how-to-photograph-ski-action", "ski-photo-poses", "selfie-vs-professional-photographer", "whitespace-cargo-vest"]
+    }
+  ],
+  "keywords": {
+    "hakuba-ski-resorts-guide": { "primary": "白馬雪場怎麼選", "secondary": ["白馬滑雪", "白馬雪場", "白馬滑雪攻略", "八方尾根", "Hakuba47", "白馬五竜", "栂池", "岩岳"] },
+    "hakuba-ski-lodging-guide": { "primary": "白馬滑雪住宿", "secondary": ["白馬住宿", "Hakuba 住宿", "八方住宿", "五竜住宿", "白馬交通"] },
+    "goryu-hakuba47-one-day-ski-tour": { "primary": "五竜 Hakuba47 一日滑雪行程", "secondary": ["白馬滑雪行程", "五竜", "Hakuba47", "白馬滑雪旅拍", "滑雪跟拍路線"] },
+    "ski-season-early-planning": { "primary": "日本滑雪行前規劃", "secondary": ["日本滑雪行前準備", "滑雪早鳥", "滑雪教練預約", "滑雪裝備清單"] },
+    "ski-lesson-photography-guide": { "primary": "滑雪教學攝影", "secondary": ["滑雪課程紀錄", "滑雪教練＋攝影", "第一次滑雪拍照", "滑雪攝影注意事項"] },
+    "family-ski-trip": { "primary": "親子滑雪", "secondary": ["親子滑雪攝影", "家庭滑雪攝影", "兒童滑雪", "白馬親子滑雪"], "serviceAnchor": "親子滑雪攝影" },
+    "couple-ski-trip-no-fighting": { "primary": "情侶滑雪", "secondary": ["情侶滑雪攝影", "情侶滑雪旅拍", "情侶第一次滑雪", "滑雪程度不同"], "serviceAnchor": "情侶滑雪旅拍" },
+    "solo-ski-photography": { "primary": "一個人滑雪", "secondary": ["一個人滑雪攝影", "陪伴式滑雪", "滑雪程度不同", "滑雪跟拍"], "serviceAnchor": "一個人滑雪攝影" },
+    "ski-beginner-photo-tutorial-6-poses": { "primary": "滑雪拍照姿勢", "secondary": ["新手滑雪拍照", "第一次滑雪怎麼拍照", "Snowboard 拍照", "雪地人像"] },
+    "how-to-photograph-ski-action": { "primary": "滑雪動態照怎麼拍", "secondary": ["滑雪攝影技巧", "滑雪攝影機位", "滑雪連拍", "雪地攝影"] },
+    "ski-photo-poses": { "primary": "手機滑雪拍照", "secondary": ["滑雪拍照技巧", "低角度拍攝", "滑雪連拍", "高質感滑雪照片"] },
+    "selfie-vs-professional-photographer": { "primary": "手機 vs 專業滑雪攝影", "secondary": ["滑雪攝影值得嗎", "自拍 vs 專業攝影", "請滑雪攝影師", "滑雪攝影比較"] },
+    "whitespace-cargo-vest": { "primary": "滑雪背心", "secondary": ["WHITESPACE REC Cargo Vest", "滑雪攝影裝備", "雪地相機電池", "滑雪收納"] }
+  }
+}

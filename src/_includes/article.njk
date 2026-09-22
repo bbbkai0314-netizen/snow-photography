@@ -1,7 +1,9 @@
 {%- set htmlTitle = seo.title or (title + "｜SnowSurfStudio") -%}
 {%- set socialTitle = seo.title or title -%}
 {%- set canonicalUrl = "https://snowsurfstudio.net/blog/" + page.fileSlug + ".html" -%}
-{%- set ogImageUrl = "https://snowsurfstudio.net/" + (seo.ogImage or heroImage) -%}
+{%- set ogImageUrl = "https://snowsurfstudio.net/" + ((seo.ogImage or heroImage) | encodeUri) -%}
+{%- set cluster = blogClusters.clusters | clusterOf(page.fileSlug) -%}
+{%- set postKeywords = blogClusters.keywords[page.fileSlug] -%}
 {%- set ogType = "article" -%}
 {%- set assetPrefix = "../" -%}
 <!DOCTYPE html>
@@ -11,16 +13,35 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "{{ title }}",
-  "description": "{{ seo.description }}",
-  "image": "{{ ogImageUrl }}",
-  "datePublished": "{{ date }}",
-  "dateModified": "{{ dateModified or date }}",
-  "inLanguage": "zh-Hant",
-  "author": { "@type": "Organization", "name": "SnowSurfStudio" },
-  "publisher": { "@type": "Organization", "name": "SnowSurfStudio", "url": "https://snowsurfstudio.net/" },
-  "mainEntityOfPage": "{{ canonicalUrl }}"
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "{{ canonicalUrl }}#article",
+      "headline": {{ title | dump | safe }},
+      "description": {{ seo.description | dump | safe }},
+      "image": "{{ ogImageUrl }}",
+      "datePublished": "{{ date | isoDate }}",
+      "dateModified": "{{ (dateModified or date) | isoDate }}",
+      "inLanguage": "zh-Hant",
+      {%- if cluster %}
+      "articleSection": {{ cluster.name | dump | safe }},
+      {%- endif %}
+      {%- if postKeywords %}
+      "keywords": {{ ([postKeywords.primary].concat(postKeywords.secondary)) | join(",") | dump | safe }},
+      {%- endif %}
+      "author": { "@type": "Organization", "name": "SnowSurfStudio", "url": "https://snowsurfstudio.net/" },
+      "publisher": { "@type": "Organization", "@id": "https://snowsurfstudio.net/#organization", "name": "SnowSurfStudio", "url": "https://snowsurfstudio.net/" },
+      "mainEntityOfPage": "{{ canonicalUrl }}"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://snowsurfstudio.net/" },
+        { "@type": "ListItem", "position": 2, "name": "滑雪日誌", "item": "https://snowsurfstudio.net/blog/index.html" },
+        { "@type": "ListItem", "position": 3, "name": {{ title | dump | safe }}, "item": "{{ canonicalUrl }}" }
+      ]
+    }
+  ]
 }
 </script>
 </head>
@@ -89,6 +110,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>{% endif %}
     </div>
   </article>
+
+  {% if cluster %}
+  <aside class="article-related" aria-labelledby="related-title">
+    <p class="article-related__eyebrow">{{ cluster.en }}</p>
+    <h2 class="article-related__title" id="related-title">同主題文章｜{{ cluster.name }}</h2>
+    <div class="journal__grid">
+      {% for related in collections.posts | relatedInCluster(cluster, page.fileSlug, 3) %}
+      <a class="journal-card journal-card--text glass" href="{{ related.fileSlug }}.html">
+        <div class="journal-card__body">
+          <span class="journal-card__tag">{{ related.data.tag }}</span>
+          <h3>{{ related.data.title }}</h3>
+          <p>{{ related.data.previewDescription }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <p class="article-related__service">{{ cluster.serviceLead }}<a href="../hakuba-photography/">{{ (postKeywords and postKeywords.serviceAnchor) or cluster.serviceAnchor }}</a>。其他文章請看<a href="index.html#{{ cluster.id }}">{{ cluster.name }}文章總覽</a>。</p>
+  </aside>
+  {% endif %}
 </main>
 
 {% include "partials/footer.njk" %}

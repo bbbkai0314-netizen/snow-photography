@@ -12,9 +12,9 @@ date: '2026-08-12'
 dateModified: '2026-08-12'
 previewDescription: 五竜 × Hakuba47 一日暢滑旅拍，7 小時滑雪旅拍，13 個拍攝場景，照片全數提供。
 seo:
-  title: 五竜 × Hakuba47 陪伴式一日暢滑旅拍｜日本滑雪攝影 SnowSurfStudio
-  description: 五竜與 Hakuba47 陪伴式一日暢滑旅拍完整行程規劃，7 小時、13 個拍攝場景，涵蓋北阿爾卑斯山景、林間雪景與黃金時刻，日本白馬滑雪攝影路線推薦。
-  keywords: 五竜滑雪,Hakuba47,五竜Hakuba47,陪伴式滑雪,日本滑雪攝影,白馬滑雪旅拍,滑雪行程規劃,滑雪跟拍路線,白馬滑雪場
+  title: 五竜 × Hakuba47 一日滑雪行程｜7 小時滑雪旅拍路線｜SnowSurfStudio
+  description: 五竜 × Hakuba47 一日滑雪行程怎麼排？從五竜 Panorama、Grand Prix 滑到 Hakuba47 與 47PARKS，整理 7 小時、13 個拍攝場景的白馬滑雪旅拍路線與時間安排。
+  keywords: 五竜滑雪,Hakuba47,五竜Hakuba47,白馬滑雪行程,白馬滑雪旅拍,滑雪跟拍路線,陪伴式滑雪,白馬滑雪場
 contentBlocks:
   - type: html
     html: |
@@ -116,8 +116,9 @@ contentBlocks:
       <p>不管你是喜歡安靜享受滑行的 I 人，還是想一起交朋友的 E 人，在這裡都能找到適合自己的滑雪方案。</p>
       <p>你可以自由選擇白馬地區的滑雪場，你只管滑，我負責一路跟著你</p>
       <p>把這一天真正滑過的雪道、速度、雪山和那些帥到不行的瞬間全部留下來。</p>
-      <p>歡迎留下你的需求與旅遊資訊。SnowSurfStudio 會協助規劃專屬的客製化行程。</p>
+      <p>歡迎留下你的需求與旅遊資訊。SnowSurfStudio 會協助規劃專屬的客製化行程，服務方式請看<a href="../hakuba-photography/">白馬滑雪跟拍</a>。</p>
   - type: html
     html: |
       <p>延伸閱讀：<a href="hakuba-ski-resorts-guide.html">第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理 →</a></p>
+      <p>住宿怎麼挑：<a href="hakuba-ski-lodging-guide.html">白馬滑雪住宿怎麼選？第一次去 Hakuba 住哪一區 →</a></p>
 ---

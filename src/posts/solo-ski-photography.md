@@ -13,7 +13,7 @@ previewDescription: 一個人滑雪找不到人記錄，或和朋友程度不同
 seo:
   title: 一個人滑雪找不到人？滑雪程度不同也能玩得盡興｜陪伴式滑雪攝影 - SnowSurfStudio
   description: 一個人去日本滑雪，或和朋友的 Snowboard、Ski 程度不同，如何玩得盡興又留下照片？認識 SnowSurfStudio 陪伴式滑雪攝影，把每一季的成長與回憶記錄下來。
-  keywords: 一個人滑雪,滑雪程度不同,日本滑雪攝影,陪伴式滑雪攝影,滑雪攝影,Snowboard Photography,Ski Photography,Snowboard,Ski,白馬滑雪攝影
+  keywords: 一個人滑雪,一個人滑雪攝影,陪伴式滑雪攝影,滑雪程度不同,滑雪跟拍,Snowboard,Ski
 contentBlocks:
   - type: html
     html: |
@@ -31,6 +31,7 @@ contentBlocks:
       <p>尤其是 Snowboard 或 Ski 的滑行瞬間，拍攝者需要知道你會從哪裡進入、在哪裡轉彎，以及什麼位置最適合按下快門。</p>
       <p>如果每滑幾趟就要停下來架手機、調整角度、確認畫面，原本流暢的滑雪節奏也很容易被打斷。</p>
       <p>所以我們想做的滑雪攝影，不是叫你一直停下來「拍照」，而是<strong>陪著你滑，順便把真正滑雪的樣子留下來。</strong></p>
+      <p>想先知道到了雪場可以拍哪些動作，可以參考<a href="ski-beginner-photo-tutorial-6-poses.html">6 個新手滑雪拍照姿勢</a>。</p>
   - type: html
     html: |
       <h2>和朋友程度不同，怎麼樣才能一起玩得盡興？</h2>
@@ -43,6 +44,7 @@ contentBlocks:
       <p>SnowSurfStudio 的陪伴式滑雪攝影，會依照每個人的程度、雪道環境與現場安全狀況安排拍攝。你不需要為了鏡頭一直停下來，也不需要刻意擺姿勢。</p>
       <p>想滑的人繼續滑，想留下照片的人也能被好好記錄。</p>
       <p>攝影不是打斷旅程，而是自然地跟著旅程發生。</p>
+      <p>如果這趟去白馬，程度不同的朋友可以先看<a href="hakuba-ski-resorts-guide.html">白馬雪場怎麼選</a>：五竜和 Hakuba47 相連，比較好各自安排。和另一半一起去的話，也可以參考<a href="couple-ski-trip-no-fighting.html">情侶滑雪不吵架攻略</a>。</p>
   - type: html
     html: |
       <h2>滑雪攝影值得嗎？</h2>
@@ -78,6 +80,7 @@ contentBlocks:
       <p>你不需要一直看鏡頭，也不需要每到一個地方就停下來擺姿勢。</p>
       <p>照自己的方式滑行、休息、探索雪場就好。</p>
       <p>無論你是第一次接觸<strong>單板滑雪（Snowboard）</strong>、<strong>雙板滑雪（Ski）</strong>，或已經滑了好幾個雪季，想留下更有速度感與質感的<strong>單板滑雪攝影、雙板滑雪攝影作品</strong>，都可以在出發前先告訴我們最想留下的畫面。</p>
+      <p>一人方案有<a href="../plans/companion-skiing.html">陪伴式滑雪 A（2 小時攝影）</a>與<a href="../plans/companion-skiing-b.html">陪伴式滑雪 B（5 小時陪滑）</a>。</p>
   - type: html
     html: |
       <h2>一個人滑雪，也可以有人陪你記錄</h2>
@@ -87,5 +90,5 @@ contentBlocks:
       <p>多年以後再回頭看，也許你記得的不只是那一年去了哪一座日本雪場。</p>
       <p>而是會看見：</p>
       <p><strong>原來那一年的自己，是這樣滑雪的。</strong></p>
-      <p>如果你也想在日本滑雪旅行中，留下自然、有速度感，也能看見自己每一年進步的照片，可以查看 SnowSurfStudio 日本滑雪攝影方案與 2026/27 雪季可預約檔期。</p>
+      <p>如果你也想在日本滑雪旅行中，留下自然、有速度感，也能看見自己每一年進步的照片，可以查看 SnowSurfStudio 的<a href="../hakuba-photography/">白馬滑雪攝影</a>方案與 2026/27 雪季可預約檔期。</p>
 ---
