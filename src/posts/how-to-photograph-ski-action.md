@@ -4,9 +4,9 @@ title: "一張好看的滑雪照，是怎麼拍出來的？拍攝前先安排好
 tag: "滑雪攝影教學"
 metaLine: "SnowSurfStudio Journal・滑雪動態攝影教學"
 heroImage: "images/lake-view-japan-ski-photography-snowboard-ski.jpg"
-heroImageAlt: "雪山與開放雪道上的滑雪者"
+heroImageAlt: "白馬雪場開放雪道上的滑雪者，遠方是湖景與雪山"
 previewImage: "images/lake-view-japan-ski-photography-snowboard-ski.jpg"
-previewImageAlt: "雪山與開放雪道上的滑雪者"
+previewImageAlt: "白馬雪場開放雪道上的滑雪者，遠方是湖景與雪山"
 date: "2026-09-20"
 dateModified: "2026-09-20"
 previewDescription: "好看的滑雪動態照，通常從按快門前就開始準備。先注意安全、選擇背景清楚的開放雪道，再安排攝影者站位、滑行路線與轉彎位置；拍攝時追蹤人物，回來選出能看清動作與環境的照片。"
@@ -20,7 +20,7 @@ seo:
 contentBlocks:
   - type: html
     html: |
-      <p><img src="../images/lake-view-japan-ski-photography-snowboard-ski.jpg" alt="雪山與開放雪道上的滑雪者" style="width:100%;height:auto;border-radius:16px"></p>
+      <p><img src="../images/lake-view-japan-ski-photography-snowboard-ski.jpg" alt="白馬雪場開放雪道上的滑雪者，遠方是湖景與雪山" style="width:100%;height:auto;border-radius:16px"></p>
       <h2>拍之前，先說好要拍什麼動作</h2>
       <p>先選一個人能穩定完成的動作，例如一個慣用方向的轉彎。兩人先說好：從哪裡開始、在哪一段做動作、要從攝影者哪一側通過，以及拍完在哪裡安全會合。Nikon 的滑雪攝影教學同樣強調，給滑雪者的方向應清楚、簡短、具體。這是拍照安排，不是要求滑雪者為鏡頭冒險。<a href="https://www.nikonusa.com/learn-and-explore/c/tips-and-techniques/ski-photography-101">來源：Nikon 滑雪攝影教學</a></p>
       <p>如果滑雪者還不能穩定轉彎，可以先從不需要滑行的<a href="ski-beginner-photo-tutorial-6-poses.html">新手滑雪拍照姿勢</a>開始。</p>

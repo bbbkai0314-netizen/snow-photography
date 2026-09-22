@@ -4,7 +4,7 @@ title: WHITESPACE REC Cargo Vest 好物分享文
 tag: 滑雪背心
 metaLine: SnowSurfStudio Journal・滑雪攝影裝備心得
 heroImage: images/下午4.48 2026-8-7的影像.jpg
-heroImageAlt: '日本白馬雪場的滑雪平面攝影與雪地人像紀錄'
+heroImageAlt: '日本雪場的滑雪平面攝影與雪地人像紀錄'
 previewImage: ''
 previewImageAlt: ''
 leadParagraph: 身為一位滑雪攝影師，平常都在雪地上紀錄朋友們滑雪的瞬間。
