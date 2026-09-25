@@ -1,9 +1,9 @@
 // GTM is installed site-wide in head-meta.njk (container GTM-M5MVCP2M). Keep all
 // conversion-event rules here so every desktop and mobile CTA uses the same
-// classification and cannot double-count. Each event is still pushed to
-// window.dataLayer for GTM, but the container has no triggers for these custom events,
-// so the ones that matter are also sent straight to GA4 (and the LINE conversion to
-// Google Ads) through the gtag() shim defined in head-meta.njk.
+// classification and cannot double-count. Most events are pushed to window.dataLayer for
+// GTM and, because the container has no triggers for these custom events, the ones that
+// matter are also sent straight to GA4 (and the LINE conversion to Google Ads) through the
+// gtag() shim defined in head-meta.njk. LINE clicks go only through gtag() as line_click.
 (() => {
   const GA4_ID = 'G-H578W2CXH6';
   const ADS_LINE_CONVERSION = 'AW-18359584407/xG5WCKHCsO0cEJeNxLJE';
@@ -34,11 +34,13 @@
   const LINE_NAVIGATE_TIMEOUT_MS = 300;
   let lastLineContactAt = 0;
 
-  // GA4 gets this as click_line (renamed from line_click, so the two are never both sent).
-  // The dataLayer event, Google Ads conversion and Meta Lead keep their names so Meta's
-  // Add_To_Line and the Ads conversion action don't change. onSent runs once GA4 has
-  // the event, or after LINE_NAVIGATE_TIMEOUT_MS if GA4 is slow or blocked.
-  function fireLineContact(source, linkUrl, onSent) {
+  // Every LINE click is one line_click, sent to GA4 once through the gtag() shim (which is
+  // itself the only line_click entry in dataLayer; the GTM container has no custom-event
+  // triggers). buttonLocation says where the button sits (header, footer, ...); the page is
+  // in page_path. source keeps its old values for the Meta Lead event so Meta's
+  // Add_To_Line doesn't change, and the Google Ads LINE conversion is unchanged. onSent
+  // runs once GA4 has the event, or after LINE_NAVIGATE_TIMEOUT_MS if GA4 is slow or blocked.
+  function fireLineContact(source, linkUrl, onSent, buttonLocation) {
     let done = false;
     const finish = () => {
       if (done) return;
@@ -54,15 +56,12 @@
     lastLineContactAt = now;
     if (typeof onSent === 'function') window.setTimeout(finish, LINE_NAVIGATE_TIMEOUT_MS);
 
-    const url = linkUrl || '';
-    fireGaEvent('line_click', { source, link_url: url });
     if (typeof window.gtag === 'function') {
-      // "source" is renamed for GA4 so it can't be read as a traffic-source field.
-      window.gtag('event', 'click_line', {
-        link_url: url,
+      window.gtag('event', 'line_click', {
         page_path: window.location.pathname,
         page_title: document.title,
-        cta_source: source,
+        link_url: linkUrl || '',
+        button_location: buttonLocation || source,
         send_to: GA4_ID,
         event_callback: finish,
       });
@@ -195,6 +194,15 @@
     return 'line_link';
   }
 
+  function getLineButtonLocation(link) {
+    if (link.classList.contains('line-float')) return 'floating_button';
+    if (link.classList.contains('booking-wizard__line-link')) return 'booking_confirmation';
+    if (link.closest('header, .nav')) return 'header';
+    if (link.closest('footer')) return 'footer';
+    if (link.closest('article, .article')) return 'blog_content';
+    return 'page_content';
+  }
+
   function getBookingSource(link) {
     if (link.classList.contains('article-cta__btn')) return 'article_cta';
     if (link.classList.contains('news-banner__btn')) return 'news_banner';
@@ -236,9 +244,9 @@
       const url = link.href;
       if (navigatesThisPage(e, link)) {
         e.preventDefault();
-        fireLineContact(getLineSource(link), url, () => window.location.assign(url));
+        fireLineContact(getLineSource(link), url, () => window.location.assign(url), getLineButtonLocation(link));
       } else {
-        fireLineContact(getLineSource(link), url);
+        fireLineContact(getLineSource(link), url, undefined, getLineButtonLocation(link));
       }
       return;
     }
