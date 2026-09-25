@@ -27,12 +27,48 @@
     });
   }
 
-  function fireLineContact(source) {
-    fireGaEvent('line_click', { source });
-    // "source" is renamed for GA4 so it can't be read as a traffic-source field.
-    sendGa4('line_click', { cta_source: source });
+  // A single tap can reach this twice (e.g. a ghost click on mobile, or a double tap), so
+  // clicks within this window count once.
+  const LINE_DEDUPE_MS = 800;
+  // Longest a same-tab LINE link waits for GA4 before navigating anyway.
+  const LINE_NAVIGATE_TIMEOUT_MS = 300;
+  let lastLineContactAt = 0;
+
+  // GA4 gets this as click_line (renamed from line_click, so the two are never both sent).
+  // The dataLayer event, Google Ads conversion and Meta Lead keep their names so Meta's
+  // Add_To_Line and the Ads conversion action don't change. onSent runs once GA4 has
+  // the event, or after LINE_NAVIGATE_TIMEOUT_MS if GA4 is slow or blocked.
+  function fireLineContact(source, linkUrl, onSent) {
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      if (typeof onSent === 'function') onSent();
+    };
+
+    const now = Date.now();
+    if (now - lastLineContactAt < LINE_DEDUPE_MS) {
+      finish();
+      return;
+    }
+    lastLineContactAt = now;
+    if (typeof onSent === 'function') window.setTimeout(finish, LINE_NAVIGATE_TIMEOUT_MS);
+
+    const url = linkUrl || '';
+    fireGaEvent('line_click', { source, link_url: url });
     if (typeof window.gtag === 'function') {
+      // "source" is renamed for GA4 so it can't be read as a traffic-source field.
+      window.gtag('event', 'click_line', {
+        link_url: url,
+        page_path: window.location.pathname,
+        page_title: document.title,
+        cta_source: source,
+        send_to: GA4_ID,
+        event_callback: finish,
+      });
       window.gtag('event', 'conversion', { send_to: ADS_LINE_CONVERSION });
+    } else {
+      finish();
     }
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { content_name: source });
@@ -132,8 +168,20 @@
     window.requestAnimationFrame(checkScrollDepth);
   }
 
+  // LINE's short links (lin.ee), line.me / liff.line.me pages and line:// app links.
   function isLineLink(link) {
-    return /(^|\.)lin\.ee$/i.test(link.hostname);
+    return link.protocol === 'line:' || /(^|\.)(lin\.ee|line\.me)$/i.test(link.hostname);
+  }
+
+  // Only a plain left click on a link that replaces this page needs to wait for GA4;
+  // new tabs, modified clicks and downloads leave the page (and its pending hits) alive.
+  function navigatesThisPage(e, link) {
+    const target = (link.getAttribute('target') || '').toLowerCase();
+    return !e.defaultPrevented &&
+      e.button === 0 &&
+      !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey &&
+      !link.hasAttribute('download') &&
+      (target === '' || target === '_self');
   }
 
   function isBookingLink(link) {
@@ -185,7 +233,13 @@
     // LINE takes precedence over booking. A LINE destination is never counted as a
     // booking CTA, even if its surrounding UI is part of the booking section.
     if (isLineLink(link)) {
-      fireLineContact(getLineSource(link));
+      const url = link.href;
+      if (navigatesThisPage(e, link)) {
+        e.preventDefault();
+        fireLineContact(getLineSource(link), url, () => window.location.assign(url));
+      } else {
+        fireLineContact(getLineSource(link), url);
+      }
       return;
     }
 

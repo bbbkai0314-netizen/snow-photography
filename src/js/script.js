@@ -249,10 +249,13 @@
     carouselNext.addEventListener('click', () => {
       if (isTransitioning) return;
       if (activeSlide === carouselSlides.length - 1) {
+        const lineUrl = carouselCard.dataset.lineUrl;
+        const openLine = () => window.location.assign(lineUrl);
         if (window.ssTrack && typeof window.ssTrack.lineContact === 'function') {
-          window.ssTrack.lineContact('life_chapter_carousel');
+          window.ssTrack.lineContact('life_chapter_carousel', lineUrl, openLine);
+        } else {
+          openLine();
         }
-        window.location.assign(carouselCard.dataset.lineUrl);
         return;
       }
       isTransitioning = true;
