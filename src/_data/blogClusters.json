@@ -14,7 +14,7 @@
       "intro": "雪場怎麼選、住宿住哪一區、一天的路線怎麼排。先把白馬的雪場與住宿想清楚，再決定要不要把<a href=\"../hakuba-photography/\">白馬滑雪攝影</a>排進行程。",
       "serviceLead": "想在白馬留下自己滑雪的樣子，可以看看",
       "serviceAnchor": "白馬滑雪攝影",
-      "posts": ["hakuba-ski-resorts-guide", "hakuba-ski-lodging-guide", "goryu-hakuba47-one-day-ski-tour"]
+      "posts": ["hakuba-ski-resorts-guide", "hakuba-ski-lodging-guide", "goryu-hakuba47-one-day-ski-tour", "hakuba-non-skier-activities"]
     },
     {
       "id": "first-time",
@@ -51,6 +51,7 @@
     "hakuba-ski-resorts-guide": { "primary": "白馬雪場怎麼選", "secondary": ["白馬滑雪", "白馬雪場", "白馬滑雪攻略", "八方尾根", "Hakuba47", "白馬五竜", "栂池", "岩岳"] },
     "hakuba-ski-lodging-guide": { "primary": "白馬滑雪住宿", "secondary": ["白馬住宿", "Hakuba 住宿", "八方住宿", "五竜住宿", "白馬交通"] },
     "goryu-hakuba47-one-day-ski-tour": { "primary": "五竜 Hakuba47 一日滑雪行程", "secondary": ["白馬滑雪行程", "五竜", "Hakuba47", "白馬滑雪旅拍", "滑雪跟拍路線"] },
+    "hakuba-non-skier-activities": { "primary": "白馬不滑雪", "secondary": ["白馬非滑雪活動", "白馬冬天景點", "白馬岩岳觀光", "地獄谷雪猴", "白馬溫泉", "白馬合照"] },
     "ski-season-early-planning": { "primary": "日本滑雪行前規劃", "secondary": ["日本滑雪行前準備", "滑雪早鳥", "滑雪教練預約", "滑雪裝備清單"] },
     "ski-lesson-photography-guide": { "primary": "滑雪教學攝影", "secondary": ["滑雪課程紀錄", "滑雪教練＋攝影", "第一次滑雪拍照", "滑雪攝影注意事項"] },
     "family-ski-trip": { "primary": "親子滑雪", "secondary": ["親子滑雪攝影", "家庭滑雪攝影", "兒童滑雪", "白馬親子滑雪"], "serviceAnchor": "親子滑雪攝影" },
