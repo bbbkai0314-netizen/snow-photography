@@ -44,7 +44,7 @@
       "intro": "好看的滑雪照，多半在按快門前就決定了：機位、路線、光線與動作。這裡整理新手姿勢、動態照拍法，以及手機和專業攝影的差別；想把拍照交給攝影師，可以看<a href=\"../hakuba-photography/\">Hakuba 滑雪攝影</a>。",
       "serviceLead": "想專心滑、把拍照交給攝影師，可以看看",
       "serviceAnchor": "Hakuba 滑雪攝影",
-      "posts": ["ski-beginner-photo-tutorial-6-poses", "how-to-photograph-ski-action", "ski-photo-poses", "selfie-vs-professional-photographer", "whitespace-cargo-vest"]
+      "posts": ["ski-photography-experience", "ski-beginner-photo-tutorial-6-poses", "how-to-photograph-ski-action", "ski-photo-poses", "selfie-vs-professional-photographer", "whitespace-cargo-vest"]
     }
   ],
   "keywords": {
@@ -59,6 +59,7 @@
     "family-ski-trip": { "primary": "親子滑雪", "secondary": ["親子滑雪攝影", "家庭滑雪攝影", "兒童滑雪", "白馬親子滑雪"], "serviceAnchor": "親子滑雪攝影" },
     "couple-ski-trip-no-fighting": { "primary": "情侶滑雪", "secondary": ["情侶滑雪攝影", "情侶滑雪旅拍", "情侶第一次滑雪", "滑雪程度不同"], "serviceAnchor": "情侶滑雪旅拍" },
     "solo-ski-photography": { "primary": "一個人滑雪", "secondary": ["一個人滑雪攝影", "陪伴式滑雪", "滑雪程度不同", "滑雪跟拍"], "serviceAnchor": "一個人滑雪攝影" },
+    "ski-photography-experience": { "primary": "滑雪攝影", "secondary": ["滑雪跟拍", "個人滑雪攝影", "家庭滑雪攝影", "滑雪攝影預約", "滑雪旅拍"] },
     "solo-ski-japan-safety": { "primary": "一個人滑雪安全", "secondary": ["新手獨旅滑雪", "白馬滑雪安全", "日本滑雪保險", "滑雪緊急聯絡"], "serviceAnchor": "一個人滑雪攝影" },
     "ski-beginner-photo-tutorial-6-poses": { "primary": "滑雪拍照姿勢", "secondary": ["新手滑雪拍照", "第一次滑雪怎麼拍照", "Snowboard 拍照", "雪地人像"] },
     "how-to-photograph-ski-action": { "primary": "滑雪動態照怎麼拍", "secondary": ["滑雪攝影技巧", "滑雪攝影機位", "滑雪連拍", "雪地攝影"] },
