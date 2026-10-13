@@ -1,0 +1,4 @@
+interface:
+  display_name: "SnowSurfStudio SEO 產文流程"
+  short_description: "依 Ellie 核准的 01–11 步驟建立 SEO 文章"
+  default_prompt: "請依 SnowSurfStudio SEO 產文流程，逐步訪談我並建立網站文章。"

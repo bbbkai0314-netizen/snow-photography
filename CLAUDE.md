@@ -1,5 +1,7 @@
 # SnowSurfStudio — Claude Code 專案指示
 
+當 Ellie 要規劃、撰寫、修改或發布 SnowSurfStudio SEO 文章時，先讀 `10_Skills/snowsurfstudio-seo-workflow/SKILL.md`，並依其 `assets/seo-article-templates-01-11.md` 逐階段訪談；每一階段都必須等 Ellie 確認後才繼續。
+
 Claude Code 只會自動讀這份 `CLAUDE.md`，不會讀 `AGENTS.md`（那是給 Codex 的），所以下面把兩份共用的規則直接載進來：
 
 @AGENTS.md
