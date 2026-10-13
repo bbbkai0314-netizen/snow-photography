@@ -3,7 +3,8 @@
 // classification and cannot double-count. Most events are pushed to window.dataLayer for
 // GTM and, because the container has no triggers for these custom events, the ones that
 // matter are also sent straight to GA4 (and the LINE conversion to Google Ads) through the
-// gtag() shim defined in head-meta.njk. LINE clicks go only through gtag() as line_click.
+// gtag() shim defined in head-meta.njk. LINE clicks go only through gtag() as line_click,
+// and Instagram clicks the same way as instagram_click.
 (() => {
   const GA4_ID = 'G-H578W2CXH6';
   const ADS_LINE_CONVERSION = 'AW-18359584407/xG5WCKHCsO0cEJeNxLJE';
@@ -71,6 +72,45 @@
     }
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { content_name: source });
+    }
+  }
+
+  // Same window as LINE: a ghost click or double tap on an Instagram icon counts once.
+  const INSTAGRAM_DEDUPE_MS = 800;
+  const INSTAGRAM_NAVIGATE_TIMEOUT_MS = 300;
+  let lastInstagramClickAt = 0;
+
+  // Every Instagram click is one instagram_click, sent to GA4 once through the gtag() shim,
+  // with the same parameters as line_click (page_path, page_title, link_url, button_location).
+  // No Google Ads or Meta event: this is an engagement signal, not a lead. onSent works like
+  // fireLineContact's: it runs once GA4 has the event, or after the timeout.
+  function fireInstagramClick(linkUrl, buttonLocation, onSent) {
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      if (typeof onSent === 'function') onSent();
+    };
+
+    const now = Date.now();
+    if (now - lastInstagramClickAt < INSTAGRAM_DEDUPE_MS) {
+      finish();
+      return;
+    }
+    lastInstagramClickAt = now;
+    if (typeof onSent === 'function') window.setTimeout(finish, INSTAGRAM_NAVIGATE_TIMEOUT_MS);
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'instagram_click', {
+        page_path: window.location.pathname,
+        page_title: document.title,
+        link_url: linkUrl || '',
+        button_location: buttonLocation || 'page_content',
+        send_to: GA4_ID,
+        event_callback: finish,
+      });
+    } else {
+      finish();
     }
   }
 
@@ -187,6 +227,11 @@
     return link.hash === '#booking';
   }
 
+  // instagram.com and its subdomains (www., m.) plus the instagr.am short domain.
+  function isInstagramLink(link) {
+    return /(^|\.)(instagram\.com|instagr\.am)$/i.test(link.hostname);
+  }
+
   function getLineSource(link) {
     if (link.classList.contains('line-float')) return 'floating_button';
     if (link.classList.contains('booking-wizard__line-link')) return 'booking_confirmation';
@@ -213,6 +258,7 @@
   window.ssTrack = {
     ga4: sendGa4,
     lineContact: fireLineContact,
+    instagramClick: fireInstagramClick,
     selectPlan: fireSelectPlan,
     bookingComplete: fireBookingComplete,
     sectionView: fireSectionView,
@@ -247,6 +293,18 @@
         fireLineContact(getLineSource(link), url, () => window.location.assign(url), getLineButtonLocation(link));
       } else {
         fireLineContact(getLineSource(link), url, undefined, getLineButtonLocation(link));
+      }
+      return;
+    }
+
+    // Instagram icons (header and footer) reuse the LINE button_location rules.
+    if (isInstagramLink(link)) {
+      const url = link.href;
+      if (navigatesThisPage(e, link)) {
+        e.preventDefault();
+        fireInstagramClick(url, getLineButtonLocation(link), () => window.location.assign(url));
+      } else {
+        fireInstagramClick(url, getLineButtonLocation(link));
       }
       return;
     }
