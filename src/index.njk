@@ -73,7 +73,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="chapter__content chapter__content--hero">
           <p class="eyebrow">Snow photographer · 滑雪攝影</p>
           <h1>snowsurfstudio</h1>
-          <a class="hero__booking" href="hakuba-photography/">2026/27 白馬滑雪攝影｜Snowboard &amp; Ski</a>
+          <div class="hero__actions">
+            <a class="hero__booking" href="hakuba-photography/">2026/27 白馬滑雪攝影｜Snowboard &amp; Ski</a>
+            <a class="hero__line" data-line-location="hero" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">LINE 詢問檔期</a>
+          </div>
+          <p class="hero__reassure">30 張以上精選照片，三天內以 Google Drive 交付。基本色彩與曝光調整，不含大量精修。團體方案 2–4 人。雪場停業而無法拍攝時，可選擇退款，或視攝影師檔期改期。</p>
           <p class="chapter__location">{{ site.heroLocationLine }}</p>
           <p class="chapter__lead">SnowSurfStudio 在日本白馬，<br>用最自然的方式，記錄你在雪上的每一刻。<br><br>不管是一個人、兩個人，<br>還是一家人、一群朋友，<br>都替你留下真正投入雪季、享受滑雪的樣子。</p>
           <p class="chapter__sub">2026 / 27 Season &middot; @snowsurfstudio</p>
@@ -83,7 +87,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="chapter__content chapter__content--hero">
           <p class="eyebrow">戶外動態攝影・Outdoor Documentary Photography</p>
           <p class="hero__title chapter__content--nowrap">A Life in Moments</p>
-          <p class="hero__booking">動態攝影紀錄</p>
+          <div class="hero__actions">
+            <p class="hero__booking">動態攝影紀錄</p>
+            <a class="hero__line" data-line-location="hero" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">LINE 詢問檔期</a>
+          </div>
           <p class="chapter__lead">戶外攝影<br>SnowSurfStudio，<br>用最自然的方式，記錄你在戶外的每一刻。<br><br>無論是山林、海邊、露營，<br>還是日常旅程與戶外活動，<br>我們專注捕捉最真實、自然且充滿故事感的畫面，<br>讓每一張照片都成為你值得珍藏的回憶。</p>
         </div>
       </div>
@@ -206,16 +213,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {% set planImgW = 4 %}
         {% set planImgH = 3 %}
       {% endif %}
-      <a class="plan-preview glass" href="plans/{{ plan.fileSlug }}.html">
-        <img src="{% if isMotionPlan %}images/a-life-in-moments-beach.webp{% else %}{{ plan.data.heroImage }}{% endif %}" alt="{% if isMotionPlan %}自然陽光下的藍天、海面與海岸公路大景{% else %}{{ plan.data.heroImageAlt }}{% endif %}" width="{{ planImgW }}" height="{{ planImgH }}" loading="lazy" decoding="async"{% if isMotionPlan %} style="object-position:50% 72%;"{% elseif plan.data.previewImagePosition %} style="object-position:{{ plan.data.previewImagePosition }};"{% endif %}>
-        <div class="plan-preview__body">
-          <h3>{% if isMotionPlan %}戶外活動攝影{% else %}{{ plan.data.title }}{% endif %}</h3>
-          <p class="plan-preview__desc">{% if isMotionPlan %}海邊、山林、露營、旅行。記錄風、光線、動作，也記錄那些來不及刻意安排的瞬間。{% else %}{{ plan.data.previewDescription }}{% endif %}</p>
-          <span class="plan-preview__link">{% if isMotionPlan %}查看動態攝影方案 →{% else %}查看方案內容 →{% endif %}</span>
-        </div>
-      </a>
+      <article class="plan-preview glass">
+        <a class="plan-preview__main" href="plans/{{ plan.fileSlug }}.html">
+          <img src="{% if isMotionPlan %}images/a-life-in-moments-beach.webp{% else %}{{ plan.data.heroImage }}{% endif %}" alt="{% if isMotionPlan %}自然陽光下的藍天、海面與海岸公路大景{% else %}{{ plan.data.heroImageAlt }}{% endif %}" width="{{ planImgW }}" height="{{ planImgH }}" loading="lazy" decoding="async"{% if isMotionPlan %} style="object-position:50% 72%;"{% elseif plan.data.previewImagePosition %} style="object-position:{{ plan.data.previewImagePosition }};"{% endif %}>
+          <div class="plan-preview__body">
+            <h3>{% if isMotionPlan %}戶外活動攝影{% else %}{{ plan.data.title }}{% endif %}</h3>
+            <p class="plan-preview__desc">{% if isMotionPlan %}海邊、山林、露營、旅行。記錄風、光線、動作，也記錄那些來不及刻意安排的瞬間。{% else %}{{ plan.data.previewDescription }}{% endif %}</p>
+            <span class="plan-preview__link">{% if isMotionPlan %}查看動態攝影方案 →{% else %}查看方案內容 →{% endif %}</span>
+          </div>
+        </a>
+        <a class="plan-preview__line" data-line-location="plan_card" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">LINE 詢問這個方案</a>
+      </article>
       {% endfor %}
     </div>
+    {% set lineCtaLocation = "plans_section" %}
+    {% set lineCtaCompact = false %}
+    {% set lineCtaLead = "還沒決定方案，也可以先用 LINE 問可約日期。" %}
+    {% set lineCtaFacts = "30 張以上精選照片，三天內以 Google Drive 交付。基本色彩與曝光調整，不含大量精修。團體方案 2–4 人。雪場停業而無法拍攝時，可選擇退款，或視攝影師檔期改期。" %}
+    {% include "partials/line-cta.njk" %}
   </section>
 
   <section class="journal glass-panel" id="journal" data-tag="JOURNAL">
