@@ -92,10 +92,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>依人數和想拍的長度選擇。方案細節與可預約日期，都可以在預約前先問清楚。</p>
         <ul class="about__list about__list--audience about__list--plans">
           {% for plan in collections.plans | sortByOrder %}{% if plan.fileSlug != "life-transition" %}
-          <li>
-            <a class="about__plan-card" href="{{ assetPrefix }}plans/{{ plan.fileSlug }}.html"><strong>{{ plan.data.title }}</strong><span>{{ plan.data.previewDescription }}</span><span class="about__plan-link">查看方案內容 →</span></a>
-            <a class="about__plan-line" data-line-location="hakuba_plan" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">LINE 詢問這個方案</a>
-          </li>
+          <li><a href="{{ assetPrefix }}plans/{{ plan.fileSlug }}.html"><strong>{{ plan.data.title }}</strong><span>{{ plan.data.previewDescription }}</span><span class="about__plan-link">查看方案內容 →</span></a></li>
           {% endif %}{% endfor %}
         </ul>
         {% set lineCtaLocation = "hakuba_plans" %}
