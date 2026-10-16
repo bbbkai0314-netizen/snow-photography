@@ -406,8 +406,7 @@ button{ font-family:inherit; }
 .hero__line:hover{ filter:brightness(1.06); }
 .hero__line:focus-visible,
 .line-cta__btn:focus-visible,
-.line-float:focus-visible,
-.plan-preview__line:focus-visible{
+.line-float:focus-visible{
   outline:2px solid var(--white);
   outline-offset:3px;
 }
@@ -779,28 +778,14 @@ button{ font-family:inherit; }
 }
 .about__list--audience span a{ display:inline-block; margin-top:8px; }
 .about__list--plans li{ padding:0; }
-.about__list--plans .about__plan-card{
+.about__list--plans a{
   display:block;
   height:100%;
   padding:20px;
   border-radius:12px;
   transition:background .3s ease;
 }
-.about__list--plans .about__plan-card:hover{ background:rgba(155,212,238,.06); }
-.about__list--plans .about__plan-line{
-  display:inline-flex;
-  align-items:center;
-  margin:0 20px 16px;
-  padding:8px 14px;
-  border-radius:999px;
-  background:#06c755;
-  color:#07130b;
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.04em;
-}
-.about__list--plans .about__plan-line:hover{ filter:brightness(1.06); }
-.about__list--plans .about__plan-line:focus-visible{ outline:2px solid var(--white); outline-offset:3px; }
+.about__list--plans a:hover{ background:rgba(155,212,238,.06); }
 .about__list--plans .about__plan-link{
   margin-top:10px;
   font-size:13px;
@@ -1875,11 +1860,8 @@ button{ font-family:inherit; }
 @media (max-width:1180px){ .plans-grid{ grid-template-columns:repeat(3,1fr); gap:16px; } }
 @media (max-width:900px){ .plans-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:560px){ .plans-grid{ grid-template-columns:1fr; } }
-.plan-preview{display:flex;flex-direction:column;border-radius:var(--radius-lg);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s ease}
+.plan-preview{display:block;border-radius:var(--radius-lg);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s ease}
 .plan-preview:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.3)}
-.plan-preview__main{display:block;color:inherit;flex:1 1 auto}
-.plan-preview__line{display:block;margin:0 14px 16px;padding:10px 12px;border-radius:999px;background:#06c755;color:#07130b;font-size:13px;font-weight:800;letter-spacing:.04em;text-align:center}
-.plan-preview__line:hover{filter:brightness(1.06)}
 .plan-preview img{width:100%;aspect-ratio:4/3;height:auto;object-fit:cover;object-position:50% 35%}
 .plan-preview__body{padding:16px 14px 18px}
 .plan-preview h3{font-family:'Noto Sans TC',sans-serif;font-weight:800;font-size:clamp(15px,1.15vw,17px);line-height:1.4;color:var(--white);margin-bottom:6px}

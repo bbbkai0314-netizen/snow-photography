@@ -213,17 +213,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {% set planImgW = 4 %}
         {% set planImgH = 3 %}
       {% endif %}
-      <article class="plan-preview glass">
-        <a class="plan-preview__main" href="plans/{{ plan.fileSlug }}.html">
-          <img src="{% if isMotionPlan %}images/a-life-in-moments-beach.webp{% else %}{{ plan.data.heroImage }}{% endif %}" alt="{% if isMotionPlan %}自然陽光下的藍天、海面與海岸公路大景{% else %}{{ plan.data.heroImageAlt }}{% endif %}" width="{{ planImgW }}" height="{{ planImgH }}" loading="lazy" decoding="async"{% if isMotionPlan %} style="object-position:50% 72%;"{% elseif plan.data.previewImagePosition %} style="object-position:{{ plan.data.previewImagePosition }};"{% endif %}>
-          <div class="plan-preview__body">
-            <h3>{% if isMotionPlan %}戶外活動攝影{% else %}{{ plan.data.title }}{% endif %}</h3>
-            <p class="plan-preview__desc">{% if isMotionPlan %}海邊、山林、露營、旅行。記錄風、光線、動作，也記錄那些來不及刻意安排的瞬間。{% else %}{{ plan.data.previewDescription }}{% endif %}</p>
-            <span class="plan-preview__link">{% if isMotionPlan %}查看動態攝影方案 →{% else %}查看方案內容 →{% endif %}</span>
-          </div>
-        </a>
-        <a class="plan-preview__line" data-line-location="plan_card" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">LINE 詢問這個方案</a>
-      </article>
+      <a class="plan-preview glass" href="plans/{{ plan.fileSlug }}.html">
+        <img src="{% if isMotionPlan %}images/a-life-in-moments-beach.webp{% else %}{{ plan.data.heroImage }}{% endif %}" alt="{% if isMotionPlan %}自然陽光下的藍天、海面與海岸公路大景{% else %}{{ plan.data.heroImageAlt }}{% endif %}" width="{{ planImgW }}" height="{{ planImgH }}" loading="lazy" decoding="async"{% if isMotionPlan %} style="object-position:50% 72%;"{% elseif plan.data.previewImagePosition %} style="object-position:{{ plan.data.previewImagePosition }};"{% endif %}>
+        <div class="plan-preview__body">
+          <h3>{% if isMotionPlan %}戶外活動攝影{% else %}{{ plan.data.title }}{% endif %}</h3>
+          <p class="plan-preview__desc">{% if isMotionPlan %}海邊、山林、露營、旅行。記錄風、光線、動作，也記錄那些來不及刻意安排的瞬間。{% else %}{{ plan.data.previewDescription }}{% endif %}</p>
+          <span class="plan-preview__link">{% if isMotionPlan %}查看動態攝影方案 →{% else %}查看方案內容 →{% endif %}</span>
+        </div>
+      </a>
       {% endfor %}
     </div>
     {% set lineCtaLocation = "plans_section" %}
