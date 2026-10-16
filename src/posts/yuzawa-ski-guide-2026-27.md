@@ -3,9 +3,9 @@ layout: article
 title: 湯澤滑雪指南（2026/27）：雪場、開板日、雪票、新幹線交通一次整理
 tag: 湯澤滑雪攻略
 metaLine: SnowSurfStudio Journal｜湯澤滑雪・2026/27 雪季・新幹線交通
-heroImage: images/lifestyle-01.jpg
+heroImage: images/lifestyle-01.webp
 heroImageAlt: 越後湯澤車站的滑雪旅行人像紀錄
-previewImage: images/lifestyle-01.jpg
+previewImage: images/lifestyle-01.webp
 previewImageAlt: 越後湯澤車站的滑雪旅行人像紀錄
 date: '2026-10-12'
 dateModified: '2026-10-12'
@@ -15,7 +15,7 @@ seo:
   title: 湯澤滑雪指南 2026/27｜開板日、雪票、新幹線交通整理｜SnowSurfStudio
   description: 越後湯澤 2026/27 雪季整理：GALA 湯澤、苗場、かぐら、NASPA 等雪場開板日與一日券價格，東京搭新幹線最快約 66 分鐘。未公布項目標明查核日，附官方來源。
   keywords: 湯澤滑雪,越後湯澤 滑雪,GALA湯澤 2026,苗場 雪票,湯澤 vs 白馬
-  ogImage: images/lifestyle-01.jpg
+  ogImage: images/lifestyle-01.webp
 contentBlocks:
   - type: html
     html: |
@@ -218,6 +218,14 @@ contentBlocks:
       <hr>
       <p>如果你想留下一整趟滑雪的完整紀錄，可以考慮來白馬。SnowSurfStudio 在白馬跟著你一起滑，把你自己拍不到的畫面留下來，詳細內容看〈<a href="/hakuba-photography/">白馬滑雪攝影</a>〉。</p>
       <p>👉 <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">LINE 詢問報價與可約日期</a></p>
+      <h2>延伸閱讀</h2>
+      <ul>
+        <li><a href="/blog/japan-ski-december.html">12 月去日本滑雪雪夠嗎？12 月初、中、底怎麼選</a></li>
+        <li><a href="/blog/hakuba-2026-27-season-guide.html">白馬 2026/27 雪季怎麼規劃？開幕日、雪票價格、交通一次整理</a></li>
+        <li><a href="/blog/hakuba-ski-resorts-guide.html">第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理</a></li>
+        <li><a href="/blog/solo-ski-japan-safety.html">一個人去日本滑雪安全嗎？新手獨旅白馬前要確認的 7 件事</a></li>
+        <li><a href="/blog/ski-season-early-planning.html">日本滑雪行前規劃：現在該做的 5 件事，別等到開季才訂</a></li>
+      </ul>
       <h2>資料來源</h2>
       <p>（查核日：2026-10-12，台北時間）</p>
       <ol style="margin:12px 0 12px 22px">

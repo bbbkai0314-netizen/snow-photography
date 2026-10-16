@@ -390,7 +390,7 @@ contentBlocks:
       <h3>白馬全山共通券要在哪裡買？什麼時候開賣？</h3>
       <p>官方表示 2026/27 全山共通一日券預計 11 月左右在 Hakuba Valley 官方網店開賣 [1]。</p>
       <h3>12 月初去白馬有雪滑嗎？</h3>
-      <p>2026/27 已公布的開幕日裡，五竜 11/21 最早，但開幕初期只有山麓區，山頂要看降雪 [3]。其他雪場多數 12 月中才開，日期以官網為準。</p>
+      <p>2026/27 已公布的開幕日裡，五竜 11/21 最早，但開幕初期只有山麓區，山頂要看降雪 [3]。其他雪場多數 12 月中才開，日期以官網為準。月初、月中、月底的雪況和人潮差在哪裡，看〈<a href="/blog/japan-ski-december.html">12 月去日本滑雪雪夠嗎？</a>〉。</p>
       <h3>小孩滑雪要買票嗎？</h3>
       <p>多數雪場對學齡前兒童有免費或低價票，例如全山共通券未滿 6 歲免費 [1]，五竜 × 47 為 0–5 歲 500 円 [4]。每個雪場的年齡分級不同，請以各場官網為準。</p>
       <h3>雪場的開幕日會改嗎？</h3>
@@ -400,6 +400,15 @@ contentBlocks:
       <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)">
               <p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p>
             </blockquote>
+      <h2>延伸閱讀</h2>
+      <ul>
+        <li><a href="/blog/japan-ski-december.html">12 月去日本滑雪雪夠嗎？12 月初、中、底怎麼選</a></li>
+        <li><a href="/blog/yuzawa-ski-guide-2026-27.html">湯澤滑雪指南（2026/27）：雪場、開板日、雪票、新幹線交通一次整理</a></li>
+        <li><a href="/blog/solo-ski-japan-safety.html">一個人去日本滑雪安全嗎？新手獨旅白馬前要確認的 7 件事</a></li>
+        <li><a href="/blog/hakuba-non-skier-activities.html">同行的人不滑雪怎麼辦？白馬冬季非滑雪活動與拍照行程推薦</a></li>
+        <li><a href="/blog/hakuba-ski-resorts-guide.html">第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理</a></li>
+        <li><a href="/blog/ski-season-early-planning.html">日本滑雪行前規劃：現在該做的 5 件事，別等到開季才訂</a></li>
+      </ul>
       <h2>資料來源</h2>
       <p>（查核日期：2026-10-12，台北時間；季節性資訊以官方最新公告為準）</p>
       <ol style="margin:12px 0 12px 22px">

@@ -3,9 +3,9 @@ layout: article
 title: 一個人去日本滑雪安全嗎？新手獨旅白馬前要確認的 7 件事
 tag: 一個人滑雪
 metaLine: SnowSurfStudio Journal｜日本滑雪・一個人滑雪・白馬
-heroImage: images/snow-portrait-japan-ski-photography-snowboard-ski.jpg
+heroImage: images/snow-portrait-japan-ski-photography-snowboard-ski.webp
 heroImageAlt: 日本滑雪攝影記錄一個人滑雪旅客在雪地自在跳躍的畫面
-previewImage: images/snow-portrait-japan-ski-photography-snowboard-ski.jpg
+previewImage: images/snow-portrait-japan-ski-photography-snowboard-ski.webp
 previewImageAlt: 日本滑雪攝影記錄一個人滑雪旅客在雪地自在跳躍的畫面
 date: '2026-10-09'
 dateModified: '2026-10-09'
@@ -15,7 +15,7 @@ seo:
   title: 一個人去日本滑雪安全嗎？新手獨旅白馬前要確認的 7 件事｜SnowSurfStudio
   description: 一個人去日本滑雪是可以的，但白馬官方說得很清楚：雪場會提供安全措施，自己的安全意識仍是自己的責任。新手獨旅最重要的是先上課、只滑雪場開放的雪道、深雪與樹林區不要一個人進去，再把緊急聯絡方式和涵蓋滑雪的保險準備好。
   keywords: 一個人滑雪,一個人滑雪安全,新手獨旅滑雪,白馬滑雪安全,日本滑雪保險,滑雪緊急聯絡
-  ogImage: images/snow-portrait-japan-ski-photography-snowboard-ski.jpg
+  ogImage: images/snow-portrait-japan-ski-photography-snowboard-ski.webp
 contentBlocks:
   - type: html
     html: |
@@ -190,13 +190,16 @@ contentBlocks:
       <p>一個人上雪場，最怕的通常不是滑不好，而是「萬一出事沒人知道」。把課上好、守住雪道界線、存好緊急電話、看懂保險條款，剩下的，就是好好享受只屬於你的一天。</p>
       <p>你負責滑雪，我負責留下那些你自己拍不到的畫面。</p>
       <!-- 圖：白馬滑雪攝影：一個人滑雪的雪地人像 -->
+      <p>想在白馬留下自己滑雪的樣子，可以看<a href="/hakuba-photography/">白馬滑雪攝影</a>。</p>
       <p><a href="https://lin.ee/xcqRIdT">LINE 詢問報價與可約日期</a></p>
       <h2>延伸閱讀</h2>
       <ul>
+        <li><a href="/blog/japan-ski-december.html">12 月去日本滑雪雪夠嗎？12 月初、中、底怎麼選</a></li>
+        <li><a href="/blog/hakuba-2026-27-season-guide.html">白馬 2026/27 雪季怎麼規劃？開幕日、雪票價格、交通一次整理</a></li>
         <li><a href="/blog/solo-ski-photography.html">一個人滑雪找不到人？陪伴式滑雪攝影</a></li>
         <li><a href="/blog/hakuba-ski-resorts-guide.html">第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理</a></li>
         <li><a href="/blog/hakuba-ski-lodging-guide.html">白馬滑雪住宿怎麼選？第一次去 Hakuba 住哪一區最好？</a></li>
-        <li><a href="/blog/ski-season-early-planning.html">日本滑雪行前規劃：現在該做的 5 件事</a></li>
+        <li><a href="/blog/ski-season-early-planning.html">日本滑雪行前規劃：現在該做的 5 件事，別等到開季才訂</a></li>
       </ul>
       <h2>資料來源</h2>
       <p>（查核日期：2026-10-09，台北時間）</p>

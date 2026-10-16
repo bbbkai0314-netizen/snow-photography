@@ -3,7 +3,7 @@ layout: article
 title: 第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理
 tag: 白馬滑雪攻略
 metaLine: SnowSurfStudio Journal｜白馬滑雪・雪場攻略・Ski & Snowboard
-heroImage: images/snow-town-japan-ski-photography-snowboard-ski.jpg
+heroImage: images/snow-town-japan-ski-photography-snowboard-ski.webp
 heroImageAlt: 日本雪場小鎮與冬季山景
 leadParagraph: 第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理
 date: '2026-08-09'

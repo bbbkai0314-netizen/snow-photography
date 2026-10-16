@@ -3,9 +3,9 @@ layout: article
 title: "想留下滑雪瞬間？邊滑邊拍的攝影體驗解析"
 tag: "滑雪攝影"
 metaLine: "SnowSurfStudio Journal・邊滑邊拍的滑雪攝影"
-heroImage: "images/air-grab-homepage-hero.jpg"
+heroImage: "images/air-grab-homepage-hero.webp"
 heroImageAlt: "開放雪道上正在轉彎的單板滑雪者"
-previewImage: "images/air-grab-homepage-hero.jpg"
+previewImage: "images/air-grab-homepage-hero.webp"
 previewImageAlt: "開放雪道上正在轉彎的單板滑雪者"
 date: "2026-10-13"
 dateModified: "2026-10-13"
@@ -15,11 +15,11 @@ seo:
   title: "滑雪攝影怎麼拍？體驗解析｜SnowSurfStudio"
   description: "想知道滑雪攝影怎麼拍？本文介紹邊滑邊拍的紀錄方式、適合對象與預約前準備，幫助個人及家庭安心留下完整的雪季回憶。"
   keywords: "滑雪攝影,滑雪跟拍,個人滑雪攝影,家庭滑雪攝影,滑雪攝影預約,雪場攝影,滑行紀錄,雪地人像,滑雪旅拍"
-  ogImage: "images/air-grab-homepage-hero.jpg"
+  ogImage: "images/air-grab-homepage-hero.webp"
 contentBlocks:
   - type: html
     html: |
-      <p><img src="../images/air-grab-homepage-hero.jpg" alt="開放雪道上正在轉彎的單板滑雪者" style="width:100%;height:auto;border-radius:16px"></p>
+      <p><img src="../images/air-grab-homepage-hero.webp" alt="開放雪道上正在轉彎的單板滑雪者" style="width:100%;height:auto;border-radius:16px"></p>
       <p>一趟滑雪旅行裡，最難留下的往往不是眼前的雪景，而是自己真正投入滑行，以及與家人共同享受旅程的模樣。</p>
       <p>一個人去滑雪時，身邊可能沒有人能在雪道旁幫忙拍照；全家一起滑雪時，也經常有一位家人負責掌鏡，最後的合照總是少了一個人。</p>
       <p>邊滑邊拍的<strong>滑雪攝影</strong>，正是為了解決這些情況。讓每位滑雪者都能專心享受旅程，同時留下自己與重要的人在雪地裡滑行、歡笑及相互陪伴的真實畫面。</p>
