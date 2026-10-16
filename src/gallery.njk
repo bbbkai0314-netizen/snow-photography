@@ -33,7 +33,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="gallery-grid gallery-grid--landscape">
       {% for item in gallery | byOrientation("landscape") %}
       <figure class="gcard glass" data-full="{{ item.image }}" data-tag="{{ item.tag }}">
-        <img src="{{ item.image }}" alt="{{ item.alt }}" loading="lazy">
+        <img src="{{ item.image }}" alt="{{ item.alt }}" width="{{ item.width }}" height="{{ item.height }}" loading="lazy" decoding="async">
         <figcaption>{{ item.caption }}</figcaption>
       </figure>
       {% endfor %}
@@ -42,7 +42,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="gallery-grid gallery-grid--portrait">
       {% for item in gallery | byOrientation("portrait") %}
       <figure class="gcard gcard--portrait glass" data-full="{{ item.image }}" data-tag="{{ item.tag }}">
-        <img src="{{ item.image }}" alt="{{ item.alt }}" loading="lazy">
+        <img src="{{ item.image }}" alt="{{ item.alt }}" width="{{ item.width }}" height="{{ item.height }}" loading="lazy" decoding="async">
         <figcaption>{{ item.caption }}</figcaption>
       </figure>
       {% endfor %}

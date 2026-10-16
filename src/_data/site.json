@@ -1,15 +1,15 @@
 {
   "heroLocationLine": "日本滑雪寫真",
-  "heroImage": "images/air-grab-homepage-hero.jpg",
+  "heroImage": "images/air-grab-homepage-hero.webp",
   "heroImageAlt": "日本滑雪攝影捕捉單板滑雪者騰空的 Snowboard Photography 畫面",
-  "heroImageSecondary": "images/a-life-in-moments-beach.jpg",
+  "heroImageSecondary": "images/a-life-in-moments-beach.webp",
   "heroImageSecondaryAlt": "自然陽光下的藍天、海面與海岸公路大景",
   "aboutBody": "SnowSurfStudio 我們專注於日本滑雪攝影服務，主要服務地區為日本白馬（Hakuba）。我們相信真正的陪伴，不是一直等彼此，而是每個人都能用自己的節奏享受滑雪。無論是一個人滑雪、或是程度不同的新手、情侶、家庭等等。SnowSurfStudio 陪你享受滑雪，在雪地留下最美回憶。",
   "seo": {
-    "title": "SnowSurfStudio｜滑雪攝影與戶外活動攝影・Snowboard & Ski",
-    "description": "SnowSurfStudio 的滑雪攝影與戶外活動攝影：2026/27 雪季在日本白馬提供 Snowboard、Ski 滑雪跟拍，也記錄山林、海邊與旅行中的自然瞬間。查看作品、拍攝方案與預約方式。",
-    "keywords": "SnowSurfStudio,滑雪攝影,戶外活動攝影,Snowboard Photography,Ski Photography,滑雪寫真,滑雪攝影預約",
-    "ogImage": "images/air-grab-japan-ski-photography-snowboard-ski.jpg"
+    "title": "白馬滑雪攝影｜日本滑雪拍照與陪滑紀錄 | SnowSurfStudio",
+    "description": "白馬滑雪攝影：在日本白馬記錄滑雪拍照與陪滑的自然畫面，適合一個人、情侶、家庭與朋友同行，也記錄山林、海邊與旅行中的戶外活動。查看作品、拍攝方案與預約方式。",
+    "keywords": "白馬滑雪攝影,日本滑雪拍照,滑雪陪滑紀錄,滑雪寫真,戶外活動攝影,滑雪攝影預約,SnowSurfStudio",
+    "ogImage": "images/air-grab-japan-ski-photography-snowboard-ski.webp"
   },
   "newsItems": [
     {

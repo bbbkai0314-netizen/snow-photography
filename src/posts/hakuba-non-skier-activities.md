@@ -189,6 +189,8 @@ contentBlocks:
       <p><a href="https://lin.ee/xcqRIdT">LINE 詢問報價與可約日期</a></p>
       <h2>延伸閱讀</h2>
       <ul>
+        <li><a href="/blog/japan-ski-december.html">12 月去日本滑雪雪夠嗎？12 月初、中、底怎麼選</a></li>
+        <li><a href="/blog/hakuba-2026-27-season-guide.html">白馬 2026/27 雪季怎麼規劃？開幕日、雪票價格、交通一次整理</a></li>
         <li><a href="/blog/hakuba-ski-resorts-guide.html">第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理</a></li>
         <li><a href="/blog/family-ski-trip.html">親子滑雪怎麼安排？帶孩子去白馬滑雪，爸媽也能一起享受</a></li>
         <li><a href="/blog/couple-ski-trip-no-fighting.html">情侶滑雪不吵架攻略｜五個舒服相處的小默契</a></li>

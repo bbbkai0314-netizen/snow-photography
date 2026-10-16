@@ -3,7 +3,7 @@ layout: article
 title: 手機拍攝vs 專業滑雪攝影有什麼差別？
 tag: 比較
 metaLine: SnowSurfStudio Journal・滑雪攝影方案比較
-heroImage: images/air-grab-japan-ski-photography-snowboard-ski.jpg
+heroImage: images/air-grab-japan-ski-photography-snowboard-ski.webp
 heroImageAlt: 日本滑雪攝影捕捉單板滑雪者騰空的畫面
 previewImage: images/town-02.jpg
 previewImageAlt: 日本雪地人像與滑雪平面攝影
@@ -20,7 +20,7 @@ contentBlocks:
     paragraphs:
       - 專業攝影師的價值在於「第三人稱視角」與構圖判斷：能捕捉到自己入鏡的完整動作、表情與雪地環境，這是自拍很難做到的。
       - 此外，攝影師熟悉雪場地形與光線時段，能提前抓好拍攝位置與時機，並在事後進行選片與基礎調色，交付的是可以直接使用、風格一致的成品。
-    image: images/powder-jump-japan-ski-photography-snowboard-ski.jpg
+    image: images/powder-jump-japan-ski-photography-snowboard-ski.webp
     imageAlt: 日本滑雪攝影記錄的雙人跳躍瞬間
     imagePosition: right
   - type: html

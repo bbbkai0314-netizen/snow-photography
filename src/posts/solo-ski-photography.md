@@ -3,7 +3,7 @@ layout: article
 title: 一個人滑雪找不到人？｜陪伴式滑雪攝影，把每一季的回憶留下來
 tag: 陪伴式滑雪攝影
 metaLine: SnowSurfStudio Journal｜日本滑雪攝影・Snowboard・Ski Photography
-heroImage: images/snow-portrait-japan-ski-photography-snowboard-ski.jpg
+heroImage: images/snow-portrait-japan-ski-photography-snowboard-ski.webp
 heroImageAlt: 日本滑雪攝影記錄一個人滑雪旅客在雪地自在跳躍的畫面
 leadParagraph: 一個人去日本滑雪，其實很自由。
 hideDefaultCta: true
