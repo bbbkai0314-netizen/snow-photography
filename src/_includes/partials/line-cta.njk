@@ -1,6 +1,6 @@
 {# Prominent LINE inquiry. Caller sets lineCtaLocation. Optional: lineCtaLead, lineCtaFacts, lineCtaCompact. #}
 <aside class="line-cta{% if lineCtaCompact %} line-cta--compact{% endif %} glass" aria-label="用 LINE 詢問檔期">
   {% if lineCtaLead %}<p class="line-cta__lead">{{ lineCtaLead }}</p>{% endif %}
-  <p class="line-cta__facts">{% if lineCtaFacts %}{{ lineCtaFacts }}{% else %}約 30 張精選照片，三天內以 Google Drive 交付。基本色彩與曝光調整，不含大量精修。團體方案 2–4 人。雪場停業而無法拍攝時，可協議改期。{% endif %}</p>
+  <p class="line-cta__facts">{% if lineCtaFacts %}{{ lineCtaFacts }}{% else %}30 張以上精選照片，三天內以 Google Drive 交付。基本色彩與曝光調整，不含大量精修。團體方案 2–4 人。雪場停業而無法拍攝時，可選擇退款，或視攝影師檔期改期。{% endif %}</p>
   <a class="line-cta__btn" data-line-location="{{ lineCtaLocation }}" href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">用 LINE 詢問檔期</a>
 </aside>
