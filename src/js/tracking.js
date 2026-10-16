@@ -2,11 +2,17 @@
 // conversion-event rules here so every desktop and mobile CTA uses the same
 // classification and cannot double-count. Most events are pushed to window.dataLayer for
 // GTM and, because the container has no triggers for these custom events, the ones that
-// matter are also sent straight to GA4 (and the LINE conversion to Google Ads) through the
-// gtag() shim defined in head-meta.njk. LINE clicks go only through gtag() as line_click.
+// matter are also sent straight to GA4 through the gtag() shim defined in head-meta.njk.
+// LINE clicks go only through gtag() as line_click. Instagram clicks use the same shape
+// as instagram_click so the two events stay separate and neither one double-counts.
 (() => {
   const GA4_ID = 'G-H578W2CXH6';
-  const ADS_LINE_CONVERSION = 'AW-18359584407/xG5WCKHCsO0cEJeNxLJE';
+  // Google Ads account AW-18359584407 is loaded by the GTM Google tag, but no LINE
+  // conversion action label is configured in this file. A 2026-09-19 audit found the
+  // conversion tag absent. Leave this unset — do not invent a send_to value.
+  // When the action exists in Google Ads, set the string and uncomment the send in
+  // fireLineContact:
+  // const ADS_LINE_CONVERSION = '';
 
   // Only the event's own parameters go to GA4: GA4 already attributes the session from
   // the landing URL's UTM tags, so re-sending utm_* would only add noise.
@@ -36,10 +42,10 @@
 
   // Every LINE click is one line_click, sent to GA4 once through the gtag() shim (which is
   // itself the only line_click entry in dataLayer; the GTM container has no custom-event
-  // triggers). buttonLocation says where the button sits (header, footer, ...); the page is
-  // in page_path. source keeps its old values for the Meta Lead event so Meta's
-  // Add_To_Line doesn't change, and the Google Ads LINE conversion is unchanged. onSent
-  // runs once GA4 has the event, or after LINE_NAVIGATE_TIMEOUT_MS if GA4 is slow or blocked.
+  // triggers). buttonLocation says where the button sits (header, footer, plan_hero, ...);
+  // page_location is the full URL of the page the visitor was on. source keeps its old
+  // values for the Meta Lead event so Meta's Add_To_Line doesn't change. onSent runs once
+  // GA4 has the event, or after LINE_NAVIGATE_TIMEOUT_MS if GA4 is slow or blocked.
   function fireLineContact(source, linkUrl, onSent, buttonLocation) {
     let done = false;
     const finish = () => {
@@ -58,6 +64,7 @@
 
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'line_click', {
+        page_location: window.location.href,
         page_path: window.location.pathname,
         page_title: document.title,
         link_url: linkUrl || '',
@@ -65,7 +72,11 @@
         send_to: GA4_ID,
         event_callback: finish,
       });
-      window.gtag('event', 'conversion', { send_to: ADS_LINE_CONVERSION });
+      // Google Ads LINE conversion is not wired. The conversion action label is absent;
+      // do not send a placeholder ID. Uncomment after pasting the real label above:
+      // if (typeof ADS_LINE_CONVERSION === 'string' && ADS_LINE_CONVERSION) {
+      //   window.gtag('event', 'conversion', { send_to: ADS_LINE_CONVERSION });
+      // }
     } else {
       finish();
     }
@@ -187,7 +198,15 @@
     return link.hash === '#booking';
   }
 
+  function explicitLineLocation(link) {
+    return link.getAttribute('data-line-location') || '';
+  }
+
   function getLineSource(link) {
+    // New inquiry blocks set data-line-location. The header/footer icons do not, so
+    // their Meta Lead content_name stays contact_icon.
+    const explicit = explicitLineLocation(link);
+    if (explicit && explicit !== 'floating_button') return explicit;
     if (link.classList.contains('line-float')) return 'floating_button';
     if (link.classList.contains('booking-wizard__line-link')) return 'booking_confirmation';
     if (link.getAttribute('aria-label') === 'LINE 詢價') return 'contact_icon';
@@ -195,12 +214,36 @@
   }
 
   function getLineButtonLocation(link) {
+    const explicit = explicitLineLocation(link);
+    if (explicit) return explicit;
     if (link.classList.contains('line-float')) return 'floating_button';
     if (link.classList.contains('booking-wizard__line-link')) return 'booking_confirmation';
     if (link.closest('header, .nav')) return 'header';
     if (link.closest('footer')) return 'footer';
     if (link.closest('article, .article')) return 'blog_content';
     return 'page_content';
+  }
+
+  function isInstagramLink(link) {
+    return /(^|\.)instagram\.com$/i.test(link.hostname);
+  }
+
+  function getInstagramButtonLocation(link) {
+    if (link.closest('header, .nav')) return 'header';
+    if (link.closest('footer')) return 'footer';
+    return 'page_content';
+  }
+
+  // Same parameters as line_click, including the page the visitor was on. Not a Google
+  // Ads conversion. New-tab links are not held up, matching the LINE new-tab path.
+  function fireInstagramClick(linkUrl, buttonLocation) {
+    sendGa4('instagram_click', {
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      page_title: document.title,
+      link_url: linkUrl || '',
+      button_location: buttonLocation || 'page_content',
+    });
   }
 
   function getBookingSource(link) {
@@ -213,6 +256,7 @@
   window.ssTrack = {
     ga4: sendGa4,
     lineContact: fireLineContact,
+    instagramClick: fireInstagramClick,
     selectPlan: fireSelectPlan,
     bookingComplete: fireBookingComplete,
     sectionView: fireSectionView,
@@ -248,6 +292,11 @@
       } else {
         fireLineContact(getLineSource(link), url, undefined, getLineButtonLocation(link));
       }
+      return;
+    }
+
+    if (isInstagramLink(link)) {
+      fireInstagramClick(link.href, getInstagramButtonLocation(link));
       return;
     }
 
