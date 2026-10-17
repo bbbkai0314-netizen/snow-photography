@@ -14,7 +14,7 @@
       "intro": "雪場怎麼選、住宿住哪一區、一天的路線怎麼排。先把白馬的雪場與住宿想清楚，再決定要不要把<a href=\"../hakuba-photography/\">白馬滑雪攝影</a>排進行程。",
       "serviceLead": "想在白馬留下自己滑雪的樣子，可以看看",
       "serviceAnchor": "白馬滑雪攝影",
-      "posts": ["japan-ski-december", "hakuba-2026-27-season-guide", "yuzawa-ski-guide-2026-27", "hakuba-ski-resorts-guide", "hakuba-ski-lodging-guide", "goryu-hakuba47-one-day-ski-tour", "hakuba-non-skier-activities"]
+      "posts": ["228-holiday-japan-ski-2027", "japan-ski-december", "hakuba-2026-27-season-guide", "yuzawa-ski-guide-2026-27", "hakuba-ski-resorts-guide", "hakuba-ski-lodging-guide", "goryu-hakuba47-one-day-ski-tour", "hakuba-non-skier-activities"]
     },
     {
       "id": "first-time",
@@ -24,7 +24,7 @@
       "intro": "第一次去日本滑雪，住宿、教練、雪票與裝備越早安排越從容。還不知道到了雪場怎麼拍照，可以先看<a href=\"ski-beginner-photo-tutorial-6-poses.html\">新手滑雪拍照姿勢</a>。",
       "serviceLead": "第一次滑雪也可以拍，拍攝方式可以看",
       "serviceAnchor": "白馬滑雪跟拍",
-      "posts": ["ski-season-early-planning", "ski-lesson-photography-guide"]
+      "posts": ["first-japan-ski-trip-hakuba-5-days", "snowboard-beginner-japan-itinerary", "chinese-ski-instructor-hakuba-yuzawa", "ski-season-early-planning", "ski-lesson-photography-guide"]
     },
     {
       "id": "travelers",
@@ -55,6 +55,10 @@
     "japan-ski-december": { "primary": "12月日本滑雪", "secondary": ["12月白馬滑雪", "白馬開季", "12月雪況", "日本滑雪12月", "12月雪夠嗎"] },
     "hakuba-2026-27-season-guide": { "primary": "白馬 2026/27", "secondary": ["白馬 雪票 2026", "白馬 開幕日", "Hakuba Valley 全山共通券", "白馬 早鳥票", "東京到白馬"] },
     "yuzawa-ski-guide-2026-27": { "primary": "湯澤滑雪", "secondary": ["越後湯澤 滑雪", "GALA湯澤 2026", "苗場 雪票", "湯澤 vs 白馬"] },
+    "228-holiday-japan-ski-2027": { "primary": "228連假日本滑雪", "secondary": ["2027 228連假", "2月底日本滑雪", "228滑雪3天", "湯澤白馬短天數"] },
+    "chinese-ski-instructor-hakuba-yuzawa": { "primary": "中文滑雪教練", "secondary": ["白馬中文滑雪教練", "湯澤中文滑雪教練", "日本滑雪課中文", "兒童滑雪課"] },
+    "snowboard-beginner-japan-itinerary": { "primary": "單板新手行程", "secondary": ["第一次日本滑雪", "單板幾天學會", "湯澤滑雪3天", "白馬5天行程", "單板租借"] },
+    "first-japan-ski-trip-hakuba-5-days": { "primary": "第一次日本滑雪", "secondary": ["第一次去白馬滑雪", "日本滑雪新手", "白馬滑雪行程", "白馬五天四夜"] },
     "ski-season-early-planning": { "primary": "日本滑雪行前規劃", "secondary": ["日本滑雪行前準備", "滑雪早鳥", "滑雪教練預約", "滑雪裝備清單"] },
     "ski-lesson-photography-guide": { "primary": "滑雪教學攝影", "secondary": ["滑雪課程紀錄", "滑雪教練＋攝影", "第一次滑雪拍照", "滑雪攝影注意事項"] },
     "family-ski-trip": { "primary": "親子滑雪", "secondary": ["親子滑雪攝影", "家庭滑雪攝影", "兒童滑雪", "白馬親子滑雪"], "serviceAnchor": "親子滑雪攝影" },
