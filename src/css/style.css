@@ -392,34 +392,6 @@ button{ font-family:inherit; }
   letter-spacing:.04em;
   line-height:1.4 !important;
 }
-.hero__line{
-  display:inline-block;
-  padding:8px 14px;
-  border-radius:999px;
-  background:#06c755;
-  color:#07130b !important;
-  font-size:clamp(13px, 1.45vw, 16px) !important;
-  font-weight:800;
-  letter-spacing:.04em;
-  line-height:1.4 !important;
-}
-.hero__line:hover{ filter:brightness(1.06); }
-.chapter__content--hero .hero__line-note{
-  margin-top:12px;
-  max-width:520px;
-  font-size:14px !important;
-  line-height:1.65 !important;
-  color:#f5f8fa !important;
-  text-shadow:0 2px 18px rgba(0,0,0,.75);
-}
-.hero__line-note a{
-  color:#fff;
-  text-decoration:underline;
-  text-underline-offset:3px;
-  text-decoration-color:rgba(155,212,238,.85);
-}
-.hero__line-note a:hover{ color:var(--ice); }
-.hero__line:focus-visible,
 .line-cta__btn:focus-visible,
 .line-float:focus-visible{
   outline:2px solid var(--white);
