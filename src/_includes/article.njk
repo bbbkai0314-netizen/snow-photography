@@ -37,7 +37,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://snowsurfstudio.net/" },
-        { "@type": "ListItem", "position": 2, "name": "滑雪日誌", "item": "https://snowsurfstudio.net/blog/index.html" },
+        { "@type": "ListItem", "position": 2, "name": "滑雪日誌", "item": "https://snowsurfstudio.net/blog/" },
         { "@type": "ListItem", "position": 3, "name": {{ title | dump | safe }}, "item": "{{ canonicalUrl }}" }
       ]
     }
@@ -60,7 +60,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main>
   <article>
     <div class="article-hero">
-      <a class="article-breadcrumb" href="index.html">← 返回滑雪日誌</a>
+      <a class="article-breadcrumb" href="/blog/">← 返回滑雪日誌</a>
       <span class="article-hero__tag">{{ tag }}</span>
       <h1>{{ displayTitle | safe if displayTitle else title }}</h1>
       <p class="article-hero__meta">{{ metaLine }}</p>
@@ -103,11 +103,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {% if not hideDefaultCta %}<div class="article-cta glass-panel">
         <p>如果你也想在日本滑雪旅行中留下自然又有質感的回憶，歡迎查看日本滑雪攝影方案與可預約檔期。</p>
         <div class="article-cta__links">
-          <a class="article-cta__btn glass" href="../index.html#booking">查看預約方案 →</a>
+          <a class="article-cta__btn glass" href="/#booking">查看預約方案 →</a>
           <a href="../hakuba-photography/">白馬滑雪攝影</a>
           <a href="../faq.html">常見問題</a>
         </div>
       </div>{% endif %}
+      <p class="article-line-note">想知道你的日期還能不能拍？用旁邊的 <a href="https://lin.ee/xcqRIdT" data-line-location="article_end" target="_blank" rel="noopener noreferrer">LINE</a> 問我，一句話就好。</p>
     </div>
   </article>
 
@@ -126,7 +127,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
       {% endfor %}
     </div>
-    <p class="article-related__service">{{ cluster.serviceLead }}<a href="../hakuba-photography/">{{ (postKeywords and postKeywords.serviceAnchor) or cluster.serviceAnchor }}</a>。其他文章請看<a href="index.html#{{ cluster.id }}">{{ cluster.name }}文章總覽</a>。</p>
+    <p class="article-related__service">{{ cluster.serviceLead }}<a href="../hakuba-photography/">{{ (postKeywords and postKeywords.serviceAnchor) or cluster.serviceAnchor }}</a>。其他文章請看<a href="/blog/#{{ cluster.id }}">{{ cluster.name }}文章總覽</a>。</p>
   </aside>
   {% endif %}
 </main>
