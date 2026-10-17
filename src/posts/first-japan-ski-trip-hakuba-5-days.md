@@ -1,0 +1,83 @@
+---
+layout: article
+title: "第一次日本滑雪怎麼排？白馬新手五天四夜行程，從租借、上課到留下照片"
+tag: "第一次滑雪"
+metaLine: "SnowSurfStudio Journal｜第一次日本滑雪・白馬・五天四夜"
+heroImage: "images/mountain-valley-panorama-japan-ski-photography-snowboard-ski.jpg"
+heroImageAlt: "白馬五竜滑雪場山頂俯瞰白馬村與遠方雪山"
+previewImage: "images/mountain-valley-panorama-japan-ski-photography-snowboard-ski.jpg"
+previewImageAlt: "白馬五竜滑雪場山頂俯瞰白馬村與遠方雪山"
+date: "2026-10-07"
+dateModified: "2026-10-07"
+previewDescription: "第一次去日本滑雪，不知道行程怎麼排？這篇用白馬五天四夜當例子，從東京交通、雪具租借、新手課程、安全與保險，到怎麼留下自己在滑雪的照片，一步一步整理給你。"
+hideDefaultCta: true
+seo:
+  title: "第一次日本滑雪怎麼排？白馬新手五天四夜行程，從租借、上課到留下照片｜SnowSurfStudio"
+  description: "第一次去日本滑雪，不知道行程怎麼排？這篇用白馬五天四夜當例子，從東京交通、雪具租借、新手課程、安全與保險，到怎麼留下自己在滑雪的照片，一步一步整理給你。"
+  keywords: "第一次日本滑雪,第一次去白馬滑雪,日本滑雪新手,白馬滑雪行程,白馬五天四夜"
+  ogImage: "images/mountain-valley-panorama-japan-ski-photography-snowboard-ski.jpg"
+contentBlocks:
+  - type: html
+    html: |
+      <p>第一次去日本滑雪，最常聽到的擔心大概是這幾句：「我完全沒滑過，會不會一直跌？」「雪具要自己帶還是租？」「要上課嗎？上幾天？」還有一個常常到回國才發現的問題：「怎麼整趟都沒有我自己的照片？」</p>
+      <p>這篇用白馬當例子，排一份給新手的五天四夜行程。不是要你照抄，而是讓你知道每一天大概在做什麼、哪裡要先準備，出發前心裡比較有底。</p>
+      <h2>為什麼第一次日本滑雪，很多人選白馬？</h2>
+      <p>白馬位在長野縣，Hakuba Valley 一共有 10 個雪場，從適合新手的寬緩雪道，到進階玩家喜歡的地形都有。對第一次去的人來說，好處是選擇多：同一趟旅程裡，可以先在比較平緩的雪場上課，之後再換個雪場看不同的風景。</p>
+      <p>如果你還不確定要滑哪一個雪場，可以先看這篇：<a href="/blog/hakuba-ski-resorts-guide.html">第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理</a>。</p>
+      <h2>出發前先確認：2026–27 雪季白馬什麼時候開山？</h2>
+      <p>每個雪場的開山日不一樣，也會依降雪調整。截至 2026 年 10 月初，已公布的日期有：</p>
+      <ul><li>白馬五竜（ABLE Hakuba GORYU）：預定 2026/11/21 開始營業（先開放とおみ區域）</li><li>白馬 Cortina、白馬乘鞍：預定 2026/12/12</li><li>白馬岩岳、白馬 Sanosaka：預定 2026/12/18</li><li>八方尾根、栂池、Hakuba47 等其他雪場：尚未公布，可以參考上一季大約在 12 月初開山</li></ul>
+      <p>整體來說，白馬的雪季大約從 12 月到隔年 5 月初；一般認為 1 月到 2 月中是粉雪狀況最好的時段。第一次去的話，不一定要追粉雪，雪況穩定、人潮適中、自己時間方便的日子，就是好日子。</p>
+      <blockquote class="glass" style="margin:20px 0;padding:18px 22px;border-radius:16px"><p>日期以各雪場官方公告為準，出發前記得再確認一次。</p></blockquote>
+      <h2>從東京到白馬怎麼去？</h2>
+      <p>從台灣飛到東京後，最常見的走法是：</p>
+      <ol><li>東京站搭北陸新幹線到長野站，約 1 小時 30 分</li><li>長野站東口轉乘 Alpico 特急巴士到白馬，約 1 小時 10 分</li></ol>
+      <p>全程大約 3.5 小時，只需要轉一次車。另外也有從新宿出發的直達高速巴士（時間較長、通常比較省）、從新宿搭 JR 特急，以及冬季限定的機場直達接駁可以選。</p>
+      <p>小提醒：長野往白馬的巴士在冬季有部分班次需要預約、部分是當天現場購票排隊，行李多或遇到假日，最好提早到站。</p>
+      <h2>第一次日本滑雪：白馬五天四夜行程範例</h2>
+      <blockquote class="glass" style="margin:20px 0;padding:18px 22px;border-radius:16px"><p>以下為情境示意，實際安排請依航班、雪場、程度與天氣調整。</p></blockquote>
+      <h3>Day 1｜抵達白馬、租雪具、早點休息</h3>
+      <p>第一天的目標只有一個：平安到達，把明天要用的東西準備好。</p>
+      <ul><li>抵達住宿後，先到雪具店完成租借與試穿（雪鞋、雪板或雙板、安全帽、雪鏡）</li><li>確認隔天上課的集合地點、時間與怎麼過去</li><li>買好或確認雪票取得方式</li><li>晚餐吃飽、泡個澡、早點睡</li></ul>
+      <p>很多人第一天就想衝上雪道，但長途移動後身體其實很累。把租借、試穿這些事情在前一天處理完，隔天早上就不會手忙腳亂。</p>
+      <p>住宿還沒決定的話，可以參考：<a href="/blog/hakuba-ski-lodging-guide.html">白馬滑雪住宿怎麼選？第一次去 Hakuba 住哪一區最好？</a></p>
+      <h3>Day 2｜上課，先把安全和基本動作學好</h3>
+      <p>第一次滑雪，強烈建議先上課。教練會從穿脫雪具、怎麼站、怎麼停、怎麼安全跌倒開始教，這些自己摸索很容易受傷，也很容易受挫。</p>
+      <ul><li>Ski（雙板）和 Snowboard（單板）新手期的感受不太一樣，可以先想想自己比較想學哪一種</li><li>上課時專心聽教練的，安全和教學永遠比拍照優先</li><li>下午累了就休息，不用硬撐</li></ul>
+      <p>如果有中文溝通的需求，預約課程時可以先詢問教練能使用的語言。</p>
+      <h3>Day 3｜練習日，也是最適合拍照的一天</h3>
+      <p>經過一天課程，這時候通常已經能在緩坡上慢慢滑、停下來，也比較不怕了。這一天很適合：</p>
+      <ul><li>在初級雪道反覆練習前一天學到的動作</li><li>搭纜車上去看看更大的雪景</li><li>留下自己在滑雪的照片</li></ul>
+      <p>為什麼是第三天？因為你已經沒那麼緊張，表情和動作會自然很多；但又還是「第一次」，那種剛學會的開心，只有這時候拍得到。</p>
+      <p>自己拍或請朋友拍也可以，先看看這篇小技巧：<a href="/blog/ski-beginner-photo-tutorial-6-poses.html">滑雪新手拍照教學｜6 個姿勢</a>。</p>
+      <h3>Day 4｜滑雪加一點在地旅行</h3>
+      <p>上午滑雪，下午留一點時間給白馬本身：散步、吃飯、泡溫泉，或在雪場看山景。新手連續滑好幾天，腿會很痠，這樣安排比較不容易累垮，也比較不會因為疲勞受傷。</p>
+      <h3>Day 5｜回程</h3>
+      <p>歸還雪具、退房、搭車回東京。回程交通記得預留時間，冬天路況和班次都可能有變化。</p>
+      <h2>新手行前清單：穿什麼、租什麼、帶什麼</h2>
+      <h3>三層式穿衣</h3>
+      <ul><li>第一層（排汗層）：貼身的排汗衣褲，避免棉質，流汗後才不會一直冷</li><li>第二層（保暖層）：刷毛或輕羽絨，熱了可以脫</li><li>第三層（防水外層）：滑雪外套與雪褲，防風防水</li></ul>
+      <p>再加上手套、毛帽或頭套、滑雪襪。寧可多一層可以脫，也不要少一層一直冷。</p>
+      <h3>雪具租借：雪鞋 → 固定器 → 雪板</h3>
+      <p>第一次滑雪，大部分人選擇租借就夠了。租的時候可以照這個順序確認：</p>
+      <ol><li>雪鞋：先試穿，站起來、蹲一下，腳跟不會浮起來、也沒有特別痛的點</li><li>固定器：請店員依你的雪鞋調整；單板要確認前後腳站法</li><li>雪板：店員會依身高、體重和程度建議長度，照實說自己是新手就好</li></ol>
+      <p>安全帽和雪鏡也建議一起準備。</p>
+      <h3>保險先看清楚</h3>
+      <p>出發前確認旅遊保險是否涵蓋滑雪、單板這類運動造成的受傷，以及山區救援、就醫的相關費用。不同保單差很多，看清楚再出發會安心很多。</p>
+      <h2>新手最常擔心的 4 件事</h2>
+      <p><strong>1. 我一直跌倒怎麼辦？</strong><br>跌倒是學滑雪的一部分，大家都是這樣開始的。上課時教練會教你怎麼比較安全地跌、怎麼站起來。</p>
+      <p><strong>2. 我體力不好，可以嗎？</strong><br>可以，重點是安排休息。不要每天都從開纜車滑到關纜車，留一點力氣給隔天。</p>
+      <p><strong>3. 雪況不好、天氣很差怎麼辦？</strong><br>安全優先。暴風雪或能見度很差時，休息、泡溫泉、在村裡走走都是很好的選擇。</p>
+      <p><strong>4. 我還不會滑，拍照會不會很尷尬？</strong><br>完全不會。第一次的畫面反而最珍貴：第一次站上雪板、第一次停住、第一次從纜車看出去的山。你不需要滑得很厲害，才值得被記錄。</p>
+      <h2>第一次滑雪，也值得留下自己的照片</h2>
+      <p>我自己也曾經一個人滑了一整天，結束後才發現：手機裡全是風景，沒有一張是我。手機自拍和 360 相機很方便，但很難拍到「你正在滑」的第三人稱畫面。</p>
+      <p>如果你希望第一次日本滑雪不只玩得開心，也能帶回自己在雪上的樣子，可以看看 SnowSurfStudio 的<a href="/hakuba-photography/">白馬滑雪攝影</a>。拍攝會依你的程度、當天雪況與安全調整，新手也可以安心拍。</p>
+      <p>你負責滑雪，我負責留下那些你自己拍不到的畫面。</p>
+      <h2>延伸閱讀</h2>
+      <ul><li><a href="/blog/ski-season-early-planning.html">日本滑雪行前規劃：現在該做的 5 件事，別等到開季才訂</a></li><li><a href="/blog/snowboard-beginner-japan-itinerary.html">第一次去日本滑雪學單板，行程怎麼排？3 天湯澤、5 天白馬範例</a></li><li><a href="/blog/hakuba-ski-resorts-guide.html">第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理</a></li><li><a href="/blog/hakuba-ski-lodging-guide.html">白馬滑雪住宿怎麼選？第一次去 Hakuba 住哪一區最好？</a></li><li><a href="/blog/solo-ski-photography.html">一個人滑雪找不到人？陪伴式滑雪攝影</a></li><li><a href="/blog/family-ski-trip.html">帶孩子去白馬滑雪，爸媽也能一起享受</a></li></ul>
+      <h2>想讓第一次日本滑雪留下完整的畫面？</h2>
+      <ul><li>一個人第一次去：看看<a href="/plans/companion-skiing.html">陪伴式滑雪 A｜一人・2 小時</a>，或想整天有人陪著滑、記錄纜車和休息時光的<a href="/plans/companion-skiing-b.html">陪伴式滑雪 B｜一人・5 小時</a></li><li>和朋友、情侶一起去：<a href="/plans/group-ski-photography.html">團體滑雪攝影｜2–4 人</a></li><li>要上課的新手或親子：<a href="/plans/lesson-photography.html">滑雪教練＋攝影方案</a></li></ul>
+      <p>想問日期、雪場或適不適合自己，直接用 LINE 問我就好，<a href="/booking.html">預約方式在這裡</a>。</p>
+      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)"><p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p></blockquote>
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"我一直跌倒怎麼辦？","acceptedAnswer":{"@type":"Answer","text":"跌倒是學滑雪的一部分，大家都是這樣開始的。上課時教練會教你怎麼比較安全地跌、怎麼站起來。"}},{"@type":"Question","name":"我體力不好，可以嗎？","acceptedAnswer":{"@type":"Answer","text":"可以，重點是安排休息。不要每天都從開纜車滑到關纜車，留一點力氣給隔天。"}},{"@type":"Question","name":"雪況不好、天氣很差怎麼辦？","acceptedAnswer":{"@type":"Answer","text":"安全優先。暴風雪或能見度很差時，休息、泡溫泉、在村裡走走都是很好的選擇。"}},{"@type":"Question","name":"我還不會滑，拍照會不會很尷尬？","acceptedAnswer":{"@type":"Answer","text":"完全不會。第一次的畫面反而最珍貴：第一次站上雪板、第一次停住、第一次從纜車看出去的山。你不需要滑得很厲害，才值得被記錄。"}}]}</script>
+---
