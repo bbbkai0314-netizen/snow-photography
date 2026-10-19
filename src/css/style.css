@@ -486,6 +486,13 @@ button{ font-family:inherit; }
   color:var(--ice-dim);
   text-transform:uppercase;
 }
+.plans-price{
+  font-size:12px;
+  letter-spacing:0.18em;
+  color:var(--ice-dim);
+  text-transform:uppercase;
+  font-weight:500;
+}
 
 .gallery-grid{
   display:grid;
