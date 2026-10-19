@@ -14,7 +14,7 @@
       "intro": "雪場怎麼選、住宿住哪一區、一天的路線怎麼排。先把白馬的雪場與住宿想清楚，再決定要不要把<a href=\"../hakuba-photography/\">白馬滑雪攝影</a>排進行程。",
       "serviceLead": "想在白馬留下自己滑雪的樣子，可以看看",
       "serviceAnchor": "白馬滑雪攝影",
-      "posts": ["228-holiday-japan-ski-2027", "japan-ski-december", "hakuba-2026-27-season-guide", "yuzawa-ski-guide-2026-27", "hakuba-ski-resorts-guide", "hakuba-ski-lodging-guide", "goryu-hakuba47-one-day-ski-tour", "hakuba-non-skier-activities"]
+      "posts": ["japan-ski-winter-break-lunar-new-year-2027", "japan-ski-lunar-new-year-2027-leave-plan", "228-holiday-japan-ski-2027", "japan-ski-december", "hakuba-2026-27-season-guide", "yuzawa-ski-guide-2026-27", "hakuba-ski-resorts-guide", "hakuba-ski-lodging-guide", "goryu-hakuba47-one-day-ski-tour", "hakuba-non-skier-activities"]
     },
     {
       "id": "first-time",
@@ -55,6 +55,8 @@
     "japan-ski-december": { "primary": "12月日本滑雪", "secondary": ["12月白馬滑雪", "白馬開季", "12月雪況", "日本滑雪12月", "12月雪夠嗎"] },
     "hakuba-2026-27-season-guide": { "primary": "白馬 2026/27", "secondary": ["白馬 雪票 2026", "白馬 開幕日", "Hakuba Valley 全山共通券", "白馬 早鳥票", "東京到白馬"] },
     "yuzawa-ski-guide-2026-27": { "primary": "湯澤滑雪", "secondary": ["越後湯澤 滑雪", "GALA湯澤 2026", "苗場 雪票", "湯澤 vs 白馬"] },
+    "japan-ski-winter-break-lunar-new-year-2027": { "primary": "寒假日本滑雪", "secondary": ["2027 寒假日期", "寒假 滑雪 行程", "1–2 月白馬雪況", "寒假 親子滑雪"] },
+    "japan-ski-lunar-new-year-2027-leave-plan": { "primary": "春節日本滑雪", "secondary": ["2027 春節 請假 攻略", "過年 滑雪 2027", "過年 滑雪 行程", "春節 日本 自由行"] },
     "228-holiday-japan-ski-2027": { "primary": "228連假日本滑雪", "secondary": ["2027 228連假", "2月底日本滑雪", "228滑雪3天", "湯澤白馬短天數"] },
     "chinese-ski-instructor-hakuba-yuzawa": { "primary": "中文滑雪教練", "secondary": ["白馬中文滑雪教練", "湯澤中文滑雪教練", "日本滑雪課中文", "兒童滑雪課"] },
     "snowboard-beginner-japan-itinerary": { "primary": "單板新手行程", "secondary": ["第一次日本滑雪", "單板幾天學會", "湯澤滑雪3天", "白馬5天行程", "單板租借"] },
