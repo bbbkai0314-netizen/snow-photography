@@ -33,58 +33,74 @@
     return clamp(-rect.top / holdRange, 0, 1);
   }
 
+  const chapterState = chapters.map((chapter) => ({
+    el: chapter,
+    isHero: chapter.dataset.tag === "HERO",
+    media: chapter.querySelector(".chapter__media"),
+    contents: Array.from(chapter.querySelectorAll(".chapter__content")),
+  }));
+
   function update() {
     const scrollY = window.scrollY;
     const vh = window.innerHeight;
 
-    // Ambient glow parallax
-    glowA.style.transform = `translate3d(0, ${scrollY * 0.08}px, 0)`;
-    glowB.style.transform = `translate3d(0, ${-scrollY * 0.06}px, 0)`;
+    const reads = chapterState.map((state) => (
+      state.isHero
+        ? { heroProgress: clamp(scrollY / vh, 0, 1) }
+        : { progress: chapterProgress(state.el) }
+    ));
+    const sectionTops = sections.map((section) => section.getBoundingClientRect().top);
 
-    // Nav glass intensify
-    nav.classList.toggle('nav--scrolled', scrollY > 40);
+    if (glowA) glowA.style.transform = `translate3d(0, ${scrollY * 0.08}px, 0)`;
+    if (glowB) glowB.style.transform = `translate3d(0, ${-scrollY * 0.06}px, 0)`;
+    if (nav) nav.classList.toggle("nav--scrolled", scrollY > 40);
 
-    chapters.forEach((chapter) => {
-      const media = chapter.querySelector('.chapter__media');
-      const isHero = chapter.dataset.tag === 'HERO';
-
-      if (isHero) {
-        const heroProgress = clamp(scrollY / vh, 0, 1);
-        media.style.transform = `scale(${1.03 + heroProgress * 0.05}) translateY(${scrollY * 0.25}px)`;
-        const heroOpacity = String(clamp(1 - heroProgress * 1.6, 0, 1));
-        const heroTransform = `translateY(${-40 + heroProgress * -20}%)`;
-        chapter.querySelectorAll('.chapter__content').forEach((content) => {
-          content.style.opacity = heroOpacity;
-          content.style.transform = heroTransform;
-        });
-        document.body.classList.toggle('line-float-hidden', heroProgress < 0.4);
+    chapterState.forEach((state, index) => {
+      if (state.isHero) {
+        const heroProgress = reads[index].heroProgress;
+        if (state.media) {
+          state.media.style.transform = `scale(${1.03 + heroProgress * 0.05}) translateY(${scrollY * 0.25}px)`;
+        }
+        // Leave the hero h1 on its stylesheet opacity until the page actually scrolls.
+        if (heroProgress <= 0) {
+          state.contents.forEach((content) => {
+            content.style.opacity = "";
+            content.style.transform = "";
+          });
+        } else {
+          const heroOpacity = String(clamp(1 - heroProgress * 1.6, 0, 1));
+          const heroTransform = `translateY(${-40 + heroProgress * -20}%)`;
+          state.contents.forEach((content) => {
+            content.style.opacity = heroOpacity;
+            content.style.transform = heroTransform;
+          });
+        }
+        document.body.classList.toggle("line-float-hidden", heroProgress < 0.4);
         return;
       }
 
-      const content = chapter.querySelector('.chapter__content');
-      const progress = chapterProgress(chapter);
+      const content = state.contents[0];
+      const media = state.media;
+      const progress = reads[index].progress;
 
-      // Media: gentle zoom-out + slight vertical drift (kept subtle so subjects near
-      // the frame edge, e.g. raised hands/heads, don't get clipped by the scale)
-      const scale = 1.06 - progress * 0.06;
-      const shiftY = -16 * progress;
-      media.style.transform = `scale(${scale}) translateY(${shiftY}px)`;
+      if (media) {
+        const scale = 1.06 - progress * 0.06;
+        const shiftY = -16 * progress;
+        media.style.transform = `scale(${scale}) translateY(${shiftY}px)`;
+      }
 
-      // Content: fade/slide in, hold, fade/slide out
-      const fadeIn = clamp(progress / 0.14, 0, 1);
-      const fadeOut = clamp((1 - progress) / 0.14, 0, 1);
-      const opacity = Math.min(fadeIn, fadeOut);
-      content.style.opacity = String(opacity);
-      content.style.transform = `translateY(${28 * (1 - opacity)}px)`;
+      if (content) {
+        const fadeIn = clamp(progress / 0.14, 0, 1);
+        const fadeOut = clamp((1 - progress) / 0.14, 0, 1);
+        const opacity = Math.min(fadeIn, fadeOut);
+        content.style.opacity = String(opacity);
+        content.style.transform = `translateY(${28 * (1 - opacity)}px)`;
+      }
     });
 
-    // Side dots + label: whichever named section's top has scrolled past
-    // the vertical midpoint of the viewport is "current".
     let activeSectionIndex = 0;
-    sections.forEach((section, i) => {
-      if (section.getBoundingClientRect().top <= vh * 0.5) {
-        activeSectionIndex = i;
-      }
+    sectionTops.forEach((top, i) => {
+      if (top <= vh * 0.5) activeSectionIndex = i;
     });
     dots.forEach((dot, i) => dot.classList.toggle('is-active', i === activeSectionIndex));
     const activeTag = sections[activeSectionIndex]?.dataset.tag || '';
@@ -105,16 +121,15 @@
 
   let ticking = false;
   function onScroll() {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        update();
-        ticking = false;
-      });
-      ticking = true;
-    }
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
   // Re-sync after the browser settles any #hash anchor scroll on load,

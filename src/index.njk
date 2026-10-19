@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+<link rel="preload" as="image" href="{{ site.heroImage }}" fetchpriority="high">
 {% include "partials/head-meta.njk" %}
 <meta name="author" content="SnowSurfStudio">
 <script type="application/ld+json">
@@ -64,15 +65,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="chapter" data-tag="HERO" style="--h:100vh">
     <div class="chapter__pin">
       <div class="chapter__media chapter__media--crossfade">
-        <img class="hero-fade hero-fade--a" src="{{ site.heroImage }}" alt="{{ site.heroImageAlt }}" width="2000" height="1333">
-        <img class="chapter__media-img--summer hero-fade hero-fade--b" src="{{ site.heroImageSecondary }}" alt="{{ site.heroImageSecondaryAlt }}" width="2000" height="1500">
+        <img class="hero-fade hero-fade--a" src="{{ site.heroImage }}" alt="{{ site.heroImageAlt }}" width="2000" height="1333" fetchpriority="high">
+        <img class="chapter__media-img--summer hero-fade hero-fade--b" src="{{ site.heroImageSecondary }}" alt="{{ site.heroImageSecondaryAlt }}" width="2000" height="1500" fetchpriority="low" decoding="async">
       </div>
       <div class="chapter__scrim chapter__scrim--hero-left hero-fade hero-fade--a"></div>
       <div class="chapter__scrim chapter__scrim--hero-left hero-fade hero-fade--b"></div>
-      <div class="hero-fade hero-fade--a">
-        <div class="chapter__content chapter__content--hero">
-          <p class="eyebrow">Snow photographer · 滑雪攝影</p>
-          <h1>snowsurfstudio</h1>
+      <div class="chapter__content chapter__content--hero">
+        <p class="eyebrow hero-fade hero-fade--a">Snow photographer · 滑雪攝影</p>
+        <p class="eyebrow hero-fade hero-fade--b">戶外動態攝影・Outdoor Documentary Photography</p>
+        <h1>snowsurfstudio</h1>
+        <div class="hero-pane hero-pane--a hero-fade hero-fade--a">
           <div class="hero__actions">
             <a class="hero__booking" href="hakuba-photography/">2026/27 白馬滑雪攝影｜Snowboard &amp; Ski</a>
           </div>
@@ -81,10 +83,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="chapter__lead">SnowSurfStudio 在日本白馬，<br>用最自然的方式，記錄你在雪上的每一刻。<br><br>不管是一個人、兩個人，<br>還是一家人、一群朋友，<br>都替你留下真正投入雪季、享受滑雪的樣子。</p>
           <p class="chapter__sub">2026 / 27 Season &middot; @snowsurfstudio</p>
         </div>
-      </div>
-      <div class="hero-fade hero-fade--b">
-        <div class="chapter__content chapter__content--hero">
-          <p class="eyebrow">戶外動態攝影・Outdoor Documentary Photography</p>
+        <div class="hero-fade hero-fade--b">
           <p class="hero__title chapter__content--nowrap">A Life in Moments</p>
           <div class="hero__actions">
             <p class="hero__booking">動態攝影紀錄</p>
@@ -257,11 +256,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="partners">
       <div class="partner-card glass">
-        <h5>協助住宿・接駁安排</h5>
+        <h3 class="partner-card__title">協助住宿・接駁安排</h3>
         <p>提供雪季住宿規劃、交通接駁與行程安排，讓旅客享有便利、安心的滑雪體驗。</p>
       </div>
       <div class="partner-card glass">
-        <h5>滑雪學校</h5>
+        <h3 class="partner-card__title">滑雪學校</h3>
         <p>與滑雪學校合作，提供課程紀錄、教學攝影、活動拍攝及影像內容創作，捕捉每位滑雪者最精彩的雪季時刻。</p>
       </div>
     </div>

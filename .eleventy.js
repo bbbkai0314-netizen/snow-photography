@@ -1,7 +1,115 @@
+const fs = require("fs");
+const path = require("path");
+const Image = require("@11ty/eleventy-img");
+
+const RESPONSIVE_WIDTHS = [480, 800, 1200, null];
+const responsiveCache = new Map();
+
+function imgAttr(tag, name) {
+  const match = tag.match(new RegExp("\\s" + name + "\\s*=\\s*(?:\"([^\"]*)\"|'([^']*)')", "i"));
+  return match ? (match[1] != null ? match[1] : match[2]) : null;
+}
+
+function sourceFileForSrc(src) {
+  if (!src || /^(?:https?:|data:|blob:)/i.test(src)) return null;
+  const clean = decodeURIComponent(src.split("#")[0].split("?")[0]);
+  const marker = "images/";
+  const index = clean.lastIndexOf(marker);
+  if (index === -1) return null;
+  const file = path.join("src", clean.slice(index));
+  return fs.existsSync(file) ? file : null;
+}
+
+function sizesForImage(html, index, tag) {
+  const className = imgAttr(tag, "class") || "";
+  if (className.includes("chapter-card__slide")) {
+    return "(max-width: 900px) 88vw, 400px";
+  }
+  const before = html.slice(Math.max(0, index - 220), index);
+  const markers = ["plan-preview", "gcard", "gcard--portrait"];
+  let context = "";
+  let at = -1;
+  markers.forEach((marker) => {
+    const found = before.lastIndexOf(marker);
+    if (found >= at && found !== -1) {
+      at = found;
+      context = marker;
+    }
+  });
+  if (context === "gcard--portrait") {
+    return "(max-width: 560px) 46vw, (max-width: 900px) 30vw, 22vw";
+  }
+  if (context === "gcard") {
+    return "(max-width: 560px) 92vw, (max-width: 900px) 46vw, 30vw";
+  }
+  if (context === "plan-preview") {
+    return "(max-width: 900px) 46vw, 280px";
+  }
+  return "(max-width: 720px) 92vw, 720px";
+}
+
+function responsiveStats(file) {
+  if (!responsiveCache.has(file)) {
+    responsiveCache.set(file, Image(file, {
+      widths: RESPONSIVE_WIDTHS,
+      formats: ["webp"],
+      outputDir: path.join("_site", "images", "resp"),
+      urlPath: "/images/resp/",
+      minimumThreshold: 1.25,
+      filenameFormat: (id, src, width, format) => {
+        const name = path.basename(src, path.extname(src)).replace(/[^\w.-]+/g, "_").slice(0, 80);
+        return `${name}-${id}-${width}w.${format}`;
+      },
+      sharpWebpOptions: { quality: 76, effort: 4 },
+    }));
+  }
+  return responsiveCache.get(file);
+}
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
+  eleventyConfig.addPassthroughCopy("src/favicon.ico");
+
+  eleventyConfig.addTransform("responsiveImages", async function (content, outputPath) {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+    const tags = [];
+    const re = /<img\b[^>]*>/gi;
+    let match;
+    while ((match = re.exec(content))) tags.push({ tag: match[0], index: match.index });
+
+    const replacements = await Promise.all(tags.map(async ({ tag, index }) => {
+      const src = imgAttr(tag, "src");
+      const className = imgAttr(tag, "class") || "";
+      if (!src || imgAttr(tag, "srcset") || /\bhero-fade\b/.test(className)) return null;
+      const file = sourceFileForSrc(src);
+      if (!file) return null;
+      if (!/\.(?:webp|jpe?g|png)$/i.test(file)) return null;
+      try {
+        const stats = await responsiveStats(file);
+        const variants = stats.webp || [];
+        if (variants.length < 2) return null;
+        const srcset = variants.map((item) => `${encodeURI(item.url)} ${item.width}w`).join(", ");
+        const sizes = sizesForImage(content, index, tag);
+        const extra = ` srcset="${srcset}" sizes="${sizes}"`;
+        const updated = tag.endsWith("/>")
+          ? tag.slice(0, -2).replace(/\s*$/, "") + extra + " />"
+          : tag.slice(0, -1).replace(/\s*$/, "") + extra + ">";
+        return { tag, updated };
+      } catch (error) {
+        console.warn("[responsiveImages]", file, error.message);
+        return null;
+      }
+    }));
+
+    let html = content;
+    replacements.filter(Boolean).forEach(({ tag, updated }) => {
+      html = html.replace(tag, () => updated);
+    });
+    return html;
+  });
+
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   // 營運儀表板：原始碼在 13_SOP_Workflows，不公開連結（noindex＋robots.txt 擋 /ops/）
   eleventyConfig.addPassthroughCopy({ "13_SOP_Workflows/dashboard.html": "ops/dashboard.html" });
