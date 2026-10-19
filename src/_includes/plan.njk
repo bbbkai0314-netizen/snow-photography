@@ -40,6 +40,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="article-breadcrumb" href="/#plans">← 返回方案介紹</a>
       <span class="article-hero__tag">{{ eyebrowNumber }} · {{ eyebrowLabel or title }}</span>
       <h1>{{ title }}</h1>
+      {% if page.fileSlug != "life-transition" %}
+      <p class="plans-price">NT$13,000 起</p>
+      {% endif %}
       <p class="article-hero__meta">{{ subtitleEn }}</p>
       {% if page.fileSlug == "life-transition" %}
         {% set lineCtaFacts = "精選照片會做後製調色，整理後以線上雲端相簿交付。" %}
