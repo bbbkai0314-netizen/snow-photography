@@ -357,14 +357,6 @@
     frame.setAttribute("loading", "lazy");
   });
 
-  // The summer slide stays out of the first paint so it does not compete with the hero.
-  whenIdle(() => {
-    document.querySelectorAll("img[data-src].hero-fade--b").forEach((img) => {
-      img.src = img.dataset.src;
-      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
-    });
-  }, 2500);
-
   whenIdle(initScrollEffects, 1200);
   window.addEventListener("scroll", () => initScrollEffects(), { passive: true, once: true });
   whenNear(items.slice(0, 1), () => initLightbox(), "400px 0px");
