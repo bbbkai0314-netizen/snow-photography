@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<link rel="preload" as="image" href="{{ heroPictures.primary.src }}" media="(max-width: 900px)" fetchpriority="high">
+<link rel="preload" as="image" href="{{ site.heroImage }}" fetchpriority="high">
 {% include "partials/head-meta.njk" %}
 <meta name="author" content="SnowSurfStudio">
 <script type="application/ld+json">
@@ -66,8 +66,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="chapter" data-tag="HERO" style="--h:100vh">
     <div class="chapter__pin">
       <div class="chapter__media chapter__media--crossfade">
-        <img src="{{ heroPictures.primary.src }}" srcset="{{ heroPictures.primary.srcset }}" sizes="100vw" alt="{{ site.heroImageAlt }}" width="{{ heroPictures.primary.width }}" height="{{ heroPictures.primary.height }}" fetchpriority="high">
-        <img class="chapter__media-img--summer hero-fade hero-fade--b" data-src="{{ heroPictures.secondary.src }}" data-srcset="{{ heroPictures.secondary.srcset }}" sizes="100vw" alt="{{ site.heroImageSecondaryAlt }}" width="{{ heroPictures.secondary.width }}" height="{{ heroPictures.secondary.height }}" decoding="async">
+        <img class="hero-fade hero-fade--a" src="{{ site.heroImage }}" alt="{{ site.heroImageAlt }}" width="2000" height="1333" fetchpriority="high">
+        <img class="chapter__media-img--summer hero-fade hero-fade--b" src="{{ site.heroImageSecondary }}" alt="{{ site.heroImageSecondaryAlt }}" width="2000" height="1500" fetchpriority="low" decoding="async">
       </div>
       <div class="chapter__scrim chapter__scrim--hero-left hero-fade hero-fade--a"></div>
       <div class="chapter__scrim chapter__scrim--hero-left hero-fade hero-fade--b"></div>
