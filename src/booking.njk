@@ -15,7 +15,7 @@ permalink: "booking.html"
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MVCP2M"
+<noscript><iframe loading="lazy" src="https://www.googletagmanager.com/ns.html?id=GTM-M5MVCP2M"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
@@ -189,6 +189,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="js/script.js?v={{ assetVersion }}"></script>
 <script src="js/tracking.js?v={{ assetVersion }}"></script>
 <script>window.SSF_BLOCKED_DATES = {{ blockedDates | dump | safe }};</script>
-<script src="js/booking-form.js?v={{ assetVersion }}"></script>
+{% include "partials/defer-booking.njk" %}
 </body>
 </html>

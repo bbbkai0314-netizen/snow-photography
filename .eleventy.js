@@ -92,7 +92,10 @@ module.exports = function (eleventyConfig) {
         if (variants.length < 2) return null;
         const srcset = variants.map((item) => `${encodeURI(item.url)} ${item.width}w`).join(", ");
         const sizes = sizesForImage(content, index, tag);
-        const extra = ` srcset="${srcset}" sizes="${sizes}"`;
+        const low = (imgAttr(tag, "loading") === "lazy" && !imgAttr(tag, "fetchpriority"))
+          ? " fetchpriority=\"low\""
+          : "";
+        const extra = ` srcset="${srcset}" sizes="${sizes}"${low}`;
         const updated = tag.endsWith("/>")
           ? tag.slice(0, -2).replace(/\s*$/, "") + extra + " />"
           : tag.slice(0, -1).replace(/\s*$/, "") + extra + ">";
@@ -132,6 +135,12 @@ module.exports = function (eleventyConfig) {
 
   // Cache-busting query string for CSS/JS so browsers pick up changes on every deploy.
   eleventyConfig.addGlobalData("assetVersion", () => Date.now());
+
+  // Homepage inlines the whole sheet. A partial sheet let the footer jump
+  // when the rest arrived (CLS 0.9). Other pages keep the external file.
+  eleventyConfig.addGlobalData("criticalCss", () =>
+    fs.readFileSync(path.join(__dirname, "src", "css", "style.css"), "utf8")
+  );
 
   // Pick the first "active" item out of a list (used for the homepage news banner).
   eleventyConfig.addFilter("activeItem", (arr) =>

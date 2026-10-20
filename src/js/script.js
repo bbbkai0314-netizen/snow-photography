@@ -1,5 +1,8 @@
 (() => {
   const chapters = Array.from(document.querySelectorAll('.chapter'));
+  if (document.querySelector('.chapter[data-tag="HERO"]') && window.scrollY < window.innerHeight * 0.4) {
+    document.body.classList.add("line-float-hidden");
+  }
   // All top-level named sections, used to drive the side label/dots as the
   // page scrolls — independent of `.chapter`, which only covers the pinned
   // hero and would otherwise leave the label stuck on "HERO" past it.
@@ -23,16 +26,6 @@
 
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
-  function chapterProgress(chapter) {
-    const rect = chapter.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const holdRange = rect.height - vh;
-    if (holdRange <= 0) {
-      return clamp(-rect.top / vh, 0, 1);
-    }
-    return clamp(-rect.top / holdRange, 0, 1);
-  }
-
   const chapterState = chapters.map((chapter) => ({
     el: chapter,
     isHero: chapter.dataset.tag === "HERO",
@@ -40,16 +33,36 @@
     contents: Array.from(chapter.querySelectorAll(".chapter__content")),
   }));
 
+  // Measured once, then reused on scroll so the handler does not read layout.
+  let metrics = null;
+  function measure() {
+    const scrollY = window.scrollY;
+    metrics = {
+      sections: sections.map((section) => section.getBoundingClientRect().top + scrollY),
+      chapters: chapterState.map((state) => {
+        const rect = state.el.getBoundingClientRect();
+        return { top: rect.top + scrollY, height: rect.height };
+      }),
+    };
+  }
+  function progressFromBox(box, scrollY, vh) {
+    const top = box.top - scrollY;
+    const holdRange = box.height - vh;
+    if (holdRange <= 0) return clamp(-top / vh, 0, 1);
+    return clamp(-top / holdRange, 0, 1);
+  }
+
   function update() {
+    if (!metrics) return;
     const scrollY = window.scrollY;
     const vh = window.innerHeight;
 
-    const reads = chapterState.map((state) => (
+    const reads = chapterState.map((state, index) => (
       state.isHero
         ? { heroProgress: clamp(scrollY / vh, 0, 1) }
-        : { progress: chapterProgress(state.el) }
+        : { progress: progressFromBox(metrics.chapters[index], scrollY, vh) }
     ));
-    const sectionTops = sections.map((section) => section.getBoundingClientRect().top);
+    const sectionTops = metrics.sections.map((top) => top - scrollY);
 
     if (glowA) glowA.style.transform = `translate3d(0, ${scrollY * 0.08}px, 0)`;
     if (glowB) glowB.style.transform = `translate3d(0, ${-scrollY * 0.06}px, 0)`;
@@ -120,8 +133,9 @@
   }
 
   let ticking = false;
+  let scrollReady = false;
   function onScroll() {
-    if (ticking) return;
+    if (!scrollReady || ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
       update();
@@ -129,12 +143,31 @@
     });
   }
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  update();
-  // Re-sync after the browser settles any #hash anchor scroll on load,
-  // since that can happen after our initial update() runs at scrollY 0.
-  window.addEventListener('load', update);
+  function initScrollEffects() {
+    if (!chapters.length || scrollReady) return;
+    scrollReady = true;
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", () => {
+      measure();
+      onScroll();
+    });
+    window.addEventListener("load", () => {
+      measure();
+      onScroll();
+    });
+    if (window.ResizeObserver) {
+      const main = document.querySelector("main");
+      if (main) {
+        const observer = new ResizeObserver(() => {
+          measure();
+          onScroll();
+        });
+        observer.observe(main);
+      }
+    }
+    onScroll();
+  }
 
   // ---------- Mobile nav toggle ----------
   const navToggle = document.getElementById('navToggle');
@@ -223,7 +256,10 @@
   function next() { index = (index + 1) % items.length; render(); }
   function prev() { index = (index - 1 + items.length) % items.length; render(); }
 
-  if (lightbox) {
+  let lightboxReady = false;
+  function initLightbox() {
+    if (lightboxReady || !lightbox || !items.length) return;
+    lightboxReady = true;
     items.forEach((item, i) => item.addEventListener('click', () => open(i)));
     btnClose.addEventListener('click', close);
     btnNext.addEventListener('click', next);
@@ -240,20 +276,22 @@
   // ---------- MY OWN WAY carousel ----------
   // Visitors advance the story deliberately; the final action opens LINE for an inquiry.
   const carouselCards = Array.from(document.querySelectorAll('.chapter-card--carousel'));
-  if (carouselCards.length) document.documentElement.classList.add('js');
-  carouselCards.forEach((carouselCard) => {
+  function initCarousel(carouselCard) {
+    if (carouselCard.dataset.carouselReady === "true") return;
     const carouselSlides = Array.from(carouselCard.querySelectorAll('.chapter-card__media--carousel .chapter-card__slide'));
     const carouselNext = carouselCard.querySelector('.chapter-card__carousel-next');
     if (carouselSlides.length < 2 || !carouselNext) return;
+    carouselCard.dataset.carouselReady = "true";
+    document.documentElement.classList.add('js');
 
     let activeSlide = 0;
     let isTransitioning = false;
     const actionLabel = carouselNext.querySelector('.chapter-card__carousel-action');
     const carouselName = carouselCard.querySelector('.chapter-card__title').textContent;
     const renderCarousel = () => {
-      carouselSlides.forEach((slide, index) => {
-        slide.classList.toggle('is-current', index === activeSlide);
-        slide.style.zIndex = index === activeSlide ? '2' : '0';
+      carouselSlides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('is-current', slideIndex === activeSlide);
+        slide.style.zIndex = slideIndex === activeSlide ? '2' : '0';
       });
       const isLastSlide = activeSlide === carouselSlides.length - 1;
       carouselNext.setAttribute('aria-label', isLastSlide ? '前往 LINE 詢問滑雪攝影服務' : `查看第 ${activeSlide + 2} 張 ${carouselName} 圖文`);
@@ -290,7 +328,47 @@
         renderCarousel();
       }, 650);
     });
+  }
+
+  function whenNear(elements, start, rootMargin) {
+    const list = elements.filter(Boolean);
+    if (!list.length) return;
+    if (!("IntersectionObserver" in window)) {
+      list.forEach((element) => start(element));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        start(entry.target);
+      });
+    }, { rootMargin: rootMargin || "240px 0px" });
+    list.forEach((element) => observer.observe(element));
+  }
+
+  function whenIdle(fn, timeout) {
+    const ric = window.requestIdleCallback;
+    if (typeof ric === "function") ric(() => fn(), { timeout: timeout || 2000 });
+    else window.setTimeout(fn, 1);
+  }
+
+  document.querySelectorAll("iframe:not([loading])").forEach((frame) => {
+    frame.setAttribute("loading", "lazy");
   });
+
+  // The summer slide stays out of the first paint so it does not compete with the hero.
+  whenIdle(() => {
+    document.querySelectorAll("img[data-src].hero-fade--b").forEach((img) => {
+      img.src = img.dataset.src;
+      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+    });
+  }, 2500);
+
+  whenIdle(initScrollEffects, 1200);
+  window.addEventListener("scroll", () => initScrollEffects(), { passive: true, once: true });
+  whenNear(items.slice(0, 1), () => initLightbox(), "400px 0px");
+  whenNear(carouselCards, initCarousel, "300px 0px");
 })();
 
 // ---------- UTM capture (conversion sprint P0/P1) ----------
