@@ -346,17 +346,14 @@ button{ font-family:inherit; }
   justify-items:start;
 }
 .chapter__content--hero > .eyebrow{ grid-area:eyebrow; }
-.chapter__content--hero > h1{
-  grid-area:title;
-  position:relative;
-  z-index:2;
-  opacity:1;
-  animation:none;
-}
 .chapter__content--hero > .hero-fade:not(.eyebrow),
 .chapter__content--hero > .hero-pane{
   grid-area:body;
   width:100%;
+}
+.chapter__content--hero h1{
+  opacity:1;
+  animation:none;
 }
 .chapter__content--right{
   left:auto; right:6vw;
