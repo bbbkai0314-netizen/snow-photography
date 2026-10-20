@@ -1,0 +1,27 @@
+<script>
+(function () {
+  var target = document.getElementById("bookingWizard");
+  if (!target) return;
+  var src = "{{ assetPrefix }}js/booking-form.js?v={{ assetVersion }}";
+  var loaded = false;
+  function load() {
+    if (loaded) return;
+    loaded = true;
+    var script = document.createElement("script");
+    script.src = src;
+    script.async = true;
+    document.body.appendChild(script);
+  }
+  if (!("IntersectionObserver" in window)) {
+    load();
+    return;
+  }
+  var observer = new IntersectionObserver(function (entries) {
+    if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+    observer.disconnect();
+    var idle = window.requestIdleCallback || function (cb) { window.setTimeout(cb, 1); };
+    idle(load, { timeout: 1500 });
+  }, { rootMargin: "600px 0px" });
+  observer.observe(target);
+})();
+</script>

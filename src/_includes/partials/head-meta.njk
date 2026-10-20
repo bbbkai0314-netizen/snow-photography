@@ -4,72 +4,9 @@ if (location.pathname.endsWith("/index.html")) {
 }
 </script>
 <script>
-/* Hold Clarity's script (GTM tag yfit85rk5i, or the fallback below) until
-   window load or the first interaction so it stays off the critical path. */
-(function () {
-  var held = [];
-  var released = false;
-  function isClarityScript(node) {
-    return node && node.tagName === "SCRIPT" && typeof node.src === "string" && node.src.indexOf("clarity.ms") !== -1;
-  }
-  function remember(parent, node, ref) {
-    if (held.some(function (item) { return item.node.src === node.src; })) return;
-    held.push({ parent: parent, node: node, ref: ref });
-  }
-  var origInsertBefore = Node.prototype.insertBefore;
-  var origAppendChild = Node.prototype.appendChild;
-  function alreadyInDocument(node) {
-    return !!(node.src && document.querySelector('script[src="' + node.src + '"]'));
-  }
-  Node.prototype.insertBefore = function (node, ref) {
-    if (isClarityScript(node)) {
-      if (!released) {
-        remember(this, node, ref);
-        return node;
-      }
-      if (alreadyInDocument(node)) return node;
-    }
-    return origInsertBefore.call(this, node, ref);
-  };
-  Node.prototype.appendChild = function (node) {
-    if (isClarityScript(node)) {
-      if (!released) {
-        remember(this, node, null);
-        return node;
-      }
-      if (alreadyInDocument(node)) return node;
-    }
-    return origAppendChild.call(this, node);
-  };
-  function releaseClarity() {
-    if (released) return;
-    released = true;
-    var queued = held.splice(0);
-    queued.forEach(function (item) {
-      if (alreadyInDocument(item.node)) return;
-      try {
-        if (item.ref && item.ref.parentNode === item.parent) origInsertBefore.call(item.parent, item.node, item.ref);
-        else origAppendChild.call(item.parent, item.node);
-      } catch (e) {
-        origAppendChild.call(document.head || document.documentElement, item.node);
-      }
-    });
-  }
-  window.__sssReleaseClarity = releaseClarity;
-})();
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M5MVCP2M');</script>
-<!-- End Google Tag Manager -->
-<script>
-  // GTM's Google tag loads gtag.js for G-H578W2CXH6 / AW-18359584407 but does not define
-  // window.gtag. This standard shim lets tracking.js send GA4 events and the Google Ads
-  // conversion straight through that already-loaded tag (the GTM container has no
-  // triggers for the site's custom dataLayer events, so they never reached GA4).
+  // Queues events until GTM's Google tag (G-H578W2CXH6 / AW-18359584407) is injected.
+  // The container has no triggers for the site's custom dataLayer events, so tracking.js
+  // sends those through this shim once gtag.js is on the page.
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
 </script>
@@ -96,20 +33,78 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image" content="{{ ogImageUrl }}">
 
 <link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"></noscript>
+{% if inlineCriticalCss %}
+<style>{{ criticalCss | safe }}</style>
+{% else %}
 <link rel="stylesheet" href="{{ assetPrefix }}css/style.css?v={{ assetVersion }}">
+{% endif %}
 
-<!-- Meta Pixel (1616402530066776) and Clarity (yfit85rk5i) load after
-     window load or the first interaction. GTM may also inject Clarity;
-     the holder above keeps that to a single script. -->
+<!-- GTM GTM-M5MVCP2M, GA4 G-H578W2CXH6, Ads AW-18359584407, Meta Pixel
+     1616402530066776, and Clarity yfit85rk5i start after window load, on the
+     first interaction or about 3s later. The /index.html rewrite above runs first. -->
 <script>
 (function () {
+  var GTM_ID = "GTM-M5MVCP2M";
   var PIXEL_ID = "1616402530066776";
   var CLARITY_ID = "yfit85rk5i";
   var started = false;
+  var interacted = false;
+
+  function isClarityScript(node) {
+    return node && node.tagName === "SCRIPT" && typeof node.src === "string" && node.src.indexOf("clarity.ms") !== -1;
+  }
+  function installClarityHold() {
+    if (window.__sssClarityHold) return;
+    window.__sssClarityHold = true;
+    var held = [];
+    var released = false;
+    var origInsertBefore = Node.prototype.insertBefore;
+    var origAppendChild = Node.prototype.appendChild;
+    function alreadyInDocument(node) {
+      return !!(node.src && document.querySelector('script[src="' + node.src + '"]'));
+    }
+    function remember(parent, node, ref) {
+      if (held.some(function (item) { return item.node.src === node.src; })) return;
+      held.push({ parent: parent, node: node, ref: ref });
+    }
+    Node.prototype.insertBefore = function (node, ref) {
+      if (isClarityScript(node)) {
+        if (!released) { remember(this, node, ref); return node; }
+        if (alreadyInDocument(node)) return node;
+      }
+      return origInsertBefore.call(this, node, ref);
+    };
+    Node.prototype.appendChild = function (node) {
+      if (isClarityScript(node)) {
+        if (!released) { remember(this, node, null); return node; }
+        if (alreadyInDocument(node)) return node;
+      }
+      return origAppendChild.call(this, node);
+    };
+    window.__sssReleaseClarity = function () {
+      if (released) return;
+      released = true;
+      held.splice(0).forEach(function (item) {
+        if (alreadyInDocument(item.node)) return;
+        try {
+          if (item.ref && item.ref.parentNode === item.parent) origInsertBefore.call(item.parent, item.node, item.ref);
+          else origAppendChild.call(item.parent, item.node);
+        } catch (e) {
+          origAppendChild.call(document.head || document.documentElement, item.node);
+        }
+      });
+    };
+  }
+
+  function loadGTM() {
+    if (document.querySelector('script[src*="googletagmanager.com/gtm.js?id=' + GTM_ID + '"]')) return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    var script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
+    document.head.appendChild(script);
+  }
 
   function loadPixel() {
     if (window.__sssFbPixel1616402530066776) return;
@@ -143,28 +138,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     })(window, document, "clarity", "script", CLARITY_ID);
   }
 
-  function startThirdParties() {
+  function startTags() {
     if (started) return;
     started = true;
-    window.removeEventListener("load", onLoad);
-    ["pointerdown", "keydown", "touchstart", "scroll"].forEach(function (type) {
-      window.removeEventListener(type, onInteract, true);
-    });
+    installClarityHold();
+    loadGTM();
     if (typeof window.__sssReleaseClarity === "function") window.__sssReleaseClarity();
     loadClarity();
     loadPixel();
   }
 
-  function onLoad() {
-    var schedule = window.requestIdleCallback || function (cb) { window.setTimeout(cb, 1); };
-    schedule(startThirdParties);
+  function arm() {
+    if (interacted) { startTags(); return; }
+    var types = ["pointerdown", "keydown", "touchstart", "scroll"];
+    function onInteract() {
+      types.forEach(function (type) { window.removeEventListener(type, onInteract, true); });
+      startTags();
+    }
+    types.forEach(function (type) {
+      window.addEventListener(type, onInteract, { capture: true, passive: true });
+    });
+    window.setTimeout(startTags, 3000);
   }
-  function onInteract() { startThirdParties(); }
 
-  window.addEventListener("load", onLoad);
   ["pointerdown", "keydown", "touchstart", "scroll"].forEach(function (type) {
-    window.addEventListener(type, onInteract, { capture: true, passive: true });
+    window.addEventListener(type, function () { interacted = true; }, { capture: true, passive: true, once: true });
   });
+  if (document.readyState === "complete") arm();
+  else window.addEventListener("load", arm);
 })();
 </script>
 <noscript><img height="1" width="1" style="display:none"
