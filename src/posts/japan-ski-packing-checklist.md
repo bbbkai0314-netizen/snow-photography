@@ -3,10 +3,10 @@ layout: article
 title: "日本滑雪要帶什麼？新手滑雪裝備清單（附可勾選打包表）"
 tag: "滑雪裝備"
 metaLine: "SnowSurfStudio Journal｜日本滑雪・裝備清單・打包"
-heroImage: "images/lifestyle-01.webp"
-heroImageAlt: "越後湯澤車站天橋上，旅客提著雪鞋與雪杖、背著雪板"
-previewImage: "images/lifestyle-01.webp"
-previewImageAlt: "越後湯澤車站天橋上，旅客提著雪鞋與雪杖、背著雪板"
+heroImage: "images/hakuba-rainbow-over-slope.jpg"
+heroImageAlt: "白馬雪道上空的彩虹，坡面有壓雪痕跡，兩側是覆雪的針葉林，遠方是雪山"
+previewImage: "images/hakuba-rainbow-over-slope.jpg"
+previewImageAlt: "白馬雪道上空的彩虹，坡面有壓雪痕跡，兩側是覆雪的針葉林，遠方是雪山"
 date: "2026-10-22"
 dateModified: "2026-10-22"
 previewDescription: "日本滑雪要帶什麼？雪具和雪衣用租的就好，排汗層、手套、雪鏡、防曬和行動電源要自己準備。整理帶、租、買清單，附可勾選打包表。"
@@ -15,7 +15,7 @@ seo:
   title: "日本滑雪要帶什麼？新手滑雪裝備清單｜SnowSurfStudio"
   description: "日本滑雪要帶什麼？雪具和雪衣用租的就好，排汗層、手套、雪鏡、防曬和行動電源要自己準備。整理帶、租、買清單，附可勾選打包表。"
   keywords: "滑雪準備清單,第一次日本滑雪要帶什麼,滑雪裝備清單,滑雪 新手 必買,滑雪裝備租借,日本 滑雪 準備"
-  ogImage: "images/lifestyle-01.webp"
+  ogImage: "images/hakuba-rainbow-over-slope.jpg"
 contentBlocks:
   - type: html
     html: |
