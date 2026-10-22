@@ -71,6 +71,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/favicon.ico");
+  eleventyConfig.addPassthroughCopy({ "src/assets/downloads": "assets/downloads" });
 
   eleventyConfig.addTransform("responsiveImages", async function (content, outputPath) {
     if (!outputPath || !outputPath.endsWith(".html")) return content;
