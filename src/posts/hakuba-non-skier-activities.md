@@ -186,7 +186,6 @@ contentBlocks:
       <p>你們負責好好玩，我負責留下大家都在的畫面。</p>
       <!-- 圖：滑雪的人和不滑雪的家人，在雪山前的合照 -->
       <p>想先了解白馬的拍攝方式，可以看<a href="/hakuba-photography/">白馬滑雪攝影</a>。</p>
-      <p><a href="https://lin.ee/xcqRIdT">LINE 詢問報價與可約日期</a></p>
       <h2>延伸閱讀</h2>
       <ul>
         <li><a href="/blog/japan-ski-december.html">12 月去日本滑雪雪夠嗎？12 月初、中、底怎麼選</a></li>

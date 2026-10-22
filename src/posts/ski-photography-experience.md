@@ -93,5 +93,4 @@ contentBlocks:
       <p><a href="/#booking">查看官網公開方案</a></p>
       <p>如果你正在規劃一個人的滑雪旅行，或希望替全家留下完整的雪季回憶，可以先準備預計日期、人數、滑雪程度及期待畫面，再透過 LINE 詢問適合的方案與可預約日期。</p>
       <p>讓每位同行的人都能好好享受滑雪，也一起出現在這趟旅程的回憶裡。</p>
-      <p><a href="https://lin.ee/xcqRIdT" rel="noopener" target="_blank"><strong>加入 SnowSurfStudio LINE 詢問</strong></a></p>
 ---

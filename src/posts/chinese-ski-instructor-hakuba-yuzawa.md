@@ -46,7 +46,6 @@ contentBlocks:
       <p><strong>Q：官方名單上沒有的教練可以找嗎？</strong><br>在白馬，官方建議依雪場規定選擇名單上的學校 [1]。名單外的教練，請先確認他能不能在那個雪場合法授課。</p>
       <h2>想在白馬學滑雪，也想留下照片？</h2>
       <p>學會滑雪的那一天只有一次。SnowSurfStudio 在白馬拍攝，你專心上課，我負責記錄那些你自己拍不到的畫面，詳細可以看 <a href="/hakuba-photography/">白馬滑雪攝影</a>。</p>
-      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)"><p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p></blockquote>
       <h2>延伸閱讀</h2>
       <ul><li><a href="/blog/hakuba-2026-27-season-guide.html">白馬 2026/27 雪季怎麼規劃？開幕日、雪票價格、交通一次整理</a></li><li><a href="/blog/yuzawa-ski-guide-2026-27.html">湯澤滑雪指南（2026/27）：雪場、開板日、雪票、新幹線交通一次整理</a></li><li><a href="/blog/hakuba-ski-resorts-guide.html">第一次去白馬滑雪，雪場怎麼選？10 個白馬雪場一次整理</a></li><li><a href="/blog/family-ski-trip.html">帶孩子滑雪總是手忙腳亂嗎？</a></li></ul>
       <h2>資料來源</h2>

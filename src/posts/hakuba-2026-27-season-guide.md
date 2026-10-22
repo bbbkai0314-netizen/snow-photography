@@ -397,9 +397,6 @@ contentBlocks:
       <p>會。官方都註明開幕和結束日會因降雪與雪道狀況變更 [2][9]，建議住宿選可以取消或改期的方案。</p>
       <h2>想把這一季好好留下來？</h2>
       <p>日期和雪票都排好之後，剩下的就是好好滑。每一季的白馬都不一樣，如果你也想留下自己滑雪的樣子，可以看看 <a href="/hakuba-photography/">白馬滑雪攝影</a>。如果同行有人不滑雪，也可以參考 <a href="/blog/hakuba-non-skier-activities.html">同行的人不滑雪怎麼辦？</a>。</p>
-      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)">
-              <p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p>
-            </blockquote>
       <h2>延伸閱讀</h2>
       <ul>
         <li><a href="/blog/japan-ski-december.html">12 月去日本滑雪雪夠嗎？12 月初、中、底怎麼選</a></li>

@@ -191,7 +191,6 @@ contentBlocks:
       <p>你負責滑雪，我負責留下那些你自己拍不到的畫面。</p>
       <!-- 圖：白馬滑雪攝影：一個人滑雪的雪地人像 -->
       <p>想在白馬留下自己滑雪的樣子，可以看<a href="/hakuba-photography/">白馬滑雪攝影</a>。</p>
-      <p><a href="https://lin.ee/xcqRIdT">LINE 詢問報價與可約日期</a></p>
       <h2>延伸閱讀</h2>
       <ul>
         <li><a href="/blog/japan-ski-december.html">12 月去日本滑雪雪夠嗎？12 月初、中、底怎麼選</a></li>
