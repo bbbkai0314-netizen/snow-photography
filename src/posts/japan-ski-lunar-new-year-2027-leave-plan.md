@@ -48,7 +48,6 @@ contentBlocks:
       <p><strong>Q：12 天對第一次滑雪會不會太長？</strong><br>不會太長，但記得中間留休息日。單板、雙板都很吃體力，留半天到一天休息，反而學得比較快。</p>
       <h2>過年的雪，留給全家一起記住</h2>
       <p>過年能湊齊全家的機會不多，孩子第一次站上雪板、全家第一次一起坐纜車，都只有一次。如果你春節會在白馬，可以看看 <a href="/hakuba-photography/">白馬滑雪攝影</a>，你們專心滑，我負責記錄。</p>
-      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)"><p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p></blockquote>
       <h2>延伸閱讀</h2>
       <ul><li><a href="/blog/japan-ski-winter-break-lunar-new-year-2027.html">2027 寒假和春節去日本滑雪怎麼排？放假日期、雪況、天數一次看</a></li><li><a href="/blog/228-holiday-japan-ski-2027.html">2027 228 連假去日本滑雪？放假日期、雪況、行程一次看</a></li><li><a href="/blog/snowboard-beginner-japan-itinerary.html">第一次去日本滑雪學單板，行程怎麼排？</a></li><li><a href="/blog/first-japan-ski-trip-hakuba-5-days.html">第一次日本滑雪怎麼排？白馬新手五天四夜行程</a></li></ul>
       <h2>資料來源</h2>

@@ -217,7 +217,6 @@ contentBlocks:
       <p><strong>Q5. 還沒公布的票價可以先用去年的估嗎？</strong><br>可以當大概的參考，但不要當成今年的價格。像石打丸山官網就寫明 2026-27 價格還在調整 [6]，出發前請再確認。</p>
       <hr>
       <p>如果你想留下一整趟滑雪的完整紀錄，可以考慮來白馬。SnowSurfStudio 在白馬跟著你一起滑，把你自己拍不到的畫面留下來，詳細內容看〈<a href="/hakuba-photography/">白馬滑雪攝影</a>〉。</p>
-      <p>👉 <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">LINE 詢問報價與可約日期</a></p>
       <h2>延伸閱讀</h2>
       <ul>
         <li><a href="/blog/japan-ski-december.html">12 月去日本滑雪雪夠嗎？12 月初、中、底怎麼選</a></li>
