@@ -1156,6 +1156,12 @@ button{ font-family:inherit; }
   color:#d8e9f1;
   margin-bottom:8px;
 }
+.booking-field__hint{
+  margin:8px 0 0;
+  font-size:12.5px;
+  line-height:1.6;
+  color:var(--ice-dim);
+}
 .booking-field input,
 .booking-field textarea{
   width:100%;
@@ -1638,14 +1644,21 @@ button{ font-family:inherit; }
   border-color:rgba(255,255,255,.35);
 }
 .article-cta__links{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px 22px}.article-cta__links>a:not(.article-cta__btn){color:var(--ice);font-size:14px;text-underline-offset:4px}
-.article-line-note{
-  margin:40px 0 8px;
-  font-size:16px;
-  line-height:1.85;
+.article-end-cta{
+  margin:48px 0 8px;
+  padding:28px 24px;
+  border-radius:var(--radius-lg);
+  text-align:center;
+}
+.article-end-cta p{
+  margin:0;
+  font-size:17px;
+  line-height:1.75;
   color:#e4eff4;
 }
-.article-line-note a{
+.article-end-cta a{
   color:var(--ice);
+  font-weight:800;
   text-decoration:underline;
   text-underline-offset:4px;
 }
@@ -1874,6 +1887,59 @@ button{ font-family:inherit; }
 .news-list__points li+li{margin-top:6px}
 
 .plans-grid{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.about-ellie{position:relative;z-index:10;background:var(--navy-deep)}
+.about-ellie__text{
+  max-width:760px;
+  margin:0 5vw 8px;
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:clamp(16px,1.7vw,18px);
+  line-height:1.85;
+  color:#e4eff4;
+}
+.plan-flow{
+  max-width:920px;
+  margin:32px auto 0;
+  padding:26px 22px 22px;
+  border-radius:var(--radius-lg);
+}
+.plan-flow h3{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:800;
+  font-size:18px;
+  text-align:center;
+  color:var(--white);
+  margin-bottom:16px;
+}
+.plan-flow__steps{
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:0;
+  padding:0;
+}
+.plan-flow__steps li{
+  margin:0;
+  padding:16px 12px;
+  border-radius:var(--radius-md);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  text-align:center;
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:15px;
+  line-height:1.65;
+  color:#e4eff4;
+}
+.plan-flow__steps a{
+  color:var(--ice);
+  font-weight:700;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+@media (max-width:720px){
+  .plan-flow__steps{ grid-template-columns:1fr; }
+  .about-ellie__text{ margin-right:5vw; }
+}
 .destination-link{display:block;width:fit-content;max-width:100%;margin:28px auto 0;color:var(--ice);font-weight:700;text-align:center;text-decoration:none;border-bottom:1px solid rgba(155,212,238,.65);padding-bottom:4px}.destination-link:hover{color:var(--white)}
 @media (max-width:1180px){ .plans-grid{ grid-template-columns:repeat(3,1fr); gap:16px; } }
 @media (max-width:900px){ .plans-grid{ grid-template-columns:repeat(2,1fr); } }

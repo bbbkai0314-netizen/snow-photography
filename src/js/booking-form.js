@@ -288,8 +288,10 @@
     }
     if (n === 3) {
       if (!state.name.trim()) { showError(3, '請填寫姓名'); return false; }
-      if (!/^\S+@\S+\.\S+$/.test(state.email.trim())) { showError(3, '請填寫正確的 email'); return false; }
-      if (!state.line.trim()) { showError(3, '請填寫 LINE ID'); return false; }
+      const email = state.email.trim();
+      const line = state.line.trim();
+      if (email && !/^\S+@\S+\.\S+$/.test(email)) { showError(3, '請填寫正確的 Email'); return false; }
+      if (!email && !line) { showError(3, '請至少填寫 Email 或 LINE ID，方便我們回覆'); return false; }
     }
     return true;
   }

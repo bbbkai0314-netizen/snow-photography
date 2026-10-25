@@ -52,7 +52,6 @@ contentBlocks:
       <p><strong>Q：沒有雪具可以去嗎？</strong><br>可以，雪場都有租借 [6][7]。</p>
       <h2>第一次學單板，也值得留下照片</h2>
       <p>第一次站起來、第一次連續轉彎，這些畫面只會有一次。如果你在白馬學單板，可以看看 <a href="/hakuba-photography/">白馬滑雪攝影</a>，你專心滑，我負責記錄。</p>
-      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)"><p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p></blockquote>
       <h2>延伸閱讀</h2>
       <ul><li><a href="/blog/228-holiday-japan-ski-2027.html">2027 228 連假去日本滑雪？放假日期、雪況、行程一次看</a></li><li><a href="/blog/first-japan-ski-trip-hakuba-5-days.html">第一次日本滑雪怎麼排？白馬新手五天四夜行程</a></li><li><a href="/blog/ski-season-early-planning.html">日本滑雪行前規劃：現在該做的 5 件事</a></li><li><a href="/blog/solo-ski-japan-safety.html">一個人去日本滑雪安全嗎？</a></li><li><a href="/blog/ski-lesson-photography-guide.html">滑雪教學＋平面攝影服務說明與注意事項</a></li></ul>
       <h2>資料來源</h2>

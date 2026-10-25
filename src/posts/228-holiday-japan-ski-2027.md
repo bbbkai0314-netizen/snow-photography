@@ -51,7 +51,6 @@ contentBlocks:
       <p><strong>Q：第一次滑雪，228 連假適合嗎？</strong><br>適合，只是 3 天比較趕。第一次去的話，可以先看 <a href="/blog/snowboard-beginner-japan-itinerary.html">第一次去日本滑雪學單板，行程怎麼排？</a></p>
       <h2>228 連假想去白馬滑雪？</h2>
       <p>連假很短，照片能幫你把這 3 天留久一點。如果你會在白馬，可以看看 <a href="/hakuba-photography/">白馬滑雪攝影</a>。</p>
-      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)"><p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p></blockquote>
       <h2>延伸閱讀</h2>
       <ul><li><a href="/blog/ski-season-early-planning.html">日本滑雪行前規劃：現在該做的 5 件事</a></li><li><a href="/blog/hakuba-ski-lodging-guide.html">白馬滑雪住宿怎麼選？</a></li><li><a href="/blog/hakuba-non-skier-activities.html">同行的人不滑雪怎麼辦？</a></li></ul>
       <h2>資料來源</h2>

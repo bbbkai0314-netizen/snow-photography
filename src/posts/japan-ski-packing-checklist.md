@@ -155,9 +155,6 @@ contentBlocks:
       <h2>準備好了，就專心享受雪</h2>
       <p>行李準備好，第一天就能少一點手忙腳亂，把力氣留給雪道。第一次滑雪的畫面只有一次：第一次站穩、第一次從纜車看出去的山。如果你想把這些時刻留下來，可以看看 SnowSurfStudio 的<a href="/hakuba-photography/">白馬滑雪攝影</a>。</p>
       <p>你負責滑雪，我負責留下那些你自己拍不到的畫面。報價依人數、時數與雪場而定，LINE 問我就好。</p>
-      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)">
-        <p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p>
-      </blockquote>
       <h2>延伸閱讀</h2>
       <ul>
         <li><a href="/blog/beginner-ski-gear-guide.html">第一次滑雪裝備怎麼挑？新手雪衣、雪褲、手套、護具推薦與「買 vs 租」全攻略</a></li>

@@ -145,12 +145,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <input type="text" id="bookingName" required placeholder="王小明">
                 </div>
                 <div class="booking-field">
-                  <label for="bookingEmail">Email *</label>
-                  <input type="email" id="bookingEmail" required placeholder="you@example.com">
+                  <label for="bookingEmail">Email（選填）</label>
+                  <input type="email" id="bookingEmail" placeholder="you@example.com" autocomplete="email">
                 </div>
                 <div class="booking-field">
-                  <label for="bookingLine">LINE ID *</label>
-                  <input type="text" id="bookingLine" required placeholder="方便我們用 LINE 聯繫你">
+                  <label for="bookingLine">LINE ID（選填）</label>
+                  <input type="text" id="bookingLine" placeholder="方便我們用 LINE 聯繫你" autocomplete="off">
+                  <p class="booking-field__hint">Email 與 LINE ID 至少填一項。</p>
                 </div>
                 <p class="booking-wizard__error" data-error-for="3"></p>
                 <div class="booking-wizard__actions">

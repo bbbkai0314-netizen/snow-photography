@@ -179,9 +179,6 @@ contentBlocks:
       <p>八方 2026/27 的正式開幕日尚未公布（查核日 2026-10-13）。票價表的「シーズンイン」期間是 12/1–12/18 [6]，但實際開幕看官方公告。</p>
       <h2>想在白馬留下 12 月的第一滑？</h2>
       <p>白馬的開季雪景，配上第一次站上雪板的樣子，很值得好好拍下來。SnowSurfStudio 在白馬提供滑雪攝影紀錄，詳情看<a href="/hakuba-photography/">白馬滑雪攝影</a>。</p>
-      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)">
-        <p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p>
-      </blockquote>
       <h2>延伸閱讀</h2>
       <ul>
         <li><a href="/blog/hakuba-2026-27-season-guide.html">白馬 2026/27 雪季怎麼規劃？開幕日、雪票價格、交通一次整理</a></li>

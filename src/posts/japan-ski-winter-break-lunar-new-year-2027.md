@@ -54,7 +54,6 @@ contentBlocks:
       <p><strong>Q：1 月底會不會太冷，不適合新手？</strong><br>1 月是白馬最冷的月份之一 [9]，但做好保暖、課排在上午、下午早點收工，新手一樣可以滑得很開心。</p>
       <h2>寒假的雪，只有這一次</h2>
       <p>孩子第一次站上雪板、全家第一次一起坐纜車，這些畫面都只有一次。如果你寒假會在白馬，可以看看 <a href="/hakuba-photography/">白馬滑雪攝影</a>，你們專心滑，我負責記錄。</p>
-      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)"><p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p></blockquote>
       <h2>延伸閱讀</h2>
       <ul><li><a href="/blog/japan-ski-lunar-new-year-2027-leave-plan.html">2027 春節去日本滑雪：不請假 7 天、請 3 天連休 12 天</a></li><li><a href="/blog/228-holiday-japan-ski-2027.html">2027 228 連假去日本滑雪？放假日期、雪況、行程一次看</a></li><li><a href="/blog/snowboard-beginner-japan-itinerary.html">第一次去日本滑雪學單板，行程怎麼排？</a></li><li><a href="/blog/hakuba-2026-27-season-guide.html">白馬 2026/27 雪季規劃總整理</a></li><li><a href="/blog/first-japan-ski-trip-hakuba-5-days.html">第一次日本滑雪怎麼排？白馬新手五天四夜行程</a></li></ul>
       <h2>資料來源</h2>
