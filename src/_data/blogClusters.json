@@ -24,7 +24,7 @@
       "intro": "第一次去日本滑雪，住宿、教練、雪票與裝備越早安排越從容。還不知道到了雪場怎麼拍照，可以先看<a href=\"ski-beginner-photo-tutorial-6-poses.html\">新手滑雪拍照姿勢</a>。",
       "serviceLead": "第一次滑雪也可以拍，拍攝方式可以看",
       "serviceAnchor": "白馬滑雪跟拍",
-      "posts": ["first-japan-ski-trip-hakuba-5-days", "snowboard-beginner-japan-itinerary", "chinese-ski-instructor-hakuba-yuzawa", "ski-season-early-planning", "ski-lesson-photography-guide", "japan-ski-packing-checklist"]
+      "posts": ["beginner-ski-gear-guide", "japan-ski-packing-checklist", "first-japan-ski-trip-hakuba-5-days", "snowboard-beginner-japan-itinerary", "chinese-ski-instructor-hakuba-yuzawa", "ski-season-early-planning", "ski-lesson-photography-guide"]
     },
     {
       "id": "travelers",
@@ -62,6 +62,7 @@
     "snowboard-beginner-japan-itinerary": { "primary": "單板新手行程", "secondary": ["第一次日本滑雪", "單板幾天學會", "湯澤滑雪3天", "白馬5天行程", "單板租借"] },
     "first-japan-ski-trip-hakuba-5-days": { "primary": "第一次日本滑雪", "secondary": ["第一次去白馬滑雪", "日本滑雪新手", "白馬滑雪行程", "白馬五天四夜"] },
     "ski-season-early-planning": { "primary": "日本滑雪行前規劃", "secondary": ["日本滑雪行前準備", "滑雪早鳥", "滑雪教練預約", "滑雪裝備清單"] },
+    "beginner-ski-gear-guide": { "primary": "第一次滑雪裝備怎麼挑", "secondary": ["滑雪裝備買還是租", "雪衣怎麼挑", "滑雪手套推薦", "滑雪護具", "新手雪衣雪褲"] },
     "japan-ski-packing-checklist": { "primary": "滑雪準備清單", "secondary": ["第一次日本滑雪要帶什麼", "滑雪裝備清單", "滑雪 新手 必買", "滑雪裝備租借", "日本 滑雪 準備"] },
     "ski-lesson-photography-guide": { "primary": "滑雪教學攝影", "secondary": ["滑雪課程紀錄", "滑雪教練＋攝影", "第一次滑雪拍照", "滑雪攝影注意事項"] },
     "family-ski-trip": { "primary": "親子滑雪", "secondary": ["親子滑雪攝影", "家庭滑雪攝影", "兒童滑雪", "白馬親子滑雪"], "serviceAnchor": "親子滑雪攝影" },

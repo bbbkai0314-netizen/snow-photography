@@ -8,7 +8,7 @@ heroImageAlt: "白馬雪道上空的彩虹，坡面有壓雪痕跡，兩側是�
 previewImage: "images/hakuba-rainbow-over-slope.jpg"
 previewImageAlt: "白馬雪道上空的彩虹，坡面有壓雪痕跡，兩側是覆雪的針葉林，遠方是雪山"
 date: "2026-10-22"
-dateModified: "2026-10-22"
+dateModified: "2026-10-25"
 previewDescription: "日本滑雪要帶什麼？雪具和雪衣用租的就好，排汗層、手套、雪鏡、防曬和行動電源要自己準備。整理帶、租、買清單，附可勾選打包表。"
 hideDefaultCta: true
 seo:
@@ -112,7 +112,7 @@ contentBlocks:
         <li>帽子、脖圍可以當作點綴色。</li>
         <li>同行的朋友、情侶可以約好同色系，合照會更有整體感。</li>
       </ul>
-      <p>想知道雪上拍照可以擺什麼動作，可以看<a href="/blog/ski-beginner-photo-tutorial-6-poses.html">新手 6 個滑雪拍照姿勢</a>。</p>
+      <p>想知道雪上拍照可以擺什麼動作，可以看<a href="/blog/ski-beginner-photo-tutorial-6-poses.html">新手 6 個滑雪拍照姿勢</a>。雪衣、雪褲、手套和護具要買還是租、規格怎麼看，整理在<a href="/blog/beginner-ski-gear-guide.html">第一次滑雪裝備怎麼挑？新手雪衣、雪褲、手套、護具推薦與「買 vs 租」全攻略</a>。</p>
       <h2>滑雪準備清單（可以直接照著勾）</h2>
       <p><strong>衣物</strong></p>
       <ul>
@@ -148,7 +148,7 @@ contentBlocks:
       <p><a href="/assets/downloads/japan-ski-packing-checklist-snowsurfstudio.pdf">下載可列印的打包清單（PDF）</a></p>
       <p><img src="../images/japan-ski-packing-checklist-snowsurfstudio.png" alt="日本滑雪打包清單：衣物、保養與健康、3C、現場租借確認共 19 項可勾選項目" width="1240" height="1754" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:16px"></p>
       <h2>常見問題</h2>
-      <p><strong>Q：雪衣雪褲一定要買嗎？</strong><br>A：不一定。只去一次的話，租或跟朋友借就夠了；確定會每年去，再考慮買一套合身的。</p>
+      <p><strong>Q：雪衣雪褲一定要買嗎？</strong><br>A：不一定。只去一次的話，租或跟朋友借就夠了；確定會每年去，再考慮買一套合身的。防水係數、版型與品牌怎麼挑，可以看<a href="/blog/beginner-ski-gear-guide.html">第一次滑雪裝備怎麼挑</a>。</p>
       <p><strong>Q：一般的羽絨外套可以拿來滑雪嗎？</strong><br>A：不太建議當最外層。滑雪會一直跌倒、坐在雪上，外層最好是防水防風的雪衣；羽絨可以當中間的保暖層。</p>
       <p><strong>Q：護目鏡可以用太陽眼鏡代替嗎？</strong><br>A：晴天、短時間可以應急，但護目鏡更能擋風雪，也比較不會跌倒時掉落。不論哪一種，都選有 UV 防護的 [5]。</p>
       <p><strong>Q：行動電源可以放託運嗎？</strong><br>A：不行，行動電源和備用鋰電池都要隨身帶上飛機 [3]。</p>
@@ -160,6 +160,7 @@ contentBlocks:
       </blockquote>
       <h2>延伸閱讀</h2>
       <ul>
+        <li><a href="/blog/beginner-ski-gear-guide.html">第一次滑雪裝備怎麼挑？新手雪衣、雪褲、手套、護具推薦與「買 vs 租」全攻略</a></li>
         <li><a href="/blog/first-japan-ski-trip-hakuba-5-days.html">第一次日本滑雪怎麼排？白馬新手五天四夜行程</a></li>
         <li><a href="/blog/ski-season-early-planning.html">日本滑雪行前規劃：現在該做的 5 件事</a></li>
         <li><a href="/blog/solo-ski-japan-safety.html">一個人去日本滑雪安全嗎？新手獨旅白馬前要確認的 7 件事</a></li>
