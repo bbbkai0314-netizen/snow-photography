@@ -238,6 +238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="journal__intro">滑雪攝影的準備、Snowboard 與 Ski 拍攝比較、雪場攻略，寫給正在規劃日本滑雪行程的你。</p>
       <div class="journal__grid">
         {% for post in collections.posts | reverse %}
+        {% if loop.index0 < 6 %}
         <a class="journal-card journal-card--text glass" href="blog/{{ post.fileSlug }}.html">
           <div class="journal-card__body">
             <span class="journal-card__tag">{{ post.data.tag }}</span>
@@ -245,9 +246,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p>{{ post.data.previewDescription }}</p>
           </div>
         </a>
+        {% endif %}
         {% endfor %}
       </div>
-      <a class="journal__more" href="/blog/">查看所有文章 →</a>
+      <a class="article-cta__btn glass" href="/blog/" style="margin-top:28px">看全部文章</a>
     </div>
   </section>
 
