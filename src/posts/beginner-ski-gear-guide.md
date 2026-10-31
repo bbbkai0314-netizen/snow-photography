@@ -11,6 +11,7 @@ date: "2026-10-25"
 dateModified: "2026-10-25"
 previewDescription: "貼身保暖與護具自己買，雪板、雪鞋、安全帽現場租。整理雪衣防水係數、手套護具、新手品牌，以及雪地拍照怎麼選顏色。"
 hideDefaultCta: true
+hideArticleLineNote: true
 seo:
   title: "第一次滑雪裝備怎麼挑？新手雪衣、雪褲、手套、護具推薦與「買 vs 租」全攻略｜SnowSurfStudio"
   description: "第一次滑雪，貼身保暖與安全護具建議自己買，雪板、雪鞋和安全帽可以現場租。整理雪衣防水係數、手套、護具、新手品牌與雪地拍照配色。"
@@ -904,9 +905,11 @@ contentBlocks:
       <p>挑對保暖又好動的裝備，第一天踏上雪道就能少摔一點痛、多一點安心看風景的餘裕。第一次在雪地裡站起來、第一次從山頂往下望、還有跟旅伴在雪裡大笑的瞬間，都是過去了就不會重來的畫面。</p>
       <p>如果你今年冬天準備來日本白馬滑雪，想在穿得最好看的這一趟，留下手機自拍拍不到的第三人稱滑行與雪地寫真，歡迎看看 SnowSurfStudio 的<a href="/hakuba-photography/">白馬滑雪攝影服務</a>。</p>
       <p>你專心滑，我負責記錄。滑雪攝影服務 <strong>NT$13,000 起，透過 LINE 詢問報價</strong>，跟我說你們預計來白馬的日期、人數與程度就可以囉！</p>
-      <blockquote class="glass" style="margin:0 0 28px;padding:22px 24px;border-radius:16px;border-left:3px solid var(--ice)">
-        <p><strong>LINE 詢問報價與可約日期</strong> → <a href="https://lin.ee/xcqRIdT" data-line-location="article_end" target="_blank" rel="noopener noreferrer">https://lin.ee/xcqRIdT</a></p>
-      </blockquote>
+      <aside class="line-cta glass" aria-label="用 LINE 詢問檔期">
+        <p class="line-cta__lead">新手第一天也能拍，傳日期、人數、程度就好</p>
+        <p class="line-cta__lead">想知道你的日期還能不能拍？用旁邊的 LINE 問我</p>
+        <a class="line-cta__btn" href="https://lin.ee/xcqRIdT" data-cta-location="article_end" data-line-location="article_end" target="_blank" rel="noopener">LINE 問我的日期能不能拍</a>
+      </aside>
       <h2>延伸閱讀</h2>
       <ul>
         <li><a href="/blog/japan-ski-packing-checklist.html">日本滑雪要帶什麼？新手滑雪裝備清單（附可勾選打包表）</a></li>
@@ -914,7 +917,18 @@ contentBlocks:
         <li><a href="/blog/ski-beginner-photo-tutorial-6-poses.html">滑雪拍照姿勢｜新手 6 個動作與攝影師拍法</a></li>
         <li><a href="/blog/solo-ski-photography.html">一個人滑雪找不到人？陪伴式滑雪攝影</a></li>
       </ul>
-      <h2>資料來源</h2>
+      <style>
+        .article-sources > summary{
+          cursor:pointer;
+          font-family:'Noto Sans TC',sans-serif;
+          font-weight:800;
+          font-size:clamp(19px, 2.2vw, 24px);
+          margin:28px 0 16px;
+          color:var(--white);
+        }
+      </style>
+      <details class="article-sources">
+      <summary>資料來源</summary>
       <p>（查核日期：2026-10-25，台北時間）</p>
       <ol style="margin:12px 0 12px 22px;overflow-wrap:anywhere">
         <li>Rhythm Japan｜Ski &amp; Snowboard Rentals in Japan（含白馬門市租借品項與衛生規定說明）：<a href="https://rhythmjapan.com/winter-rentals-services" target="_blank" rel="noopener noreferrer">https://rhythmjapan.com/winter-rentals-services</a></li>
@@ -945,6 +959,7 @@ contentBlocks:
         <li>McDavid 官方網站：<a href="https://www.mcdavidusa.com/" target="_blank" rel="noopener noreferrer">https://www.mcdavidusa.com/</a></li>
         <li>SPICY Rentals Hakuba 官方網站：<a href="https://spicy.co.jp/en/" target="_blank" rel="noopener noreferrer">https://spicy.co.jp/en/</a></li>
       </ol>
+      </details>
       <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"第一次去滑雪，穿日常的Uniqlo發熱衣跟防潑水羽絨外套可以嗎？","acceptedAnswer":{"@type":"Answer","text":"不太建議。日常發熱衣若含棉量高，流汗後在雪地吹風反而會發冷；一般羽絨外套沒有高防水係數與防風雪裙，跌坐在雪上幾次就會吸水濕透，建議把輕羽絨當作中間保暖層，最外層還是要穿專用雪衣。"}},{"@type":"Question","name":"雪鏡（護目鏡）怎麼挑才不會一直起霧？","acceptedAnswer":{"@type":"Answer","text":"建議挑選標示雙層防霧鏡片（Double Lens）、具備 99–100% UV 紫外線防護，且版型為亞洲版型（Asian Fit / Low Bridge Fit）的雪鏡。亞洲版型在鼻樑處的海綿加厚，才不會因為鼻樑空隙漏風或呼吸熱氣往上竄而起霧。"}},{"@type":"Question","name":"戴近視眼鏡怎麼戴雪鏡？","acceptedAnswer":{"@type":"Answer","text":"最舒服的做法是改戴日拋隱形眼鏡；如果不習慣隱形眼鏡，挑選雪鏡時請認明 OTG（Over The Glasses，可容納近視眼鏡）款式，鏡框兩側會有專門讓鏡腳穿過的凹槽。"}},{"@type":"Question","name":"防摔褲要穿在裡面還是外面？","acceptedAnswer":{"@type":"Answer","text":"穿在雪褲裡面（順序是：排汗褲 → 防摔褲＆護膝 → 雪褲）。穿在裡面不僅保暖、跌倒時護墊不會移位，拍照也完全看不出來。"}},{"@type":"Question","name":"除了裝備之外，整趟日本滑雪行李還要帶什麼？","acceptedAnswer":{"@type":"Answer","text":"像是低溫防手機沒電的方法、行動電源搭機規定與防曬乳清單，整理在日本滑雪要帶什麼？新手滑雪裝備清單（附可勾選打包表），打包前可以直接照著勾。"}}]}</script>
       </div>
 ---

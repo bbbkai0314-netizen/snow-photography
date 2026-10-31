@@ -46,7 +46,7 @@
   // page_location is the full URL of the page the visitor was on. source keeps its old
   // values for the Meta Lead event so Meta's Add_To_Line doesn't change. onSent runs once
   // GA4 has the event, or after LINE_NAVIGATE_TIMEOUT_MS if GA4 is slow or blocked.
-  function fireLineContact(source, linkUrl, onSent, buttonLocation) {
+  function fireLineContact(source, linkUrl, onSent, buttonLocation, ctaLocation) {
     let done = false;
     const finish = () => {
       if (done) return;
@@ -69,6 +69,9 @@
         page_title: document.title,
         link_url: linkUrl || '',
         button_location: buttonLocation || source,
+        // Only inquiry cards that set data-cta-location send this. Other LINE clicks
+        // keep the previous parameter set.
+        ...(ctaLocation ? { cta_location: ctaLocation } : {}),
         send_to: GA4_ID,
         event_callback: finish,
       });
@@ -202,6 +205,10 @@
     return link.getAttribute('data-line-location') || '';
   }
 
+  function explicitCtaLocation(link) {
+    return link.getAttribute('data-cta-location') || '';
+  }
+
   function getLineSource(link) {
     // New inquiry blocks set data-line-location. The header/footer icons do not, so
     // their Meta Lead content_name stays contact_icon.
@@ -286,11 +293,12 @@
     // booking CTA, even if its surrounding UI is part of the booking section.
     if (isLineLink(link)) {
       const url = link.href;
+      const ctaLocation = explicitCtaLocation(link);
       if (navigatesThisPage(e, link)) {
         e.preventDefault();
-        fireLineContact(getLineSource(link), url, () => window.location.assign(url), getLineButtonLocation(link));
+        fireLineContact(getLineSource(link), url, () => window.location.assign(url), getLineButtonLocation(link), ctaLocation);
       } else {
-        fireLineContact(getLineSource(link), url, undefined, getLineButtonLocation(link));
+        fireLineContact(getLineSource(link), url, undefined, getLineButtonLocation(link), ctaLocation);
       }
       return;
     }
